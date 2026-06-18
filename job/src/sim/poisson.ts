@@ -147,8 +147,8 @@ export function resolveKnockout(
     };
   }
 
-  // Penalties: 50-50 with slight Elo-based skew
-  const homeWinPens = rng() < 0.5 + 0.05 * Math.tanh((home.rankingElo - away.rankingElo) / 400);
+  // Penalties: 50-50 with slight rating-based skew (FIFA /600 scale)
+  const homeWinPens = rng() < 0.5 + 0.05 * Math.tanh((home.rankingElo - away.rankingElo) / 600);
   return {
     winnerId: homeWinPens ? home.id : away.id,
     homeGoalsFinal: hFinal,

@@ -78,35 +78,37 @@ export const GROUP_TEAMS: Record<string, string[]> = {
 };
 
 /**
- * Validated Elo ratings from www.eloratings.net as of June 10, 2026
- * (day before WC 2026 kick-off). These are updated in-tournament by
- * applyInTournamentUpdates() using the eloratings.net K=60 formula.
+ * Official pre-WC FIFA/Coca-Cola World Ranking points (men's) as of the day
+ * before WC 2026 kick-off. These seed the FIFA SUM model and are updated
+ * in-tournament by applyInTournamentUpdates() using FIFA's SUM formula.
+ * Read with the /600 win-prob curve in ratings.ts — do NOT mix with the
+ * older eloratings.net /400 scale.
  */
 export const TEAM_ELO: Record<string, number> = {
   // Group A
-  MEX: 1875, RSA: 1517, KOR: 1758, CZE: 1740,
+  MEX: 1687.48, RSA: 1428.38, KOR: 1591.63, CZE: 1505.74,
   // Group B
-  CAN: 1788, BIH: 1595, QAT: 1421, SUI: 1891,
+  CAN: 1559.48, BIH: 1387.22, QAT: 1450.31, SUI: 1650.06,
   // Group C
-  BRA: 1991, MAR: 1827, HAI: 1548, SCO: 1782,
+  BRA: 1765.86, MAR: 1755.10, HAI: 1293.10, SCO: 1503.34,
   // Group D
-  USA: 1726, PAR: 1834, AUS: 1777, TUR: 1911,
+  USA: 1671.23, PAR: 1505.35, AUS: 1579.34, TUR: 1605.73,
   // Group E
-  GER: 1932, CUW: 1434, CIV: 1695, ECU: 1938,
+  GER: 1735.77, CUW: 1294.77, CIV: 1540.87, ECU: 1598.52,
   // Group F
-  NED: 1948, JPN: 1906, SWE: 1712, TUN: 1628,
+  NED: 1753.57, JPN: 1661.58, SWE: 1509.79, TUN: 1476.41,
   // Group G
-  BEL: 1894, EGY: 1696, IRN: 1772, NZL: 1562,
+  BEL: 1742.24, EGY: 1562.37, IRN: 1619.58, NZL: 1275.58,
   // Group H
-  ESP: 2157, CPV: 1578, KSA: 1576, URU: 1892,
+  ESP: 1874.71, CPV: 1371.11, KSA: 1423.88, URU: 1673.07,
   // Group I
-  FRA: 2063, SEN: 1860, IRQ: 1607, NOR: 1914,
+  FRA: 1870.70, SEN: 1684.07, IRQ: 1446.28, NOR: 1557.44,
   // Group J
-  ARG: 2115, ALG: 1772, AUT: 1830, JOR: 1680,
+  ARG: 1877.27, ALG: 1571.03, AUT: 1597.40, JOR: 1387.74,
   // Group K
-  POR: 1989, COD: 1652, UZB: 1714, COL: 1982,
+  POR: 1767.85, COD: 1474.43, UZB: 1458.73, COL: 1698.35,
   // Group L
-  ENG: 2024, CRO: 1912, GHA: 1510, PAN: 1730,
+  ENG: 1828.02, CRO: 1714.87, GHA: 1346.88, PAN: 1539.16,
 };
 
 export function nameToCode(name: string): string {

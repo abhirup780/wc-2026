@@ -1,70 +1,97 @@
 /**
- * In-tournament Elo updates using the eloratings.net methodology:
- *   K  = 60  (FIFA World Cup)
- *   G  = goal-difference multiplier (1 / 1.5 / (11+N)/8)
- *   We = 1 / (1 + 10^(-Δ/400))
- *   ΔElo = K × G × (W − We)
+ * In-tournament rating updates using FIFA's official "SUM" method
+ * (FIFA/Coca-Cola World Ranking, in use since 2018):
  *
- * After each Elo update, attackRating and defenseRating are re-derived from
- * the new Elo so the Poisson model stays calibrated to the Elo scale.
+ *   P = P_before + I × (W − We)
  *
- * Formula: strength = 10^((elo − 1500) / 1200)
+ *   I  = match-importance factor (WC group = 50, WC knockout = 60)
+ *   W  = actual result   (win 1.0 / draw 0.5 / loss 0.0;
+ *                         shootout win 0.75 / shootout loss 0.5)
+ *   We = expected result = 1 / (1 + 10^(−Δ/600)),  Δ = ratingA − ratingB
+ *
+ * Unlike eloratings.net, FIFA SUM ignores goal difference entirely
+ * (1-0 and 8-0 are identical) and does not consider home advantage.
+ *
+ * After each update, attackRating and defenseRating are re-derived from the
+ * new rating so the Poisson goal model stays calibrated to the same scale.
+ *
+ * Formula: strength = 10^((rating − 1500) / 1500)
  *   → lambdaA_vs_B = baseRate × strengthA / strengthB
- *                  = baseRate × 10^((eloA − eloB) / 1200)
+ *                  = baseRate × 10^((ratingA − ratingB) / 1500)
+ *   The /1500 denominator is tuned so the Poisson-implied win probability
+ *   tracks the /600 FIFA win-prob curve (the 1500 offset cancels in the ratio).
  *
- * No hand-coded attack/defense values anywhere — ratings come solely from Elo.
+ * No hand-coded attack/defense values anywhere — ratings come solely from the
+ * FIFA points seed (see TEAM_ELO in adapters/team-codes.ts).
  */
 
 import type { Team, Match } from '@wc2026/shared';
 
-const ELO_K = 60;   // WC finals — eloratings.net uses 60
-const ELO_D = 400;
-const ELO_LAMBDA_D = 1000; // calibrated so Poisson win-prob ≈ Elo win-prob (reduced simulation upsets)
+const ELO_D = 600;          // FIFA SUM win-prob denominator
+const I_GROUP = 50;         // WC group-stage importance
+const I_KNOCKOUT = 60;      // WC knockout-stage importance
+const ELO_LAMBDA_D = 1500;  // tuned so Poisson win-prob ≈ FIFA /600 win-prob
 
 export function eloWinProb(eloA: number, eloB: number): number {
   return 1 / (1 + Math.pow(10, (eloB - eloA) / ELO_D));
 }
 
-/** eloratings.net goal-difference multiplier */
-function goalDiffMultiplier(gd: number): number {
-  if (gd <= 1) return 1.0;
-  if (gd === 2) return 1.5;
-  return (11 + gd) / 8;
-}
-
-/** strength → attackRating = defenseRating, so lambda = baseRate × sA / sB = baseRate × 10^((eloA−eloB)/1200) */
+/** strength → attackRating = defenseRating, so lambda = baseRate × sA / sB = baseRate × 10^((eloA−eloB)/1500) */
 export function strengthFromElo(elo: number): number {
   return Math.pow(10, (elo - 1500) / ELO_LAMBDA_D);
 }
 
-function updateElo(elo: number, opponentElo: number, score: number, goalDiff: number): number {
+/** FIFA SUM rating update: ΔP = I × (W − We). No goal-difference term. */
+function updateElo(elo: number, opponentElo: number, w: number, importance: number): number {
   const we = eloWinProb(elo, opponentElo);
-  const g  = goalDiffMultiplier(Math.abs(goalDiff));
-  return elo + ELO_K * g * (score - we);
+  return elo + importance * (w - we);
 }
 
 /**
- * Apply in-tournament Elo updates from finished WC matches.
- * Automatically re-derives attackRating/defenseRating from updated Elo.
+ * Resolve the FIFA SUM actual-result values (W) for both teams from a finished
+ * match. Knockout matches decided by a penalty shootout use 0.75 / 0.5;
+ * everything else uses win 1.0 / draw 0.5 / loss 0.0 on the (post-ET) score.
+ */
+function resultW(m: Match): { homeW: number; awayW: number } | null {
+  // Penalty shootout (knockout only): pens present and stored separately.
+  if (m.homePens != null && m.awayPens != null && m.homePens !== m.awayPens) {
+    const homeWon = m.homePens > m.awayPens;
+    return homeWon ? { homeW: 0.75, awayW: 0.5 } : { homeW: 0.5, awayW: 0.75 };
+  }
+
+  // Use after-extra-time goals when available, else the regulation score.
+  const homeGoals = m.homeGoalsAet ?? m.homeGoals;
+  const awayGoals = m.awayGoalsAet ?? m.awayGoals;
+  if (homeGoals == null || awayGoals == null) return null;
+
+  if (homeGoals > awayGoals) return { homeW: 1.0, awayW: 0.0 };
+  if (homeGoals < awayGoals) return { homeW: 0.0, awayW: 1.0 };
+  return { homeW: 0.5, awayW: 0.5 };
+}
+
+/**
+ * Apply in-tournament FIFA SUM updates from finished WC matches.
+ * Automatically re-derives attackRating/defenseRating from updated ratings.
  */
 export function applyInTournamentUpdates(
   teams: Map<string, Team>,
   finishedMatches: Match[],
 ): void {
   for (const m of finishedMatches) {
-    if (m.homeGoals == null || m.awayGoals == null) continue;
     const home = teams.get(m.homeId);
     const away = teams.get(m.awayId);
     if (!home || !away) continue;
 
-    const homeScore = m.homeGoals > m.awayGoals ? 1 : m.homeGoals < m.awayGoals ? 0 : 0.5;
-    const gd = m.homeGoals - m.awayGoals;
+    const w = resultW(m);
+    if (!w) continue;
+
+    const importance = m.stage === 'group' ? I_GROUP : I_KNOCKOUT;
 
     const prevHomeElo = home.rankingElo;
     const prevAwayElo = away.rankingElo;
 
-    home.rankingElo = updateElo(prevHomeElo, prevAwayElo, homeScore,      gd);
-    away.rankingElo = updateElo(prevAwayElo, prevHomeElo, 1 - homeScore, -gd);
+    home.rankingElo = updateElo(prevHomeElo, prevAwayElo, w.homeW, importance);
+    away.rankingElo = updateElo(prevAwayElo, prevHomeElo, w.awayW, importance);
 
     // Re-derive attack/defense so the Poisson model stays consistent
     home.attackRating  = strengthFromElo(home.rankingElo);
@@ -75,7 +102,7 @@ export function applyInTournamentUpdates(
 }
 
 /**
- * Regress all Elo ratings toward the field mean.
+ * Regress all ratings toward the field mean.
  *
  * adjustedElo = mean + factor × (rawElo − mean)
  *
@@ -83,6 +110,10 @@ export function applyInTournamentUpdates(
  * overconfidence in extreme ratings while preserving relative ordering.
  * This models the observation that pre-tournament ratings contain noise
  * and the gap between the best and worst teams is often overstated.
+ *
+ * NOTE: FIFA points are already a compressed scale; combined with the /600
+ * curve this regression can over-flatten favorites. Consider ELO_REGRESSION=1.0
+ * (no regression) when running in FIFA mode.
  */
 export function regressEloToMean(
   teams: Map<string, Team>,
