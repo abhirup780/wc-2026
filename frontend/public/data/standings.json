@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-18T15:59:21.439Z",
+  "timestamp": "2026-06-18T17:20:02.079Z",
   "groups": {
     "A": [
       {
@@ -17,13 +17,13 @@
       {
         "groupId": "A",
         "teamId": "RSA",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 0,
-        "ga": 2,
-        "gd": -2,
+        "ga": 3,
+        "gd": -3,
         "points": 0
       },
       {
@@ -41,14 +41,14 @@
       {
         "groupId": "A",
         "teamId": "CZE",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 0,
         "l": 1,
-        "gf": 1,
+        "gf": 2,
         "ga": 2,
-        "gd": -1,
-        "points": 0
+        "gd": 0,
+        "points": 3
       }
     ],
     "B": [
