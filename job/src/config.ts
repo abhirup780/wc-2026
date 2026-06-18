@@ -4,6 +4,15 @@ import type { ModelConfig } from '@wc2026/shared';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+try {
+  // @ts-ignore
+  if (typeof process.loadEnvFile === 'function') {
+    process.loadEnvFile(path.resolve(__dirname, '../../.env'));
+  }
+} catch (e) {
+  // Ignore missing .env file in CI
+}
+
 export const CONFIG = {
   outputDir: process.env.OUTPUT_DIR || path.resolve(__dirname, '../../frontend/public/data'),
 

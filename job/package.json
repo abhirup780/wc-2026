@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "simulate": "tsx --env-file ../.env src/index.ts",
+    "simulate": "tsx src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
