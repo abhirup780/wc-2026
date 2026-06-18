@@ -43,7 +43,9 @@ jobs:
           OUTRIGHT_ODDS_WEIGHT: '0.6'
           KO_GOALS_MULTIPLIER: '0.85'
           FORM_VOLATILITY: '0.05'
-          ELO_REGRESSION: '0.90'
+          # 1.0 = no regression. FIFA points are already a compressed scale, so
+          # shrinking toward the mean over-flattens the field and manufactures upsets.
+          ELO_REGRESSION: '1.0'
         run: npm run simulate
 
       - name: Check for changes
