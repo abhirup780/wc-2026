@@ -1,9 +1,24 @@
 import { useCallback, useState, useEffect, useMemo } from 'react';
-import { usePolled, fetchFixtures, fetchForecast } from '../api.ts';
+import { usePolled, fetchFixtures, fetchForecast, useESPNLive } from '../api.ts';
 import { teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
 import { simulateLikely, type OneSimResult, type SimGroupRow } from '../simulation.ts';
-import type { PredictedMatch, Stage } from '@wc2026/shared';
+import type { PredictedMatch, Stage, Match } from '@wc2026/shared';
+import type { ESPNLiveMatch } from '../api.ts';
+
+function mergeESPN(base: Match[], live: ESPNLiveMatch[]): Match[] {
+  const byKey = new Map(live.map(m => [`${m.homeCode}-${m.awayCode}`, m]));
+  return base.map(m => {
+    const o = byKey.get(`${m.homeId}-${m.awayId}`);
+    if (!o) return m;
+    return {
+      ...m,
+      status: o.status,
+      homeGoals: o.homeScore ?? m.homeGoals,
+      awayGoals: o.awayScore ?? m.awayGoals,
+    };
+  });
+}
 
 const ROUND_LABELS: Partial<Record<Stage, string>> = {
   r32: 'Round of 32', r16: 'Round of 16',
@@ -119,6 +134,7 @@ export default function Prediction() {
   const forecastFetcher  = useCallback(() => fetchForecast(), []);
   const { data: fixtures, loading: loadFix } = usePolled(fixturesFetcher, 300_000);
   const { data: forecast, loading: loadFc  } = usePolled(forecastFetcher, 60_000);
+  const { matches: espnMatches } = useESPNLive(30_000);
 
   const [result, setResult] = useState<OneSimResult | null>(null);
   const [running, setRunning] = useState(false);
@@ -133,11 +149,12 @@ export default function Prediction() {
     if (!fixtures || likelyCodes.size === 0) return;
     setRunning(true);
     setTimeout(() => {
-      const r = simulateLikely(fixtures.teams, fixtures.matches, likelyCodes);
+      const mergedMatches = mergeESPN(fixtures.matches, espnMatches);
+      const r = simulateLikely(fixtures.teams, mergedMatches, likelyCodes);
       setResult(r);
       setRunning(false);
     }, 10);
-  }, [fixtures, likelyCodes]);
+  }, [fixtures, likelyCodes, espnMatches]);
 
   useEffect(() => { if (fixtures && likelyCodes.size > 0 && !result) runSim(); }, [fixtures, likelyCodes, result, runSim]);
 

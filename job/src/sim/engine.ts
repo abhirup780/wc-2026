@@ -55,7 +55,7 @@ function simulateGroupMatches(
   oddsMap?: Map<string, MatchOdds>,
 ): Match[] {
   return matches.map(m => {
-    if (m.stage !== 'group' || m.status === 'finished') return m;
+    if (m.stage !== 'group' || m.status === 'finished' || (m.status === 'live' && m.homeGoals != null && m.awayGoals != null)) return m;
 
     const home = teamMap.get(m.homeId);
     const away = teamMap.get(m.awayId);
@@ -90,7 +90,7 @@ function buildStandings(
   }
 
   for (const m of groupMatches) {
-    if (m.status !== 'finished' || m.homeGoals == null || m.awayGoals == null) continue;
+    if (((m.status !== 'finished' && m.status !== 'live') || m.homeGoals == null || m.awayGoals == null)) continue;
     const gStandings = groups.get(m.groupId!);
     if (!gStandings) continue;
 
@@ -145,6 +145,28 @@ function selectAdvancing(
 
 // ─── Knockout simulation ──────────────────────────────────────────────────────
 
+function prefixToStage(prefix: string): string {
+  switch (prefix.toUpperCase()) {
+    case 'R32': return 'r32';
+    case 'R16': return 'r16';
+    case 'QF': return 'qf';
+    case 'SF': return 'sf';
+    case 'FINAL': return 'final';
+    default: return '';
+  }
+}
+
+function getRealWinner(m: Match): string {
+  const hg = m.homeGoalsAet != null ? m.homeGoalsAet : (m.homeGoals ?? 0);
+  const ag = m.awayGoalsAet != null ? m.awayGoalsAet : (m.awayGoals ?? 0);
+  if (hg > ag) return m.homeId;
+  if (hg < ag) return m.awayId;
+  if (m.homePens != null && m.awayPens != null) {
+    return m.homePens > m.awayPens ? m.homeId : m.awayId;
+  }
+  return m.homeId;
+}
+
 function simulateKnockoutRound(
   matchPairs: [string, string][],
   roundPrefix: string,
@@ -153,7 +175,8 @@ function simulateKnockoutRound(
   config: ModelConfig,
   hostNations: Set<string>,
   rng: () => number,
-  oddsMap?: Map<string, MatchOdds>,
+  oddsMap: Map<string, MatchOdds> | undefined,
+  realKOs: Match[],
 ): Map<string, string> {
   const winners = new Map<string, string>();
 
@@ -163,6 +186,17 @@ function simulateKnockoutRound(
     const awayId = prevWinners.get(slot2);
 
     if (!homeId || !awayId) return;
+
+    const stage = prefixToStage(roundPrefix);
+    const realMatch = realKOs.find(m =>
+      m.stage === stage &&
+      ((m.homeId === homeId && m.awayId === awayId) || (m.homeId === awayId && m.awayId === homeId))
+    );
+
+    if (realMatch) {
+      winners.set(matchId, getRealWinner(realMatch));
+      return;
+    }
 
     const home = teamMap.get(homeId)!;
     const away = teamMap.get(awayId)!;
@@ -222,6 +256,12 @@ export function runSimulation(
   const championCounts = new Map<string, number>(teams.map(t => [t.id, 0]));
 
   const groupMatches = matches.filter(m => m.stage === 'group');
+  const realKOs = matches.filter(
+    m => m.stage !== 'group' &&
+      (m.status === 'finished' || m.status === 'live') &&
+      m.homeGoals != null &&
+      m.awayGoals != null
+  );
 
   for (let i = 0; i < config.simCount; i++) {
     const iterRng = createRng(childSeed(rng));
@@ -242,11 +282,10 @@ export function runSimulation(
       const tally = tallies.get(teamId)!;
       if (slot.startsWith('1')) tally.winGroup++;
       tally.advanceGroup++;
-      tally.reachR16++; // advancing means at least R32 (=R16 in old terminology)
     }
     for (const t of bestThird) {
       const tally = tallies.get(t.teamId);
-      if (tally) { tally.advanceGroup++; tally.reachR16++; }
+      if (tally) { tally.advanceGroup++; }
     }
 
     // 4. Assign best-third to bracket slots
@@ -267,13 +306,16 @@ export function runSimulation(
     // R32 → produces R32-01..R32-16 winners
     const r32Pairs = R32_MATCHES.map(rm => [rm.slot1, rm.slot2] as [string, string]);
     const r32Winners = simulateKnockoutRound(
-      r32Pairs, 'R32', r32Slots, teamMap, config.model, hostSet, iterRng, config.oddsMap,
+      r32Pairs, 'R32', r32Slots, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
     );
+    for (const teamId of r32Winners.values()) {
+      const t = tallies.get(teamId); if (t) t.reachR16++;
+    }
 
     // R16
     const r16Pairs = R16_PAIRS.map(([a, b]) => [a, b] as [string, string]);
     const r16Winners = simulateKnockoutRound(
-      r16Pairs, 'R16', r32Winners, teamMap, config.model, hostSet, iterRng, config.oddsMap,
+      r16Pairs, 'R16', r32Winners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
     );
     for (const teamId of r16Winners.values()) {
       const t = tallies.get(teamId); if (t) t.reachQF++;
@@ -282,7 +324,7 @@ export function runSimulation(
     // QF
     const qfPairs = QF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
     const qfWinners = simulateKnockoutRound(
-      qfPairs, 'QF', r16Winners, teamMap, config.model, hostSet, iterRng, config.oddsMap,
+      qfPairs, 'QF', r16Winners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
     );
     for (const teamId of qfWinners.values()) {
       const t = tallies.get(teamId); if (t) t.reachSF++;
@@ -291,7 +333,7 @@ export function runSimulation(
     // SF
     const sfPairs = SF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
     const sfWinners = simulateKnockoutRound(
-      sfPairs, 'SF', qfWinners, teamMap, config.model, hostSet, iterRng, config.oddsMap,
+      sfPairs, 'SF', qfWinners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
     );
     for (const teamId of sfWinners.values()) {
       const t = tallies.get(teamId); if (t) t.reachFinal++;
@@ -300,7 +342,7 @@ export function runSimulation(
     // Final
     const finalPair: [string, string][] = [['SF-01', 'SF-02']];
     const finalWinners = simulateKnockoutRound(
-      finalPair, 'FINAL', sfWinners, teamMap, config.model, hostSet, iterRng, config.oddsMap,
+      finalPair, 'FINAL', sfWinners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
     );
     const champion = finalWinners.get('FINAL-01');
     if (champion) {

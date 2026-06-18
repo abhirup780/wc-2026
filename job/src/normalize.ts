@@ -22,7 +22,7 @@ export function computeStandingsFromMatches(
   }
 
   for (const m of matches) {
-    if (m.stage !== 'group' || m.status !== 'finished') continue;
+    if (m.stage !== 'group' || (m.status !== 'finished' && m.status !== 'live')) continue;
     if (m.homeGoals == null || m.awayGoals == null) continue;
 
     const homeKey = `${m.groupId}:${m.homeId}`;

@@ -166,7 +166,7 @@ export function simulateOnce(
 
   for (const m of allMatches.filter(m => m.stage === 'group')) {
     let hg: number, ag: number;
-    if (m.status === 'finished' && m.homeGoals != null && m.awayGoals != null) {
+    if ((m.status === 'finished' || m.status === 'live') && m.homeGoals != null && m.awayGoals != null) {
       hg = m.homeGoals; ag = m.awayGoals;
       predicted.push({ id: m.id, stage: m.stage, groupId: m.groupId,
         homeId: m.homeId, awayId: m.awayId, kickoffUtc: m.kickoffUtc,
@@ -226,12 +226,41 @@ export function simulateOnce(
       const homeId = prevMap.get(s1);
       const awayId = prevMap.get(s2);
       if (!homeId || !awayId) return;
+
+      const matchId = `${prefix}-${String(i + 1).padStart(2, '0')}`;
+
+      // Check if there is an existing finished or live knockout match between these teams
+      const realMatch = allMatches.find(m =>
+        m.stage === stage &&
+        (m.status === 'finished' || m.status === 'live') &&
+        m.homeGoals != null &&
+        m.awayGoals != null &&
+        ((m.homeId === homeId && m.awayId === awayId) || (m.homeId === awayId && m.awayId === homeId))
+      );
+
+      if (realMatch) {
+        const hg = realMatch.homeGoalsAet != null ? realMatch.homeGoalsAet : (realMatch.homeGoals ?? 0);
+        const ag = realMatch.awayGoalsAet != null ? realMatch.awayGoalsAet : (realMatch.awayGoals ?? 0);
+        let winnerId = hg > ag ? realMatch.homeId : hg < ag ? realMatch.awayId : realMatch.homeId;
+        if (hg === ag && realMatch.homePens != null && realMatch.awayPens != null) {
+          winnerId = realMatch.homePens > realMatch.awayPens ? realMatch.homeId : realMatch.awayId;
+        }
+        predicted.push({
+          id: matchId, stage, groupId: null,
+          homeId, awayId, kickoffUtc: realMatch.kickoffUtc,
+          homeXg: hg, awayXg: ag,
+          homeGoals: hg, awayGoals: ag,
+          winnerId,
+        });
+        winners.set(matchId, winnerId);
+        return;
+      }
+
       const home = teamMap.get(homeId);
       const away = teamMap.get(awayId);
       if (!home || !away) return;
       const [lH, lA] = lambdas(home, away);
       const { hg, ag, winnerId } = simKO(homeId, awayId, teamMap, rng);
-      const matchId = `${prefix}-${String(i + 1).padStart(2, '0')}`;
       predicted.push({
         id: matchId, stage, groupId: null,
         homeId, awayId, kickoffUtc: '',

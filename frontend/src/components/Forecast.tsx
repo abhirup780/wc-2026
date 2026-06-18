@@ -4,11 +4,12 @@ import { pct } from '../utils.ts';
 import Flag from './Flag.tsx';
 import type { TeamForecast } from '@wc2026/shared';
 
-type SortKey = keyof Pick<TeamForecast, 'pChampion' | 'pReachFinal' | 'pReachSF' | 'pReachQF' | 'pAdvanceGroup' | 'pWinGroup'>;
+type SortKey = keyof Pick<TeamForecast, 'pChampion' | 'pReachFinal' | 'pReachSF' | 'pReachQF' | 'pReachR16' | 'pAdvanceGroup' | 'pWinGroup'>;
 
 const COLUMNS: { key: SortKey; label: string; short: string }[] = [
   { key: 'pWinGroup',    label: 'Win Group',     short: 'W.Grp' },
   { key: 'pAdvanceGroup',label: 'Advance',        short: 'Adv.' },
+  { key: 'pReachR16',    label: 'Round of 16',    short: 'R16'   },
   { key: 'pReachQF',     label: 'Quarter-finals', short: 'QF'   },
   { key: 'pReachSF',     label: 'Semi-finals',    short: 'SF'   },
   { key: 'pReachFinal',  label: 'Final',          short: 'Fin.' },
