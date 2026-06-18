@@ -53,6 +53,29 @@ function seededRng(key: string): () => number {
   };
 }
 
+/**
+ * Sample a realistic scoreline, then orient it so the higher-rated team never
+ * loses. This keeps the "most likely outcome" an upset-free favourites' path
+ * (no random Brazil-loses-to-Austria results) while preserving varied, lifelike
+ * scorelines — and genuine draws, since a level sample is left level.
+ * Returns goals split as favourite (sg) vs underdog (wg) plus which side is home.
+ */
+function favoredScoreline(
+  home: Team,
+  away: Team,
+  baseRate: number,
+  rng: () => number,
+  odds: MatchOdds | undefined,
+  oddsWeight: number,
+): { favHome: boolean; sg: number; wg: number } {
+  const reg = sampleMatch(home, away, baseRate, rng, odds, oddsWeight);
+  const favHome = home.rankingElo >= away.rankingElo;
+  let sg = favHome ? reg.homeGoals : reg.awayGoals;
+  let wg = favHome ? reg.awayGoals : reg.homeGoals;
+  if (sg < wg) { const t = sg; sg = wg; wg = t; } // favourite takes the better score
+  return { favHome, sg, wg };
+}
+
 // ─── Group stage ──────────────────────────────────────────────────────────────
 
 function predictGroupStage(
@@ -82,7 +105,9 @@ function predictGroupStage(
       const [lH, lA] = lambdas(home, away, baseRate);
       const rng = seededRng(`${m.id}|${m.homeId}|${m.awayId}`);
       const odds = oddsMap?.get(`${m.homeId}|${m.awayId}`);
-      const { homeGoals: hg, awayGoals: ag } = sampleMatch(home, away, baseRate, rng, odds, oddsWeight);
+      const { favHome, sg, wg } = favoredScoreline(home, away, baseRate, rng, odds, oddsWeight);
+      const hg = favHome ? sg : wg;
+      const ag = favHome ? wg : sg;
       predictedMatches.push({
         id: m.id, stage: m.stage, groupId: m.groupId,
         homeId: m.homeId, awayId: m.awayId, kickoffUtc: m.kickoffUtc,
@@ -154,25 +179,23 @@ function predictKoRound(
     const matchId = `${roundPrefix}-${String(i + 1).padStart(2, '0')}`;
     const rng = seededRng(`${matchId}|${homeId}|${awayId}`);
 
-    // Realistic regulation scoreline, then extra time, then (rarely) penalties.
+    // Realistic regulation scoreline oriented so the favourite never loses,
+    // then extra time, then (rarely) penalties — the favourite always advances.
     const odds = oddsMap?.get(`${homeId}|${awayId}`);
-    const reg = sampleMatch(home, away, baseRate, rng, odds, oddsWeight);
-    let hg = reg.homeGoals;
-    let ag = reg.awayGoals;
-    let winnerId: string;
-    if (hg !== ag) {
-      winnerId = hg > ag ? homeId : awayId;
-    } else {
-      hg += poissonSample(lH * ET_GOAL_RATE, rng);
-      ag += poissonSample(lA * ET_GOAL_RATE, rng);
-      if (hg !== ag) {
-        winnerId = hg > ag ? homeId : awayId;
-      } else {
-        // Penalty shootout — slight skew to the higher-rated side (FIFA /600 scale)
-        const homeWinPens = 0.5 + 0.05 * Math.tanh((home.rankingElo - away.rankingElo) / 600);
-        winnerId = rng() < homeWinPens ? homeId : awayId;
-      }
+    const { favHome, sg, wg } = favoredScoreline(home, away, baseRate, rng, odds, oddsWeight);
+    const favLambda = favHome ? lH : lA;
+    const dogLambda = favHome ? lA : lH;
+    let s = sg, w = wg;
+    if (s === w) {
+      // Extra time, still keeping the favourite from losing
+      s += poissonSample(favLambda * ET_GOAL_RATE, rng);
+      w += poissonSample(dogLambda * ET_GOAL_RATE, rng);
+      if (s < w) { const t = s; s = w; w = t; }
+      // If still level → penalties, won by the favourite (s === w stays a draw scoreline)
     }
+    const winnerId = favHome ? homeId : awayId;
+    const hg = favHome ? s : w;
+    const ag = favHome ? w : s;
 
     predictedMatches.push({
       id: matchId,
