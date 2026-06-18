@@ -1,142 +1,163 @@
 import { useCallback } from 'react';
-import { usePolled, fetchForecast } from '../api.ts';
-import { pct, teamName as getTeamName } from '../utils.ts';
+import { usePolled, fetchPrediction } from '../api.ts';
+import { teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
+import type { PredictedMatch } from '@wc2026/shared';
+
+// ─── Bracket topology ─────────────────────────────────────────────────────────
+// Which two earlier matches feed each knockout match (winners advance).
+// Mirrors R16_PAIRS / QF_PAIRS / SF_PAIRS in job/src/sim/bracket.ts.
+
+const FEEDERS: Record<string, [string, string]> = {
+  'R16-01': ['R32-02', 'R32-05'],
+  'R16-02': ['R32-01', 'R32-03'],
+  'R16-03': ['R32-04', 'R32-06'],
+  'R16-04': ['R32-07', 'R32-08'],
+  'R16-05': ['R32-11', 'R32-12'],
+  'R16-06': ['R32-09', 'R32-10'],
+  'R16-07': ['R32-14', 'R32-16'],
+  'R16-08': ['R32-13', 'R32-15'],
+  'QF-01': ['R16-01', 'R16-02'],
+  'QF-02': ['R16-05', 'R16-06'],
+  'QF-03': ['R16-03', 'R16-04'],
+  'QF-04': ['R16-07', 'R16-08'],
+  'SF-01': ['QF-01', 'QF-02'],
+  'SF-02': ['QF-03', 'QF-04'],
+  'FINAL-01': ['SF-01', 'SF-02'],
+};
+const ROOT = 'FINAL-01';
+
+// ─── Match card ───────────────────────────────────────────────────────────────
+
+function TeamRow({ code, goals, win }: { code: string; goals: number | null; win: boolean }) {
+  return (
+    <div className={`flex items-center justify-between gap-1.5 px-1.5 py-1 ${win ? 'text-white font-semibold' : 'text-gray-500'}`}>
+      <div className="flex items-center gap-1.5 min-w-0">
+        <Flag code={code} size={15} />
+        <span className="truncate text-[11px]">{code}</span>
+      </div>
+      <span className={`w-3.5 text-center text-[11px] tabular-nums shrink-0 ${win ? 'text-fifa-gold' : ''}`}>
+        {goals ?? '-'}
+      </span>
+    </div>
+  );
+}
+
+function MatchCard({ m }: { m?: PredictedMatch }) {
+  if (!m) {
+    return <div className="w-28 h-[52px] rounded border border-dashed border-gray-800 bg-gray-900/40" />;
+  }
+  const homeWin = m.winnerId === m.homeId;
+  const pens = m.homeGoals === m.awayGoals && m.winnerId;
+  return (
+    <div className="w-28 rounded border border-gray-700/60 bg-gray-800/40 overflow-hidden shrink-0">
+      <TeamRow code={m.homeId} goals={m.homeGoals} win={homeWin} />
+      <div className="border-t border-gray-700/40" />
+      <TeamRow code={m.awayId} goals={m.awayGoals} win={!homeWin} />
+      {pens && (
+        <div className="text-[9px] text-gray-600 text-center border-t border-gray-700/30 leading-tight py-px">
+          {m.winnerId} pens
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Recursive tree ─────────────────────────────────────────────────────────--
+// Balanced binary tree: leaves (R32) on the left, final on the right.
+// Parents vertically center against their two feeders; CSS borders draw the
+// connecting elbows.
+
+function Node({ id, byId }: { id: string; byId: Map<string, PredictedMatch> }) {
+  const kids = FEEDERS[id];
+  if (!kids) {
+    return (
+      <div className="flex items-center py-1">
+        <MatchCard m={byId.get(id)} />
+      </div>
+    );
+  }
+  return (
+    <div className="flex items-stretch">
+      {/* feeders */}
+      <div className="flex flex-col justify-center">
+        <div className="flex-1 flex items-center"><Node id={kids[0]} byId={byId} /></div>
+        <div className="flex-1 flex items-center"><Node id={kids[1]} byId={byId} /></div>
+      </div>
+      {/* connector: vertical bus spans the middle 50% (feeders sit at 25%/75%
+          in a balanced tree); horizontal stub reaches the parent at the midpoint */}
+      <div className="flex flex-col w-4 self-stretch shrink-0">
+        <div className="grow" />
+        <div className="grow-[2] border-l border-gray-700 relative">
+          <div className="absolute top-1/2 left-0 w-4 h-px bg-gray-700" />
+        </div>
+        <div className="grow" />
+      </div>
+      {/* parent match */}
+      <div className="flex items-center">
+        <MatchCard m={byId.get(id)} />
+      </div>
+    </div>
+  );
+}
+
+// ─── Main component ─────────────────────────────────────────────────────────--
+
+const COL_LABELS = ['Round of 32', 'Round of 16', 'Quarters', 'Semis', 'Final'];
 
 export default function Bracket() {
-  const forecastFetcher = useCallback(() => fetchForecast(), []);
-  const { data: forecast, loading } = usePolled(forecastFetcher, 60_000);
+  const fetcher = useCallback(() => fetchPrediction(), []);
+  const { data: prediction, loading, lastUpdated } = usePolled(fetcher, 60_000);
 
   if (loading) return (
     <div className="flex items-center justify-center h-64 text-gray-500">Loading bracket…</div>
   );
-  if (!forecast) return (
+  if (!prediction) return (
     <div className="card text-yellow-500 text-sm">Bracket data not yet available.</div>
   );
 
-  const topTeams = [...forecast.teams].sort((a, b) => b.pChampion - a.pChampion).slice(0, 8);
+  const byId = new Map(prediction.matches.map(m => [m.id, m]));
 
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-lg font-semibold">Knockout Bracket</h2>
-        <p className="text-xs text-gray-500 mt-1">
-          Probabilities from {forecast.simCount.toLocaleString()} simulations.
+        <h2 className="text-lg font-semibold">Predicted Bracket</h2>
+        <p className="text-xs text-gray-500 mt-0.5">
+          The model's single most-likely knockout path. Updates as real results come in.
+          {lastUpdated ? ` · ${lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}
         </p>
       </div>
 
-      {/* Top 8 contenders */}
-      <div className="card p-0 overflow-hidden">
-        <div className="px-4 py-3 border-b border-gray-800">
-          <h3 className="text-sm font-semibold text-gray-300">Top 8 Contenders</h3>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full" style={{ minWidth: '380px' }}>
-            <thead>
-              <tr className="text-[11px] text-gray-600 border-b border-gray-800">
-                <th className="text-left py-2 pl-4 pr-3 font-normal">Team</th>
-                <th className="text-center py-2 px-2 font-normal">QF</th>
-                <th className="text-center py-2 px-2 font-normal">SF</th>
-                <th className="text-center py-2 px-2 font-normal">Final</th>
-                <th className="text-center py-2 px-3 font-normal text-fifa-gold">🏆</th>
-              </tr>
-            </thead>
-            <tbody>
-              {topTeams.map((t, i) => {
-                const stages = [
-                  { p: t.pReachQF },
-                  { p: t.pReachSF },
-                  { p: t.pReachFinal },
-                  { p: t.pChampion, gold: true },
-                ];
-                return (
-                  <tr key={t.teamId} className="border-b border-gray-800/40 hover:bg-gray-800/20">
-                    <td className="py-2.5 pl-4 pr-3">
-                      <div className="flex items-center gap-2">
-                        <span className="text-gray-700 text-xs w-3 shrink-0 tabular-nums">{i + 1}</span>
-                        <Flag code={t.code} size={22} />
-                        <span className="text-sm font-medium truncate max-w-[100px] sm:max-w-none">{t.name}</span>
-                      </div>
-                    </td>
-                    {stages.map((s, si) => (
-                      <td key={si} className="py-2.5 px-2 text-center">
-                        <div className="flex flex-col items-center gap-0.5">
-                          <div className="w-16 sm:w-20 bg-gray-800 rounded-full h-2">
-                            <div
-                              className={`h-2 rounded-full ${s.gold ? 'bg-fifa-gold' : 'bg-fifa-blue'}`}
-                              style={{ width: `${Math.round(s.p * 100)}%` }}
-                            />
-                          </div>
-                          <span className="text-xs tabular-nums text-gray-400">{pct(s.p, 0)}</span>
-                        </div>
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      {/* Champion */}
+      <div className="card flex items-center gap-4 border border-fifa-gold/30 bg-fifa-gold/5">
+        <span className="text-3xl">🏆</span>
+        <div>
+          <div className="text-xs text-gray-400 mb-0.5">Predicted champion</div>
+          <div className="flex items-center gap-2">
+            <Flag code={prediction.champion} size={30} />
+            <span className="text-2xl font-bold">{teamName(prediction.champion)}</span>
+          </div>
         </div>
       </div>
 
-      {/* All teams table */}
+      {/* Bracket tree — horizontally scrollable on mobile */}
       <div className="card p-0 overflow-hidden">
-        <div className="px-4 py-3 border-b border-gray-800">
-          <h3 className="text-sm font-semibold text-gray-300">All Teams – Advancement Probabilities</h3>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs" style={{ minWidth: '480px' }}>
-            <thead>
-              <tr className="text-gray-500 border-b border-gray-800">
-                <th className="text-left py-2.5 pl-4 pr-2 font-normal">Team</th>
-                <th className="text-center py-2.5 px-2 font-normal">Adv.</th>
-                <th className="text-center py-2.5 px-2 font-normal">R16</th>
-                <th className="text-center py-2.5 px-2 font-normal">QF</th>
-                <th className="text-center py-2.5 px-2 font-normal">SF</th>
-                <th className="text-center py-2.5 px-2 font-normal">Final</th>
-                <th className="text-center py-2.5 px-3 font-normal text-fifa-gold">🏆</th>
-                <th className="text-center py-2.5 px-3 font-normal text-gray-600">vs pre</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...forecast.teams].sort((a, b) => b.pChampion - a.pChampion).map(t => {
-                const delta = t.pChampionInitial != null ? t.pChampion - t.pChampionInitial : null;
-                const trendLabel = delta == null ? '' :
-                  Math.abs(delta) < 0.002 ? '—' :
-                  delta > 0 ? `↑+${Math.round(delta * 100)}%` : `↓${Math.round(delta * 100)}%`;
-                const trendColor = delta == null || Math.abs(delta) < 0.002 ? 'text-gray-600'
-                  : delta > 0 ? 'text-green-400' : 'text-red-400';
-                return (
-                  <tr key={t.teamId} className="border-b border-gray-800/30 hover:bg-gray-800/20">
-                    <td className="py-2 pl-4 pr-2">
-                      <div className="flex items-center gap-1.5">
-                        <Flag code={t.code} size={16} />
-                        <span className="font-medium truncate max-w-[80px]">{t.name}</span>
-                      </div>
-                    </td>
-                    {[t.pAdvanceGroup, t.pReachR16, t.pReachQF, t.pReachSF, t.pReachFinal, t.pChampion].map((p, i) => (
-                      <td key={i} className="py-2 px-2 text-center tabular-nums">
-                        <span className={p > 0.5 ? 'text-green-400' : p > 0.2 ? 'text-yellow-400' : p > 0 ? 'text-gray-300' : 'text-gray-700'}>
-                          {p <= 0 ? '0%' : Math.round(p * 100) === 0 ? '<1%' : pct(p, 0)}
-                        </span>
-                      </td>
-                    ))}
-                    <td className={`py-2 px-3 text-center tabular-nums font-medium ${trendColor}`}>
-                      {trendLabel}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+        <div className="overflow-x-auto p-3">
+          <div style={{ minWidth: '700px' }}>
+            <div className="flex justify-between mb-2 text-[10px] uppercase tracking-wider text-gray-600 font-semibold">
+              {COL_LABELS.map(l => <span key={l}>{l}</span>)}
+            </div>
+            <Node id={ROOT} byId={byId} />
+          </div>
         </div>
         <div className="sm:hidden text-center py-2 text-[10px] text-gray-700 border-t border-gray-800">
-          ← scroll for more →
+          ← scroll to see the full bracket →
         </div>
       </div>
 
       <p className="text-xs text-gray-600 text-center">
-        Bracket slot assignments are provisional — verify R32 seeding against FIFA's official bracket.
+        Deterministic best-guess path — at each match the higher-rated/favoured side advances.
+        For probabilities across all teams, see the Forecast tab; for a random scenario, see Simulate.
       </p>
     </div>
   );
