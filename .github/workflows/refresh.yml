@@ -40,11 +40,12 @@ jobs:
         env:
           SIM_COUNT: '50000'
           MODEL_TYPE: 'poisson'
-          HOST_NATIONS: 'USA,CAN,MEX'
-          HOST_ADJUSTMENT: '1.0'
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           BLEND_ODDS_WEIGHT: '0.6'
           OUTRIGHT_ODDS_WEIGHT: '0.6'
+          KO_GOALS_MULTIPLIER: '0.85'
+          FORM_VOLATILITY: '0.05'
+          ELO_REGRESSION: '0.90'
         run: npm run simulate
 
       - name: Check for changes

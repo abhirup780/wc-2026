@@ -3,7 +3,7 @@ import { fetchFromESPN } from './adapters/espn.js';
 import { fetchOdds } from './adapters/odds-api.js';
 import { fetchOutrightOdds } from './adapters/outrights-api.js';
 import { computeStandingsFromMatches } from './normalize.js';
-import { applyInTournamentUpdates } from './ratings.js';
+import { applyInTournamentUpdates, regressEloToMean } from './ratings.js';
 import { runSimulation } from './sim/engine.js';
 import { predictTournament } from './sim/predict.js';
 import { writeArtifacts } from './write-artifacts.js';
@@ -18,25 +18,34 @@ async function main(): Promise<void> {
   const { teams: rawTeams, matches, snapshotAt } = await fetchFromESPN();
   console.log(`ESPN: ${matches.length} matches, ${rawTeams.length} teams`);
 
-  // 2a. Baseline simulation — initial Elo, all matches treated as unplayed.
+  // 1b. Regress Elo toward the field mean (reduce overconfidence in extreme ratings)
+  //     Applied before both baseline and main sim for consistency.
+  {
+    const regMap = new Map(rawTeams.map(t => [t.id, t]));
+    regressEloToMean(regMap, CONFIG.model.eloRegressionFactor);
+    console.log(`Elo regression: factor=${CONFIG.model.eloRegressionFactor}`);
+  }
+
+  // 2a. Baseline simulation — initial (regressed) Elo, all matches treated as unplayed.
   //     Used only to compute pChampionInitial for the trend arrow in the UI.
   const allScheduled = matches.map(m => ({ ...m, status: 'scheduled' as const, homeGoals: null, awayGoals: null }));
   const baselineResult = runSimulation(rawTeams, allScheduled, {
     simCount: Math.min(CONFIG.simCount, 5000),
     seed: CONFIG.seed,
     model: CONFIG.model,
-    hostNations: [],
     oddsMap: undefined,
   });
   // Mutable so we can apply the same outright blend later (apples-to-apples comparison)
   const baselineMap = new Map(baselineResult.teams.map(t => [t.teamId, t.pChampion]));
 
-  // 2b. Apply in-tournament Elo updates from finished group-stage matches
+  // 2b. Apply in-tournament Elo updates from ALL finished matches (group + knockout)
+  //     Sorted chronologically so Elo updates accumulate in match order.
   const teamMap = new Map(rawTeams.map(t => [t.id, { ...t }]));
-  applyInTournamentUpdates(
-    teamMap,
-    matches.filter(m => m.stage === 'group' && m.status === 'finished'),
-  );
+  const finishedMatches = matches
+    .filter(m => m.status === 'finished')
+    .sort((a, b) => new Date(a.kickoffUtc).getTime() - new Date(b.kickoffUtc).getTime());
+  applyInTournamentUpdates(teamMap, finishedMatches);
+  console.log(`Elo updates: ${finishedMatches.length} finished matches`);
   const teams = [...teamMap.values()];
 
   // 3. Current group standings
@@ -74,7 +83,6 @@ async function main(): Promise<void> {
     simCount: CONFIG.simCount,
     seed: CONFIG.seed,
     model: CONFIG.model,
-    hostNations: [],
     oddsMap,
   });
 

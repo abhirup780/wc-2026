@@ -73,3 +73,29 @@ export function applyInTournamentUpdates(
     away.defenseRating = strengthFromElo(away.rankingElo);
   }
 }
+
+/**
+ * Regress all Elo ratings toward the field mean.
+ *
+ * adjustedElo = mean + factor × (rawElo − mean)
+ *
+ * A factor of 0.90 shrinks 10% of the distance to the mean, reducing
+ * overconfidence in extreme ratings while preserving relative ordering.
+ * This models the observation that pre-tournament ratings contain noise
+ * and the gap between the best and worst teams is often overstated.
+ */
+export function regressEloToMean(
+  teams: Map<string, Team>,
+  factor: number,
+): void {
+  if (factor >= 1.0) return; // no-op
+
+  const elos = [...teams.values()].map(t => t.rankingElo);
+  const mean = elos.reduce((a, b) => a + b, 0) / elos.length;
+
+  for (const team of teams.values()) {
+    team.rankingElo = mean + factor * (team.rankingElo - mean);
+    team.attackRating  = strengthFromElo(team.rankingElo);
+    team.defenseRating = strengthFromElo(team.rankingElo);
+  }
+}

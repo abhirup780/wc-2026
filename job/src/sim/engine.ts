@@ -44,13 +44,44 @@ function zeroTally(): Tally {
   return { winGroup: 0, advanceGroup: 0, reachR16: 0, reachQF: 0, reachSF: 0, reachFinal: 0, champion: 0 };
 }
 
+// ─── Form perturbation ("good/bad day" noise) ────────────────────────────────
+
+/** Box-Muller normal sample */
+function normalRandom(mean: number, std: number, rng: () => number): number {
+  const u1 = Math.max(1e-10, rng());
+  const u2 = rng();
+  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+  return mean + std * z;
+}
+
+/**
+ * Create a shallow copy of the team map with per-team strength noise.
+ * Each team's attack/defense ratings are multiplied by exp(N(0, σ²)),
+ * modelling day-to-day form variance without changing the mean.
+ */
+function perturbStrengths(
+  teamMap: Map<string, Team>,
+  volatility: number,
+  rng: () => number,
+): Map<string, Team> {
+  const perturbed = new Map<string, Team>();
+  for (const [id, team] of teamMap) {
+    const noise = Math.exp(normalRandom(0, volatility, rng));
+    perturbed.set(id, {
+      ...team,
+      attackRating: team.attackRating * noise,
+      defenseRating: team.defenseRating * noise,
+    });
+  }
+  return perturbed;
+}
+
 // ─── Group-stage simulation ───────────────────────────────────────────────────
 
 function simulateGroupMatches(
   matches: Match[],
   teamMap: Map<string, Team>,
   config: ModelConfig,
-  hostNations: Set<string>,
   rng: () => number,
   oddsMap?: Map<string, MatchOdds>,
 ): Match[] {
@@ -61,11 +92,10 @@ function simulateGroupMatches(
     const away = teamMap.get(m.awayId);
     if (!home || !away) return m;
 
-    const hostMultiplier = hostNations.has(m.homeId) ? config.hostAdjustment : 1.0;
     const odds = oddsMap?.get(`${m.homeId}|${m.awayId}`);
 
     const { homeGoals, awayGoals } = sampleMatch(
-      home, away, config.baseGoalsRate, hostMultiplier, rng, odds, config.blendOddsWeight,
+      home, away, config.baseGoalsRate, rng, odds, config.blendOddsWeight,
     );
 
     return { ...m, status: 'finished' as const, homeGoals, awayGoals };
@@ -173,7 +203,6 @@ function simulateKnockoutRound(
   prevWinners: Map<string, string>,
   teamMap: Map<string, Team>,
   config: ModelConfig,
-  hostNations: Set<string>,
   rng: () => number,
   oddsMap: Map<string, MatchOdds> | undefined,
   realKOs: Match[],
@@ -200,15 +229,17 @@ function simulateKnockoutRound(
 
     const home = teamMap.get(homeId)!;
     const away = teamMap.get(awayId)!;
-    const hostMul = hostNations.has(homeId) ? config.hostAdjustment : 1.0;
     const odds = oddsMap?.get(`${homeId}|${awayId}`)
       ?? oddsMap?.get(`${awayId}|${homeId}`); // knockout teams may be in either order
 
+    // Knockout matches use a reduced goal rate (more cautious play under elimination)
+    const koBaseRate = config.baseGoalsRate * config.knockoutGoalsMultiplier;
+
     const { homeGoals, awayGoals } = sampleMatch(
-      home, away, config.baseGoalsRate, hostMul, rng, odds, config.blendOddsWeight,
+      home, away, koBaseRate, rng, odds, config.blendOddsWeight,
     );
     const { winnerId } = resolveKnockout(
-      homeGoals, awayGoals, home, away, config.baseGoalsRate, hostMul, rng,
+      homeGoals, awayGoals, home, away, koBaseRate, rng,
     );
 
     winners.set(matchId, winnerId);
@@ -238,7 +269,6 @@ export interface SimConfig {
   simCount: number;
   seed: number;
   model: ModelConfig;
-  hostNations: string[];
   /** Market odds keyed by "homeId|awayId". Applied when model.blendOddsWeight > 0. */
   oddsMap?: Map<string, MatchOdds>;
 }
@@ -250,7 +280,6 @@ export function runSimulation(
 ): Omit<Forecast, 'dataSnapshotTimestamp'> {
   const rng = createRng(config.seed);
   const teamMap = new Map(teams.map(t => [t.id, t]));
-  const hostSet = new Set(config.hostNations);
 
   const tallies = new Map<string, Tally>(teams.map(t => [t.id, zeroTally()]));
   const championCounts = new Map<string, number>(teams.map(t => [t.id, 0]));
@@ -266,9 +295,14 @@ export function runSimulation(
   for (let i = 0; i < config.simCount; i++) {
     const iterRng = createRng(childSeed(rng));
 
+    // Per-iteration form perturbation ("good/bad day" noise)
+    const iterTeamMap = config.model.formVolatility > 0
+      ? perturbStrengths(teamMap, config.model.formVolatility, iterRng)
+      : teamMap;
+
     // 1. Simulate group matches
     const simGroupMatches = simulateGroupMatches(
-      groupMatches, teamMap, config.model, hostSet, iterRng, config.oddsMap,
+      groupMatches, iterTeamMap, config.model, iterRng, config.oddsMap,
     );
 
     // 2. Build group standings
@@ -306,7 +340,7 @@ export function runSimulation(
     // R32 → produces R32-01..R32-16 winners
     const r32Pairs = R32_MATCHES.map(rm => [rm.slot1, rm.slot2] as [string, string]);
     const r32Winners = simulateKnockoutRound(
-      r32Pairs, 'R32', r32Slots, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
+      r32Pairs, 'R32', r32Slots, iterTeamMap, config.model, iterRng, config.oddsMap, realKOs,
     );
     for (const teamId of r32Winners.values()) {
       const t = tallies.get(teamId); if (t) t.reachR16++;
@@ -315,7 +349,7 @@ export function runSimulation(
     // R16
     const r16Pairs = R16_PAIRS.map(([a, b]) => [a, b] as [string, string]);
     const r16Winners = simulateKnockoutRound(
-      r16Pairs, 'R16', r32Winners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
+      r16Pairs, 'R16', r32Winners, iterTeamMap, config.model, iterRng, config.oddsMap, realKOs,
     );
     for (const teamId of r16Winners.values()) {
       const t = tallies.get(teamId); if (t) t.reachQF++;
@@ -324,7 +358,7 @@ export function runSimulation(
     // QF
     const qfPairs = QF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
     const qfWinners = simulateKnockoutRound(
-      qfPairs, 'QF', r16Winners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
+      qfPairs, 'QF', r16Winners, iterTeamMap, config.model, iterRng, config.oddsMap, realKOs,
     );
     for (const teamId of qfWinners.values()) {
       const t = tallies.get(teamId); if (t) t.reachSF++;
@@ -333,7 +367,7 @@ export function runSimulation(
     // SF
     const sfPairs = SF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
     const sfWinners = simulateKnockoutRound(
-      sfPairs, 'SF', qfWinners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
+      sfPairs, 'SF', qfWinners, iterTeamMap, config.model, iterRng, config.oddsMap, realKOs,
     );
     for (const teamId of sfWinners.values()) {
       const t = tallies.get(teamId); if (t) t.reachFinal++;
@@ -342,7 +376,7 @@ export function runSimulation(
     // Final
     const finalPair: [string, string][] = [['SF-01', 'SF-02']];
     const finalWinners = simulateKnockoutRound(
-      finalPair, 'FINAL', sfWinners, teamMap, config.model, hostSet, iterRng, config.oddsMap, realKOs,
+      finalPair, 'FINAL', sfWinners, iterTeamMap, config.model, iterRng, config.oddsMap, realKOs,
     );
     const champion = finalWinners.get('FINAL-01');
     if (champion) {

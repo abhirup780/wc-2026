@@ -2,14 +2,16 @@
  * Poisson sampling and Dixon-Coles match model.
  *
  * Model:
- *   homeXg = baseRate * homeAttack / awayDefense * hostMultiplier
- *   awayXg = baseRate * awayAttack / homeDefense
+ *   xG_A = baseRate * attackA / defenseB
+ *   xG_B = baseRate * attackB / defenseA
  *   Score probability includes Dixon-Coles low-score correction (ρ = -0.13):
  *     τ(0,0), τ(1,0), τ(0,1), τ(1,1) adjust for over/under-represented
  *     low scores in World Cup matches.
  *
+ * All WC 2026 matches are played on neutral ground — no home advantage.
+ *
  * If market odds are provided, xG lambdas are scaled so the model's implied
- * home-win probability matches a blend of model + market probabilities.
+ * win probability matches a blend of model + market probabilities.
  */
 
 import type { Team } from '@wc2026/shared';
@@ -71,19 +73,18 @@ export interface MatchGoals {
  * four scores without changing the mean.
  *
  * If odds are supplied, the xG ratio is adjusted so the model's implied
- * home-win probability (approximated via Elo) moves toward the market by
+ * win probability (approximated via Elo) moves toward the market by
  * CONFIG.model.blendOddsWeight.
  */
 export function sampleMatch(
   home: Team,
   away: Team,
   baseRate: number,
-  hostMultiplier: number,
   rng: () => number,
   odds?: MatchOdds,
   oddsWeight = 0,
 ): MatchGoals {
-  let lH = baseRate * (home.attackRating / away.defenseRating) * hostMultiplier;
+  let lH = baseRate * (home.attackRating / away.defenseRating);
   let lA = baseRate * (away.attackRating / home.defenseRating);
 
   if (odds && oddsWeight > 0) {
@@ -121,7 +122,6 @@ export function resolveKnockout(
   home: Team,
   away: Team,
   baseRate: number,
-  hostMultiplier: number,
   rng: () => number,
   _odds?: MatchOdds,
 ): { winnerId: string; homeGoalsFinal: number; awayGoalsFinal: number } {
@@ -134,7 +134,7 @@ export function resolveKnockout(
   }
 
   // Extra time: model as ~30% of normal-time scoring
-  const etHome = poissonSample(baseRate * 0.3 * (home.attackRating / away.defenseRating) * hostMultiplier, rng);
+  const etHome = poissonSample(baseRate * 0.3 * (home.attackRating / away.defenseRating), rng);
   const etAway = poissonSample(baseRate * 0.3 * (away.attackRating / home.defenseRating), rng);
   const hFinal = homeGoals + etHome;
   const aFinal = awayGoals + etAway;

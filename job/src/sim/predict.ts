@@ -177,7 +177,8 @@ export function predictTournament(
     bestThird.map(t => ({ teamId: t.teamId, groupId: t.groupId })),
   );
 
-  // 3. R32
+  // 3. R32 — use reduced KO goal rate
+  const koBaseRate = config.baseGoalsRate * config.knockoutGoalsMultiplier;
   const r32Slots = new Map<string, string>();
   for (const rm of R32_MATCHES) {
     const t1 = resolveSlot(rm.slot1, groupResults, bestThirdAssignment);
@@ -186,27 +187,27 @@ export function predictTournament(
     if (t2) r32Slots.set(rm.slot2, t2);
   }
   const r32Pairs = R32_MATCHES.map(rm => [rm.slot1, rm.slot2] as [string, string]);
-  const { predictedMatches: r32, winners: r32Winners } = predictKoRound(r32Pairs, 'R32', 'r32', r32Slots, teamMap, config.baseGoalsRate);
+  const { predictedMatches: r32, winners: r32Winners } = predictKoRound(r32Pairs, 'R32', 'r32', r32Slots, teamMap, koBaseRate);
   allPredicted.push(...r32);
 
   // 4. R16
   const r16Pairs = R16_PAIRS.map(([a, b]) => [a, b] as [string, string]);
-  const { predictedMatches: r16, winners: r16Winners } = predictKoRound(r16Pairs, 'R16', 'r16', r32Winners, teamMap, config.baseGoalsRate);
+  const { predictedMatches: r16, winners: r16Winners } = predictKoRound(r16Pairs, 'R16', 'r16', r32Winners, teamMap, koBaseRate);
   allPredicted.push(...r16);
 
   // 5. QF
   const qfPairs = QF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
-  const { predictedMatches: qf, winners: qfWinners } = predictKoRound(qfPairs, 'QF', 'qf', r16Winners, teamMap, config.baseGoalsRate);
+  const { predictedMatches: qf, winners: qfWinners } = predictKoRound(qfPairs, 'QF', 'qf', r16Winners, teamMap, koBaseRate);
   allPredicted.push(...qf);
 
   // 6. SF
   const sfPairs = SF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
-  const { predictedMatches: sf, winners: sfWinners } = predictKoRound(sfPairs, 'SF', 'sf', qfWinners, teamMap, config.baseGoalsRate);
+  const { predictedMatches: sf, winners: sfWinners } = predictKoRound(sfPairs, 'SF', 'sf', qfWinners, teamMap, koBaseRate);
   allPredicted.push(...sf);
 
   // 7. Final
   const { predictedMatches: final, winners: finalWinners } = predictKoRound(
-    [['SF-01', 'SF-02']], 'FINAL', 'final', sfWinners, teamMap, config.baseGoalsRate,
+    [['SF-01', 'SF-02']], 'FINAL', 'final', sfWinners, teamMap, koBaseRate,
   );
   allPredicted.push(...final);
 

@@ -29,8 +29,10 @@ export const CONFIG = {
   model: {
     type:           (process.env.MODEL_TYPE ?? 'poisson') as 'poisson' | 'elo',
     baseGoalsRate:  Number(process.env.BASE_GOALS_RATE ?? '1.25'),
-    hostAdjustment: 1.0,
     blendOddsWeight: Number(process.env.BLEND_ODDS_WEIGHT ?? '0.6'),
+    knockoutGoalsMultiplier: Number(process.env.KO_GOALS_MULTIPLIER ?? '0.85'),
+    formVolatility: Number(process.env.FORM_VOLATILITY ?? '0.05'),
+    eloRegressionFactor: Number(process.env.ELO_REGRESSION ?? '0.90'),
   } satisfies ModelConfig,
 
   version: '1.0.0',

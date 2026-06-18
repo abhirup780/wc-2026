@@ -76,8 +76,13 @@ export interface Forecast {
 export interface ModelConfig {
   type: 'poisson' | 'elo';
   baseGoalsRate: number;  // avg expected goals per team per match
-  hostAdjustment: number; // multiplier for hosting nations (USA/CAN/MEX)
   blendOddsWeight: number; // 0 = ignore odds, 1 = use only odds
+  /** Multiplier for knockout-stage goal rate (e.g. 0.85 = 15% fewer goals). */
+  knockoutGoalsMultiplier: number;
+  /** Per-iteration strength noise σ. Models "good/bad day" form variance (e.g. 0.05). */
+  formVolatility: number;
+  /** Shrinkage factor toward field Elo mean before simulation (e.g. 0.90). 1.0 = no regression. */
+  eloRegressionFactor: number;
 }
 
 // ─── Artifact shapes (written by job, read by frontend) ─────────────────────

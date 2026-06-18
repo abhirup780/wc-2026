@@ -88,16 +88,22 @@ All providers implement the `TournamentAdapter` interface in [job/src/adapters/i
 
 ## Prediction model
 
-**Default: Independent Poisson**
+**Default: Independent Poisson (Dixon-Coles)**
 
 ```
-homeXG = BASE_GOALS × (homeAttack / awayDefense) × hostMultiplier
-awayXG = BASE_GOALS × (awayAttack / homeDefense)
-homeGoals ~ Poisson(homeXG)
-awayGoals ~ Poisson(awayXG)
+xG_A = BASE_GOALS × (attackA / defenseB)
+xG_B = BASE_GOALS × (attackB / defenseA)
+goalsA ~ Poisson(xG_A)
+goalsB ~ Poisson(xG_B)
 ```
 
-Attack/defense ratings are derived from Elo, seeded at 1500 and updated after each finished match. `HOST_ADJUSTMENT` (default 1.08) is applied for USA, Canada, and Mexico.
+All matches are treated as neutral venue — no home advantage is applied. Attack/defense ratings are derived from Elo, seeded at 1500 and updated after each finished match (group + knockout). Market odds are blended in when available.
+
+**Robustness features:**
+- **Elo regression to mean** (`ELO_REGRESSION`, default 0.90): shrinks extreme pre-tournament Elo ratings toward the field average, reducing overconfidence
+- **Knockout goal reduction** (`KO_GOALS_MULTIPLIER`, default 0.85): knockout matches use 85% of the base goal rate, reflecting historically more cautious play under elimination pressure
+- **Form volatility** (`FORM_VOLATILITY`, default 0.05): per-iteration random perturbation to team strength via `exp(N(0, σ²))`, modelling "good/bad day" variance and producing realistic upset frequency
+- **Knockout Elo updates**: finished knockout match results update team Elo before re-simulation, so a team beating a strong opponent gets properly rated for subsequent rounds
 
 Knockout ties go to extra time (30% of normal-time scoring rate), then penalty shoot-out (50-50 with small Elo skew).
 

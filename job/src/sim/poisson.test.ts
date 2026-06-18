@@ -36,7 +36,7 @@ describe('sampleMatch', () => {
     const home = makeTeam('A');
     const away = makeTeam('B');
     const r = createRng(1);
-    const { homeGoals, awayGoals } = sampleMatch(home, away, 1.25, 1.0, r);
+    const { homeGoals, awayGoals } = sampleMatch(home, away, 1.25, r);
     expect(homeGoals).toBeGreaterThanOrEqual(0);
     expect(awayGoals).toBeGreaterThanOrEqual(0);
   });
@@ -47,7 +47,7 @@ describe('resolveKnockout', () => {
     const home = makeTeam('H');
     const away = makeTeam('A');
     const r = createRng(5);
-    const { winnerId } = resolveKnockout(2, 1, home, away, 1.25, 1.0, r);
+    const { winnerId } = resolveKnockout(2, 1, home, away, 1.25, r);
     expect(winnerId).toBe('H');
   });
 
@@ -56,7 +56,7 @@ describe('resolveKnockout', () => {
     const away = makeTeam('A');
     for (let seed = 0; seed < 50; seed++) {
       const r = createRng(seed);
-      const { winnerId } = resolveKnockout(1, 1, home, away, 1.25, 1.0, r);
+      const { winnerId } = resolveKnockout(1, 1, home, away, 1.25, r);
       expect(['H', 'A']).toContain(winnerId);
     }
   });
