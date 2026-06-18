@@ -4,7 +4,24 @@
  * Re-implements the core sim loop from job/src/sim/ without the tally overhead.
  */
 
-import type { Team, Match, PredictedMatch } from '@wc2026/shared';
+import type { Team, Match, PredictedMatch, GroupStanding } from '@wc2026/shared';
+import {
+  R32_MATCHES, R16_PAIRS, QF_PAIRS, SF_PAIRS,
+  resolveSlot, assignBestThird, selectBestThird,
+} from '@wc2026/shared';
+
+// Fraction of would-be upsets (lower-rated team winning) reverted to the
+// favourite, so the dice still produces upsets but not wall-to-wall chaos.
+const UPSET_DAMP = 0.6;
+
+/** Revert a decisive scoreline to the favourite with probability UPSET_DAMP. */
+function dampUpset(home: Team, away: Team, hg: number, ag: number, rng: () => number): [number, number] {
+  if (hg === ag) return [hg, ag]; // draw is not an upset
+  const homeWon = hg > ag;
+  const favHome = home.rankingElo >= away.rankingElo;
+  if (homeWon !== favHome && rng() < UPSET_DAMP) return [ag, hg]; // flip so favourite wins
+  return [hg, ag];
+}
 
 // ─── Seeded PRNG (mulberry32) ─────────────────────────────────────────────────
 
@@ -65,40 +82,9 @@ function rankStandings(standings: Standing[], rng: () => number): Standing[] {
   });
 }
 
-// ─── Best-third selection ─────────────────────────────────────────────────────
-// WC 2026: best 8 of 12 third-placed teams advance.
-
-function selectBestThird(thirds: Standing[], rng: () => number): Standing[] {
-  const sorted = [...thirds].sort((a, b) => {
-    if (b.pts !== a.pts) return b.pts - a.pts;
-    if (b.gd  !== a.gd)  return b.gd  - a.gd;
-    if (b.gf  !== a.gf)  return b.gf  - a.gf;
-    return rng() < 0.5 ? -1 : 1;
-  });
-  return sorted.slice(0, 8);
-}
-
-// ─── Bracket constants (from job/src/sim/bracket.ts) ─────────────────────────
-
-const R32: [string, string][] = [
-  ['2A','2B'], ['1E','3X'], ['1F','2C'], ['1C','2F'],
-  ['1I','3Y'], ['2E','2I'], ['1A','3Z'], ['1L','3W'],
-  ['1D','3V'], ['1G','3U'], ['2K','2L'], ['1H','2J'],
-  ['1B','3T'], ['1J','2H'], ['1K','3S'], ['2D','2G'],
-];
-const R16: [string, string][] = [
-  ['R32-01','R32-02'], ['R32-03','R32-04'],
-  ['R32-05','R32-06'], ['R32-07','R32-08'],
-  ['R32-09','R32-10'], ['R32-11','R32-12'],
-  ['R32-13','R32-14'], ['R32-15','R32-16'],
-];
-const QF: [string, string][] = [
-  ['R16-01','R16-02'], ['R16-03','R16-04'],
-  ['R16-05','R16-06'], ['R16-07','R16-08'],
-];
-const SF: [string, string][] = [
-  ['QF-01','QF-02'], ['QF-03','QF-04'],
-];
+// Bracket pairings (R32_MATCHES, R16_PAIRS, QF_PAIRS, SF_PAIRS) and third-place
+// selection/assignment come from @wc2026/shared — the same official FIFA bracket
+// the job uses, so the dice sim and the model never diverge.
 
 // ─── KO match simulation ──────────────────────────────────────────────────────
 
@@ -112,6 +98,7 @@ function simKO(
   const [lH, lA] = lambdas(home, away);
   let hg = poissonSample(lH, rng);
   let ag = poissonSample(lA, rng);
+  [hg, ag] = dampUpset(home, away, hg, ag, rng);
 
   if (hg !== ag) return { hg, ag, winnerId: hg > ag ? homeId : awayId };
 
@@ -119,6 +106,7 @@ function simKO(
   const etH = poissonSample(lH * 0.33, rng);
   const etA = poissonSample(lA * 0.33, rng);
   hg += etH; ag += etA;
+  [hg, ag] = dampUpset(home, away, hg, ag, rng);
   if (hg !== ag) return { hg, ag, winnerId: hg > ag ? homeId : awayId };
 
   // Penalties — coin flip weighted by Elo
@@ -178,6 +166,7 @@ export function simulateOnce(
       const [lH, lA] = lambdas(home, away);
       hg = poissonSample(lH, rng);
       ag = poissonSample(lA, rng);
+      [hg, ag] = dampUpset(home, away, hg, ag, rng);
       predicted.push({ id: m.id, stage: m.stage, groupId: m.groupId,
         homeId: m.homeId, awayId: m.awayId, kickoffUtc: m.kickoffUtc,
         homeXg: lH, awayXg: lA, homeGoals: hg, awayGoals: ag });
@@ -191,28 +180,41 @@ export function simulateOnce(
   }
 
   // Rank each group, collect advancing teams + export standings
-  const slotMap = new Map<string, string>(); // "1A" → teamId
-  const thirds: Standing[] = [];
+  const slotMap = new Map<string, string>(); // "1A"/"2A" → teamId
+  const thirds: GroupStanding[] = [];
   const groupResults: Record<string, SimGroupRow[]> = {};
 
   for (const [gid, gs] of standings.entries()) {
     const ranked = rankStandings([...gs.values()], rng);
     slotMap.set(`1${gid}`, ranked[0].teamId);
     slotMap.set(`2${gid}`, ranked[1].teamId);
-    if (ranked[2]) thirds.push(ranked[2]);
+    if (ranked[2]) {
+      const t = ranked[2];
+      thirds.push({
+        groupId: gid, teamId: t.teamId, played: t.played,
+        w: t.w, d: t.d, l: t.l, gf: t.gf, ga: t.ga, gd: t.gd, points: t.pts,
+      });
+    }
     groupResults[gid] = ranked.map(s => ({
       teamId: s.teamId, pts: s.pts, w: s.w, d: s.d, l: s.l,
       gf: s.gf, ga: s.ga, gd: s.gd,
     }));
   }
 
-  // Best 8 third-placed
-  const best8thirds = selectBestThird(thirds, rng);
-  // Assign to bracket slots — simplified: just use generic 3X/3Y/etc. placeholders
-  // resolved by the bracket lookup below
-  const thirdIds = best8thirds.map(t => t.teamId);
-  const thirdSlotNames = ['3X','3Y','3Z','3W','3V','3U','3T','3S'];
-  thirdSlotNames.forEach((s, i) => { if (thirdIds[i]) slotMap.set(s, thirdIds[i]); });
+  // Best 8 third-placed → assigned to the official R32 third-place pools
+  const bestThird = selectBestThird(thirds, rng);
+  const bestThirdAssignment = assignBestThird(
+    bestThird.map(t => ({ teamId: t.teamId, groupId: t.groupId })),
+  );
+
+  // Resolve every R32 slot ("2A", "1E", "3-ABCDF", …) to a team id
+  const r32Slots = new Map<string, string>();
+  for (const rm of R32_MATCHES) {
+    const t1 = resolveSlot(rm.slot1, slotMap, bestThirdAssignment);
+    const t2 = resolveSlot(rm.slot2, slotMap, bestThirdAssignment);
+    if (t1) r32Slots.set(rm.slot1, t1);
+    if (t2) r32Slots.set(rm.slot2, t2);
+  }
 
   // ── KO rounds ──────────────────────────────────────────────────────────────
   function playRound(
@@ -273,11 +275,12 @@ export function simulateOnce(
     return winners;
   }
 
-  const r32Winners = playRound(R32, 'R32', 'r32', slotMap);
-  const r16Winners = playRound(R16, 'R16', 'r16', r32Winners);
-  const qfWinners  = playRound(QF,  'QF',  'qf',  r16Winners);
-  const sfWinners  = playRound(SF,  'SF',  'sf',  qfWinners);
-  const finalWinners = playRound([['SF-01','SF-02']], 'FINAL', 'final', sfWinners);
+  const r32Pairs = R32_MATCHES.map(rm => [rm.slot1, rm.slot2] as [string, string]);
+  const r32Winners = playRound(r32Pairs, 'R32', 'r32', r32Slots);
+  const r16Winners = playRound(R16_PAIRS.map(([a, b]) => [a, b] as [string, string]), 'R16', 'r16', r32Winners);
+  const qfWinners  = playRound(QF_PAIRS.map(([a, b]) => [a, b] as [string, string]), 'QF', 'qf', r16Winners);
+  const sfWinners  = playRound(SF_PAIRS.map(([a, b]) => [a, b] as [string, string]), 'SF', 'sf', qfWinners);
+  const finalWinners = playRound([['SF-01', 'SF-02']], 'FINAL', 'final', sfWinners);
 
   return {
     matches: predicted,
