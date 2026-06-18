@@ -297,7 +297,7 @@
       "kickoffUtc": "2026-06-18T16:00Z",
       "homeXg": 1.3916844437025948,
       "awayXg": 1.1227401492273263,
-      "homeGoals": 1,
+      "homeGoals": 4,
       "awayGoals": 1
     },
     {
@@ -309,8 +309,8 @@
       "kickoffUtc": "2026-06-18T19:00Z",
       "homeXg": 1.8227510860048615,
       "awayXg": 0.8572207209184637,
-      "homeGoals": 2,
-      "awayGoals": 1
+      "homeGoals": 1,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760440",
@@ -321,7 +321,7 @@
       "kickoffUtc": "2026-06-18T22:00Z",
       "homeXg": 1.4397288223139448,
       "awayXg": 1.0852738208635264,
-      "homeGoals": 1,
+      "homeGoals": 2,
       "awayGoals": 1
     },
     {
@@ -334,7 +334,7 @@
       "homeXg": 1.431750816229882,
       "awayXg": 1.0913211868210486,
       "homeGoals": 1,
-      "awayGoals": 1
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760442",
@@ -345,8 +345,8 @@
       "kickoffUtc": "2026-06-19T19:00Z",
       "homeXg": 1.4196917103707796,
       "awayXg": 1.1005910569076462,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 2,
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760445",
@@ -357,8 +357,8 @@
       "kickoffUtc": "2026-06-19T22:00Z",
       "homeXg": 0.8689834999507589,
       "awayXg": 1.798077869244398,
-      "homeGoals": 1,
-      "awayGoals": 2
+      "homeGoals": 0,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760444",
@@ -369,8 +369,8 @@
       "kickoffUtc": "2026-06-20T00:30Z",
       "homeXg": 2.642560040906087,
       "awayXg": 0.5912826864150442,
-      "homeGoals": 3,
-      "awayGoals": 1
+      "homeGoals": 5,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760443",
@@ -381,8 +381,8 @@
       "kickoffUtc": "2026-06-20T03:00Z",
       "homeXg": 1.43831512188866,
       "awayXg": 1.08634052178237,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 0,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760447",
@@ -394,7 +394,7 @@
       "homeXg": 1.7414768178724473,
       "awayXg": 0.8972269880163536,
       "homeGoals": 2,
-      "awayGoals": 1
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760448",
@@ -405,8 +405,8 @@
       "kickoffUtc": "2026-06-20T20:00Z",
       "homeXg": 1.635017900896968,
       "awayXg": 0.9556470293951003,
-      "homeGoals": 2,
-      "awayGoals": 1
+      "homeGoals": 0,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760446",
@@ -417,7 +417,7 @@
       "kickoffUtc": "2026-06-21T00:00Z",
       "homeXg": 1.9323650703826447,
       "awayXg": 0.8085946201100579,
-      "homeGoals": 2,
+      "homeGoals": 3,
       "awayGoals": 1
     },
     {
@@ -430,7 +430,7 @@
       "homeXg": 0.9014694862991356,
       "awayXg": 1.733281074675792,
       "homeGoals": 1,
-      "awayGoals": 2
+      "awayGoals": 5
     },
     {
       "id": "ESPN-760453",
@@ -441,8 +441,8 @@
       "kickoffUtc": "2026-06-21T16:00Z",
       "homeXg": 2.385609132343891,
       "awayXg": 0.6549689883458921,
-      "homeGoals": 2,
-      "awayGoals": 1
+      "homeGoals": 3,
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760451",
@@ -453,8 +453,8 @@
       "kickoffUtc": "2026-06-21T19:00Z",
       "homeXg": 1.5233134601672873,
       "awayXg": 1.025724541177762,
-      "homeGoals": 2,
-      "awayGoals": 1
+      "homeGoals": 0,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760450",
@@ -477,8 +477,8 @@
       "kickoffUtc": "2026-06-22T01:00Z",
       "homeXg": 0.812498584250993,
       "awayXg": 1.9230802739679855,
-      "homeGoals": 1,
-      "awayGoals": 2
+      "homeGoals": 0,
+      "awayGoals": 3
     },
     {
       "id": "ESPN-760456",
@@ -489,7 +489,7 @@
       "kickoffUtc": "2026-06-22T17:00Z",
       "homeXg": 1.9100830074248205,
       "awayXg": 0.8180272762630181,
-      "homeGoals": 2,
+      "homeGoals": 0,
       "awayGoals": 1
     },
     {
@@ -501,7 +501,7 @@
       "kickoffUtc": "2026-06-22T21:00Z",
       "homeXg": 2.534908155128993,
       "awayXg": 0.6163931410447845,
-      "homeGoals": 3,
+      "homeGoals": 1,
       "awayGoals": 1
     },
     {
@@ -514,7 +514,7 @@
       "homeXg": 1.0879164958374155,
       "awayXg": 1.4362315545158433,
       "homeGoals": 1,
-      "awayGoals": 1
+      "awayGoals": 3
     },
     {
       "id": "ESPN-760455",
@@ -526,7 +526,7 @@
       "homeXg": 0.9381643107433152,
       "awayXg": 1.6654865060492638,
       "homeGoals": 1,
-      "awayGoals": 2
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760461",
@@ -538,7 +538,7 @@
       "homeXg": 2.013668180501715,
       "awayXg": 0.7759471074378778,
       "homeGoals": 2,
-      "awayGoals": 1
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760458",
@@ -549,8 +549,8 @@
       "kickoffUtc": "2026-06-23T20:00Z",
       "homeXg": 2.559898117092867,
       "awayXg": 0.6103758542447164,
-      "homeGoals": 3,
-      "awayGoals": 1
+      "homeGoals": 4,
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760460",
@@ -573,7 +573,7 @@
       "kickoffUtc": "2026-06-24T02:00Z",
       "homeXg": 1.7668021029283683,
       "awayXg": 0.8843661649543264,
-      "homeGoals": 2,
+      "homeGoals": 0,
       "awayGoals": 1
     },
     {
@@ -585,8 +585,8 @@
       "kickoffUtc": "2026-06-24T19:00Z",
       "homeXg": 1.1325936233870548,
       "awayXg": 1.3795769000776268,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 0,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760463",
@@ -597,7 +597,7 @@
       "kickoffUtc": "2026-06-24T19:00Z",
       "homeXg": 1.4339063197421824,
       "awayXg": 1.0896806705482256,
-      "homeGoals": 1,
+      "homeGoals": 3,
       "awayGoals": 1
     },
     {
@@ -609,8 +609,8 @@
       "kickoffUtc": "2026-06-24T22:00Z",
       "homeXg": 2.603392501195147,
       "awayXg": 0.6001784207654814,
-      "homeGoals": 3,
-      "awayGoals": 1
+      "homeGoals": 2,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760465",
@@ -621,7 +621,7 @@
       "kickoffUtc": "2026-06-24T22:00Z",
       "homeXg": 0.8561035860734557,
       "awayXg": 1.825129605129272,
-      "homeGoals": 1,
+      "homeGoals": 2,
       "awayGoals": 2
     },
     {
@@ -646,7 +646,7 @@
       "homeXg": 0.9228482663923099,
       "awayXg": 1.6931277403903897,
       "homeGoals": 1,
-      "awayGoals": 2
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760473",
@@ -657,8 +657,8 @@
       "kickoffUtc": "2026-06-25T20:00Z",
       "homeXg": 0.8112570434252098,
       "awayXg": 1.9260233395360935,
-      "homeGoals": 1,
-      "awayGoals": 2
+      "homeGoals": 0,
+      "awayGoals": 3
     },
     {
       "id": "ESPN-760468",
@@ -669,8 +669,8 @@
       "kickoffUtc": "2026-06-25T20:00Z",
       "homeXg": 0.9587936455966412,
       "awayXg": 1.6296520186339811,
-      "homeGoals": 1,
-      "awayGoals": 2
+      "homeGoals": 0,
+      "awayGoals": 4
     },
     {
       "id": "ESPN-760471",
@@ -681,7 +681,7 @@
       "kickoffUtc": "2026-06-25T23:00Z",
       "homeXg": 1.5325491857082627,
       "awayXg": 1.0195431341264887,
-      "homeGoals": 2,
+      "homeGoals": 0,
       "awayGoals": 1
     },
     {
@@ -693,8 +693,8 @@
       "kickoffUtc": "2026-06-25T23:00Z",
       "homeXg": 0.7933188159555369,
       "awayXg": 1.9695738567829124,
-      "homeGoals": 1,
-      "awayGoals": 2
+      "homeGoals": 0,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760469",
@@ -705,8 +705,8 @@
       "kickoffUtc": "2026-06-26T02:00Z",
       "homeXg": 1.0436130423491123,
       "awayXg": 1.4972024463041425,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 3,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760470",
@@ -717,7 +717,7 @@
       "kickoffUtc": "2026-06-26T02:00Z",
       "homeXg": 1.0573030815393947,
       "awayXg": 1.4778165573158617,
-      "homeGoals": 1,
+      "homeGoals": 0,
       "awayGoals": 1
     },
     {
@@ -729,8 +729,8 @@
       "kickoffUtc": "2026-06-26T19:00Z",
       "homeXg": 0.7767724634330626,
       "awayXg": 2.011528566672274,
-      "homeGoals": 1,
-      "awayGoals": 2
+      "homeGoals": 0,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760474",
@@ -753,8 +753,8 @@
       "kickoffUtc": "2026-06-27T00:00Z",
       "homeXg": 1.166188313389362,
       "awayXg": 1.3398350695684935,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 0,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760479",
@@ -765,8 +765,8 @@
       "kickoffUtc": "2026-06-27T00:00Z",
       "homeXg": 0.9279445347749888,
       "awayXg": 1.6838290883181721,
-      "homeGoals": 1,
-      "awayGoals": 2
+      "homeGoals": 2,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760476",
@@ -777,8 +777,8 @@
       "kickoffUtc": "2026-06-27T03:00Z",
       "homeXg": 1.1856172527859117,
       "awayXg": 1.3178789329596088,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 0,
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760477",
@@ -801,8 +801,8 @@
       "kickoffUtc": "2026-06-27T21:00Z",
       "homeXg": 2.025729974688443,
       "awayXg": 0.7713268893305053,
-      "homeGoals": 2,
-      "awayGoals": 1
+      "homeGoals": 3,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760485",
@@ -814,7 +814,7 @@
       "homeXg": 0.7390631596638597,
       "awayXg": 2.114163017827401,
       "homeGoals": 1,
-      "awayGoals": 2
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760481",
@@ -825,8 +825,8 @@
       "kickoffUtc": "2026-06-27T23:30Z",
       "homeXg": 1.1710669968468117,
       "awayXg": 1.3342532956757827,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 2,
+      "awayGoals": 3
     },
     {
       "id": "ESPN-760482",
@@ -837,8 +837,8 @@
       "kickoffUtc": "2026-06-27T23:30Z",
       "homeXg": 1.3346941034752282,
       "awayXg": 1.1706802299730095,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeGoals": 0,
+      "awayGoals": 3
     },
     {
       "id": "ESPN-760484",
@@ -861,8 +861,8 @@
       "kickoffUtc": "2026-06-28T02:00Z",
       "homeXg": 0.5654466365661115,
       "awayXg": 2.7633023152969343,
-      "homeGoals": 1,
-      "awayGoals": 3
+      "homeGoals": 0,
+      "awayGoals": 0
     },
     {
       "id": "R32-01",
@@ -873,58 +873,58 @@
       "kickoffUtc": "",
       "homeXg": 1.166872634651471,
       "awayXg": 0.9674631287734234,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "KOR"
+      "homeGoals": 0,
+      "awayGoals": 2,
+      "winnerId": "CAN"
     },
     {
       "id": "R32-02",
       "stage": "r32",
       "groupId": null,
       "homeId": "GER",
-      "awayId": "SEN",
+      "awayId": "JPN",
       "kickoffUtc": "",
-      "homeXg": 1.1937640370889315,
-      "awayXg": 0.9456695083166591,
+      "homeXg": 1.1969038365781095,
+      "awayXg": 0.9431887637919925,
       "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "GER"
+      "awayGoals": 2,
+      "winnerId": "JPN"
     },
     {
       "id": "R32-03",
       "stage": "r32",
       "groupId": null,
-      "homeId": "NED",
-      "awayId": "MAR",
+      "homeId": "SWE",
+      "awayId": "BRA",
       "kickoffUtc": "",
-      "homeXg": 1.0520907049290982,
-      "awayXg": 1.073012283742283,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "MAR"
+      "homeXg": 0.7439783285108815,
+      "awayXg": 1.5173913093135056,
+      "homeGoals": 2,
+      "awayGoals": 2,
+      "winnerId": "BRA"
     },
     {
       "id": "R32-04",
       "stage": "r32",
       "groupId": null,
-      "homeId": "BRA",
-      "awayId": "JPN",
+      "homeId": "MAR",
+      "awayId": "NED",
       "kickoffUtc": "",
-      "homeXg": 1.2376367129550299,
-      "awayXg": 0.9121467052351567,
-      "homeGoals": 1,
+      "homeXg": 1.073012283742283,
+      "awayXg": 1.0520907049290982,
+      "homeGoals": 2,
       "awayGoals": 1,
-      "winnerId": "BRA"
+      "winnerId": "MAR"
     },
     {
       "id": "R32-05",
       "stage": "r32",
       "groupId": null,
       "homeId": "FRA",
-      "awayId": "ALG",
+      "awayId": "EGY",
       "kickoffUtc": "",
-      "homeXg": 1.757573315464891,
-      "awayXg": 0.642309620922639,
+      "homeXg": 1.726986172097598,
+      "awayXg": 0.6536857493356939,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "FRA"
@@ -934,25 +934,25 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "CIV",
-      "awayId": "NOR",
+      "awayId": "SEN",
       "kickoffUtc": "",
-      "homeXg": 1.0486255702599716,
-      "awayXg": 1.076558003177555,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "NOR"
+      "homeXg": 0.9126536446741919,
+      "awayXg": 1.2369492595441376,
+      "homeGoals": 2,
+      "awayGoals": 2,
+      "winnerId": "SEN"
     },
     {
       "id": "R32-07",
       "stage": "r32",
       "groupId": null,
       "homeId": "MEX",
-      "awayId": "SWE",
+      "awayId": "SCO",
       "kickoffUtc": "",
-      "homeXg": 1.374643938392425,
-      "awayXg": 0.821235389376683,
-      "homeGoals": 1,
-      "awayGoals": 1,
+      "homeXg": 1.4054172006333672,
+      "awayXg": 0.8032534748338398,
+      "homeGoals": 2,
+      "awayGoals": 0,
       "winnerId": "MEX"
     },
     {
@@ -960,11 +960,11 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "ENG",
-      "awayId": "QAT",
+      "awayId": "AUS",
       "kickoffUtc": "",
-      "homeXg": 1.928176984141459,
-      "awayXg": 0.585478542314754,
-      "homeGoals": 2,
+      "homeXg": 1.5406698882080339,
+      "awayXg": 0.7327372713911091,
+      "homeGoals": 3,
       "awayGoals": 1,
       "winnerId": "ENG"
     },
@@ -973,62 +973,62 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "USA",
-      "awayId": "SCO",
+      "awayId": "CZE",
       "kickoffUtc": "",
-      "homeXg": 1.3788085550806128,
-      "awayXg": 0.8187548922874198,
+      "homeXg": 1.4525598061427003,
+      "awayXg": 0.7771840066247128,
       "homeGoals": 1,
-      "awayGoals": 1,
+      "awayGoals": 0,
       "winnerId": "USA"
     },
     {
       "id": "R32-10",
       "stage": "r32",
       "groupId": null,
-      "homeId": "BEL",
-      "awayId": "ECU",
+      "homeId": "IRN",
+      "awayId": "NOR",
       "kickoffUtc": "",
-      "homeXg": 1.364931448457629,
-      "awayXg": 0.8270790824518424,
-      "homeGoals": 1,
+      "homeXg": 1.10904894081594,
+      "awayXg": 1.0179048087539317,
+      "homeGoals": 3,
       "awayGoals": 1,
-      "winnerId": "BEL"
+      "winnerId": "IRN"
     },
     {
       "id": "R32-11",
       "stage": "r32",
       "groupId": null,
-      "homeId": "POR",
+      "homeId": "COD",
       "awayId": "CRO",
       "kickoffUtc": "",
-      "homeXg": 1.164794339618766,
-      "awayXg": 0.9691893337749976,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "POR"
+      "homeXg": 0.7720458374940119,
+      "awayXg": 1.4622269756214519,
+      "homeGoals": 2,
+      "awayGoals": 0,
+      "winnerId": "COD"
     },
     {
       "id": "R32-12",
       "stage": "r32",
       "groupId": null,
-      "homeId": "ESP",
-      "awayId": "AUT",
+      "homeId": "URU",
+      "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 1.543296935963868,
-      "awayXg": 0.7314899833549791,
-      "homeGoals": 2,
-      "awayGoals": 1,
-      "winnerId": "ESP"
+      "homeXg": 0.749754828295871,
+      "awayXg": 1.5057005402231391,
+      "homeGoals": 0,
+      "awayGoals": 3,
+      "winnerId": "ARG"
     },
     {
       "id": "R32-13",
       "stage": "r32",
       "groupId": null,
       "homeId": "SUI",
-      "awayId": "GHA",
+      "awayId": "COL",
       "kickoffUtc": "",
-      "homeXg": 1.5841821029618968,
-      "awayXg": 0.7126114149940961,
+      "homeXg": 0.9517908373780244,
+      "awayXg": 1.1860864863018536,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "SUI"
@@ -1037,79 +1037,79 @@
       "id": "R32-14",
       "stage": "r32",
       "groupId": null,
-      "homeId": "ARG",
-      "awayId": "URU",
+      "homeId": "AUT",
+      "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 1.5057005402231391,
-      "awayXg": 0.749754828295871,
-      "homeGoals": 2,
-      "awayGoals": 1,
-      "winnerId": "ARG"
+      "homeXg": 0.7314899833549791,
+      "awayXg": 1.543296935963868,
+      "homeGoals": 1,
+      "awayGoals": 3,
+      "winnerId": "ESP"
     },
     {
       "id": "R32-15",
       "stage": "r32",
       "groupId": null,
-      "homeId": "COL",
-      "awayId": "IRN",
+      "homeId": "POR",
+      "awayId": "ECU",
       "kickoffUtc": "",
-      "homeXg": 1.2530949093775976,
-      "awayXg": 0.9008944506531583,
-      "homeGoals": 1,
+      "homeXg": 1.4099862314081324,
+      "awayXg": 0.8006505488160534,
+      "homeGoals": 2,
       "awayGoals": 1,
-      "winnerId": "COL"
+      "winnerId": "POR"
     },
     {
       "id": "R32-16",
       "stage": "r32",
       "groupId": null,
-      "homeId": "AUS",
-      "awayId": "EGY",
+      "homeId": "PAR",
+      "awayId": "BEL",
       "kickoffUtc": "",
-      "homeXg": 1.121031710002168,
-      "awayXg": 1.0070243686486058,
+      "homeXg": 0.7284548065135595,
+      "awayXg": 1.549727230715975,
       "homeGoals": 1,
       "awayGoals": 1,
-      "winnerId": "AUS"
+      "winnerId": "BEL"
     },
     {
       "id": "R16-01",
       "stage": "r16",
       "groupId": null,
-      "homeId": "GER",
+      "homeId": "JPN",
       "awayId": "FRA",
       "kickoffUtc": "",
-      "homeXg": 0.8523476161960375,
-      "awayXg": 1.3244669528592368,
+      "homeXg": 0.7566350065326986,
+      "awayXg": 1.49200901392766,
       "homeGoals": 1,
       "awayGoals": 1,
-      "winnerId": "FRA"
+      "winnerId": "JPN"
     },
     {
       "id": "R16-02",
       "stage": "r16",
       "groupId": null,
-      "homeId": "KOR",
-      "awayId": "MAR",
+      "homeId": "CAN",
+      "awayId": "BRA",
       "kickoffUtc": "",
-      "homeXg": 0.8530006367401936,
-      "awayXg": 1.323452998012054,
-      "homeGoals": 1,
+      "homeXg": 0.7651905979557084,
+      "awayXg": 1.4753268702150788,
+      "homeGoals": 0,
       "awayGoals": 1,
-      "winnerId": "MAR"
+      "winnerId": "BRA"
     },
     {
       "id": "R16-03",
       "stage": "r16",
       "groupId": null,
-      "homeId": "BRA",
-      "awayId": "NOR",
+      "homeId": "MAR",
+      "awayId": "SEN",
       "kickoffUtc": "",
-      "homeXg": 1.4182959640505923,
-      "awayXg": 0.7959595730470052,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "BRA"
+      "homeXg": 1.2160941573970196,
+      "awayXg": 0.9283049697536248,
+      "homeGoals": 3,
+      "awayGoals": 0,
+      "winnerId": "MAR"
     },
     {
       "id": "R16-04",
@@ -1120,78 +1120,39 @@
       "kickoffUtc": "",
       "homeXg": 0.8482690302011548,
       "awayXg": 1.3308351593742564,
-      "homeGoals": 1,
-      "awayGoals": 1,
+      "homeGoals": 0,
+      "awayGoals": 2,
       "winnerId": "ENG"
     },
     {
       "id": "R16-05",
       "stage": "r16",
       "groupId": null,
-      "homeId": "POR",
-      "awayId": "ESP",
+      "homeId": "COD",
+      "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 0.9099902093267138,
-      "awayXg": 1.2405696659475693,
+      "homeXg": 0.5733355631619659,
+      "awayXg": 1.969014871106272,
       "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "ESP"
+      "awayGoals": 2,
+      "winnerId": "ARG"
     },
     {
       "id": "R16-06",
       "stage": "r16",
       "groupId": null,
       "homeId": "USA",
-      "awayId": "BEL",
+      "awayId": "IRN",
       "kickoffUtc": "",
-      "homeXg": 0.9909623665292344,
-      "awayXg": 1.139201939579101,
+      "homeXg": 1.2076370491625694,
+      "awayXg": 0.9348059094268723,
       "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "BEL"
+      "awayGoals": 0,
+      "winnerId": "USA"
     },
     {
       "id": "R16-07",
       "stage": "r16",
-      "groupId": null,
-      "homeId": "ARG",
-      "awayId": "AUS",
-      "kickoffUtc": "",
-      "homeXg": 1.6417335468312804,
-      "awayXg": 0.687630615929673,
-      "homeGoals": 2,
-      "awayGoals": 1,
-      "winnerId": "ARG"
-    },
-    {
-      "id": "R16-08",
-      "stage": "r16",
-      "groupId": null,
-      "homeId": "SUI",
-      "awayId": "COL",
-      "kickoffUtc": "",
-      "homeXg": 0.9517908373780244,
-      "awayXg": 1.1860864863018536,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "COL"
-    },
-    {
-      "id": "QF-01",
-      "stage": "qf",
-      "groupId": null,
-      "homeId": "FRA",
-      "awayId": "MAR",
-      "kickoffUtc": "",
-      "homeXg": 1.3001468735121424,
-      "awayXg": 0.8682913238490026,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "FRA"
-    },
-    {
-      "id": "QF-02",
-      "stage": "qf",
       "groupId": null,
       "homeId": "ESP",
       "awayId": "BEL",
@@ -1199,75 +1160,114 @@
       "homeXg": 1.2815194126160967,
       "awayXg": 0.880912328667303,
       "homeGoals": 1,
-      "awayGoals": 1,
+      "awayGoals": 0,
       "winnerId": "ESP"
+    },
+    {
+      "id": "R16-08",
+      "stage": "r16",
+      "groupId": null,
+      "homeId": "SUI",
+      "awayId": "POR",
+      "kickoffUtc": "",
+      "homeXg": 0.891688670043676,
+      "awayXg": 1.2660318426438062,
+      "homeGoals": 3,
+      "awayGoals": 1,
+      "winnerId": "SUI"
+    },
+    {
+      "id": "QF-01",
+      "stage": "qf",
+      "groupId": null,
+      "homeId": "JPN",
+      "awayId": "BRA",
+      "kickoffUtc": "",
+      "homeXg": 0.9121467052351567,
+      "awayXg": 1.2376367129550299,
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "winnerId": "BRA"
+    },
+    {
+      "id": "QF-02",
+      "stage": "qf",
+      "groupId": null,
+      "homeId": "ARG",
+      "awayId": "USA",
+      "kickoffUtc": "",
+      "homeXg": 1.445501807574222,
+      "awayXg": 0.780978788186008,
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winnerId": "ARG"
     },
     {
       "id": "QF-03",
       "stage": "qf",
       "groupId": null,
-      "homeId": "BRA",
+      "homeId": "MAR",
       "awayId": "ENG",
       "kickoffUtc": "",
-      "homeXg": 0.9363559671257783,
-      "awayXg": 1.2056379086954192,
-      "homeGoals": 1,
+      "homeXg": 0.9224774709106462,
+      "awayXg": 1.223776499262982,
+      "homeGoals": 2,
       "awayGoals": 1,
-      "winnerId": "ENG"
+      "winnerId": "MAR"
     },
     {
       "id": "QF-04",
       "stage": "qf",
       "groupId": null,
-      "homeId": "ARG",
-      "awayId": "COL",
+      "homeId": "ESP",
+      "awayId": "SUI",
       "kickoffUtc": "",
-      "homeXg": 1.3930641042386327,
-      "awayXg": 0.8103763829425452,
+      "homeXg": 1.478212423630694,
+      "awayXg": 0.7636969030656977,
       "homeGoals": 1,
       "awayGoals": 1,
-      "winnerId": "ARG"
+      "winnerId": "ESP"
     },
     {
       "id": "SF-01",
       "stage": "sf",
       "groupId": null,
-      "homeId": "FRA",
-      "awayId": "ESP",
+      "homeId": "BRA",
+      "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 1.114417287375286,
-      "awayXg": 1.0130013799936997,
+      "homeXg": 0.8787147256502122,
+      "awayXg": 1.284724401499766,
       "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "FRA"
+      "awayGoals": 2,
+      "winnerId": "ARG"
     },
     {
       "id": "SF-02",
       "stage": "sf",
       "groupId": null,
-      "homeId": "ENG",
-      "awayId": "ARG",
+      "homeId": "MAR",
+      "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 0.9970934439273325,
-      "awayXg": 1.132197044194259,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "ARG"
+      "homeXg": 0.9107189287296954,
+      "awayXg": 1.2395770137056887,
+      "homeGoals": 0,
+      "awayGoals": 2,
+      "winnerId": "ESP"
     },
     {
       "id": "FINAL-01",
       "stage": "final",
       "groupId": null,
-      "homeId": "FRA",
-      "awayId": "ARG",
+      "homeId": "ARG",
+      "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 1.0593175506330708,
-      "awayXg": 1.0656920102242633,
+      "homeXg": 1.1177652698462484,
+      "awayXg": 1.0099671911932675,
       "homeGoals": 1,
-      "awayGoals": 1,
+      "awayGoals": 0,
       "winnerId": "ARG"
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-18T15:16:29.545Z"
+  "generatedAt": "2026-06-18T15:44:41.966Z"
 }
