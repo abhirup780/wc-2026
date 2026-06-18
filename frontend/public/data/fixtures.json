@@ -6,8 +6,8 @@
       "code": "MEX",
       "groupId": "A",
       "rankingElo": 1885.166784580429,
-      "attackRating": 2.093978993015934,
-      "defenseRating": 2.093978993015934
+      "attackRating": 2.4275421789266094,
+      "defenseRating": 2.4275421789266094
     },
     {
       "id": "RSA",
@@ -15,8 +15,8 @@
       "code": "RSA",
       "groupId": "A",
       "rankingElo": 1506.833215419571,
-      "attackRating": 1.0131980521146233,
-      "defenseRating": 1.0131980521146233
+      "attackRating": 1.0158584920344214,
+      "defenseRating": 1.0158584920344214
     },
     {
       "id": "KOR",
@@ -24,8 +24,8 @@
       "code": "KOR",
       "groupId": "A",
       "rankingElo": 1786.4471441465298,
-      "attackRating": 1.7326304932686354,
-      "defenseRating": 1.7326304932686354
+      "attackRating": 1.9339584716859441,
+      "defenseRating": 1.9339584716859441
     },
     {
       "id": "CZE",
@@ -33,8 +33,8 @@
       "code": "CZE",
       "groupId": "A",
       "rankingElo": 1711.5528558534702,
-      "attackRating": 1.500700566720391,
-      "defenseRating": 1.500700566720391
+      "attackRating": 1.6276193931699272,
+      "defenseRating": 1.6276193931699272
     },
     {
       "id": "CAN",
@@ -42,8 +42,8 @@
       "code": "CAN",
       "groupId": "B",
       "rankingElo": 1772.861100383659,
-      "attackRating": 1.6880458956458633,
-      "defenseRating": 1.6880458956458633
+      "attackRating": 1.874394927861562,
+      "defenseRating": 1.874394927861562
     },
     {
       "id": "BIH",
@@ -51,8 +51,8 @@
       "code": "BIH",
       "groupId": "B",
       "rankingElo": 1610.138899616341,
-      "attackRating": 1.235328372843026,
-      "defenseRating": 1.235328372843026
+      "attackRating": 1.2886616361049714,
+      "defenseRating": 1.2886616361049714
     },
     {
       "id": "QAT",
@@ -60,8 +60,8 @@
       "code": "QAT",
       "groupId": "B",
       "rankingElo": 1447.2411565127668,
-      "attackRating": 0.9037208395259521,
-      "defenseRating": 0.9037208395259521
+      "attackRating": 0.885607236311799,
+      "defenseRating": 0.885607236311799
     },
     {
       "id": "SUI",
@@ -69,8 +69,8 @@
       "code": "SUI",
       "groupId": "B",
       "rankingElo": 1864.7588434872332,
-      "attackRating": 2.013565228355816,
-      "defenseRating": 2.013565228355816
+      "attackRating": 2.316108196414291,
+      "defenseRating": 2.316108196414291
     },
     {
       "id": "BRA",
@@ -78,8 +78,8 @@
       "code": "BRA",
       "groupId": "C",
       "rankingElo": 1977.8048596431709,
-      "attackRating": 2.5013284130727236,
-      "defenseRating": 2.5013284130727236
+      "attackRating": 3.0047258939601345,
+      "defenseRating": 3.0047258939601345
     },
     {
       "id": "MAR",
@@ -87,8 +87,8 @@
       "code": "MAR",
       "groupId": "C",
       "rankingElo": 1840.1951403568291,
-      "attackRating": 1.9208610500523224,
-      "defenseRating": 1.9208610500523224
+      "attackRating": 2.1887448658042086,
+      "defenseRating": 2.1887448658042086
     },
     {
       "id": "HAI",
@@ -96,8 +96,8 @@
       "code": "HAI",
       "groupId": "C",
       "rankingElo": 1535.6184445912902,
-      "attackRating": 1.0707350939570186,
-      "defenseRating": 1.0707350939570186
+      "attackRating": 1.0854715485661093,
+      "defenseRating": 1.0854715485661093
     },
     {
       "id": "SCO",
@@ -105,8 +105,8 @@
       "code": "SCO",
       "groupId": "C",
       "rankingElo": 1794.3815554087098,
-      "attackRating": 1.7592111252546785,
-      "defenseRating": 1.7592111252546785
+      "attackRating": 1.9696159630590468,
+      "defenseRating": 1.9696159630590468
     },
     {
       "id": "USA",
@@ -114,8 +114,8 @@
       "code": "USA",
       "groupId": "D",
       "rankingElo": 1794.3134859330567,
-      "attackRating": 1.7589813641827547,
-      "defenseRating": 1.7589813641827547
+      "attackRating": 1.9693072779959386,
+      "defenseRating": 1.9693072779959386
     },
     {
       "id": "PAR",
@@ -123,8 +123,8 @@
       "code": "PAR",
       "groupId": "D",
       "rankingElo": 1765.6865140669433,
-      "attackRating": 1.6649662266239655,
-      "defenseRating": 1.6649662266239655
+      "attackRating": 1.8436841158663007,
+      "defenseRating": 1.8436841158663007
     },
     {
       "id": "AUS",
@@ -132,8 +132,8 @@
       "code": "AUS",
       "groupId": "D",
       "rankingElo": 1838.5434682774294,
-      "attackRating": 1.9147829729443295,
-      "defenseRating": 1.9147829729443295
+      "attackRating": 2.1804366248747753,
+      "defenseRating": 2.1804366248747753
     },
     {
       "id": "TUR",
@@ -141,8 +141,8 @@
       "code": "TUR",
       "groupId": "D",
       "rankingElo": 1849.4565317225706,
-      "attackRating": 1.9553016935735328,
-      "defenseRating": 1.9553016935735328
+      "attackRating": 2.2359213954745676,
+      "defenseRating": 2.2359213954745676
     },
     {
       "id": "GER",
@@ -150,8 +150,8 @@
       "code": "GER",
       "groupId": "E",
       "rankingElo": 1938.8624995689859,
-      "attackRating": 2.3212330722685652,
-      "defenseRating": 2.3212330722685652
+      "attackRating": 2.7470242898190014,
+      "defenseRating": 2.7470242898190014
     },
     {
       "id": "CUW",
@@ -159,8 +159,8 @@
       "code": "CUW",
       "groupId": "E",
       "rankingElo": 1427.1375004310141,
-      "attackRating": 0.8695233528225541,
-      "defenseRating": 0.8695233528225541
+      "attackRating": 0.8455465082582687,
+      "defenseRating": 0.8455465082582687
     },
     {
       "id": "CIV",
@@ -168,8 +168,8 @@
       "code": "CIV",
       "groupId": "E",
       "rankingElo": 1743.119798646866,
-      "attackRating": 1.59440934889312,
-      "defenseRating": 1.59440934889312
+      "attackRating": 1.7503294444267061,
+      "defenseRating": 1.7503294444267061
     },
     {
       "id": "ECU",
@@ -177,8 +177,8 @@
       "code": "ECU",
       "groupId": "E",
       "rankingElo": 1889.880201353134,
-      "attackRating": 2.1130032634051905,
-      "defenseRating": 2.1130032634051905
+      "attackRating": 2.4540318860120385,
+      "defenseRating": 2.4540318860120385
     },
     {
       "id": "NED",
@@ -186,8 +186,8 @@
       "code": "NED",
       "groupId": "F",
       "rankingElo": 1944.3909912860859,
-      "attackRating": 2.3459882147395583,
-      "defenseRating": 2.3459882147395583
+      "attackRating": 2.7822169446313127,
+      "defenseRating": 2.7822169446313127
     },
     {
       "id": "JPN",
@@ -195,8 +195,8 @@
       "code": "JPN",
       "groupId": "F",
       "rankingElo": 1909.6090087139141,
-      "attackRating": 2.194526555888101,
-      "defenseRating": 2.194526555888101
+      "attackRating": 2.568082720703131,
+      "defenseRating": 2.568082720703131
     },
     {
       "id": "SWE",
@@ -204,8 +204,8 @@
       "code": "SWE",
       "groupId": "F",
       "rankingElo": 1754.909286264984,
-      "attackRating": 1.6308890064155332,
-      "defenseRating": 1.6308890064155332
+      "attackRating": 1.798495213237404,
+      "defenseRating": 1.798495213237404
     },
     {
       "id": "TUN",
@@ -213,8 +213,8 @@
       "code": "TUN",
       "groupId": "F",
       "rankingElo": 1585.090713735016,
-      "attackRating": 1.1773590545312498,
-      "defenseRating": 1.1773590545312498
+      "attackRating": 1.2164400593602054,
+      "defenseRating": 1.2164400593602054
     },
     {
       "id": "BEL",
@@ -222,8 +222,8 @@
       "code": "BEL",
       "groupId": "G",
       "rankingElo": 1878.541649508265,
-      "attackRating": 2.0675278799710695,
-      "defenseRating": 2.0675278799710695
+      "attackRating": 2.390791204901669,
+      "defenseRating": 2.390791204901669
     },
     {
       "id": "EGY",
@@ -231,8 +231,8 @@
       "code": "EGY",
       "groupId": "G",
       "rankingElo": 1711.458350491735,
-      "attackRating": 1.5004284560568584,
-      "defenseRating": 1.5004284560568584
+      "attackRating": 1.6272652509204861,
+      "defenseRating": 1.6272652509204861
     },
     {
       "id": "IRN",
@@ -240,8 +240,8 @@
       "code": "IRN",
       "groupId": "G",
       "rankingElo": 1755.794199400341,
-      "attackRating": 1.633660591755605,
-      "defenseRating": 1.633660591755605
+      "attackRating": 1.8021635411324881,
+      "defenseRating": 1.8021635411324881
     },
     {
       "id": "NZL",
@@ -249,8 +249,8 @@
       "code": "NZL",
       "groupId": "G",
       "rankingElo": 1578.205800599659,
-      "attackRating": 1.1619073540741476,
-      "defenseRating": 1.1619073540741476
+      "attackRating": 1.1973077691920955,
+      "defenseRating": 1.1973077691920955
     },
     {
       "id": "ESP",
@@ -258,8 +258,8 @@
       "code": "ESP",
       "groupId": "H",
       "rankingElo": 2129.067393142376,
-      "attackRating": 3.3436655266391804,
-      "defenseRating": 3.3436655266391804
+      "attackRating": 4.256644619582344,
+      "defenseRating": 4.256644619582344
     },
     {
       "id": "CPV",
@@ -267,8 +267,8 @@
       "code": "CPV",
       "groupId": "H",
       "rankingElo": 1605.9326068576236,
-      "attackRating": 1.2253980146913064,
-      "defenseRating": 1.2253980146913064
+      "attackRating": 1.2762407483895988,
+      "defenseRating": 1.2762407483895988
     },
     {
       "id": "KSA",
@@ -276,8 +276,8 @@
       "code": "KSA",
       "groupId": "H",
       "rankingElo": 1597.6270697054626,
-      "attackRating": 1.206023836233104,
-      "defenseRating": 1.206023836233104
+      "attackRating": 1.2520655598150543,
+      "defenseRating": 1.2520655598150543
     },
     {
       "id": "URU",
@@ -285,8 +285,8 @@
       "code": "URU",
       "groupId": "H",
       "rankingElo": 1870.3729302945374,
-      "attackRating": 2.0353734660436484,
-      "defenseRating": 2.0353734660436484
+      "attackRating": 2.3462426778957632,
+      "defenseRating": 2.3462426778957632
     },
     {
       "id": "FRA",
@@ -294,8 +294,8 @@
       "code": "FRA",
       "groupId": "I",
       "rankingElo": 2084.340351772527,
-      "attackRating": 3.068670745832607,
-      "defenseRating": 3.068670745832607
+      "attackRating": 3.840080704694525,
+      "defenseRating": 3.840080704694525
     },
     {
       "id": "SEN",
@@ -303,8 +303,8 @@
       "code": "SEN",
       "groupId": "I",
       "rankingElo": 1838.6596482274729,
-      "attackRating": 1.915209880257081,
-      "defenseRating": 1.915209880257081
+      "attackRating": 2.181020000707268,
+      "defenseRating": 2.181020000707268
     },
     {
       "id": "IRQ",
@@ -312,8 +312,8 @@
       "code": "IRQ",
       "groupId": "I",
       "rankingElo": 1591.6819030042905,
-      "attackRating": 1.1923440417514097,
-      "defenseRating": 1.1923440417514097
+      "attackRating": 1.2350425008789938,
+      "defenseRating": 1.2350425008789938
     },
     {
       "id": "NOR",
@@ -321,8 +321,8 @@
       "code": "NOR",
       "groupId": "I",
       "rankingElo": 1929.3180969957095,
-      "attackRating": 2.2791089197704664,
-      "defenseRating": 2.2791089197704664
+      "attackRating": 2.68731203433402,
+      "defenseRating": 2.68731203433402
     },
     {
       "id": "ARG",
@@ -330,8 +330,8 @@
       "code": "ARG",
       "groupId": "J",
       "rankingElo": 2127.8005422360275,
-      "attackRating": 3.3355474148178836,
-      "defenseRating": 3.3355474148178836
+      "attackRating": 4.2442459434226985,
+      "defenseRating": 4.2442459434226985
     },
     {
       "id": "ALG",
@@ -339,8 +339,8 @@
       "code": "ALG",
       "groupId": "J",
       "rankingElo": 1759.1994577639725,
-      "attackRating": 1.6443700123229674,
-      "defenseRating": 1.6443700123229674
+      "attackRating": 1.8163496633815435,
+      "defenseRating": 1.8163496633815435
     },
     {
       "id": "AUT",
@@ -348,8 +348,8 @@
       "code": "AUT",
       "groupId": "J",
       "rankingElo": 1856.6953496875353,
-      "attackRating": 1.9826503213244788,
-      "defenseRating": 1.9826503213244788
+      "attackRating": 2.2735020476238974,
+      "defenseRating": 2.2735020476238974
     },
     {
       "id": "JOR",
@@ -357,8 +357,8 @@
       "code": "JOR",
       "groupId": "J",
       "rankingElo": 1653.3046503124647,
-      "attackRating": 1.342004200731349,
-      "defenseRating": 1.342004200731349
+      "attackRating": 1.4233268769994085,
+      "defenseRating": 1.4233268769994085
     },
     {
       "id": "POR",
@@ -366,8 +366,8 @@
       "code": "POR",
       "groupId": "K",
       "rankingElo": 1966.5393463908872,
-      "attackRating": 2.447838655015352,
-      "defenseRating": 2.447838655015352
+      "attackRating": 2.9277861121297777,
+      "defenseRating": 2.9277861121297777
     },
     {
       "id": "COD",
@@ -375,26 +375,26 @@
       "code": "COD",
       "groupId": "K",
       "rankingElo": 1674.4606536091128,
-      "attackRating": 1.3976031731485214,
-      "defenseRating": 1.3976031731485214
+      "attackRating": 1.4943786478991887,
+      "defenseRating": 1.4943786478991887
     },
     {
       "id": "UZB",
       "name": "Uzbekistan",
       "code": "UZB",
       "groupId": "K",
-      "rankingElo": 1714,
-      "attackRating": 1.5077638737284529,
-      "defenseRating": 1.5077638737284529
+      "rankingElo": 1698.1475375655016,
+      "attackRating": 1.5781473033724724,
+      "defenseRating": 1.5781473033724724
     },
     {
       "id": "COL",
       "name": "Colombia",
       "code": "COL",
       "groupId": "K",
-      "rankingElo": 1982,
-      "attackRating": 2.5215446725117188,
-      "defenseRating": 2.5215446725117188
+      "rankingElo": 1997.8524624344984,
+      "attackRating": 3.146679149589694,
+      "defenseRating": 3.146679149589694
     },
     {
       "id": "ENG",
@@ -402,8 +402,8 @@
       "code": "ENG",
       "groupId": "L",
       "rankingElo": 2054.9761544678845,
-      "attackRating": 2.9005484801746166,
-      "defenseRating": 2.9005484801746166
+      "attackRating": 3.589022280866276,
+      "defenseRating": 3.589022280866276
     },
     {
       "id": "CRO",
@@ -411,8 +411,8 @@
       "code": "CRO",
       "groupId": "L",
       "rankingElo": 1881.0238455321155,
-      "attackRating": 2.077398775413962,
-      "defenseRating": 2.077398775413962
+      "attackRating": 2.404494818457005,
+      "defenseRating": 2.404494818457005
     },
     {
       "id": "GHA",
@@ -420,8 +420,8 @@
       "code": "GHA",
       "groupId": "L",
       "rankingElo": 1556.8077762395894,
-      "attackRating": 1.11516675406625,
-      "defenseRating": 1.11516675406625
+      "attackRating": 1.1397452114917703,
+      "defenseRating": 1.1397452114917703
     },
     {
       "id": "PAN",
@@ -429,8 +429,8 @@
       "code": "PAN",
       "groupId": "L",
       "rankingElo": 1683.1922237604106,
-      "attackRating": 1.4212163218479144,
-      "defenseRating": 1.4212163218479144
+      "attackRating": 1.524727466478962,
+      "defenseRating": 1.524727466478962
     }
   ],
   "matches": [
@@ -786,9 +786,9 @@
       "homeId": "UZB",
       "awayId": "COL",
       "kickoffUtc": "2026-06-18T02:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
-      "awayGoals": 2,
+      "awayGoals": 3,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
