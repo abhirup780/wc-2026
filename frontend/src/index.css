@@ -5,6 +5,14 @@
 @layer base {
   body {
     @apply bg-gray-950 text-gray-100;
+    /* Prevent content from going under mobile browser chrome */
+    overscroll-behavior-y: none;
+  }
+
+  /* Ensure viewport respects safe areas (iPhone notch / Dynamic Island) */
+  :root {
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
   }
 }
 
