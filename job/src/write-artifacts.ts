@@ -34,24 +34,3 @@ export async function writeArtifacts(artifacts: Artifacts, outputDir: string): P
 async function writeJson(filePath: string, data: unknown): Promise<void> {
   await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
-
-/** Load cached artifacts from a previous run */
-export async function loadCachedArtifacts(cacheDir: string): Promise<Artifacts | null> {
-  try {
-    const [fixtures, standings, scores, forecast, meta] = await Promise.all([
-      readJson<Fixtures>(path.join(cacheDir, 'fixtures.json')),
-      readJson<Standings>(path.join(cacheDir, 'standings.json')),
-      readJson<Scores>(path.join(cacheDir, 'scores.json')),
-      readJson<Forecast>(path.join(cacheDir, 'forecast.json')),
-      readJson<Meta>(path.join(cacheDir, 'meta.json')),
-    ]);
-    return { fixtures, standings, scores, forecast, meta };
-  } catch {
-    return null;
-  }
-}
-
-async function readJson<T>(filePath: string): Promise<T> {
-  const text = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(text) as T;
-}
