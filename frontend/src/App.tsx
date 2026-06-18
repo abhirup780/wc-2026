@@ -12,7 +12,7 @@ const NAV = [
   { to: '/groups', label: 'Groups' },
   { to: '/forecast', label: 'Forecast' },
   { to: '/bracket', label: 'Bracket' },
-  { to: '/prediction', label: 'Best Guess' },
+  { to: '/prediction', label: 'Simulate' },
 ];
 
 function SimSpinner() {
