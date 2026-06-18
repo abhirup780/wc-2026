@@ -14,9 +14,9 @@
       "name": "South Africa",
       "code": "RSA",
       "groupId": "A",
-      "rankingElo": 1414.8771460073842,
-      "attackRating": 0.8775086994533235,
-      "defenseRating": 0.8775086994533235
+      "rankingElo": 1418.2124958674822,
+      "attackRating": 0.8820130223288584,
+      "defenseRating": 0.8820130223288584
     },
     {
       "id": "KOR",
@@ -32,9 +32,9 @@
       "name": "Czechia",
       "code": "CZE",
       "groupId": "A",
-      "rankingElo": 1484.8232855552594,
-      "attackRating": 0.976972164994309,
-      "defenseRating": 0.976972164994309
+      "rankingElo": 1481.4879356951615,
+      "attackRating": 0.9719828984413895,
+      "defenseRating": 0.9719828984413895
     },
     {
       "id": "CAN",
@@ -801,7 +801,7 @@
       "homeId": "CZE",
       "awayId": "RSA",
       "kickoffUtc": "2026-06-18T16:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
       "awayGoals": 1,
       "homeGoalsAet": null,
