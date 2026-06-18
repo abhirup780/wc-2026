@@ -1,10 +1,17 @@
-import { useCallback, useState, useEffect, useMemo } from 'react';
-import { usePolled, fetchFixtures, fetchForecast, useESPNLive } from '../api.ts';
+import { useCallback, useState, useMemo } from 'react';
+import { usePolled, fetchFixtures, fetchForecast, fetchPrediction, useESPNLive } from '../api.ts';
 import { teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
-import { simulateLikely, type OneSimResult, type SimGroupRow } from '../simulation.ts';
+import { simulateLikely, standingsFromPredicted, type OneSimResult, type SimGroupRow } from '../simulation.ts';
 import type { PredictedMatch, Stage, Match } from '@wc2026/shared';
 import type { ESPNLiveMatch } from '../api.ts';
+
+interface DisplayResult {
+  matches: PredictedMatch[];
+  groups: Record<string, SimGroupRow[]>;
+  champion: string;
+  seed?: number;
+}
 
 function mergeESPN(base: Match[], live: ESPNLiveMatch[]): Match[] {
   const byKey = new Map(live.map(m => [`${m.homeCode}-${m.awayCode}`, m]));
@@ -139,36 +146,51 @@ function Spinner({ size = 16 }: { size?: number }) {
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function Prediction() {
-  const fixturesFetcher  = useCallback(() => fetchFixtures(), []);
-  const forecastFetcher  = useCallback(() => fetchForecast(), []);
-  const { data: fixtures, loading: loadFix } = usePolled(fixturesFetcher, 300_000);
-  const { data: forecast, loading: loadFc  } = usePolled(forecastFetcher, 60_000);
+  const fixturesFetcher   = useCallback(() => fetchFixtures(), []);
+  const forecastFetcher   = useCallback(() => fetchForecast(), []);
+  const predictionFetcher = useCallback(() => fetchPrediction(), []);
+  const { data: fixtures }   = usePolled(fixturesFetcher, 300_000);
+  const { data: forecast }   = usePolled(forecastFetcher, 60_000);
+  const { data: prediction, loading: loadPred } = usePolled(predictionFetcher, 60_000);
   const { matches: espnMatches } = useESPNLive(30_000);
 
-  const [result, setResult] = useState<OneSimResult | null>(null);
+  // 'likely' = deterministic best-guess path (prediction.json); 'random' = one re-rolled sim
+  const [mode, setMode] = useState<'likely' | 'random'>('likely');
+  const [random, setRandom] = useState<OneSimResult | null>(null);
   const [running, setRunning] = useState(false);
 
-  // Build set of "likely" champion codes: teams with pChampion > 2% in the forecast
+  // Set of "likely" champion codes (pChampion ≥ 5%) — keeps random rolls plausible
   const likelyCodes = useMemo<Set<string>>(() => {
     if (!forecast) return new Set();
     return new Set(forecast.teams.filter(t => t.pChampion >= 0.05).map(t => t.code));
   }, [forecast]);
 
-  const runSim = useCallback(() => {
+  const rollDice = useCallback(() => {
     if (!fixtures || likelyCodes.size === 0) return;
     setRunning(true);
     setTimeout(() => {
       const mergedMatches = mergeESPN(fixtures.matches, espnMatches);
       const r = simulateLikely(fixtures.teams, mergedMatches, likelyCodes);
-      setResult(r);
+      setRandom(r);
+      setMode('random');
       setRunning(false);
     }, 10);
   }, [fixtures, likelyCodes, espnMatches]);
 
-  useEffect(() => { if (fixtures && likelyCodes.size > 0 && !result) runSim(); }, [fixtures, likelyCodes, result, runSim]);
+  // The displayed outcome: deterministic prediction by default, random roll on demand.
+  const result = useMemo<DisplayResult | null>(() => {
+    if (mode === 'random' && random) return random;
+    if (prediction) {
+      return {
+        matches: prediction.matches,
+        groups: standingsFromPredicted(prediction.matches),
+        champion: prediction.champion,
+      };
+    }
+    return null;
+  }, [mode, random, prediction]);
 
-  const loading = loadFix || loadFc;
-  if (loading) return <div className="flex items-center justify-center h-64 text-gray-500"><Spinner size={24} /><span className="ml-3">Loading data…</span></div>;
+  if (loadPred && !result) return <div className="flex items-center justify-center h-64 text-gray-500"><Spinner size={24} /><span className="ml-3">Loading data…</span></div>;
 
   const byRound = new Map<Stage, PredictedMatch[]>();
   for (const m of result?.matches ?? []) {
@@ -179,26 +201,38 @@ export default function Prediction() {
   }
 
   const sortedGroups = Object.entries(result?.groups ?? {}).sort(([a], [b]) => a.localeCompare(b));
+  const isRandom = mode === 'random' && random != null;
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="text-lg font-semibold">One Likely Outcome</h2>
+          <h2 className="text-lg font-semibold">{isRandom ? 'Random Scenario' : 'Most Likely Outcome'}</h2>
           <p className="text-xs text-gray-500 mt-1">
-            One Monte Carlo run filtered to show a probable champion (top contenders only).
-            Each click gives a different valid scenario.
-            {result && <span className="ml-2 text-gray-600">seed {result.seed}</span>}
+            {isRandom
+              ? 'One re-rolled Monte Carlo run — a different but plausible path.'
+              : "The model's single most-likely bracket. Updates as real results come in."}
+            {isRandom && random && <span className="ml-2 text-gray-600">seed {random.seed}</span>}
           </p>
         </div>
-        <button
-          onClick={runSim}
-          disabled={running || likelyCodes.size === 0}
-          className="flex items-center gap-2 px-4 py-2 rounded bg-fifa-blue hover:bg-blue-600 disabled:opacity-50 disabled:cursor-wait text-sm font-medium transition-colors"
-        >
-          {running ? <><Spinner /><span>Running…</span></> : <><span>🎲</span><span>New Prediction</span></>}
-        </button>
+        <div className="flex items-center gap-2">
+          {isRandom && (
+            <button
+              onClick={() => setMode('likely')}
+              className="px-3 py-2 rounded border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 text-sm font-medium transition-colors"
+            >
+              ← Most likely
+            </button>
+          )}
+          <button
+            onClick={rollDice}
+            disabled={running || likelyCodes.size === 0}
+            className="flex items-center gap-2 px-4 py-2 rounded bg-fifa-blue hover:bg-blue-600 disabled:opacity-50 disabled:cursor-wait text-sm font-medium transition-colors"
+          >
+            {running ? <><Spinner /><span>Rolling…</span></> : <><span>🎲</span><span>Roll the dice</span></>}
+          </button>
+        </div>
       </div>
 
       {/* Champion banner */}
@@ -206,7 +240,7 @@ export default function Prediction() {
         <div className="card flex items-center gap-4 border border-fifa-gold/30 bg-fifa-gold/5">
           <span className="text-3xl">🏆</span>
           <div>
-            <div className="text-xs text-gray-400 mb-0.5">Predicted champion</div>
+            <div className="text-xs text-gray-400 mb-0.5">{isRandom ? 'Champion (this scenario)' : 'Predicted champion'}</div>
             <div className="flex items-center gap-2">
               <Flag code={result.champion} size={32} />
               <span className="text-2xl font-bold">{teamName(result.champion)}</span>

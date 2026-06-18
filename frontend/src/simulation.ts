@@ -288,6 +288,41 @@ export function simulateOnce(
 }
 
 /**
+ * Build ranked group standings from a set of already-predicted matches
+ * (e.g. the deterministic prediction.json). Deterministic tiebreak via a
+ * fixed-seed RNG so the display is stable across renders.
+ */
+export function standingsFromPredicted(
+  matches: PredictedMatch[],
+): Record<string, SimGroupRow[]> {
+  const rng = mulberry32(1);
+  const standings = new Map<string, Map<string, Standing>>();
+  const ensure = (gid: string, id: string): Standing => {
+    if (!standings.has(gid)) standings.set(gid, new Map());
+    const g = standings.get(gid)!;
+    if (!g.has(id)) {
+      g.set(id, { teamId: id, groupId: gid, pts: 0, gd: 0, gf: 0, ga: 0, w: 0, d: 0, l: 0, played: 0 });
+    }
+    return g.get(id)!;
+  };
+
+  for (const m of matches) {
+    if (m.stage !== 'group' || !m.groupId) continue;
+    const h = ensure(m.groupId, m.homeId);
+    const a = ensure(m.groupId, m.awayId);
+    applyResult(h, a, m.homeGoals, m.awayGoals);
+  }
+
+  const out: Record<string, SimGroupRow[]> = {};
+  for (const [gid, g] of standings.entries()) {
+    out[gid] = rankStandings([...g.values()], rng).map(s => ({
+      teamId: s.teamId, pts: s.pts, w: s.w, d: s.d, l: s.l, gf: s.gf, ga: s.ga, gd: s.gd,
+    }));
+  }
+  return out;
+}
+
+/**
  * Run simulations until the champion is among the likely contenders.
  * likelyCodes = set of team codes with pChampion > threshold (e.g. 2%).
  * Almost always resolves in <10 attempts for top-8 coverage (~85%).

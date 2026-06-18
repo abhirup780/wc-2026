@@ -3,7 +3,6 @@ import { useState } from 'react';
 import LiveScores from './components/LiveScores.tsx';
 import Groups from './components/Groups.tsx';
 import Forecast from './components/Forecast.tsx';
-import Bracket from './components/Bracket.tsx';
 import Prediction from './components/Prediction.tsx';
 import Footer from './components/Footer.tsx';
 
@@ -34,17 +33,6 @@ function IcoForecast() {
     </svg>
   );
 }
-function IcoBracket() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      <path d="M8 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3"/>
-      <path d="M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/>
-      <line x1="12" y1="7" x2="12" y2="7.01"/>
-      <line x1="12" y1="12" x2="12" y2="12.01"/>
-      <line x1="12" y1="17" x2="12" y2="17.01"/>
-    </svg>
-  );
-}
 function IcoSimulate() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
@@ -62,7 +50,6 @@ const NAV = [
   { to: '/scores',     label: 'Scores',   Icon: IcoScores   },
   { to: '/groups',     label: 'Groups',   Icon: IcoGroups   },
   { to: '/forecast',   label: 'Forecast', Icon: IcoForecast },
-  { to: '/bracket',    label: 'Bracket',  Icon: IcoBracket  },
   { to: '/prediction', label: 'Simulate', Icon: IcoSimulate },
 ];
 
@@ -187,7 +174,6 @@ export default function App() {
             <Route path="/scores"     element={<LiveScores />} />
             <Route path="/groups"     element={<Groups />} />
             <Route path="/forecast"   element={<Forecast />} />
-            <Route path="/bracket"    element={<Bracket />} />
             <Route path="/prediction" element={<Prediction />} />
           </Routes>
         </main>
