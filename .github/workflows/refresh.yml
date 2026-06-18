@@ -2,9 +2,9 @@ name: Refresh data
 
 on:
   schedule:
-    # 4×/day (every 6h at 00:00, 06:00, 12:00, 18:00 UTC). Keeps the free Odds API
-    # tier (500 req/month) within budget: ~2 requests/run × 4 × 30 ≈ 240/month.
-    - cron: '0 */6 * * *'
+    # 3×/day (every 8h at 00:00, 08:00, 16:00 UTC). ~2 Odds API requests/run
+    # × 3 × 30 ≈ 180/month, within the free 500/month tier.
+    - cron: '0 */8 * * *'
   workflow_dispatch:   # manual trigger
   push:
     branches: [master]
@@ -40,8 +40,8 @@ jobs:
           SIM_COUNT: '50000'
           MODEL_TYPE: 'poisson'
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          BLEND_ODDS_WEIGHT: '0.6'
-          OUTRIGHT_ODDS_WEIGHT: '0.6'
+          BLEND_ODDS_WEIGHT: '0.3'
+          OUTRIGHT_ODDS_WEIGHT: '0.3'
           KO_GOALS_MULTIPLIER: '0.85'
           FORM_VOLATILITY: '0.05'
           # 1.0 = no regression. FIFA points are already a compressed scale, so
