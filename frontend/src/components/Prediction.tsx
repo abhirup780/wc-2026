@@ -10,7 +10,16 @@ function mergeESPN(base: Match[], live: ESPNLiveMatch[]): Match[] {
   const byKey = new Map(live.map(m => [`${m.homeCode}-${m.awayCode}`, m]));
   return base.map(m => {
     const o = byKey.get(`${m.homeId}-${m.awayId}`);
-    if (!o) return m;
+    if (!o) {
+      if (m.status === 'live') {
+        const kickoffTime = new Date(m.kickoffUtc).getTime();
+        const threeHoursAgo = Date.now() - 3 * 3600 * 1000;
+        if (kickoffTime < threeHoursAgo) {
+          return { ...m, status: 'finished' };
+        }
+      }
+      return m;
+    }
     return {
       ...m,
       status: o.status,
