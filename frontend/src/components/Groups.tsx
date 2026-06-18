@@ -79,6 +79,10 @@ function StandingsTable({ groupId, standings }: { groupId: string; standings: Gr
     return b.gf - a.gf;
   });
 
+  // Group is "decided" once every team has played all 3 matches — only then
+  // are the top-2 qualification spots final, so only then do we show "Q".
+  const groupDecided = sorted.length > 0 && sorted.every(s => s.played >= 3);
+
   return (
     <div className="card">
       <h3 className="text-sm font-bold text-fifa-gold mb-3 tracking-wider">GROUP {groupId}</h3>
@@ -106,7 +110,7 @@ function StandingsTable({ groupId, standings }: { groupId: string; standings: Gr
                 <div className="flex items-center gap-2">
                   <Flag code={s.teamId} size={20} />
                   <span className="font-medium">{teamName(s.teamId)}</span>
-                  {i < 2 && (
+                  {groupDecided && i < 2 && (
                     <span className="text-xs text-green-500 hidden sm:inline">Q</span>
                   )}
                 </div>
@@ -171,7 +175,7 @@ export default function Groups() {
     <div className="space-y-4">
       <h2 className="text-lg font-semibold">Group Stage</h2>
       <p className="text-xs text-gray-500">
-        Q = qualified (top 2). Best 8 third-placed teams also advance. · Updated{' '}
+        Q = qualified (top 2, shown once the group is decided). Best 8 third-placed teams also advance. · Updated{' '}
         {new Date(timestamp).toLocaleTimeString()}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

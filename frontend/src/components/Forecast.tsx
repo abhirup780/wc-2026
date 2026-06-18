@@ -170,7 +170,7 @@ export default function Forecast() {
       {/* Probability table — horizontally scrollable on mobile */}
       <div className="card p-0 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm" style={{ minWidth: '560px' }}>
+          <table className="w-full text-sm" style={{ minWidth: '620px' }}>
             <thead>
               <tr className="text-xs text-gray-500 border-b border-gray-800">
                 <th className="text-left py-3 pl-4 pr-3 font-normal sticky left-0 bg-gray-900">Team</th>
@@ -185,6 +185,9 @@ export default function Forecast() {
                     {sortKey === col.key && <span className="ml-1">↓</span>}
                   </th>
                 ))}
+                <th className="text-right py-3 px-3 pr-4 font-normal whitespace-nowrap text-gray-500" title="Change in champion probability since the pre-tournament forecast">
+                  vs&nbsp;pre
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -214,6 +217,19 @@ export default function Forecast() {
                       </span>
                     </td>
                   ))}
+                  <td className="py-2 px-3 pr-4 text-right tabular-nums text-sm">
+                    {(() => {
+                      const init = t.pChampionInitial;
+                      if (init == null) return <span className="text-gray-700">—</span>;
+                      const r = Math.round((t.pChampion - init) * 100);
+                      if (r === 0) return <span className="text-gray-600">—</span>;
+                      return (
+                        <span className={r > 0 ? 'text-green-400' : 'text-red-400'}>
+                          {r > 0 ? `↑+${r}%` : `↓${r}%`}
+                        </span>
+                      );
+                    })()}
+                  </td>
                 </tr>
               ))}
             </tbody>
