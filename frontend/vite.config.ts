@@ -34,4 +34,8 @@ export default defineConfig({
     },
   },
   base: './',
+  build: {
+    outDir: path.resolve(__dirname, '../dist'),
+    emptyOutDir: true,
+  },
 });
