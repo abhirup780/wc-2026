@@ -87,7 +87,7 @@ async function fetchGoals(eventId: string, homeCode: string): Promise<ESPNGoal[]
 }
 
 async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
-  const res = await fetch(`${ESPN_URL}?_t=${Date.now()}`);
+  const res = await fetch(`${ESPN_URL}?dates=20260611-20260719&limit=200&_t=${Date.now()}`);
   if (!res.ok) throw new Error(`ESPN: ${res.status}`);
   const data = await res.json() as { events?: unknown[] };
   if (!data.events) return [];
