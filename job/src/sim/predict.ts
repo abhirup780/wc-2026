@@ -1,10 +1,12 @@
 /**
  * Deterministic "most probable" tournament prediction.
  *
- * For every unplayed match:
- *   - Expected goals = Poisson λ (baseRate × attack/defense ratio)
- *   - Predicted score = round(λ_home), round(λ_away)
- *   - On any tie (group points or KO draw), higher Elo advances
+ * Scorelines are drawn from the SAME Dixon-Coles Poisson + extra-time/penalty
+ * model the Monte Carlo engine uses, but each match is seeded deterministically
+ * from its own id — so the predicted bracket is a single, stable, realistic
+ * scenario that only changes when real results change the inputs (not on every
+ * refresh). This avoids the degenerate round(λ) result where almost every close
+ * match collapses to 1-1 and is "decided on penalties".
  *
  * Finished matches are taken as-is from the live data.
  */
@@ -16,7 +18,13 @@ import {
 } from './bracket.js';
 import { selectBestThird } from './best-third.js';
 import { rankGroup } from './tiebreakers.js';
+import { sampleMatch, poissonSample } from './poisson.js';
 import type { GroupStanding } from '@wc2026/shared';
+
+// Extra-time scoring rate (fraction of a full match). Higher than the engine's
+// 0.3 so more level matches are settled in ET, keeping the predicted shootout
+// rate near the historic WC norm (~13-15% of knockout ties) rather than ~25%+.
+const ET_GOAL_RATE = 0.55;
 
 // ─── Expected goals ───────────────────────────────────────────────────────────
 
@@ -24,6 +32,25 @@ function lambdas(home: Team, away: Team, baseRate: number): [number, number] {
   const lH = baseRate * (home.attackRating / away.defenseRating);
   const lA = baseRate * (away.attackRating / home.defenseRating);
   return [lH, lA];
+}
+
+/**
+ * Stable per-match PRNG (mulberry32 seeded by an FNV-1a hash of a string key).
+ * Same key → same sequence, so the predicted bracket is reproducible.
+ */
+function seededRng(key: string): () => number {
+  let h = 2166136261;
+  for (let i = 0; i < key.length; i++) {
+    h ^= key.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  let s = h >>> 0;
+  return () => {
+    s += 0x6d2b79f5;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
 }
 
 // ─── Group stage ──────────────────────────────────────────────────────────────
@@ -51,8 +78,8 @@ function predictGroupStage(
       const away = teamMap.get(m.awayId);
       if (!home || !away) continue;
       const [lH, lA] = lambdas(home, away, baseRate);
-      const hg = Math.round(lH);
-      const ag = Math.round(lA);
+      const rng = seededRng(`${m.id}|${m.homeId}|${m.awayId}`);
+      const { homeGoals: hg, awayGoals: ag } = sampleMatch(home, away, baseRate, rng);
       predictedMatches.push({
         id: m.id, stage: m.stage, groupId: m.groupId,
         homeId: m.homeId, awayId: m.awayId, kickoffUtc: m.kickoffUtc,
@@ -118,14 +145,29 @@ function predictKoRound(
     const home = teamMap.get(homeId)!;
     const away = teamMap.get(awayId)!;
     const [lH, lA] = lambdas(home, away, baseRate);
-    let hg = Math.round(lH);
-    let ag = Math.round(lA);
-
-    // On draw, higher Elo wins (deterministic tiebreak) — score stays equal
-    const winnerId = hg > ag ? homeId : hg < ag ? awayId :
-      home.rankingElo >= away.rankingElo ? homeId : awayId;
 
     const matchId = `${roundPrefix}-${String(i + 1).padStart(2, '0')}`;
+    const rng = seededRng(`${matchId}|${homeId}|${awayId}`);
+
+    // Realistic regulation scoreline, then extra time, then (rarely) penalties.
+    const reg = sampleMatch(home, away, baseRate, rng);
+    let hg = reg.homeGoals;
+    let ag = reg.awayGoals;
+    let winnerId: string;
+    if (hg !== ag) {
+      winnerId = hg > ag ? homeId : awayId;
+    } else {
+      hg += poissonSample(lH * ET_GOAL_RATE, rng);
+      ag += poissonSample(lA * ET_GOAL_RATE, rng);
+      if (hg !== ag) {
+        winnerId = hg > ag ? homeId : awayId;
+      } else {
+        // Penalty shootout — slight skew to the higher-rated side (FIFA /600 scale)
+        const homeWinPens = 0.5 + 0.05 * Math.tanh((home.rankingElo - away.rankingElo) / 600);
+        winnerId = rng() < homeWinPens ? homeId : awayId;
+      }
+    }
+
     predictedMatches.push({
       id: matchId,
       stage: stage as any,
