@@ -130,7 +130,8 @@ async function main(): Promise<void> {
   }
 
   // 9. Deterministic "best guess" prediction (one representative tournament path)
-  const prediction = predictTournament(teams, matches, CONFIG.model);
+  //    Blends bookmaker match odds into scorelines when available (like the forecast).
+  const prediction = predictTournament(teams, matches, CONFIG.model, oddsMap);
   console.log(`Predicted champion: ${prediction.champion}`);
 
   // 9b. Next 5 upcoming-match predictions (model 1X2 blended with market odds)

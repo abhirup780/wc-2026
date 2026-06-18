@@ -18,7 +18,7 @@ import {
 } from './bracket.js';
 import { selectBestThird } from './best-third.js';
 import { rankGroup } from './tiebreakers.js';
-import { sampleMatch, poissonSample } from './poisson.js';
+import { sampleMatch, poissonSample, type MatchOdds } from './poisson.js';
 import type { GroupStanding } from '@wc2026/shared';
 
 // Extra-time scoring rate (fraction of a full match). Higher than the engine's
@@ -59,6 +59,8 @@ function predictGroupStage(
   teams: Team[],
   existingMatches: Match[],
   baseRate: number,
+  oddsMap: Map<string, MatchOdds> | undefined,
+  oddsWeight: number,
 ): { predictedMatches: PredictedMatch[]; groups: Map<string, GroupStanding[]> } {
   const teamMap = new Map(teams.map(t => [t.id, t]));
   const predictedMatches: PredictedMatch[] = [];
@@ -79,7 +81,8 @@ function predictGroupStage(
       if (!home || !away) continue;
       const [lH, lA] = lambdas(home, away, baseRate);
       const rng = seededRng(`${m.id}|${m.homeId}|${m.awayId}`);
-      const { homeGoals: hg, awayGoals: ag } = sampleMatch(home, away, baseRate, rng);
+      const odds = oddsMap?.get(`${m.homeId}|${m.awayId}`);
+      const { homeGoals: hg, awayGoals: ag } = sampleMatch(home, away, baseRate, rng, odds, oddsWeight);
       predictedMatches.push({
         id: m.id, stage: m.stage, groupId: m.groupId,
         homeId: m.homeId, awayId: m.awayId, kickoffUtc: m.kickoffUtc,
@@ -133,6 +136,8 @@ function predictKoRound(
   prevWinners: Map<string, string>,
   teamMap: Map<string, Team>,
   baseRate: number,
+  oddsMap: Map<string, MatchOdds> | undefined,
+  oddsWeight: number,
 ): { predictedMatches: PredictedMatch[]; winners: Map<string, string> } {
   const predictedMatches: PredictedMatch[] = [];
   const winners = new Map<string, string>();
@@ -150,7 +155,8 @@ function predictKoRound(
     const rng = seededRng(`${matchId}|${homeId}|${awayId}`);
 
     // Realistic regulation scoreline, then extra time, then (rarely) penalties.
-    const reg = sampleMatch(home, away, baseRate, rng);
+    const odds = oddsMap?.get(`${homeId}|${awayId}`);
+    const reg = sampleMatch(home, away, baseRate, rng, odds, oddsWeight);
     let hg = reg.homeGoals;
     let ag = reg.awayGoals;
     let winnerId: string;
@@ -190,13 +196,16 @@ export function predictTournament(
   teams: Team[],
   matches: Match[],
   config: ModelConfig,
+  oddsMap?: Map<string, MatchOdds>,
 ): Prediction {
   const teamMap = new Map(teams.map(t => [t.id, t]));
   const allPredicted: PredictedMatch[] = [];
   const deterministicRng = () => 0.5;
+  // Blend bookmaker odds into match scorelines when available (matches the forecast).
+  const oddsWeight = oddsMap ? config.blendOddsWeight : 0;
 
   // 1. Group stage
-  const { predictedMatches: groupPredictions, groups } = predictGroupStage(teams, matches, config.baseGoalsRate);
+  const { predictedMatches: groupPredictions, groups } = predictGroupStage(teams, matches, config.baseGoalsRate, oddsMap, oddsWeight);
   allPredicted.push(...groupPredictions);
 
   // 2. Select advancing teams
@@ -229,27 +238,27 @@ export function predictTournament(
     if (t2) r32Slots.set(rm.slot2, t2);
   }
   const r32Pairs = R32_MATCHES.map(rm => [rm.slot1, rm.slot2] as [string, string]);
-  const { predictedMatches: r32, winners: r32Winners } = predictKoRound(r32Pairs, 'R32', 'r32', r32Slots, teamMap, koBaseRate);
+  const { predictedMatches: r32, winners: r32Winners } = predictKoRound(r32Pairs, 'R32', 'r32', r32Slots, teamMap, koBaseRate, oddsMap, oddsWeight);
   allPredicted.push(...r32);
 
   // 4. R16
   const r16Pairs = R16_PAIRS.map(([a, b]) => [a, b] as [string, string]);
-  const { predictedMatches: r16, winners: r16Winners } = predictKoRound(r16Pairs, 'R16', 'r16', r32Winners, teamMap, koBaseRate);
+  const { predictedMatches: r16, winners: r16Winners } = predictKoRound(r16Pairs, 'R16', 'r16', r32Winners, teamMap, koBaseRate, oddsMap, oddsWeight);
   allPredicted.push(...r16);
 
   // 5. QF
   const qfPairs = QF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
-  const { predictedMatches: qf, winners: qfWinners } = predictKoRound(qfPairs, 'QF', 'qf', r16Winners, teamMap, koBaseRate);
+  const { predictedMatches: qf, winners: qfWinners } = predictKoRound(qfPairs, 'QF', 'qf', r16Winners, teamMap, koBaseRate, oddsMap, oddsWeight);
   allPredicted.push(...qf);
 
   // 6. SF
   const sfPairs = SF_PAIRS.map(([a, b]) => [a, b] as [string, string]);
-  const { predictedMatches: sf, winners: sfWinners } = predictKoRound(sfPairs, 'SF', 'sf', qfWinners, teamMap, koBaseRate);
+  const { predictedMatches: sf, winners: sfWinners } = predictKoRound(sfPairs, 'SF', 'sf', qfWinners, teamMap, koBaseRate, oddsMap, oddsWeight);
   allPredicted.push(...sf);
 
   // 7. Final
   const { predictedMatches: final, winners: finalWinners } = predictKoRound(
-    [['SF-01', 'SF-02']], 'FINAL', 'final', sfWinners, teamMap, koBaseRate,
+    [['SF-01', 'SF-02']], 'FINAL', 'final', sfWinners, teamMap, koBaseRate, oddsMap, oddsWeight,
   );
   allPredicted.push(...final);
 
