@@ -803,7 +803,7 @@
       "kickoffUtc": "2026-06-18T16:00Z",
       "status": "live",
       "homeGoals": 1,
-      "awayGoals": 0,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
