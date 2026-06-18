@@ -19,7 +19,7 @@ import type { Team, Match } from '@wc2026/shared';
 
 const ELO_K = 60;   // WC finals — eloratings.net uses 60
 const ELO_D = 400;
-const ELO_LAMBDA_D = 1200; // calibrated so Poisson win-prob ≈ Elo win-prob
+const ELO_LAMBDA_D = 1000; // calibrated so Poisson win-prob ≈ Elo win-prob
 
 export function eloWinProb(eloA: number, eloB: number): number {
   return 1 / (1 + Math.pow(10, (eloB - eloA) / ELO_D));
