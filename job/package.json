@@ -1,0 +1,19 @@
+{
+  "name": "@wc2026/job",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "simulate": "tsx --env-file ../.env src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@wc2026/shared": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+"tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  }
+}

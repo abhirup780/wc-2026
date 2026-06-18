@@ -1,0 +1,17 @@
+node_modules/
+frontend/dist/
+job/dist/
+shared/dist/
+
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

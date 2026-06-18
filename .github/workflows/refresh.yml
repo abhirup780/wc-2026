@@ -1,0 +1,99 @@
+name: Refresh data and deploy
+
+on:
+  schedule:
+    # Every 30 minutes while the tournament runs. Reduce cadence in off-days.
+    - cron: '*/30 * * * *'
+  workflow_dispatch:   # manual trigger
+  push:
+    branches: [main]
+    paths:
+      - 'job/**'
+      - 'shared/**'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run simulation job
+        env:
+          SIM_COUNT: '50000'
+          MODEL_TYPE: 'poisson'
+          HOST_NATIONS: 'USA,CAN,MEX'
+          HOST_ADJUSTMENT: '1.0'
+          OUTPUT_DIR: './frontend/public/data'
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          BLEND_ODDS_WEIGHT: '0.6'
+          OUTRIGHT_ODDS_WEIGHT: '0.6'
+        run: npm run simulate
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --quiet frontend/public/data/ || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit updated JSON artifacts
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config user.name "wc2026-bot"
+          git config user.email "wc2026-bot@github"
+          git add frontend/public/data/
+          git commit -m "chore: refresh data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+
+  # Deploy to GitHub Pages after a successful refresh
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Pull the freshly-committed JSON
+          ref: main
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

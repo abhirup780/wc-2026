@@ -1,0 +1,13 @@
+{
+  "name": "wc-2026",
+  "private": true,
+  "workspaces": ["shared", "job", "frontend"],
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend",
+    "simulate": "npm run simulate --workspace=job",
+    "simulate:mock": "npm run simulate:mock --workspace=job",
+    "build": "npm run build --workspace=frontend",
+    "test": "npm run test --workspace=job",
+    "typecheck": "tsc --noEmit --project shared/tsconfig.json && tsc --noEmit --project job/tsconfig.json && tsc --noEmit --project frontend/tsconfig.json"
+  }
+}

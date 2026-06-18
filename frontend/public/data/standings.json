@@ -1,0 +1,605 @@
+{
+  "timestamp": "2026-06-18T03:37:24.101Z",
+  "groups": {
+    "A": [
+      {
+        "groupId": "A",
+        "teamId": "MEX",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 2,
+        "ga": 0,
+        "gd": 2,
+        "points": 3
+      },
+      {
+        "groupId": "A",
+        "teamId": "RSA",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 2,
+        "gd": -2,
+        "points": 0
+      },
+      {
+        "groupId": "A",
+        "teamId": "KOR",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 2,
+        "ga": 1,
+        "gd": 1,
+        "points": 3
+      },
+      {
+        "groupId": "A",
+        "teamId": "CZE",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 2,
+        "gd": -1,
+        "points": 0
+      }
+    ],
+    "B": [
+      {
+        "groupId": "B",
+        "teamId": "CAN",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "B",
+        "teamId": "BIH",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "B",
+        "teamId": "QAT",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "B",
+        "teamId": "SUI",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      }
+    ],
+    "C": [
+      {
+        "groupId": "C",
+        "teamId": "BRA",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "C",
+        "teamId": "MAR",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "C",
+        "teamId": "HAI",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 1,
+        "gd": -1,
+        "points": 0
+      },
+      {
+        "groupId": "C",
+        "teamId": "SCO",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 1,
+        "ga": 0,
+        "gd": 1,
+        "points": 3
+      }
+    ],
+    "D": [
+      {
+        "groupId": "D",
+        "teamId": "USA",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 4,
+        "ga": 1,
+        "gd": 3,
+        "points": 3
+      },
+      {
+        "groupId": "D",
+        "teamId": "PAR",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 4,
+        "gd": -3,
+        "points": 0
+      },
+      {
+        "groupId": "D",
+        "teamId": "AUS",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 2,
+        "ga": 0,
+        "gd": 2,
+        "points": 3
+      },
+      {
+        "groupId": "D",
+        "teamId": "TUR",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 2,
+        "gd": -2,
+        "points": 0
+      }
+    ],
+    "E": [
+      {
+        "groupId": "E",
+        "teamId": "GER",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 7,
+        "ga": 1,
+        "gd": 6,
+        "points": 3
+      },
+      {
+        "groupId": "E",
+        "teamId": "CUW",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 7,
+        "gd": -6,
+        "points": 0
+      },
+      {
+        "groupId": "E",
+        "teamId": "CIV",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 1,
+        "ga": 0,
+        "gd": 1,
+        "points": 3
+      },
+      {
+        "groupId": "E",
+        "teamId": "ECU",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 1,
+        "gd": -1,
+        "points": 0
+      }
+    ],
+    "F": [
+      {
+        "groupId": "F",
+        "teamId": "NED",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "F",
+        "teamId": "JPN",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "F",
+        "teamId": "SWE",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 5,
+        "ga": 1,
+        "gd": 4,
+        "points": 3
+      },
+      {
+        "groupId": "F",
+        "teamId": "TUN",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 5,
+        "gd": -4,
+        "points": 0
+      }
+    ],
+    "G": [
+      {
+        "groupId": "G",
+        "teamId": "BEL",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "G",
+        "teamId": "EGY",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "G",
+        "teamId": "IRN",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "G",
+        "teamId": "NZL",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "points": 1
+      }
+    ],
+    "H": [
+      {
+        "groupId": "H",
+        "teamId": "ESP",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "H",
+        "teamId": "CPV",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "H",
+        "teamId": "KSA",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "H",
+        "teamId": "URU",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      }
+    ],
+    "I": [
+      {
+        "groupId": "I",
+        "teamId": "FRA",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 3,
+        "ga": 1,
+        "gd": 2,
+        "points": 3
+      },
+      {
+        "groupId": "I",
+        "teamId": "SEN",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 3,
+        "gd": -2,
+        "points": 0
+      },
+      {
+        "groupId": "I",
+        "teamId": "IRQ",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 4,
+        "gd": -3,
+        "points": 0
+      },
+      {
+        "groupId": "I",
+        "teamId": "NOR",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 4,
+        "ga": 1,
+        "gd": 3,
+        "points": 3
+      }
+    ],
+    "J": [
+      {
+        "groupId": "J",
+        "teamId": "ARG",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 3,
+        "ga": 0,
+        "gd": 3,
+        "points": 3
+      },
+      {
+        "groupId": "J",
+        "teamId": "ALG",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 3,
+        "gd": -3,
+        "points": 0
+      },
+      {
+        "groupId": "J",
+        "teamId": "AUT",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 3,
+        "ga": 1,
+        "gd": 2,
+        "points": 3
+      },
+      {
+        "groupId": "J",
+        "teamId": "JOR",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 3,
+        "gd": -2,
+        "points": 0
+      }
+    ],
+    "K": [
+      {
+        "groupId": "K",
+        "teamId": "POR",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "K",
+        "teamId": "COD",
+        "played": 1,
+        "w": 0,
+        "d": 1,
+        "l": 0,
+        "gf": 1,
+        "ga": 1,
+        "gd": 0,
+        "points": 1
+      },
+      {
+        "groupId": "K",
+        "teamId": "UZB",
+        "played": 0,
+        "w": 0,
+        "d": 0,
+        "l": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
+        "points": 0
+      },
+      {
+        "groupId": "K",
+        "teamId": "COL",
+        "played": 0,
+        "w": 0,
+        "d": 0,
+        "l": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
+        "points": 0
+      }
+    ],
+    "L": [
+      {
+        "groupId": "L",
+        "teamId": "ENG",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 4,
+        "ga": 2,
+        "gd": 2,
+        "points": 3
+      },
+      {
+        "groupId": "L",
+        "teamId": "CRO",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 2,
+        "ga": 4,
+        "gd": -2,
+        "points": 0
+      },
+      {
+        "groupId": "L",
+        "teamId": "GHA",
+        "played": 1,
+        "w": 1,
+        "d": 0,
+        "l": 0,
+        "gf": 1,
+        "ga": 0,
+        "gd": 1,
+        "points": 3
+      },
+      {
+        "groupId": "L",
+        "teamId": "PAN",
+        "played": 1,
+        "w": 0,
+        "d": 0,
+        "l": 1,
+        "gf": 0,
+        "ga": 1,
+        "gd": -1,
+        "points": 0
+      }
+    ]
+  }
+}

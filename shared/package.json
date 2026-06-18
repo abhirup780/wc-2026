@@ -1,0 +1,8 @@
+{
+  "name": "@wc2026/shared",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./src/types.ts"
+  },
+  "main": "./src/types.ts"
+}
