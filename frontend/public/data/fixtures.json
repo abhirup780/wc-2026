@@ -5,432 +5,432 @@
       "name": "Mexico",
       "code": "MEX",
       "groupId": "A",
-      "rankingElo": 1691.3065493972106,
-      "attackRating": 1.3413363671109815,
-      "defenseRating": 1.3413363671109815
+      "rankingElo": 1700.982853992616,
+      "attackRating": 1.36140884958549,
+      "defenseRating": 1.36140884958549
     },
     {
       "id": "RSA",
       "name": "South Africa",
       "code": "RSA",
       "groupId": "A",
-      "rankingElo": 1429.1065756027897,
-      "attackRating": 0.8968869750610179,
-      "defenseRating": 0.8968869750610179
+      "rankingElo": 1414.8771460073842,
+      "attackRating": 0.8775086994533235,
+      "defenseRating": 0.8775086994533235
     },
     {
       "id": "KOR",
       "name": "South Korea",
       "code": "KOR",
       "groupId": "A",
-      "rankingElo": 1611.8553501838217,
-      "attackRating": 1.1873266982212194,
-      "defenseRating": 1.1873266982212194
+      "rankingElo": 1612.5467144447407,
+      "attackRating": 1.1885874571826522,
+      "defenseRating": 1.1885874571826522
     },
     {
       "id": "CZE",
       "name": "Czechia",
       "code": "CZE",
       "groupId": "A",
-      "rankingElo": 1491.9167748161785,
-      "attackRating": 0.9876684552031961,
-      "defenseRating": 0.9876684552031961
+      "rankingElo": 1484.8232855552594,
+      "attackRating": 0.976972164994309,
+      "defenseRating": 0.976972164994309
     },
     {
       "id": "CAN",
       "name": "Canada",
       "code": "CAN",
       "groupId": "B",
-      "rankingElo": 1554.3763862037104,
-      "attackRating": 1.0870535136568527,
-      "defenseRating": 1.0870535136568527
+      "rankingElo": 1551.5049401141112,
+      "attackRating": 1.0822725083734364,
+      "defenseRating": 1.0822725083734364
     },
     {
       "id": "BIH",
       "name": "Bosnia-Herzegovina",
       "code": "BIH",
       "groupId": "B",
-      "rankingElo": 1413.7927387962898,
-      "attackRating": 0.8760491902487015,
-      "defenseRating": 0.8760491902487015
+      "rankingElo": 1395.195059885889,
+      "attackRating": 0.8513929309137471,
+      "defenseRating": 0.8513929309137471
     },
     {
       "id": "QAT",
       "name": "Qatar",
       "code": "QAT",
       "groupId": "B",
-      "rankingElo": 1471.6459306719573,
-      "attackRating": 0.9574085181374679,
-      "defenseRating": 0.9574085181374679
+      "rankingElo": 1459.4489111325388,
+      "attackRating": 0.9396496163023937,
+      "defenseRating": 0.9396496163023937
     },
     {
       "id": "SUI",
       "name": "Switzerland",
       "code": "SUI",
       "groupId": "B",
-      "rankingElo": 1634.8261943280424,
-      "attackRating": 1.2299405769607232,
-      "defenseRating": 1.2299405769607232
+      "rankingElo": 1640.921088867461,
+      "attackRating": 1.2415019115519157,
+      "defenseRating": 1.2415019115519157
     },
     {
       "id": "BRA",
       "name": "Brazil",
       "code": "BRA",
       "groupId": "C",
-      "rankingElo": 1746.8790694171796,
-      "attackRating": 1.4607841442944427,
-      "defenseRating": 1.4607841442944427
+      "rankingElo": 1765.3439105055215,
+      "attackRating": 1.502781847057322,
+      "defenseRating": 1.502781847057322
     },
     {
       "id": "MAR",
       "name": "Morocco",
       "code": "MAR",
       "groupId": "C",
-      "rankingElo": 1738.1240555828203,
-      "attackRating": 1.4412833526083064,
-      "defenseRating": 1.4412833526083064
+      "rankingElo": 1755.6160894944783,
+      "attackRating": 1.4805078904544986,
+      "defenseRating": 1.4805078904544986
     },
     {
       "id": "HAI",
       "name": "Haiti",
       "code": "HAI",
       "groupId": "C",
-      "rankingElo": 1305.5574806055786,
-      "attackRating": 0.7419448997014777,
-      "defenseRating": 0.7419448997014777
+      "rankingElo": 1277.6716346455873,
+      "attackRating": 0.7108551100990523,
+      "defenseRating": 0.7108551100990523
     },
     {
       "id": "SCO",
       "name": "Scotland",
       "code": "SCO",
       "groupId": "C",
-      "rankingElo": 1527.3776443944212,
-      "attackRating": 1.0429218417851625,
-      "defenseRating": 1.0429218417851625
+      "rankingElo": 1518.7683653544127,
+      "attackRating": 1.029229542681492,
+      "defenseRating": 1.029229542681492
     },
     {
       "id": "USA",
       "name": "United States",
       "code": "USA",
       "groupId": "D",
-      "rankingElo": 1680.2046223536208,
-      "attackRating": 1.3186708771598226,
-      "defenseRating": 1.3186708771598226
+      "rankingElo": 1688.5309113816902,
+      "attackRating": 1.335633410438539,
+      "defenseRating": 1.335633410438539
     },
     {
       "id": "PAR",
       "name": "Paraguay",
       "code": "PAR",
       "groupId": "D",
-      "rankingElo": 1494.856502646379,
-      "attackRating": 0.9921355278410423,
-      "defenseRating": 0.9921355278410423
+      "rankingElo": 1488.0490886183097,
+      "attackRating": 0.9818219242590669,
+      "defenseRating": 0.9818219242590669
     },
     {
       "id": "AUS",
       "name": "Australia",
       "code": "AUS",
       "groupId": "D",
-      "rankingElo": 1605.6141222395108,
-      "attackRating": 1.1760056677563955,
-      "defenseRating": 1.1760056677563955
+      "rankingElo": 1605.6048611722083,
+      "attackRating": 1.1759889494685725,
+      "defenseRating": 1.1759889494685725
     },
     {
       "id": "TUR",
       "name": "Türkiye",
       "code": "TUR",
       "groupId": "D",
-      "rankingElo": 1577.0880027604892,
-      "attackRating": 1.1256205204588021,
-      "defenseRating": 1.1256205204588021
+      "rankingElo": 1579.4651388277916,
+      "attackRating": 1.1297354565309108,
+      "defenseRating": 1.1297354565309108
     },
     {
       "id": "GER",
       "name": "Germany",
       "code": "GER",
       "groupId": "E",
-      "rankingElo": 1729.2123954426083,
-      "attackRating": 1.4217009827612066,
-      "defenseRating": 1.4217009827612066
+      "rankingElo": 1743.5430235884983,
+      "attackRating": 1.453322561826915,
+      "defenseRating": 1.453322561826915
     },
     {
       "id": "CUW",
       "name": "Curaçao",
       "code": "CUW",
       "groupId": "E",
-      "rankingElo": 1314.4127295573917,
-      "attackRating": 0.7520992455709066,
-      "defenseRating": 0.7520992455709066
+      "rankingElo": 1286.9969764115017,
+      "attackRating": 0.7211041322569296,
+      "defenseRating": 0.7211041322569296
     },
     {
       "id": "CIV",
       "name": "Ivory Coast",
       "code": "CIV",
       "groupId": "E",
-      "rankingElo": 1572.3333222201552,
-      "attackRating": 1.1174348577670368,
-      "defenseRating": 1.1174348577670368
+      "rankingElo": 1568.6242752958356,
+      "attackRating": 1.1110907111702146,
+      "defenseRating": 1.1110907111702146
     },
     {
       "id": "ECU",
       "name": "Ecuador",
       "code": "ECU",
       "groupId": "E",
-      "rankingElo": 1569.2568027798447,
-      "attackRating": 1.112170065919695,
-      "defenseRating": 1.112170065919695
+      "rankingElo": 1570.7657247041643,
+      "attackRating": 1.1147491498255022,
+      "defenseRating": 1.1147491498255022
     },
     {
       "id": "NED",
       "name": "Netherlands",
       "code": "NED",
       "groupId": "F",
-      "rankingElo": 1732.3441107128167,
-      "attackRating": 1.4285520666685354,
-      "defenseRating": 1.4285520666685354
+      "rankingElo": 1749.2024569436776,
+      "attackRating": 1.4660033789377558,
+      "defenseRating": 1.4660033789377558
     },
     {
       "id": "JPN",
       "name": "Japan",
       "code": "JPN",
       "groupId": "F",
-      "rankingElo": 1657.4300142871832,
-      "attackRating": 1.2733662733324205,
-      "defenseRating": 1.2733662733324205
+      "rankingElo": 1665.9475430563223,
+      "attackRating": 1.29012471574639,
+      "defenseRating": 1.29012471574639
     },
     {
       "id": "SWE",
       "name": "Sweden",
       "code": "SWE",
       "groupId": "F",
-      "rankingElo": 1540.441026214308,
-      "attackRating": 1.0640466877321615,
-      "defenseRating": 1.0640466877321615
+      "rankingElo": 1533.1909300448146,
+      "attackRating": 1.0522702368848957,
+      "defenseRating": 1.0522702368848957
     },
     {
       "id": "TUN",
       "name": "Tunisia",
       "code": "TUN",
       "groupId": "F",
-      "rankingElo": 1463.278098785692,
-      "attackRating": 0.9451891606229915,
-      "defenseRating": 0.9451891606229915
+      "rankingElo": 1453.0090699551856,
+      "attackRating": 0.9304064518125732,
+      "defenseRating": 0.9304064518125732
     },
     {
       "id": "BEL",
       "name": "Belgium",
       "code": "BEL",
       "groupId": "G",
-      "rankingElo": 1718.5604347894885,
-      "attackRating": 1.3986432590249218,
-      "defenseRating": 1.3986432590249218
+      "rankingElo": 1733.9385768680227,
+      "attackRating": 1.4320528675183373,
+      "defenseRating": 1.4320528675183373
     },
     {
       "id": "EGY",
       "name": "Egypt",
       "code": "EGY",
       "groupId": "G",
-      "rankingElo": 1571.7276902105114,
-      "attackRating": 1.1163964842487581,
-      "defenseRating": 1.1163964842487581
+      "rankingElo": 1570.6714231319772,
+      "attackRating": 1.1145877923541894,
+      "defenseRating": 1.1145877923541894
     },
     {
       "id": "IRN",
       "name": "Iran",
       "code": "IRN",
       "groupId": "G",
-      "rankingElo": 1602.3712050479005,
-      "attackRating": 1.1701659860078655,
-      "defenseRating": 1.1701659860078655
+      "rankingElo": 1605.1196770160786,
+      "attackRating": 1.175113416382036,
+      "defenseRating": 1.175113416382036
     },
     {
       "id": "NZL",
       "name": "New Zealand",
       "code": "NZL",
       "groupId": "G",
-      "rankingElo": 1319.4119199520994,
-      "attackRating": 0.7578930885673588,
-      "defenseRating": 0.7578930885673588
+      "rankingElo": 1290.0403229839212,
+      "attackRating": 0.7244808026489749,
+      "defenseRating": 0.7244808026489749
     },
     {
       "id": "ESP",
       "name": "Spain",
       "code": "ESP",
       "groupId": "H",
-      "rankingElo": 1827.778193537325,
-      "attackRating": 1.6539363634036515,
-      "defenseRating": 1.6539363634036515
+      "rankingElo": 1856.0329527602046,
+      "attackRating": 1.7272503996398085,
+      "defenseRating": 1.7272503996398085
     },
     {
       "id": "CPV",
       "name": "Cape Verde",
       "code": "CPV",
       "groupId": "H",
-      "rankingElo": 1409.598931462675,
-      "attackRating": 0.8704275349684888,
-      "defenseRating": 0.8704275349684888
+      "rankingElo": 1389.7870472397954,
+      "attackRating": 0.8443542586450343,
+      "defenseRating": 0.8443542586450343
     },
     {
       "id": "KSA",
       "name": "Saudi Arabia",
       "code": "KSA",
       "groupId": "H",
-      "rankingElo": 1449.7016118513836,
-      "attackRating": 0.9256946233098416,
-      "defenseRating": 0.9256946233098416
+      "rankingElo": 1434.9990393218332,
+      "attackRating": 0.9050363574976987,
+      "defenseRating": 0.9050363574976987
     },
     {
       "id": "URU",
       "name": "Uruguay",
       "code": "URU",
       "groupId": "H",
-      "rankingElo": 1653.6925131486164,
-      "attackRating": 1.266081536484117,
-      "defenseRating": 1.266081536484117
+      "rankingElo": 1661.950960678167,
+      "attackRating": 1.2822340548269406,
+      "defenseRating": 1.2822340548269406
     },
     {
       "id": "FRA",
       "name": "France",
       "code": "FRA",
       "groupId": "I",
-      "rankingElo": 1858.909966516038,
-      "attackRating": 1.7348954619141994,
-      "defenseRating": 1.7348954619141994
+      "rankingElo": 1887.1113053552713,
+      "attackRating": 1.8116496046912696,
+      "defenseRating": 1.8116496046912696
     },
     {
       "id": "SEN",
       "name": "Senegal",
       "code": "SEN",
       "groupId": "I",
-      "rankingElo": 1656.522158483962,
-      "attackRating": 1.2715929331167573,
-      "defenseRating": 1.2715929331167573
+      "rankingElo": 1667.6586946447287,
+      "attackRating": 1.293517959970227,
+      "defenseRating": 1.293517959970227
     },
     {
       "id": "IRQ",
       "name": "Iraq",
       "code": "IRQ",
       "groupId": "I",
-      "rankingElo": 1439.4626301325845,
-      "attackRating": 0.9112588379912074,
-      "defenseRating": 0.9112588379912074
+      "rankingElo": 1426.532981992476,
+      "attackRating": 0.893350712246555,
+      "defenseRating": 0.893350712246555
     },
     {
       "id": "NOR",
       "name": "Norway",
       "code": "NOR",
       "groupId": "I",
-      "rankingElo": 1580.0244948674153,
-      "attackRating": 1.1307059128358483,
-      "defenseRating": 1.1307059128358483
+      "rankingElo": 1577.187018007524,
+      "attackRating": 1.1257916210508572,
+      "defenseRating": 1.1257916210508572
     },
     {
       "id": "ARG",
       "name": "Argentina",
       "code": "ARG",
       "groupId": "J",
-      "rankingElo": 1860.4998759920525,
-      "attackRating": 1.7391348211166298,
-      "defenseRating": 1.7391348211166298
+      "rankingElo": 1889.0654619249433,
+      "attackRating": 1.8170922438074644,
+      "defenseRating": 1.8170922438074644
     },
     {
       "id": "ALG",
       "name": "Algeria",
       "code": "ALG",
       "groupId": "J",
-      "rankingElo": 1559.1092490079475,
-      "attackRating": 1.0949799476099948,
-      "defenseRating": 1.0949799476099948
+      "rankingElo": 1559.2345380750567,
+      "attackRating": 1.0951905607848453,
+      "defenseRating": 1.0951905607848453
     },
     {
       "id": "AUT",
       "name": "Austria",
       "code": "AUT",
       "groupId": "J",
-      "rankingElo": 1612.0536616053407,
-      "attackRating": 1.187688198383178,
-      "defenseRating": 1.187688198383178
+      "rankingElo": 1612.8521199241557,
+      "attackRating": 1.1891448151363808,
+      "defenseRating": 1.1891448151363808
     },
     {
       "id": "JOR",
       "name": "Jordan",
       "code": "JOR",
       "groupId": "J",
-      "rankingElo": 1390.7114633946594,
-      "attackRating": 0.8455532742335918,
-      "defenseRating": 0.8455532742335918
+      "rankingElo": 1372.2878800758444,
+      "attackRating": 0.8219749580730394,
+      "defenseRating": 0.8219749580730394
     },
     {
       "id": "POR",
       "name": "Portugal",
       "code": "POR",
       "groupId": "K",
-      "rankingElo": 1737.4499528416436,
-      "attackRating": 1.4397927042310104,
-      "defenseRating": 1.4397927042310104
+      "rankingElo": 1755.0946242710856,
+      "attackRating": 1.4793232496262394,
+      "defenseRating": 1.4793232496262394
     },
     {
       "id": "COD",
       "name": "Congo DR",
       "code": "COD",
       "groupId": "K",
-      "rankingElo": 1496.7411721583564,
-      "attackRating": 0.9950100059868987,
-      "defenseRating": 0.9950100059868987
+      "rankingElo": 1487.1853757289143,
+      "attackRating": 0.9805210399252637,
+      "defenseRating": 0.9805210399252637
     },
     {
       "id": "UZB",
       "name": "Uzbekistan",
       "code": "UZB",
       "groupId": "K",
-      "rankingElo": 1455.719115843194,
-      "attackRating": 0.9342850737491475,
-      "defenseRating": 0.9342850737491475
+      "rankingElo": 1444.4777825275567,
+      "attackRating": 0.9183012772104657,
+      "defenseRating": 0.9183012772104657
     },
     {
       "id": "COL",
       "name": "Colombia",
       "code": "COL",
       "groupId": "K",
-      "rankingElo": 1701.792009156806,
-      "attackRating": 1.3631009048967697,
-      "defenseRating": 1.3631009048967697
+      "rankingElo": 1712.6022174724433,
+      "attackRating": 1.3859093082443732,
+      "defenseRating": 1.3859093082443732
     },
     {
       "id": "ENG",
       "name": "England",
       "code": "ENG",
       "groupId": "L",
-      "rankingElo": 1823.4637238162045,
-      "attackRating": 1.6430186098196458,
-      "defenseRating": 1.6430186098196458
+      "rankingElo": 1847.67584489016,
+      "attackRating": 1.7052336595874154,
+      "defenseRating": 1.7052336595874154
     },
     {
       "id": "CRO",
       "name": "Croatia",
       "code": "CRO",
       "groupId": "L",
-      "rankingElo": 1681.2764011837953,
-      "attackRating": 1.3208421946353095,
-      "defenseRating": 1.3208421946353095
+      "rankingElo": 1695.2141551098398,
+      "attackRating": 1.349406413875877,
+      "defenseRating": 1.349406413875877
     },
     {
       "id": "GHA",
       "name": "Ghana",
       "code": "GHA",
       "groupId": "L",
-      "rankingElo": 1403.270732249016,
-      "attackRating": 0.8620130119870701,
-      "defenseRating": 0.8620130119870701
+      "rankingElo": 1380.706843034978,
+      "attackRating": 0.8326667613260101,
+      "defenseRating": 0.8326667613260101
     },
     {
       "id": "PAN",
       "name": "Panama",
       "code": "PAN",
       "groupId": "L",
-      "rankingElo": 1510.304392750984,
-      "attackRating": 1.015943591489189,
-      "defenseRating": 1.015943591489189
+      "rankingElo": 1505.3331569650222,
+      "attackRating": 1.0082203011358735,
+      "defenseRating": 1.0082203011358735
     }
   ],
   "matches": [
