@@ -42,7 +42,6 @@ jobs:
           MODEL_TYPE: 'poisson'
           HOST_NATIONS: 'USA,CAN,MEX'
           HOST_ADJUSTMENT: '1.0'
-          OUTPUT_DIR: './frontend/public/data'
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           BLEND_ODDS_WEIGHT: '0.6'
           OUTRIGHT_ODDS_WEIGHT: '0.6'
