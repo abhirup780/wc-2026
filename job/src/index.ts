@@ -6,6 +6,7 @@ import { computeStandingsFromMatches } from './normalize.js';
 import { applyInTournamentUpdates, regressEloToMean } from './ratings.js';
 import { runSimulation } from './sim/engine.js';
 import { predictTournament } from './sim/predict.js';
+import { predictUpcoming } from './sim/upcoming.js';
 import { writeArtifacts } from './write-artifacts.js';
 import type { Fixtures, Standings, Scores, Forecast, Meta } from '@wc2026/shared';
 import type { MatchOdds } from './sim/poisson.js';
@@ -132,6 +133,10 @@ async function main(): Promise<void> {
   const prediction = predictTournament(teams, matches, CONFIG.model);
   console.log(`Predicted champion: ${prediction.champion}`);
 
+  // 9b. Next 5 upcoming-match predictions (model 1X2 blended with market odds)
+  const upcomingMatches = predictUpcoming(teams, matches, oddsMap, CONFIG.model, 5);
+  console.log(`Upcoming predictions: ${upcomingMatches.length} (market blended: ${upcomingMatches.filter(u => u.marketBlended).length})`);
+
   // 10. Write artifacts
   const forecast: Forecast = { ...simResult, dataSnapshotTimestamp: snapshotAt };
 
@@ -147,6 +152,7 @@ async function main(): Promise<void> {
     },
     forecast,
     prediction,
+    upcoming: { timestamp: snapshotAt, blendWeight: oddsMap ? CONFIG.model.blendOddsWeight : 0, matches: upcomingMatches },
     meta: {
       dataSource: 'espn',
       lastUpdated: snapshotAt,

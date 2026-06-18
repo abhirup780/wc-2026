@@ -34,6 +34,45 @@ export interface MatchOdds {
   awayWinP: number;
 }
 
+/**
+ * Exact 1X2 outcome probabilities from the Dixon-Coles Poisson model,
+ * summing the joint scoreline distribution up to 10 goals per side.
+ */
+export function matchOutcomeProbs(
+  home: Team,
+  away: Team,
+  baseRate: number,
+): { pHome: number; pDraw: number; pAway: number; lH: number; lA: number } {
+  const lH = baseRate * (home.attackRating / away.defenseRating);
+  const lA = baseRate * (away.attackRating / home.defenseRating);
+
+  const MAX = 10;
+  // Poisson pmf with a running factorial
+  const pmf = (lambda: number): number[] => {
+    const out: number[] = [];
+    let term = Math.exp(-lambda); // k = 0
+    for (let k = 0; k <= MAX; k++) {
+      out.push(term);
+      term = (term * lambda) / (k + 1);
+    }
+    return out;
+  };
+  const ph = pmf(lH);
+  const pa = pmf(lA);
+
+  let pHome = 0, pDraw = 0, pAway = 0, total = 0;
+  for (let i = 0; i <= MAX; i++) {
+    for (let j = 0; j <= MAX; j++) {
+      const p = ph[i] * pa[j] * tauDC(i, j, lH, lA);
+      total += p;
+      if (i > j) pHome += p;
+      else if (i === j) pDraw += p;
+      else pAway += p;
+    }
+  }
+  return { pHome: pHome / total, pDraw: pDraw / total, pAway: pAway / total, lH, lA };
+}
+
 /** Sample from Poisson(lambda) using Knuth's algorithm (fast for lambda < 30) */
 export function poissonSample(lambda: number, rng: () => number): number {
   if (lambda <= 0) return 0;

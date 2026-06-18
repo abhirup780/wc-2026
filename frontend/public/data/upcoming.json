@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-06-18T15:44:34.678Z",
+  "blendWeight": 0,
+  "matches": [
+    {
+      "id": "ESPN-760438",
+      "stage": "group",
+      "groupId": "A",
+      "homeId": "CZE",
+      "awayId": "RSA",
+      "kickoffUtc": "2026-06-18T16:00Z",
+      "homeXg": 1.3916844437025948,
+      "awayXg": 1.1227401492273263,
+      "pHome": 0.41420913982533475,
+      "pDraw": 0.2990486465435193,
+      "pAway": 0.2867422136311465,
+      "marketBlended": false
+    },
+    {
+      "id": "ESPN-760439",
+      "stage": "group",
+      "groupId": "B",
+      "homeId": "SUI",
+      "awayId": "BIH",
+      "kickoffUtc": "2026-06-18T19:00Z",
+      "homeXg": 1.8227510860048615,
+      "awayXg": 0.8572207209184637,
+      "pHome": 0.5880289889819451,
+      "pDraw": 0.253423565413029,
+      "pAway": 0.1585474456050253,
+      "marketBlended": false
+    },
+    {
+      "id": "ESPN-760440",
+      "stage": "group",
+      "groupId": "B",
+      "homeId": "CAN",
+      "awayId": "QAT",
+      "kickoffUtc": "2026-06-18T22:00Z",
+      "homeXg": 1.439728822313945,
+      "awayXg": 1.0852738208635262,
+      "pHome": 0.43570109014090613,
+      "pDraw": 0.29590199525810285,
+      "pAway": 0.2683969146009915,
+      "marketBlended": false
+    },
+    {
+      "id": "ESPN-760441",
+      "stage": "group",
+      "groupId": "A",
+      "homeId": "MEX",
+      "awayId": "KOR",
+      "kickoffUtc": "2026-06-19T01:00Z",
+      "homeXg": 1.431750816229882,
+      "awayXg": 1.0913211868210486,
+      "pHome": 0.4321655501598229,
+      "pDraw": 0.29647382196221905,
+      "pAway": 0.27136062787795845,
+      "marketBlended": false
+    },
+    {
+      "id": "ESPN-760442",
+      "stage": "group",
+      "groupId": "D",
+      "homeId": "USA",
+      "awayId": "AUS",
+      "kickoffUtc": "2026-06-19T19:00Z",
+      "homeXg": 1.4196917103707793,
+      "awayXg": 1.1005910569076462,
+      "pHome": 0.4267959394001585,
+      "pDraw": 0.2973019040773118,
+      "pAway": 0.2759021565225295,
+      "marketBlended": false
+    }
+  ]
+}

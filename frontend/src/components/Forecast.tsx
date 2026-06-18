@@ -1,8 +1,73 @@
 import { useCallback, useState } from 'react';
-import { usePolled, fetchForecast } from '../api.ts';
-import { pct } from '../utils.ts';
+import { usePolled, fetchForecast, fetchUpcoming } from '../api.ts';
+import { pct, teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
-import type { TeamForecast } from '@wc2026/shared';
+import type { TeamForecast, UpcomingMatch } from '@wc2026/shared';
+
+// ─── Next matches (model 1X2 blended with bookmaker odds) ──────────────────────
+
+function kickoffLabel(iso: string): string {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  return d.toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+}
+
+function NextMatchRow({ m }: { m: UpcomingMatch }) {
+  const fav = m.pHome >= m.pAway && m.pHome >= m.pDraw ? 'home'
+    : m.pAway >= m.pDraw ? 'away' : 'draw';
+  return (
+    <div className="py-2.5 first:pt-0 last:pb-0">
+      <div className="flex items-center justify-between text-[10px] text-gray-600 mb-1.5">
+        <span>{kickoffLabel(m.kickoffUtc)}{m.groupId ? ` · Grp ${m.groupId}` : ''}</span>
+        <span className={m.marketBlended ? 'text-fifa-gold/80' : 'text-gray-600'}>
+          {m.marketBlended ? '📊 model + odds' : 'model only'}
+        </span>
+      </div>
+      <div className="flex items-center justify-between gap-2 mb-1.5">
+        <div className={`flex items-center gap-1.5 min-w-0 flex-1 ${fav === 'home' ? 'text-white font-semibold' : 'text-gray-400'}`}>
+          <Flag code={m.homeId} size={18} />
+          <span className="truncate text-xs">{teamName(m.homeId)}</span>
+        </div>
+        <span className="text-[10px] text-gray-600 shrink-0 tabular-nums">{m.homeXg.toFixed(1)}–{m.awayXg.toFixed(1)}</span>
+        <div className={`flex items-center gap-1.5 min-w-0 flex-1 justify-end ${fav === 'away' ? 'text-white font-semibold' : 'text-gray-400'}`}>
+          <span className="truncate text-xs text-right">{teamName(m.awayId)}</span>
+          <Flag code={m.awayId} size={18} />
+        </div>
+      </div>
+      {/* 1X2 split bar */}
+      <div className="flex h-2 rounded-full overflow-hidden bg-gray-800">
+        <div className="bg-green-500/70" style={{ width: `${m.pHome * 100}%` }} />
+        <div className="bg-gray-600" style={{ width: `${m.pDraw * 100}%` }} />
+        <div className="bg-fifa-blue" style={{ width: `${m.pAway * 100}%` }} />
+      </div>
+      <div className="flex items-center justify-between text-[10px] tabular-nums mt-1">
+        <span className={fav === 'home' ? 'text-green-400' : 'text-gray-500'}>{m.homeId} {Math.round(m.pHome * 100)}%</span>
+        <span className={fav === 'draw' ? 'text-gray-300' : 'text-gray-600'}>Draw {Math.round(m.pDraw * 100)}%</span>
+        <span className={fav === 'away' ? 'text-blue-400' : 'text-gray-500'}>{m.awayId} {Math.round(m.pAway * 100)}%</span>
+      </div>
+    </div>
+  );
+}
+
+function NextMatches() {
+  const fetcher = useCallback(() => fetchUpcoming(), []);
+  const { data: upcoming } = usePolled(fetcher, 60_000);
+  if (!upcoming || upcoming.matches.length === 0) return null;
+  const anyBlended = upcoming.matches.some(m => m.marketBlended);
+  return (
+    <div className="card">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-semibold text-gray-300">Next matches</h3>
+        <span className="text-[10px] text-gray-600">
+          {anyBlended ? `${Math.round(upcoming.blendWeight * 100)}% market + ${Math.round((1 - upcoming.blendWeight) * 100)}% model` : 'model'}
+        </span>
+      </div>
+      <div className="divide-y divide-gray-800/60">
+        {upcoming.matches.map(m => <NextMatchRow key={m.id} m={m} />)}
+      </div>
+    </div>
+  );
+}
 
 type SortKey = keyof Pick<TeamForecast, 'pChampion' | 'pReachFinal' | 'pReachSF' | 'pReachQF' | 'pReachR16' | 'pAdvanceGroup' | 'pWinGroup'>;
 
@@ -50,6 +115,9 @@ export default function Forecast() {
           {lastUpdated ? ` · ${lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}
         </p>
       </div>
+
+      {/* Next match predictions — model 1X2 blended with bookmaker odds */}
+      <NextMatches />
 
       {/* Champion probability bar chart — mobile-first, always visible */}
       <div className="card">

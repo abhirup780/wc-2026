@@ -120,6 +120,33 @@ export interface Meta {
   version: string;
 }
 
+// ─── Upcoming-match predictions (model 1X2 blended with bookmaker odds) ───────
+
+export interface UpcomingMatch {
+  id: string;
+  stage: Stage;
+  groupId: string | null;
+  homeId: string;
+  awayId: string;
+  kickoffUtc: string;
+  /** Model expected goals (Poisson λ) */
+  homeXg: number;
+  awayXg: number;
+  /** Outcome probabilities — blended with market odds when available, else model-only. Sum to 1. */
+  pHome: number;
+  pDraw: number;
+  pAway: number;
+  /** True when bookmaker odds were blended into the probabilities above. */
+  marketBlended: boolean;
+}
+
+export interface Upcoming {
+  timestamp: string;
+  /** Market weight used in the blend (0 = model only). */
+  blendWeight: number;
+  matches: UpcomingMatch[];
+}
+
 export interface Scores {
   timestamp: string;
   matches: Match[];

@@ -5,7 +5,7 @@
 
 import fs from 'fs/promises';
 import path from 'path';
-import type { Fixtures, Standings, Scores, Forecast, Meta, Prediction } from '@wc2026/shared';
+import type { Fixtures, Standings, Scores, Forecast, Meta, Prediction, Upcoming } from '@wc2026/shared';
 
 export interface Artifacts {
   fixtures: Fixtures;
@@ -13,6 +13,7 @@ export interface Artifacts {
   scores: Scores;
   forecast: Forecast;
   prediction: Prediction;
+  upcoming: Upcoming;
   meta: Meta;
 }
 
@@ -25,6 +26,7 @@ export async function writeArtifacts(artifacts: Artifacts, outputDir: string): P
     writeJson(path.join(outputDir, 'scores.json'), artifacts.scores),
     writeJson(path.join(outputDir, 'forecast.json'), artifacts.forecast),
     writeJson(path.join(outputDir, 'prediction.json'), artifacts.prediction),
+    writeJson(path.join(outputDir, 'upcoming.json'), artifacts.upcoming),
     writeJson(path.join(outputDir, 'meta.json'), artifacts.meta),
   ]);
 
