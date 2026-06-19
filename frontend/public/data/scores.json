@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-19T20:17:33.589Z",
+  "timestamp": "2026-06-19T21:46:47.531Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -428,7 +428,7 @@
       "homeId": "USA",
       "awayId": "AUS",
       "kickoffUtc": "2026-06-19T19:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,

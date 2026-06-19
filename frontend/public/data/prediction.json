@@ -343,10 +343,10 @@
       "homeId": "USA",
       "awayId": "AUS",
       "kickoffUtc": "2026-06-19T19:00Z",
-      "homeXg": 1.4196917103707796,
-      "awayXg": 1.1005910569076462,
-      "homeGoals": 3,
-      "awayGoals": 1
+      "homeXg": 2,
+      "awayXg": 0,
+      "homeGoals": 2,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760445",
@@ -703,8 +703,8 @@
       "homeId": "PAR",
       "awayId": "AUS",
       "kickoffUtc": "2026-06-26T02:00Z",
-      "homeXg": 1.0436130423491123,
-      "awayXg": 1.4972024463041425,
+      "homeXg": 1.0778946553626625,
+      "awayXg": 1.4495850705134907,
       "homeGoals": 0,
       "awayGoals": 3
     },
@@ -715,8 +715,8 @@
       "homeId": "TUR",
       "awayId": "USA",
       "kickoffUtc": "2026-06-26T02:00Z",
-      "homeXg": 1.0573030815393947,
-      "awayXg": 1.4778165573158617,
+      "homeXg": 1.0236763677422358,
+      "awayXg": 1.526361308355847,
       "homeGoals": 0,
       "awayGoals": 1
     },
@@ -975,8 +975,8 @@
       "homeId": "USA",
       "awayId": "NOR",
       "kickoffUtc": "",
-      "homeXg": 1.2605445555424326,
-      "awayXg": 0.8955702874891347,
+      "homeXg": 1.3019521452197063,
+      "awayXg": 0.8670873611944434,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "USA"
@@ -1066,11 +1066,11 @@
       "homeId": "AUS",
       "awayId": "IRN",
       "kickoffUtc": "",
-      "homeXg": 1.0632916290389307,
-      "awayXg": 1.0617089603351586,
-      "homeGoals": 2,
-      "awayGoals": 0,
-      "winnerId": "AUS"
+      "homeXg": 1.0294744540804042,
+      "awayXg": 1.0965850056069775,
+      "homeGoals": 0,
+      "awayGoals": 2,
+      "winnerId": "IRN"
     },
     {
       "id": "R16-01",
@@ -1144,8 +1144,8 @@
       "homeId": "USA",
       "awayId": "BEL",
       "kickoffUtc": "",
-      "homeXg": 0.9909623665292344,
-      "awayXg": 1.139201939579101,
+      "homeXg": 1.023514459097835,
+      "awayXg": 1.1029704953998027,
       "homeGoals": 1,
       "awayGoals": 1,
       "winnerId": "BEL"
@@ -1155,12 +1155,12 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "ARG",
-      "awayId": "AUS",
+      "awayId": "IRN",
       "kickoffUtc": "",
-      "homeXg": 1.6417335468312804,
-      "awayXg": 0.687630615929673,
-      "homeGoals": 3,
-      "awayGoals": 2,
+      "homeXg": 1.6429567411370294,
+      "awayXg": 0.6871186694901815,
+      "homeGoals": 2,
+      "awayGoals": 0,
       "winnerId": "ARG"
     },
     {
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-19T20:17:41.408Z"
+  "generatedAt": "2026-06-19T21:46:54.421Z"
 }

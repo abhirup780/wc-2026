@@ -113,9 +113,9 @@
       "name": "United States",
       "code": "USA",
       "groupId": "D",
-      "rankingElo": 1688.5309113816902,
-      "attackRating": 1.335633410438539,
-      "defenseRating": 1.335633410438539
+      "rankingElo": 1709.586142206635,
+      "attackRating": 1.3795075916212087,
+      "defenseRating": 1.3795075916212087
     },
     {
       "id": "PAR",
@@ -131,9 +131,9 @@
       "name": "Australia",
       "code": "AUS",
       "groupId": "D",
-      "rankingElo": 1605.6048611722083,
-      "attackRating": 1.1759889494685725,
-      "defenseRating": 1.1759889494685725
+      "rankingElo": 1584.5496303472635,
+      "attackRating": 1.1385875226470166,
+      "defenseRating": 1.1385875226470166
     },
     {
       "id": "TUR",
@@ -861,7 +861,7 @@
       "homeId": "USA",
       "awayId": "AUS",
       "kickoffUtc": "2026-06-19T19:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
