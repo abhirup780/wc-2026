@@ -12,21 +12,19 @@ export default function Footer() {
           <span className="text-gray-500">WC 2026 Forecast</span>
           {meta && (
             <>
-              {' · '}source: <span className="text-gray-400">{meta.dataSource}</span>
-              {' · '}updated:{' '}
+              {' · '}updated{' '}
               <span className="text-gray-400">
                 {new Date(meta.lastUpdated).toLocaleString()}
               </span>
-              {' · '}
-              {meta.simCount.toLocaleString()} sims · seed {meta.seed}
             </>
           )}
         </div>
         <div>
-          Probabilities update after each match ·{' '}
+          Updates after every match ·{' '}
           <a
-            href="https://github.com"
+            href="https://github.com/abhirup780/wc-2026"
             className="text-gray-500 hover:text-gray-300 transition-colors"
+            target="_blank"
             rel="noopener noreferrer"
           >
             source

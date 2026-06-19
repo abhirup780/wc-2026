@@ -144,7 +144,7 @@ export default function App() {
                 <h1 className="text-xl font-bold tracking-tight text-white">
                   <span className="text-fifa-gold">WC</span> 2026
                 </h1>
-                <p className="text-xs text-gray-400 hidden sm:block">Live scores & championship forecast</p>
+                <p className="text-xs text-gray-400 hidden sm:block">Live scores & winner forecast</p>
               </div>
               <RunSimButton />
               {/* Desktop nav only */}

@@ -206,9 +206,8 @@ export default function Prediction() {
           <h2 className="text-lg font-semibold">{isRandom ? 'Random Scenario' : 'Most Likely Outcome'}</h2>
           <p className="text-xs text-gray-500 mt-1">
             {isRandom
-              ? 'One re-rolled Monte Carlo run — a different but plausible path.'
-              : "The model's single most-likely bracket. Updates as real results come in."}
-            {isRandom && random && <span className="ml-2 text-gray-600">seed {random.seed}</span>}
+              ? 'A different but plausible way the tournament could play out.'
+              : 'The most likely path, updating live as results come in.'}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -273,8 +272,8 @@ export default function Prediction() {
       ))}
 
       <p className="text-xs text-gray-600 text-center">
-        Numbers beside scores = expected goals (xG). KO draws go to simulated extra
-        time then penalties (Elo-weighted).
+        Faint numbers beside each score are expected goals. Knockout draws are
+        decided in extra time, then a penalty shootout.
       </p>
     </div>
   );

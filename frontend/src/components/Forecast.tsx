@@ -57,7 +57,7 @@ function NextMatches() {
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-gray-300">Next matches</h3>
+        <h3 className="text-sm font-semibold text-gray-300">Next match predictions</h3>
         <span className="text-[10px] text-gray-600">
           {anyBlended ? `${Math.round(upcoming.blendWeight * 100)}% market + ${Math.round((1 - upcoming.blendWeight) * 100)}% model` : 'model'}
         </span>
@@ -78,7 +78,7 @@ const COLUMNS: { key: SortKey; label: string; short: string }[] = [
   { key: 'pReachQF',     label: 'Quarter-finals', short: 'QF'   },
   { key: 'pReachSF',     label: 'Semi-finals',    short: 'SF'   },
   { key: 'pReachFinal',  label: 'Final',          short: 'Fin.' },
-  { key: 'pChampion',    label: 'Champion',       short: '🏆'   },
+  { key: 'pChampion',    label: 'Winner',         short: '🏆'   },
 ];
 
 function fmtProb(v: number): string {
@@ -117,20 +117,17 @@ export default function Forecast() {
     <div className="space-y-5">
       {/* Header */}
       <div>
-        <h2 className="text-lg font-semibold">Championship Forecast</h2>
+        <h2 className="text-lg font-semibold">Winner Forecast</h2>
         <p className="text-xs text-gray-500 mt-0.5">
-          {forecast.simCount.toLocaleString()} simulations · {forecast.modelConfig.type} model
-          {lastUpdated ? ` · ${lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}
+          Round-by-round &amp; winner probabilities
+          {lastUpdated ? ` · updated ${lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}
         </p>
       </div>
 
-      {/* Next match predictions — model 1X2 blended with bookmaker odds */}
-      <NextMatches />
-
-      {/* Champion probability bar chart — toggle between combo / model / market */}
+      {/* Winner probability bar chart — toggle between combo / model / market */}
       <div className="card">
         <div className="flex items-center justify-between mb-3 gap-2">
-          <h3 className="text-sm font-semibold text-gray-300">Champion probability</h3>
+          <h3 className="text-sm font-semibold text-gray-300">Winner probability</h3>
           <div className="flex rounded-md border border-gray-700 overflow-hidden shrink-0">
             {CHAMP_VIEWS.map(v => (
               <button
@@ -219,7 +216,7 @@ export default function Forecast() {
                     {sortKey === col.key && <span className="ml-1">↓</span>}
                   </th>
                 ))}
-                <th className="text-right py-3 px-3 pr-4 font-normal whitespace-nowrap text-gray-500" title="Change in champion probability since the pre-tournament forecast">
+                <th className="text-right py-3 px-3 pr-4 font-normal whitespace-nowrap text-gray-500" title="Change in winner probability since the start of the tournament">
                   vs&nbsp;pre
                 </th>
               </tr>
@@ -273,6 +270,9 @@ export default function Forecast() {
           ← scroll for more →
         </div>
       </div>
+
+      {/* Next match predictions — model 1X2 blended with bookmaker odds */}
+      <NextMatches />
     </div>
   );
 }
