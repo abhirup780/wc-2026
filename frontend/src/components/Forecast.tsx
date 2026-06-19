@@ -156,6 +156,9 @@ export default function Forecast() {
           if (ranked.length === 0) return (
             <p className="text-xs text-gray-600">No market data available yet — refresh after the next data update.</p>
           );
+          // Scale bars relative to the leader so they fill the track (the % label
+          // still shows the true probability).
+          const maxP = ranked[0].p || 1;
           return (
             <div className="space-y-2">
               {ranked.map(({ t, p }) => (
@@ -165,7 +168,7 @@ export default function Forecast() {
                   <div className="flex-1 bg-gray-800 rounded-full h-2.5 relative">
                     <div
                       className="h-2.5 rounded-full bg-gradient-to-r from-fifa-blue to-fifa-gold transition-all duration-500"
-                      style={{ width: `${Math.min(100, p * 200)}%` }}
+                      style={{ width: `${Math.max(3, (p / maxP) * 100)}%` }}
                     />
                   </div>
                   <span className="text-xs tabular-nums w-9 text-right text-gray-300 shrink-0">{pct(p)}</span>
