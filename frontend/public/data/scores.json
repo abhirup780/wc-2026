@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-19T02:55:55.507Z",
+  "timestamp": "2026-06-19T05:05:08.573Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -413,7 +413,7 @@
       "homeId": "MEX",
       "awayId": "KOR",
       "kickoffUtc": "2026-06-19T01:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
       "awayGoals": 0,
       "homeGoalsAet": null,

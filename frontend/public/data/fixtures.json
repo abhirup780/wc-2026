@@ -5,9 +5,9 @@
       "name": "Mexico",
       "code": "MEX",
       "groupId": "A",
-      "rankingElo": 1700.982853992616,
-      "attackRating": 1.36140884958549,
-      "defenseRating": 1.36140884958549
+      "rankingElo": 1721.7807828626387,
+      "attackRating": 1.4055744536357564,
+      "defenseRating": 1.4055744536357564
     },
     {
       "id": "RSA",
@@ -23,9 +23,9 @@
       "name": "South Korea",
       "code": "KOR",
       "groupId": "A",
-      "rankingElo": 1612.5467144447407,
-      "attackRating": 1.1885874571826522,
-      "defenseRating": 1.1885874571826522
+      "rankingElo": 1591.7487855747179,
+      "attackRating": 1.151239963510399,
+      "defenseRating": 1.151239963510399
     },
     {
       "id": "CZE",
@@ -846,7 +846,7 @@
       "homeId": "MEX",
       "awayId": "KOR",
       "kickoffUtc": "2026-06-19T01:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -1608,7 +1608,7 @@
       "id": "ESPN-760491",
       "stage": "r32",
       "groupId": null,
-      "homeId": "1A",
+      "homeId": "MEX",
       "awayId": "3RD",
       "kickoffUtc": "2026-07-01T01:00Z",
       "status": "scheduled",
