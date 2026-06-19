@@ -2,9 +2,10 @@ name: Refresh data
 
 on:
   schedule:
-    # 3×/day (every 8h at 00:00, 08:00, 16:00 UTC). ~2 Odds API requests/run
-    # × 3 × 30 ≈ 180/month, within the free 500/month tier.
-    - cron: '0 */8 * * *'
+    # Check every 15 min. The job exits early unless a match result changed or the
+    # cached odds are stale (>7.5h), so it re-sims after every match but only hits
+    # the Odds API ~3×/day (~180 requests/month, within the free 500 tier).
+    - cron: '*/15 * * * *'
   workflow_dispatch:   # manual trigger
   push:
     branches: [master]
@@ -32,6 +33,15 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      # Persist the gathered odds across runs (private cache, not redistributed)
+      # so match-driven re-sims reuse them without calling the Odds API.
+      - name: Restore odds cache
+        uses: actions/cache@v4
+        with:
+          path: job/.cache
+          key: odds-${{ github.run_id }}
+          restore-keys: odds-
+
       - name: Install dependencies
         run: npm ci
 
@@ -40,6 +50,7 @@ jobs:
           SIM_COUNT: '50000'
           MODEL_TYPE: 'poisson'
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_TTL_HOURS: '7.5'
           BLEND_ODDS_WEIGHT: '0.3'
           OUTRIGHT_ODDS_WEIGHT: '0.3'
           KO_GOALS_MULTIPLIER: '0.85'

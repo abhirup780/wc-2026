@@ -19,6 +19,11 @@ export const CONFIG = {
   oddsApiKey:  process.env.ODDS_API_KEY ?? '',
   oddsApiBase: 'https://api.the-odds-api.com/v4',
 
+  // Cached odds so the sim can re-run after every match without an API call.
+  // Odds are refreshed from the API only when the cache is older than this TTL.
+  oddsCachePath: process.env.ODDS_CACHE || path.resolve(__dirname, '../.cache/odds.json'),
+  oddsTtlHours:  Number(process.env.ODDS_TTL_HOURS ?? '7.5'),
+
   // Weight of outright tournament-winner market odds in pChampion (0–1).
   // 0.6 = 60% market, 40% Elo model.
   outrightOddsWeight: Number(process.env.OUTRIGHT_ODDS_WEIGHT ?? '0.6'),

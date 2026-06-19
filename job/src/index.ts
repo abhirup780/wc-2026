@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { CONFIG } from './config.js';
 import { fetchFromESPN } from './adapters/espn.js';
 import { fetchOdds } from './adapters/odds-api.js';
@@ -7,9 +9,26 @@ import { applyInTournamentUpdates, regressEloToMean } from './ratings.js';
 import { runSimulation } from './sim/engine.js';
 import { predictTournament } from './sim/predict.js';
 import { predictUpcoming } from './sim/upcoming.js';
+import { readOddsCache, writeOddsCache, mapToObj, objToMap } from './odds-cache.js';
 import { writeArtifacts } from './write-artifacts.js';
-import type { Fixtures, Standings, Scores, Forecast, Meta } from '@wc2026/shared';
+import type { Fixtures, Standings, Scores, Forecast, Meta, Match } from '@wc2026/shared';
 import type { MatchOdds } from './sim/poisson.js';
+
+/** True if any match's status or score differs from the last committed fixtures. */
+function matchesChanged(prev: Match[], cur: Match[]): boolean {
+  if (prev.length !== cur.length) return true;
+  const key = (m: Match) => `${m.status}:${m.homeGoals}:${m.awayGoals}`;
+  const prevById = new Map(prev.map(m => [m.id, key(m)]));
+  return cur.some(m => prevById.get(m.id) !== key(m));
+}
+
+function readPrevMatches(dir: string): Match[] | null {
+  try {
+    return (JSON.parse(fs.readFileSync(path.join(dir, 'fixtures.json'), 'utf8')) as Fixtures).matches;
+  } catch {
+    return null;
+  }
+}
 
 async function main(): Promise<void> {
   console.log(`WC 2026 job [${new Date().toISOString()}]  n=${CONFIG.simCount}`);
@@ -18,6 +37,51 @@ async function main(): Promise<void> {
   console.log('Fetching from ESPN…');
   const { teams: rawTeams, matches, snapshotAt } = await fetchFromESPN();
   console.log(`ESPN: ${matches.length} matches, ${rawTeams.length} teams`);
+
+  // 1a. Decide whether there is anything to do. Re-run the sim whenever a match
+  //     result changed; refresh odds from the API only when the cache is stale.
+  //     If nothing changed and odds are fresh, exit early — no API calls, no
+  //     no-op commits. This lets the sim update after every match cheaply.
+  const prevMatches = readPrevMatches(CONFIG.outputDir);
+  const matchChanged = !prevMatches || matchesChanged(prevMatches, matches);
+
+  const cache = readOddsCache(CONFIG.oddsCachePath);
+  const cacheAgeMs = cache ? Date.now() - new Date(cache.fetchedAt).getTime() : Infinity;
+  const oddsStale = !!CONFIG.oddsApiKey && cacheAgeMs > CONFIG.oddsTtlHours * 3_600_000;
+
+  if (!matchChanged && !oddsStale) {
+    console.log(`No match changes; odds fresh (${(cacheAgeMs / 3.6e6).toFixed(1)}h old). Skipping.`);
+    return;
+  }
+  console.log(`Proceeding — matchChanged=${matchChanged}, oddsStale=${oddsStale}`);
+
+  // 1a.i Resolve odds: refresh from the API when stale, else reuse the cache.
+  let oddsMap: Map<string, MatchOdds> | undefined;
+  let outrightOdds: Map<string, number> | undefined;
+  if (oddsStale) {
+    try {
+      if (CONFIG.model.blendOddsWeight > 0) {
+        oddsMap = await fetchOdds(CONFIG.oddsApiKey, CONFIG.oddsApiBase);
+        console.log(`Match odds: ${oddsMap.size} matches (fresh)`);
+      }
+      if (CONFIG.outrightOddsWeight > 0) {
+        outrightOdds = await fetchOutrightOdds(CONFIG.oddsApiKey, CONFIG.oddsApiBase);
+      }
+      writeOddsCache(CONFIG.oddsCachePath, {
+        fetchedAt: new Date().toISOString(),
+        matchOdds: mapToObj(oddsMap),
+        outrights: mapToObj(outrightOdds),
+      });
+    } catch (err) {
+      console.warn('Odds fetch failed, falling back to cache:', (err as Error).message);
+    }
+  }
+  // Fall back to (or use) cached odds whenever we didn't fetch fresh ones.
+  if (!oddsMap && cache) {
+    oddsMap = objToMap<MatchOdds>(cache.matchOdds);
+    console.log(`Match odds: ${oddsMap.size} matches (cached, ${(cacheAgeMs / 3.6e6).toFixed(1)}h old)`);
+  }
+  if (!outrightOdds && cache) outrightOdds = objToMap<number>(cache.outrights);
 
   // 1b. Regress Elo toward the field mean (reduce overconfidence in extreme ratings)
   //     Applied before both baseline and main sim for consistency.
@@ -55,27 +119,6 @@ async function main(): Promise<void> {
   const groupedStandings: Record<string, typeof allStandings> = {};
   for (const gid of groupIds) {
     groupedStandings[gid] = allStandings.filter(s => s.groupId === gid);
-  }
-
-  // 4. Match-level odds (blend into group-stage simulation)
-  let oddsMap: Map<string, MatchOdds> | undefined;
-  if (CONFIG.oddsApiKey && CONFIG.model.blendOddsWeight > 0) {
-    try {
-      oddsMap = await fetchOdds(CONFIG.oddsApiKey, CONFIG.oddsApiBase);
-      console.log(`Match odds: ${oddsMap.size} matches`);
-    } catch (err) {
-      console.warn('Match odds unavailable:', (err as Error).message);
-    }
-  }
-
-  // 5. Tournament winner outright odds
-  let outrightOdds: Map<string, number> | undefined;
-  if (CONFIG.oddsApiKey && CONFIG.outrightOddsWeight > 0) {
-    try {
-      outrightOdds = await fetchOutrightOdds(CONFIG.oddsApiKey, CONFIG.oddsApiBase);
-    } catch (err) {
-      console.warn('Outright odds unavailable:', (err as Error).message);
-    }
   }
 
   // 6. Monte Carlo simulation
