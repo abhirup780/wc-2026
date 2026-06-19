@@ -14,12 +14,12 @@ import {
 // favourite, so the dice still produces upsets but not wall-to-wall chaos.
 const UPSET_DAMP = 0.6;
 
-/** Revert a decisive scoreline to the favourite with probability UPSET_DAMP. */
-function dampUpset(home: Team, away: Team, hg: number, ag: number, rng: () => number): [number, number] {
+/** Revert a decisive scoreline to the favourite with probability `damp`. */
+function dampUpset(home: Team, away: Team, hg: number, ag: number, rng: () => number, damp = UPSET_DAMP): [number, number] {
   if (hg === ag) return [hg, ag]; // draw is not an upset
   const homeWon = hg > ag;
   const favHome = home.rankingElo >= away.rankingElo;
-  if (homeWon !== favHome && rng() < UPSET_DAMP) return [ag, hg]; // flip so favourite wins
+  if (homeWon !== favHome && rng() < damp) return [ag, hg]; // flip so favourite wins
   return [hg, ag];
 }
 
@@ -92,13 +92,14 @@ function simKO(
   homeId: string, awayId: string,
   teamMap: Map<string, Team>,
   rng: () => number,
+  damp = UPSET_DAMP,
 ): { hg: number; ag: number; winnerId: string } {
   const home = teamMap.get(homeId)!;
   const away = teamMap.get(awayId)!;
   const [lH, lA] = lambdas(home, away);
   let hg = poissonSample(lH, rng);
   let ag = poissonSample(lA, rng);
-  [hg, ag] = dampUpset(home, away, hg, ag, rng);
+  [hg, ag] = dampUpset(home, away, hg, ag, rng, damp);
 
   if (hg !== ag) return { hg, ag, winnerId: hg > ag ? homeId : awayId };
 
@@ -106,10 +107,11 @@ function simKO(
   const etH = poissonSample(lH * 0.33, rng);
   const etA = poissonSample(lA * 0.33, rng);
   hg += etH; ag += etA;
-  [hg, ag] = dampUpset(home, away, hg, ag, rng);
+  [hg, ag] = dampUpset(home, away, hg, ag, rng, damp);
   if (hg !== ag) return { hg, ag, winnerId: hg > ag ? homeId : awayId };
 
-  // Penalties — coin flip weighted by Elo
+  // Penalties — favourite wins when fully damped, else slight Elo skew
+  if (damp >= 1) return { hg, ag, winnerId: home.rankingElo >= away.rankingElo ? homeId : awayId };
   const eloAdvantage = home.rankingElo - away.rankingElo;
   const homeWinPens = 0.5 + eloAdvantage * 0.0002;
   return { hg, ag, winnerId: rng() < homeWinPens ? homeId : awayId };
@@ -134,6 +136,7 @@ export function simulateOnce(
   teams: Team[],
   allMatches: Match[],
   seed?: number,
+  upsetDamp = UPSET_DAMP,
 ): OneSimResult {
   const usedSeed = seed ?? (Date.now() & 0xffffffff);
   const rng = mulberry32(usedSeed);
@@ -166,7 +169,7 @@ export function simulateOnce(
       const [lH, lA] = lambdas(home, away);
       hg = poissonSample(lH, rng);
       ag = poissonSample(lA, rng);
-      [hg, ag] = dampUpset(home, away, hg, ag, rng);
+      [hg, ag] = dampUpset(home, away, hg, ag, rng, upsetDamp);
       predicted.push({ id: m.id, stage: m.stage, groupId: m.groupId,
         homeId: m.homeId, awayId: m.awayId, kickoffUtc: m.kickoffUtc,
         homeXg: lH, awayXg: lA, homeGoals: hg, awayGoals: ag });
@@ -262,7 +265,7 @@ export function simulateOnce(
       const away = teamMap.get(awayId);
       if (!home || !away) return;
       const [lH, lA] = lambdas(home, away);
-      const { hg, ag, winnerId } = simKO(homeId, awayId, teamMap, rng);
+      const { hg, ag, winnerId } = simKO(homeId, awayId, teamMap, rng, upsetDamp);
       predicted.push({
         id: matchId, stage, groupId: null,
         homeId, awayId, kickoffUtc: '',
@@ -288,6 +291,15 @@ export function simulateOnce(
     champion: finalWinners.get('FINAL-01') ?? '',
     seed: usedSeed,
   };
+}
+
+/**
+ * Deterministic "Most Likely Outcome": favourites always advance (no upsets),
+ * a fixed seed keeps it stable across renders, and it is fed live-merged matches
+ * by the caller so it reflects real results immediately (not a stale artifact).
+ */
+export function simulateMostLikely(teams: Team[], matches: Match[]): OneSimResult {
+  return simulateOnce(teams, matches, 0x5eed, 1);
 }
 
 /**

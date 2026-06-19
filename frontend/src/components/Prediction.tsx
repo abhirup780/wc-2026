@@ -1,8 +1,8 @@
 import { useCallback, useState, useMemo } from 'react';
-import { usePolled, fetchFixtures, fetchForecast, fetchPrediction, useESPNLive } from '../api.ts';
+import { usePolled, fetchFixtures, fetchForecast, useESPNLive } from '../api.ts';
 import { teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
-import { simulateLikely, standingsFromPredicted, type OneSimResult, type SimGroupRow } from '../simulation.ts';
+import { simulateLikely, simulateMostLikely, type OneSimResult, type SimGroupRow } from '../simulation.ts';
 import type { PredictedMatch, Stage, Match } from '@wc2026/shared';
 import type { ESPNLiveMatch } from '../api.ts';
 
@@ -148,13 +148,11 @@ function Spinner({ size = 16 }: { size?: number }) {
 export default function Prediction() {
   const fixturesFetcher   = useCallback(() => fetchFixtures(), []);
   const forecastFetcher   = useCallback(() => fetchForecast(), []);
-  const predictionFetcher = useCallback(() => fetchPrediction(), []);
-  const { data: fixtures }   = usePolled(fixturesFetcher, 300_000);
+  const { data: fixtures, loading: loadFix } = usePolled(fixturesFetcher, 300_000);
   const { data: forecast }   = usePolled(forecastFetcher, 60_000);
-  const { data: prediction, loading: loadPred } = usePolled(predictionFetcher, 60_000);
   const { matches: espnMatches } = useESPNLive(30_000);
 
-  // 'likely' = deterministic best-guess path (prediction.json); 'random' = one re-rolled sim
+  // 'likely' = deterministic favourites' path (computed live); 'random' = one re-rolled sim
   const [mode, setMode] = useState<'likely' | 'random'>('likely');
   const [random, setRandom] = useState<OneSimResult | null>(null);
   const [running, setRunning] = useState(false);
@@ -177,20 +175,17 @@ export default function Prediction() {
     }, 10);
   }, [fixtures, likelyCodes, espnMatches]);
 
-  // The displayed outcome: deterministic prediction by default, random roll on demand.
-  const result = useMemo<DisplayResult | null>(() => {
-    if (mode === 'random' && random) return random;
-    if (prediction) {
-      return {
-        matches: prediction.matches,
-        groups: standingsFromPredicted(prediction.matches),
-        champion: prediction.champion,
-      };
-    }
-    return null;
-  }, [mode, random, prediction]);
+  // Deterministic Most Likely Outcome, recomputed from LIVE-merged matches so it
+  // reflects real results immediately (favourites advance, fixed seed = stable).
+  const likely = useMemo<OneSimResult | null>(() => {
+    if (!fixtures) return null;
+    return simulateMostLikely(fixtures.teams, mergeESPN(fixtures.matches, espnMatches));
+  }, [fixtures, espnMatches]);
 
-  if (loadPred && !result) return <div className="flex items-center justify-center h-64 text-gray-500"><Spinner size={24} /><span className="ml-3">Loading data…</span></div>;
+  // The displayed outcome: most-likely by default, random roll on demand.
+  const result: DisplayResult | null = (mode === 'random' && random) ? random : likely;
+
+  if (loadFix && !result) return <div className="flex items-center justify-center h-64 text-gray-500"><Spinner size={24} /><span className="ml-3">Loading data…</span></div>;
 
   const byRound = new Map<Stage, PredictedMatch[]>();
   for (const m of result?.matches ?? []) {
