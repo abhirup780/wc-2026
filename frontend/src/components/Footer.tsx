@@ -7,9 +7,9 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-gray-800 bg-gray-950 py-4 mt-8">
-      <div className="max-w-5xl mx-auto px-4 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-600">
+      <div className="max-w-5xl mx-auto px-4 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500">
         <div>
-          <span className="text-gray-500">WC 2026 Forecast</span>
+          <span className="text-gray-400 font-display font-medium">WC 2026 Forecast</span>
           {meta && (
             <>
               {' · '}updated{' '}

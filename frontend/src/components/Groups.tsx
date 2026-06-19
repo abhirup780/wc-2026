@@ -85,7 +85,7 @@ function StandingsTable({ groupId, standings }: { groupId: string; standings: Gr
 
   return (
     <div className="card">
-      <h3 className="text-sm font-bold text-fifa-gold mb-3 tracking-wider">GROUP {groupId}</h3>
+      <h3 className="font-display text-sm font-bold text-fifa-gold mb-3 tracking-wider">GROUP {groupId}</h3>
       <table className="w-full text-sm">
         <thead>
           <tr className="text-gray-500 text-xs border-b border-gray-800">
@@ -96,16 +96,16 @@ function StandingsTable({ groupId, standings }: { groupId: string; standings: Gr
             <th className="text-center pb-2 font-normal w-8">D</th>
             <th className="text-center pb-2 font-normal w-8">L</th>
             <th className="text-center pb-2 font-normal w-10">GD</th>
-            <th className="text-center pb-2 font-normal w-10 text-white font-semibold">Pts</th>
+            <th className="text-center pb-2 font-normal w-10 text-gray-50 font-semibold">Pts</th>
           </tr>
         </thead>
         <tbody>
           {sorted.map((s, i) => (
             <tr
               key={s.teamId}
-              className={`border-b border-gray-800/50 ${i < 2 ? 'text-white' : 'text-gray-400'}`}
+              className={`border-b border-gray-800/50 ${i < 2 ? 'text-gray-50' : 'text-gray-400'}`}
             >
-              <td className="py-2 text-gray-600 text-xs">{i + 1}</td>
+              <td className="py-2 text-gray-500 text-xs">{i + 1}</td>
               <td className="py-2">
                 <div className="flex items-center gap-2">
                   <Flag code={s.teamId} size={20} />

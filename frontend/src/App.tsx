@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LiveScores from './components/LiveScores.tsx';
 import Groups from './components/Groups.tsx';
 import Forecast from './components/Forecast.tsx';
@@ -53,19 +53,54 @@ const NAV = [
   { to: '/prediction', label: 'Simulate', Icon: IcoSimulate },
 ];
 
+// ─── Theme toggle ─────────────────────────────────────────────────────────────
+
+function IcoSun() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </svg>
+  );
+}
+function IcoMoon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+    </svg>
+  );
+}
+
+function ThemeToggle() {
+  const [light, setLight] = useState(
+    () => typeof document !== 'undefined' && document.documentElement.classList.contains('light'),
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle('light', light);
+    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch { /* ignore */ }
+  }, [light]);
+
+  return (
+    <button
+      onClick={() => setLight(v => !v)}
+      aria-label={light ? 'Switch to dark theme' : 'Switch to light theme'}
+      title={light ? 'Switch to dark theme' : 'Switch to light theme'}
+      className="flex items-center justify-center w-9 h-9 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+    >
+      <span className="w-[18px] h-[18px]">{light ? <IcoMoon /> : <IcoSun />}</span>
+    </button>
+  );
+}
+
 // ─── Mobile bottom nav ────────────────────────────────────────────────────────
 
 function BottomNav() {
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 sm:hidden z-20"
-      style={{
-        background: 'rgba(3,7,18,0.96)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        borderTop: '1px solid rgba(255,255,255,0.07)',
-        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-      }}
+      className="bottom-nav fixed bottom-0 left-0 right-0 sm:hidden z-20"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
       <div className="flex h-16">
         {NAV.map(({ to, label, Icon }) => (
@@ -73,13 +108,20 @@ function BottomNav() {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex-1 flex flex-col items-center justify-center gap-1 text-[10px] font-semibold tracking-wide transition-colors ${
-                isActive ? 'text-fifa-gold' : 'text-gray-600 active:text-gray-300'
+              `flex-1 flex flex-col items-center justify-center gap-1 text-[10px] font-semibold tracking-wide transition-colors relative ${
+                isActive ? 'text-fifa-gold' : 'text-gray-400 active:text-gray-200'
               }`
             }
           >
-            <span className="w-[22px] h-[22px]"><Icon /></span>
-            <span>{label}</span>
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <span className="absolute top-0 left-3 right-3 h-0.5 bg-fifa-gold rounded-b-sm" />
+                )}
+                <span className="w-[22px] h-[22px]"><Icon /></span>
+                <span>{label}</span>
+              </>
+            )}
           </NavLink>
         ))}
       </div>
@@ -120,11 +162,11 @@ function RunSimButton() {
       className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium transition-colors border ${
         state === 'done'  ? 'border-green-500 text-green-400' :
         state === 'error' ? 'border-red-500 text-red-400' :
-        'border-gray-700 text-gray-400 hover:border-gray-500 hover:text-gray-200 disabled:opacity-50 disabled:cursor-wait'
+        'border-white/25 text-white/80 hover:border-white/50 hover:text-white disabled:opacity-50 disabled:cursor-wait'
       }`}
     >
       {state === 'running' && <SimSpinner />}
-      {state === 'running' ? 'Running…' : state === 'done' ? '✓ Done' : state === 'error' ? '✗ Failed' : '⟳ Run Simulation'}
+      {state === 'running' ? 'Running…' : state === 'done' ? 'Done' : state === 'error' ? 'Failed' : 'Run Simulation'}
     </button>
   );
 }
@@ -137,16 +179,23 @@ export default function App() {
       <div className="min-h-screen flex flex-col">
 
         {/* Header */}
-        <header className="bg-fifa-navy border-b border-gray-800 sticky top-0 z-10">
+        <header
+          className="sticky top-0 z-10"
+          style={{
+            background: 'linear-gradient(180deg, #002f72 0%, #002868 100%)',
+            borderBottom: '1px solid rgba(255,255,255,0.07)',
+          }}
+        >
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex items-center gap-4 py-3">
               <div className="flex-1 min-w-0">
-                <h1 className="text-xl font-bold tracking-tight text-white">
+                <h1 className="font-display text-xl font-bold tracking-tight text-white">
                   <span className="text-fifa-gold">WC</span> 2026
                 </h1>
-                <p className="text-xs text-gray-400 hidden sm:block">Live scores & winner forecast</p>
+                <p className="text-xs text-white/55">Live scores &amp; winner forecast</p>
               </div>
               <RunSimButton />
+              <ThemeToggle />
               {/* Desktop nav only */}
               <nav className="hidden sm:flex gap-1">
                 {NAV.map(({ to, label }) => (
@@ -155,7 +204,7 @@ export default function App() {
                     to={to}
                     className={({ isActive }) =>
                       `px-3 py-1.5 rounded text-sm font-medium transition-colors ${
-                        isActive ? 'bg-fifa-gold text-fifa-navy' : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                        isActive ? 'bg-fifa-gold text-fifa-navy' : 'text-white/75 hover:text-white hover:bg-white/10'
                       }`
                     }
                   >

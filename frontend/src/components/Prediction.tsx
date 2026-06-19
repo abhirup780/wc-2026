@@ -49,28 +49,28 @@ function MatchCard({ m }: { m: PredictedMatch }) {
   const isAwayWin = m.winnerId === m.awayId;
   return (
     <div className="bg-gray-800/50 rounded border border-gray-700/50 p-2 text-xs">
-      <div className={`flex items-center justify-between gap-2 py-0.5 ${isHomeWin ? 'text-white font-semibold' : 'text-gray-400'}`}>
+      <div className={`flex items-center justify-between gap-2 py-0.5 ${isHomeWin ? 'text-gray-50 font-semibold' : 'text-gray-300'}`}>
         <div className="flex items-center gap-1.5 min-w-0">
           <Flag code={m.homeId} size={16} />
           <span className="truncate">{teamName(m.homeId)}</span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-gray-600 text-[10px]">{m.homeXg.toFixed(1)}</span>
+          <span className="text-gray-500 text-[10px] tabular-nums">{m.homeXg.toFixed(1)}</span>
           <span className={`w-4 text-center font-bold tabular-nums ${isHomeWin ? 'text-fifa-gold' : ''}`}>{m.homeGoals}</span>
         </div>
       </div>
-      <div className={`flex items-center justify-between gap-2 py-0.5 ${isAwayWin ? 'text-white font-semibold' : 'text-gray-400'}`}>
+      <div className={`flex items-center justify-between gap-2 py-0.5 ${isAwayWin ? 'text-gray-50 font-semibold' : 'text-gray-300'}`}>
         <div className="flex items-center gap-1.5 min-w-0">
           <Flag code={m.awayId} size={16} />
           <span className="truncate">{teamName(m.awayId)}</span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="text-gray-600 text-[10px]">{m.awayXg.toFixed(1)}</span>
+          <span className="text-gray-500 text-[10px] tabular-nums">{m.awayXg.toFixed(1)}</span>
           <span className={`w-4 text-center font-bold tabular-nums ${isAwayWin ? 'text-fifa-gold' : ''}`}>{m.awayGoals}</span>
         </div>
       </div>
       {m.homeGoals === m.awayGoals && m.winnerId && (
-        <div className="text-[10px] text-gray-600 text-center mt-0.5 border-t border-gray-700/30 pt-0.5">
+        <div className="text-[10px] text-gray-500 text-center mt-0.5 border-t border-gray-700/30 pt-0.5">
           {teamName(m.winnerId)} on pens
         </div>
       )}
@@ -80,15 +80,15 @@ function MatchCard({ m }: { m: PredictedMatch }) {
 
 // ─── Group standings table ────────────────────────────────────────────────────
 
-function GroupTable({ groupId, rows }: { groupId: string; rows: SimGroupRow[] }) {
+function GroupTable({ groupId, rows, advancing }: { groupId: string; rows: SimGroupRow[]; advancing: Set<string> }) {
   return (
     <div className="bg-gray-800/40 rounded border border-gray-700/40 overflow-hidden">
-      <div className="px-2 py-1 bg-gray-700/40 text-[10px] font-semibold text-gray-400 tracking-wider">
+      <div className="px-2 py-1 bg-gray-700/40 text-[10px] font-semibold text-gray-300 tracking-wider font-display">
         GROUP {groupId}
       </div>
       <table className="w-full text-xs">
         <thead>
-          <tr className="text-gray-600 text-[10px]">
+          <tr className="text-gray-500 text-[10px]">
             <th className="text-left pl-2 py-0.5 font-normal w-6">#</th>
             <th className="text-left py-0.5 font-normal">Team</th>
             <th className="text-center py-0.5 font-normal w-6">P</th>
@@ -100,17 +100,22 @@ function GroupTable({ groupId, rows }: { groupId: string; rows: SimGroupRow[] })
           </tr>
         </thead>
         <tbody>
-          {rows.map((r, i) => (
+          {rows.map((r, i) => {
+            const auto = i < 2;                          // top two always advance
+            const thirdQ = !auto && advancing.has(r.teamId); // best-third qualifier
+            const qualified = auto || thirdQ;
+            return (
             <tr
               key={r.teamId}
-              className={`border-t border-gray-700/30 ${i < 2 ? 'text-gray-200' : 'text-gray-500'}`}
+              className={`border-t border-gray-700/30 ${qualified ? 'text-gray-200' : 'text-gray-500'}`}
             >
-              <td className="pl-2 py-1 text-gray-600">{i + 1}</td>
+              <td className="pl-2 py-1 text-gray-500">{i + 1}</td>
               <td className="py-1">
                 <div className="flex items-center gap-1">
                   <Flag code={r.teamId} size={14} />
-                  <span className={i < 2 ? 'font-medium' : ''}>{teamName(r.teamId)}</span>
-                  {i < 2 && <span className="text-[9px] text-green-500 ml-0.5">✓</span>}
+                  <span className={qualified ? 'font-medium' : ''}>{teamName(r.teamId)}</span>
+                  {auto && <span className="text-[9px] text-green-500 ml-0.5 font-bold">Q</span>}
+                  {thirdQ && <span className="text-[9px] text-amber-400 ml-0.5 font-bold" title="Qualified as a best third-placed team">Q³</span>}
                 </div>
               </td>
               <td className="text-center py-1 tabular-nums">{r.w + r.d + r.l}</td>
@@ -118,12 +123,39 @@ function GroupTable({ groupId, rows }: { groupId: string; rows: SimGroupRow[] })
               <td className="text-center py-1 tabular-nums">{r.d}</td>
               <td className="text-center py-1 tabular-nums">{r.l}</td>
               <td className="text-center py-1 tabular-nums">{r.gd > 0 ? `+${r.gd}` : r.gd}</td>
-              <td className={`text-center py-1 tabular-nums font-bold ${i < 2 ? 'text-fifa-gold' : ''}`}>{r.pts}</td>
+              <td className={`text-center py-1 tabular-nums font-bold ${qualified ? 'text-fifa-gold' : ''}`}>{r.pts}</td>
             </tr>
-          ))}
+            );
+          })}
         </tbody>
       </table>
     </div>
+  );
+}
+
+// ─── Icons ────────────────────────────────────────────────────────────────────
+
+function TrophyIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M7 2h10v6a5 5 0 0 1-10 0V2z" />
+      <path d="M7 4H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4" />
+      <path d="M17 4h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4" />
+      <line x1="12" y1="14" x2="12" y2="18" />
+      <path d="M9 18h6" />
+      <path d="M9 22h6" />
+    </svg>
+  );
+}
+
+function ShuffleIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <polyline points="16 3 21 3 21 8" />
+      <line x1="4" y1="20" x2="21" y2="3" />
+      <polyline points="21 16 21 21 16 21" />
+      <line x1="15" y1="15" x2="21" y2="21" />
+    </svg>
   );
 }
 
@@ -198,6 +230,13 @@ export default function Prediction() {
   const sortedGroups = Object.entries(result?.groups ?? {}).sort(([a], [b]) => a.localeCompare(b));
   const isRandom = mode === 'random' && random != null;
 
+  // Teams that reached the Round of 32 — i.e. every group winner, runner-up, and
+  // the best third-placed qualifiers. Used to badge the advancing teams below.
+  const advancing = new Set<string>();
+  for (const m of result?.matches ?? []) {
+    if (m.stage === 'r32') { advancing.add(m.homeId); advancing.add(m.awayId); }
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -214,7 +253,7 @@ export default function Prediction() {
           {isRandom && (
             <button
               onClick={() => setMode('likely')}
-              className="px-3 py-2 rounded border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 text-sm font-medium transition-colors"
+              className="px-3 py-2 rounded border border-gray-700 text-gray-300 hover:text-gray-50 hover:border-gray-500 text-sm font-medium transition-colors"
             >
               ← Most likely
             </button>
@@ -222,9 +261,9 @@ export default function Prediction() {
           <button
             onClick={rollDice}
             disabled={running || likelyCodes.size === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded bg-fifa-blue hover:bg-blue-600 disabled:opacity-50 disabled:cursor-wait text-sm font-medium transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded bg-fifa-blue text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-wait text-sm font-medium transition-colors"
           >
-            {running ? <><Spinner /><span>Rolling…</span></> : <><span>🎲</span><span>Roll the dice</span></>}
+            {running ? <><Spinner /><span>Rolling…</span></> : <><ShuffleIcon className="w-4 h-4" /><span>Roll scenario</span></>}
           </button>
         </div>
       </div>
@@ -232,12 +271,12 @@ export default function Prediction() {
       {/* Champion banner */}
       {result && (
         <div className="card flex items-center gap-4 border border-fifa-gold/30 bg-fifa-gold/5">
-          <span className="text-3xl">🏆</span>
+          <TrophyIcon className="w-8 h-8 text-fifa-gold shrink-0" />
           <div>
             <div className="text-xs text-gray-400 mb-0.5">{isRandom ? 'Champion (this scenario)' : 'Predicted champion'}</div>
             <div className="flex items-center gap-2">
               <Flag code={result.champion} size={32} />
-              <span className="text-2xl font-bold">{teamName(result.champion)}</span>
+              <span className="font-display text-2xl font-bold">{teamName(result.champion)}</span>
             </div>
           </div>
         </div>
@@ -246,10 +285,16 @@ export default function Prediction() {
       {/* Group standings */}
       {sortedGroups.length > 0 && (
         <div>
-          <h3 className="text-sm font-semibold text-gray-300 mb-3">Predicted Group Standings</h3>
+          <div className="flex items-baseline justify-between mb-3 gap-3 flex-wrap">
+            <h3 className="text-sm font-semibold text-gray-300">Predicted Group Standings</h3>
+            <span className="text-[10px] text-gray-500">
+              <span className="text-green-500 font-bold">Q</span> top two ·{' '}
+              <span className="text-amber-400 font-bold">Q³</span> best third
+            </span>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {sortedGroups.map(([gid, rows]) => (
-              <GroupTable key={gid} groupId={gid} rows={rows} />
+              <GroupTable key={gid} groupId={gid} rows={rows} advancing={advancing} />
             ))}
           </div>
         </div>
@@ -271,7 +316,7 @@ export default function Prediction() {
         </div>
       ))}
 
-      <p className="text-xs text-gray-600 text-center">
+      <p className="text-xs text-gray-400 text-center">
         Faint numbers beside each score are expected goals. Knockout draws are
         decided in extra time, then a penalty shootout.
       </p>

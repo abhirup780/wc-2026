@@ -97,7 +97,13 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
     id: string;
     competitions: Array<{
       competitors: Array<{ homeAway: string; team: { abbreviation: string }; score?: string }>;
-      status: { type: { state: string; completed: boolean; displayClock?: string } };
+      status: {
+        // ESPN puts the running clock ("23'", "45'+2'") and period directly on
+        // `status`, NOT under `status.type` — reading the wrong path left it blank.
+        displayClock?: string;
+        period?: number;
+        type: { state: string; completed: boolean; shortDetail?: string; description?: string };
+      };
     }>;
   };
 
@@ -110,6 +116,11 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
       st.completed || st.state === 'post' ? 'finished'
       : st.state === 'in' ? 'live'
       : 'scheduled';
+    // Prefer the live minute ("23'"); fall back to ESPN's short detail
+    // ("Halftime", "End of 1st Half") when the clock isn't a running minute.
+    const dc = comp.status.displayClock?.trim();
+    const detail = st.shortDetail?.trim();
+    const clock = dc && dc !== '0\'' ? dc : (detail || dc || '');
     return {
       id: event.id,
       homeCode: home?.team.abbreviation ?? '',
@@ -117,7 +128,7 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
       homeScore: home?.score != null ? parseInt(home.score, 10) : null,
       awayScore: away?.score != null ? parseInt(away.score, 10) : null,
       status,
-      clock: comp.status.type.displayClock ?? '',
+      clock,
     };
   });
 

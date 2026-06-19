@@ -17,33 +17,33 @@ function NextMatchRow({ m }: { m: UpcomingMatch }) {
     : m.pAway >= m.pDraw ? 'away' : 'draw';
   return (
     <div className="py-2.5 first:pt-0 last:pb-0">
-      <div className="flex items-center justify-between text-[10px] text-gray-600 mb-1.5">
+      <div className="flex items-center justify-between text-[10px] text-gray-400 mb-1.5">
         <span>{kickoffLabel(m.kickoffUtc)}{m.groupId ? ` · Grp ${m.groupId}` : ''}</span>
-        <span className={m.marketBlended ? 'text-fifa-gold/80' : 'text-gray-600'}>
-          {m.marketBlended ? '📊 model + odds' : 'model only'}
+        <span className={m.marketBlended ? 'text-fifa-gold' : 'text-gray-500'}>
+          {m.marketBlended ? 'model + market' : 'model only'}
         </span>
       </div>
       <div className="flex items-center justify-between gap-2 mb-1.5">
-        <div className={`flex items-center gap-1.5 min-w-0 flex-1 ${fav === 'home' ? 'text-white font-semibold' : 'text-gray-400'}`}>
+        <div className={`flex items-center gap-1.5 min-w-0 flex-1 ${fav === 'home' ? 'text-gray-50 font-semibold' : 'text-gray-300'}`}>
           <Flag code={m.homeId} size={18} />
           <span className="truncate text-xs">{teamName(m.homeId)}</span>
         </div>
-        <span className="text-[10px] text-gray-600 shrink-0 tabular-nums">{m.homeXg.toFixed(1)}–{m.awayXg.toFixed(1)}</span>
-        <div className={`flex items-center gap-1.5 min-w-0 flex-1 justify-end ${fav === 'away' ? 'text-white font-semibold' : 'text-gray-400'}`}>
+        <span className="text-[10px] text-gray-500 shrink-0 tabular-nums">{m.homeXg.toFixed(1)}–{m.awayXg.toFixed(1)}</span>
+        <div className={`flex items-center gap-1.5 min-w-0 flex-1 justify-end ${fav === 'away' ? 'text-gray-50 font-semibold' : 'text-gray-300'}`}>
           <span className="truncate text-xs text-right">{teamName(m.awayId)}</span>
           <Flag code={m.awayId} size={18} />
         </div>
       </div>
       {/* 1X2 split bar */}
       <div className="flex h-2 rounded-full overflow-hidden bg-gray-800">
-        <div className="bg-green-500/70" style={{ width: `${m.pHome * 100}%` }} />
-        <div className="bg-gray-600" style={{ width: `${m.pDraw * 100}%` }} />
+        <div className="bg-green-500/80" style={{ width: `${m.pHome * 100}%` }} />
+        <div className="bg-gray-500" style={{ width: `${m.pDraw * 100}%` }} />
         <div className="bg-fifa-blue" style={{ width: `${m.pAway * 100}%` }} />
       </div>
       <div className="flex items-center justify-between text-[10px] tabular-nums mt-1">
-        <span className={fav === 'home' ? 'text-green-400' : 'text-gray-500'}>{m.homeId} {Math.round(m.pHome * 100)}%</span>
-        <span className={fav === 'draw' ? 'text-gray-300' : 'text-gray-600'}>Draw {Math.round(m.pDraw * 100)}%</span>
-        <span className={fav === 'away' ? 'text-blue-400' : 'text-gray-500'}>{m.awayId} {Math.round(m.pAway * 100)}%</span>
+        <span className={fav === 'home' ? 'text-green-400' : 'text-gray-400'}>{m.homeId} {Math.round(m.pHome * 100)}%</span>
+        <span className={fav === 'draw' ? 'text-gray-300' : 'text-gray-500'}>Draw {Math.round(m.pDraw * 100)}%</span>
+        <span className={fav === 'away' ? 'text-blue-400' : 'text-gray-400'}>{m.awayId} {Math.round(m.pAway * 100)}%</span>
       </div>
     </div>
   );
@@ -71,14 +71,14 @@ function NextMatches() {
 
 type SortKey = keyof Pick<TeamForecast, 'pChampion' | 'pReachFinal' | 'pReachSF' | 'pReachQF' | 'pReachR16' | 'pAdvanceGroup' | 'pWinGroup'>;
 
-const COLUMNS: { key: SortKey; label: string; short: string }[] = [
-  { key: 'pWinGroup',    label: 'Win Group',     short: 'W.Grp' },
-  { key: 'pAdvanceGroup',label: 'Advance',        short: 'Adv.' },
-  { key: 'pReachR16',    label: 'Round of 16',    short: 'R16'   },
-  { key: 'pReachQF',     label: 'Quarter-finals', short: 'QF'   },
-  { key: 'pReachSF',     label: 'Semi-finals',    short: 'SF'   },
-  { key: 'pReachFinal',  label: 'Final',          short: 'Fin.' },
-  { key: 'pChampion',    label: 'Winner',         short: '🏆'   },
+const COLUMNS: { key: SortKey; label: string; short: string; mobileHide?: boolean }[] = [
+  { key: 'pWinGroup',    label: 'Win Group',     short: 'W.Grp', mobileHide: true },
+  { key: 'pAdvanceGroup',label: 'Advance',        short: 'Adv.',  mobileHide: true },
+  { key: 'pReachR16',    label: 'Round of 16',    short: 'R16',   mobileHide: true },
+  { key: 'pReachQF',     label: 'Quarter-finals', short: 'QF',    mobileHide: true },
+  { key: 'pReachSF',     label: 'Semi-finals',    short: 'SF'    },
+  { key: 'pReachFinal',  label: 'Final',          short: 'Final' },
+  { key: 'pChampion',    label: 'Winner',         short: 'Win'   },
 ];
 
 function fmtProb(v: number): string {
@@ -142,7 +142,7 @@ export default function Forecast() {
             ))}
           </div>
         </div>
-        <p className="text-[10px] text-gray-600 mb-3 -mt-1">{CHAMP_VIEWS.find(v => v.key === champView)!.hint}</p>
+        <p className="text-[10px] text-gray-400 mb-3 -mt-1">{CHAMP_VIEWS.find(v => v.key === champView)!.hint}</p>
         {(() => {
           const champProb = (t: typeof forecast.teams[number]) =>
             champView === 'model' ? (t.pChampionModel ?? t.pChampion)
@@ -154,7 +154,7 @@ export default function Forecast() {
             .filter(x => x.p > 0.001)
             .slice(0, 16);
           if (ranked.length === 0) return (
-            <p className="text-xs text-gray-600">No market data available yet — refresh after the next data update.</p>
+            <p className="text-xs text-gray-400">No market data available yet — refresh after the next data update.</p>
           );
           // Scale bars relative to the leader so they fill the track (the % label
           // still shows the true probability).
@@ -164,14 +164,14 @@ export default function Forecast() {
               {ranked.map(({ t, p }) => (
                 <div key={t.teamId} className="flex items-center gap-2">
                   <Flag code={t.code} size={20} />
-                  <span className="text-xs text-gray-400 w-7 shrink-0 tabular-nums">{t.code}</span>
-                  <div className="flex-1 bg-gray-800 rounded-full h-2.5 relative">
+                  <span className="text-xs text-gray-400 w-7 shrink-0 tabular-nums font-medium">{t.code}</span>
+                  <div className="flex-1 bg-gray-800 rounded-full h-2.5 relative overflow-hidden">
                     <div
                       className="h-2.5 rounded-full bg-gradient-to-r from-fifa-blue to-fifa-gold transition-all duration-500"
                       style={{ width: `${Math.max(3, (p / maxP) * 100)}%` }}
                     />
                   </div>
-                  <span className="text-xs tabular-nums w-9 text-right text-gray-300 shrink-0">{pct(p)}</span>
+                  <span className="text-xs tabular-nums w-9 text-right text-gray-100 shrink-0 font-bold">{pct(p)}</span>
                 </div>
               ))}
             </div>
@@ -204,14 +204,14 @@ export default function Forecast() {
       {/* Probability table — horizontally scrollable on mobile */}
       <div className="card p-0 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm" style={{ minWidth: '620px' }}>
+          <table className="w-full text-sm">
             <thead>
               <tr className="text-xs text-gray-500 border-b border-gray-800">
                 <th className="text-left py-3 pl-4 pr-3 font-normal sticky left-0 bg-gray-900">Team</th>
                 {COLUMNS.map(col => (
                   <th
                     key={col.key}
-                    className={`text-right py-3 px-3 font-normal cursor-pointer select-none hover:text-gray-200 whitespace-nowrap ${sortKey === col.key ? 'text-fifa-gold' : ''}`}
+                    className={`text-right py-3 px-3 font-normal cursor-pointer select-none hover:text-gray-200 whitespace-nowrap ${sortKey === col.key ? 'text-fifa-gold' : ''} ${col.mobileHide ? 'hidden sm:table-cell' : ''}`}
                     onClick={() => setSortKey(col.key)}
                   >
                     <span className="hidden sm:inline">{col.label}</span>
@@ -233,19 +233,19 @@ export default function Forecast() {
                       <Flag code={t.code} size={20} />
                       <div className="min-w-0">
                         <div className="font-medium text-sm truncate">{t.name}</div>
-                        <div className="text-xs text-gray-600">Grp {t.groupId}</div>
+                        <div className="text-xs text-gray-500">Grp {t.groupId}</div>
                       </div>
                     </div>
                   </td>
                   {COLUMNS.map(col => (
-                    <td key={col.key} className="py-2 px-3 text-right tabular-nums text-sm">
+                    <td key={col.key} className={`py-2 px-3 text-right tabular-nums text-sm ${col.mobileHide ? 'hidden sm:table-cell' : ''}`}>
                       <span className={
                         col.key === 'pChampion'
                           ? 'font-semibold text-gray-200'
                           : t[col.key] > 0.5 ? 'text-green-400'
                           : t[col.key] > 0.2 ? 'text-yellow-400'
                           : t[col.key] > 0  ? 'text-gray-400'
-                          : 'text-gray-700'
+                          : 'text-gray-600'
                       }>
                         {fmtProb(t[col.key])}
                       </span>
@@ -268,9 +268,6 @@ export default function Forecast() {
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="sm:hidden text-center py-2 text-[10px] text-gray-700 border-t border-gray-800">
-          ← scroll for more →
         </div>
       </div>
 

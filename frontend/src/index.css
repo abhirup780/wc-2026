@@ -3,22 +3,101 @@
 @tailwind utilities;
 
 @layer base {
+  /* ── Theme tokens ──────────────────────────────────────────────────────────
+     The gray ramp below is consumed by Tailwind (tailwind.config.js) as
+     rgb(var(--gray-N) / alpha). DARK is the default (:root). LIGHT reverses the
+     ramp — gray-950 becomes the page background and gray-50 the strongest text —
+     so every existing `bg-gray-900` / `text-gray-400` flips with zero markup
+     changes. Values are space-separated RGB channels. */
+  :root {
+    --gray-50:  249 250 251;
+    --gray-100: 243 244 246;
+    --gray-200: 229 231 235;
+    --gray-300: 209 213 219;
+    --gray-400: 156 163 175;
+    --gray-500: 107 114 128;
+    --gray-600: 75 85 99;
+    --gray-700: 55 65 81;
+    --gray-800: 31 41 55;
+    --gray-900: 17 24 39;
+    --gray-950: 3 7 18;
+
+    /* Theme-specific surfaces that can't be expressed as a gray class */
+    --nav-bg: 3 7 18;        /* mobile bottom nav background */
+    --nav-border: 255 255 255;
+    --nav-border-alpha: 0.07;
+    --card-shadow: 0 0 #0000;             /* none in dark */
+    --live-bg: linear-gradient(160deg, #052e16 0%, #111827 60%);
+    --live-shadow: 0 0 40px rgba(22,163,74,0.18), inset 0 1px 0 rgba(74,222,128,0.15);
+    --hairline: 255 255 255;              /* subtle internal dividers */
+    --hairline-alpha: 0.06;
+
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+  }
+
+  html.light {
+    --gray-50:  10 15 22;     /* strongest text (was white) */
+    --gray-100: 19 26 36;     /* primary text */
+    --gray-200: 30 39 51;
+    --gray-300: 54 65 82;     /* strong secondary */
+    --gray-400: 71 85 105;    /* secondary text */
+    --gray-500: 100 116 139;  /* muted text */
+    --gray-600: 120 132 148;  /* faint / decorative */
+    --gray-700: 203 213 225;  /* dividers */
+    --gray-800: 226 232 240;  /* borders */
+    --gray-900: 255 255 255;  /* card surface */
+    --gray-950: 237 241 247;  /* page background */
+
+    --nav-bg: 255 255 255;
+    --nav-border: 15 23 42;
+    --nav-border-alpha: 0.08;
+    --card-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 4px 16px rgba(15,23,42,0.06);
+    --live-bg: linear-gradient(160deg, #dcfce7 0%, #ffffff 60%);
+    --live-shadow: 0 0 0 1px rgba(22,163,74,0.18), 0 8px 24px rgba(22,163,74,0.12);
+    --hairline: 15 23 42;
+    --hairline-alpha: 0.08;
+
+    color-scheme: light;
+  }
+
   body {
-    @apply bg-gray-950 text-gray-100;
+    @apply bg-gray-950 text-gray-100 font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.25s ease, color 0.25s ease;
     /* Prevent content from going under mobile browser chrome */
     overscroll-behavior-y: none;
   }
 
-  /* Ensure viewport respects safe areas (iPhone notch / Dynamic Island) */
-  :root {
-    --sat: env(safe-area-inset-top, 0px);
-    --sab: env(safe-area-inset-bottom, 0px);
+  .font-display {
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* Theme-aware internal hairline divider (replaces border-white/5 on cards) */
+  .hairline-t {
+    border-top: 1px solid rgb(var(--hairline) / var(--hairline-alpha));
   }
 }
 
 @layer components {
   .card {
     @apply bg-gray-900 rounded-xl border border-gray-800 p-4;
+    box-shadow: var(--card-shadow);
+  }
+
+  /* Mobile bottom nav — background/border flip with the theme */
+  .bottom-nav {
+    background: rgb(var(--nav-bg) / 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgb(var(--nav-border) / var(--nav-border-alpha));
+  }
+
+  /* Live match card — dark-green glow card in dark, soft-green card in light */
+  .live-card {
+    background: var(--live-bg);
+    box-shadow: var(--live-shadow);
   }
 
   .tab-active {
@@ -65,3 +144,25 @@
     overflow: hidden;
   }
 }
+
+/* ── Light-mode accent fixes ─────────────────────────────────────────────────
+   The bright -400/-500 accent shades pop on dark surfaces but wash out on the
+   light page/cards. In light mode darken them to readable equivalents. These
+   plain rules sit outside @layer so they reliably outrank the Tailwind
+   utilities. The navy header keeps its bright accents (re-brightened below). */
+html.light .text-fifa-gold              { color: #976700; }
+html.light .text-amber-400,
+html.light .text-amber-500\/90,
+html.light .text-amber-400\/90          { color: #b45309; }
+html.light .text-yellow-400             { color: #a16207; }
+html.light .text-green-400,
+html.light .text-green-500,
+html.light .text-green-500\/90          { color: #15803d; }
+html.light .text-blue-400,
+html.light .text-blue-300               { color: #1d4ed8; }
+html.light .text-red-400                { color: #c81e1e; }
+
+/* The header stays navy in both themes, so its accents must stay bright. */
+html.light header .text-fifa-gold       { color: #e6c252; }
+html.light header .text-green-400       { color: #4ade80; }
+html.light header .text-red-400         { color: #f87171; }
