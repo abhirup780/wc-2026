@@ -1,149 +1,174 @@
-# FIFA World Cup 2026 – Live Scores & Monte Carlo Forecast
+# FIFA World Cup 2026 — Live Scores & Monte Carlo Forecast
 
-A static site that shows live WC 2026 scores and produces probabilistic knockout forecasts via Monte Carlo simulation. No backend server required.
+A fast, static web app that shows **live World Cup 2026 scores** and a **probabilistic forecast** of how the tournament will unfold — champion odds, round-by-round advancement probabilities, a most-likely bracket, and per-match predictions blended with bookmaker odds.
 
-## Architecture
+No backend server. Live scores come straight from a public feed in the browser; the heavy simulation runs in CI and ships its results as static JSON.
+
+> **Not affiliated with FIFA.** Ratings, odds and predictions are independent estimates for entertainment.
+
+---
+
+## Features
+
+- **Live scores & goals** — pulled from the public ESPN scoreboard, polled every 30s, with goalscorers and match clock.
+- **Group tables** — computed live from results; "Q" shown only once a group is mathematically decided.
+- **Championship forecast** — Monte Carlo probabilities for every team to win its group, reach each round, and lift the trophy, plus the change since the pre-tournament baseline.
+- **Next-match predictions** — model 1X2 (home/draw/away) probabilities blended with bookmaker odds.
+- **Most Likely Outcome** — a deterministic favourites-advance bracket, recomputed live from the latest results.
+- **Roll the dice** — sample an alternative but plausible tournament (upset-damped) on demand.
+
+---
+
+## How it works
+
+```
+ESPN scoreboard ─┐                          ┌─► Live overlay (browser, 30s polling)
+                 ├─► GitHub Actions job ─────┤
+The Odds API ────┘   (Monte Carlo, every     └─► frontend/public/data/*.json ─► Vercel (static site)
+                      15 min, odds cached)
+```
+
+1. **Data fetch** — the job reads fixtures, results and live ratings from the [ESPN public scoreboard](https://www.espn.com/) (no key) and bookmaker odds from [The Odds API](https://the-odds-api.com/) (optional key).
+2. **Simulation** — it runs a Monte Carlo of the remaining tournament plus a deterministic "most likely" prediction, then commits the results as JSON under `frontend/public/data/`.
+3. **Delivery** — Vercel rebuilds the static site on every commit. The frontend reads the JSON and overlays live ESPN scores client-side, so scores stay current between simulation runs.
+4. **No secret reaches the browser** — the Odds API key lives only in CI.
+
+### The model
+
+| Layer | What it does |
+|-------|--------------|
+| **Ratings** | Seeded with the official **FIFA / Coca-Cola World Ranking points**, updated in-tournament using FIFA's **SUM** method (importance `I` = 50 group / 60 knockout, expected result on the `/600` curve, no goal-difference term, penalty-shootout results). |
+| **Match model** | **Dixon-Coles Poisson** — expected goals derived from the rating gap with a low-score correction; draws resolved via extra time then penalties. |
+| **Forecast** | **Monte Carlo** (50,000 tournaments) producing per-team probabilities for each milestone. |
+| **Market blend** | Bookmaker 1X2 and outright odds blended into the model (default **30% market / 70% model**) for next-match and champion probabilities. |
+
+---
+
+## Repository layout
 
 ```
 wc-2026/
-├── shared/          Canonical TypeScript types (shared between job and frontend)
-├── job/             Data-fetch + simulation job (Node, runs in GitHub Actions)
-├── frontend/        Vite + React + Tailwind static site
-└── .github/workflows/refresh.yml  Scheduled cron – fetches, simulates, commits, deploys
+├── shared/      Canonical TypeScript types + the official knockout bracket (single source of truth)
+├── job/         Data-fetch + simulation (Node/TypeScript, runs in GitHub Actions)
+│   └── src/
+│       ├── adapters/    espn, odds-api, outrights-api, team-codes
+│       ├── sim/         engine (Monte Carlo), poisson, predict, bracket, tiebreakers, …
+│       ├── ratings.ts   FIFA SUM rating updates
+│       └── index.ts     pipeline entry point
+├── frontend/    Vite + React + Tailwind static site (Scores · Groups · Forecast · Simulate)
+│   └── public/data/     generated JSON artifacts (committed by the job)
+└── .github/workflows/refresh.yml   scheduled fetch → simulate → commit
 ```
 
-**Data flow:**
-1. The scheduled GitHub Actions job calls the configured data adapter(s), runs the Monte Carlo simulation, and **commits** `frontend/public/data/*.json`.
-2. The static frontend reads those JSON files. It polls `scores.json` and `forecast.json` every 60 s so the page updates without a rebuild.
-3. No API key ever reaches the browser.
+npm workspaces tie the three packages together.
+
+### Generated data artifacts
+
+| File | Contents |
+|------|----------|
+| `fixtures.json` | Teams (with ratings) + full match schedule |
+| `scores.json` | Recent / live / upcoming matches |
+| `standings.json` | Group standings |
+| `forecast.json` | Monte Carlo probabilities per team (+ pre-tournament baseline) |
+| `prediction.json` | Deterministic full-tournament prediction |
+| `upcoming.json` | Next matches with model + market 1X2 |
+| `meta.json` | Snapshot timestamp, sim count, seed |
 
 ---
 
-## Quick start
+## Refresh pipeline
 
-### View locally (no API key needed)
+The workflow runs **every 15 minutes** but is designed to be cheap and quota-friendly:
+
+- It **exits early** unless a match result has changed (detected from ESPN) **or** the cached odds are stale (older than `ODDS_TTL_HOURS`).
+- Odds are fetched from The Odds API **only when the cache is stale (~3×/day)** and cached privately (via GitHub Actions cache) for reuse. Match-driven re-runs use the cached odds — **no API call**.
+- A run commits `frontend/public/data/*.json` only when something actually changed, which triggers a Vercel deploy.
+
+Result: the forecast refreshes within ~15 min of any match finishing, while Odds API usage stays around **~180 requests/month** (within the free 500/month tier).
+
+---
+
+## Local development
+
+Requires **Node 20+**.
 
 ```bash
+# 1. Install all workspaces
 npm install
-npm run simulate:mock   # generates data from mock dataset
-npm run dev             # serves the frontend at http://localhost:5173
-```
 
-### Run the full simulation with live APIs
+# 2. Generate data (fetches live ESPN; Odds API optional)
+npm run simulate
 
-```bash
-cp .env.example .env
-# Edit .env: add API_FOOTBALL_KEY at minimum
-npm run simulate        # fetches live data and writes frontend/public/data/
+# 3. Run the dev server → http://localhost:5173
 npm run dev
 ```
 
----
+To enable odds blending locally, create a `.env` in the repo root:
 
-## Required secrets
+```ini
+ODDS_API_KEY=your_the_odds_api_key   # optional — without it the model runs odds-free
+```
 
-| Secret | Required | Description |
-|--------|----------|-------------|
-| `API_FOOTBALL_KEY` | Yes (live) | Key for [api-football.com](https://www.api-football.com/). Free tier: ~100 req/day. |
-| `ODDS_API_KEY` | No | [the-odds-api.com](https://the-odds-api.com/) – enables market-probability blending. |
-| `SIM_SEED` | No | Fixed integer seed for reproducible simulations. Leave blank for timestamp-seeded runs. |
-
-Set these in **GitHub → Settings → Secrets → Actions** before enabling the workflow.
-
----
-
-## Confirming provider IDs
-
-API-Football assigns league IDs dynamically. Before the tournament, verify:
+Other useful scripts:
 
 ```bash
-curl -s "https://v3.football.api-sports.io/leagues?type=cup&name=World+Cup" \
-  -H "x-apisports-key: $API_FOOTBALL_KEY" \
-  | jq '.response[].league | {id, name, year}'
+npm test            # job unit tests (vitest)
+npm run typecheck   # typecheck all three packages
+npm run build       # production build of the frontend → dist/
 ```
 
-Set `API_FOOTBALL_LEAGUE_ID` in `.env` (or the GitHub secret) to the confirmed value.
+---
+
+## Configuration
+
+All knobs are environment variables read by the job (defaults in `job/src/config.ts`).
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `SIM_COUNT` | `10000` (CI: `50000`) | Monte Carlo iterations |
+| `SIM_SEED` | timestamp | Fixed integer for reproducible runs |
+| `MODEL_TYPE` | `poisson` | Match model (`poisson` \| `elo`) |
+| `BASE_GOALS_RATE` | `1.25` | Baseline expected goals per team |
+| `KO_GOALS_MULTIPLIER` | `0.85` | Knockout-stage goal-rate multiplier |
+| `FORM_VOLATILITY` | `0.05` | Per-iteration "good/bad day" strength noise |
+| `ELO_REGRESSION` | `1.0` | Shrink ratings toward the mean (`1.0` = none) |
+| `BLEND_ODDS_WEIGHT` | `0.6` (CI: `0.3`) | Market weight for per-match odds |
+| `OUTRIGHT_ODDS_WEIGHT` | `0.6` (CI: `0.3`) | Market weight for champion odds |
+| `ODDS_API_KEY` | — | [The Odds API](https://the-odds-api.com/) key (optional) |
+| `ODDS_TTL_HOURS` | `7.5` | How long cached odds are reused before re-fetch |
+| `ODDS_CACHE` | `job/.cache/odds.json` | Cached-odds path |
+| `OUTPUT_DIR` | `frontend/public/data` | Where artifacts are written |
+
+### Secrets (GitHub → Settings → Secrets and variables → Actions)
+
+| Secret | Required | Purpose |
+|--------|----------|---------|
+| `ODDS_API_KEY` | Optional | Enables bookmaker-odds blending. Without it the app runs model-only. |
+
+Live scores need **no key** (ESPN is public). Odds are used only to derive blended probabilities — raw odds are never published.
 
 ---
 
-## Changing data providers
+## Deployment
 
-All providers implement the `TournamentAdapter` interface in [job/src/adapters/interface.ts](job/src/adapters/interface.ts). To swap providers:
-
-1. Create a new file in `job/src/adapters/` implementing `TournamentAdapter`.
-2. Update the provider selection in [job/src/index.ts](job/src/index.ts).
-3. The simulation and frontend require no changes.
+- **Simulation:** GitHub Actions (`refresh.yml`) on the schedule above; commits data to `master`.
+- **Hosting:** Vercel, auto-deploying on every push (`npm run build` → `dist/`).
 
 ---
 
-## Tournament rules implemented
+## Known limitations
 
-| Rule | File | Notes |
-|------|------|-------|
-| Group tiebreakers (points → GD → GF → H2H → lots) | [job/src/sim/tiebreakers.ts](job/src/sim/tiebreakers.ts) | Matches FIFA WC 2022 regulations Art. 20. Verify against 2026 regulations when published. |
-| Best 8 third-placed teams | [job/src/sim/best-third.ts](job/src/sim/best-third.ts) | Ranked by points, GD, GF, then lots |
-| R32 bracket mapping | [job/src/sim/bracket.ts](job/src/sim/bracket.ts) | **⚠ Provisional** – update from official FIFA bracket graphic once published |
+- **Best-third-placed assignment** — FIFA's table for which of the eight best third-placed teams fills which Round-of-32 slot (it depends on the exact combination of groups they come from) is not yet published. The bracket pairings are official; the third-placed-to-slot mapping uses a rank-order approximation until the table is released.
+- **Forecast vs. live** — the Forecast (Monte Carlo) probabilities update on the refresh cycle, whereas Scores, Groups and the Simulate "Most Likely Outcome" reflect live ESPN results immediately.
 
 ---
 
-## Prediction model
+## Tech stack
 
-**Default: Independent Poisson (Dixon-Coles)**
-
-```
-xG_A = BASE_GOALS × (attackA / defenseB)
-xG_B = BASE_GOALS × (attackB / defenseA)
-goalsA ~ Poisson(xG_A)
-goalsB ~ Poisson(xG_B)
-```
-
-All matches are treated as neutral venue — no home advantage is applied. Attack/defense ratings are derived from Elo, seeded at 1500 and updated after each finished match (group + knockout). Market odds are blended in when available.
-
-**Robustness features:**
-- **Elo regression to mean** (`ELO_REGRESSION`, default 0.90): shrinks extreme pre-tournament Elo ratings toward the field average, reducing overconfidence
-- **Knockout goal reduction** (`KO_GOALS_MULTIPLIER`, default 0.85): knockout matches use 85% of the base goal rate, reflecting historically more cautious play under elimination pressure
-- **Form volatility** (`FORM_VOLATILITY`, default 0.05): per-iteration random perturbation to team strength via `exp(N(0, σ²))`, modelling "good/bad day" variance and producing realistic upset frequency
-- **Knockout Elo updates**: finished knockout match results update team Elo before re-simulation, so a team beating a strong opponent gets properly rated for subsequent rounds
-
-Knockout ties go to extra time (30% of normal-time scoring rate), then penalty shoot-out (50-50 with small Elo skew).
-
-**Alternative: Elo win/draw/loss** – set `MODEL_TYPE=elo` in `.env`.
-
-**Reproducibility:** pass `SIM_SEED=<integer>` to get identical results for the same data snapshot.
+TypeScript · React · Vite · Tailwind CSS · Node · GitHub Actions · Vercel · ESPN public API · The Odds API.
 
 ---
 
-## Deploy
+## License
 
-### GitHub Pages
-
-1. Fork/clone this repo.
-2. Add the required secrets.
-3. Enable **GitHub Pages** from `gh-pages` branch or `main/docs` (configure to match `deploy` job in workflow).
-4. Push to `main` – the workflow runs the job, commits JSON, builds frontend, and deploys.
-
-### Netlify / Vercel / Cloudflare Pages
-
-- Build command: `npm run build`
-- Publish directory: `frontend/dist`
-- For Cloudflare Pages with 1-minute granularity: adapt `job/src/index.ts` to write to **Cloudflare KV / R2** instead of the filesystem, and deploy the job as a **Cron Trigger Worker**.
-
----
-
-## Development scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start frontend dev server (reads committed JSON) |
-| `npm run simulate` | Fetch live data + run simulation (needs `API_FOOTBALL_KEY`) |
-| `npm run simulate:mock` | Run simulation with mock data (no keys needed) |
-| `npm run test` | Run unit tests for tiebreakers, Poisson model, etc. |
-| `npm run build` | Build production frontend |
-
----
-
-## Notes & open questions
-
-- **R32 bracket mapping** – The exact slot assignments for group positions and best-third-placed teams are provisional. Verify `job/src/sim/bracket.ts` against the official FIFA WC 2026 bracket before launch. Flag any discrepancy.
-- **openfootball 2026 data** – The adapter fetches from the `master` branch. If the file doesn't exist yet, the job falls back to API-Football. Once openfootball publishes 2026 data, fixtures will auto-populate.
-- **Third-placed team assignment** – FIFA's assignment table for which of the best-8 third-placed teams fills which R32 slot (based on the combination of groups they came from) is not yet published. Tracked as TODO in `bracket.ts`.
+MIT.
