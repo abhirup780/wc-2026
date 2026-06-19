@@ -138,24 +138,38 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
 export function useESPNLive(pollMs = 30_000) {
   const [matches, setMatches] = useState<ESPNLiveMatch[]>([]);
   const [hasLive, setHasLive] = useState(false);
+  const [lastSync, setLastSync] = useState<Date | null>(null); // last successful live sync
+  const [failed, setFailed] = useState(false);                 // last attempt errored
 
   const refresh = useCallback(async () => {
     try {
       const data = await fetchESPNLive();
       setMatches(data);
       setHasLive(data.some(m => m.status === 'live'));
+      setLastSync(new Date());
+      setFailed(false);
     } catch {
-      // silent — ESPN is a bonus overlay, not required
+      setFailed(true); // keep last good data, but flag that live is unavailable
     }
   }, []);
 
   useEffect(() => {
     refresh();
     const id = setInterval(refresh, pollMs);
-    return () => clearInterval(id);
+    // Refetch when the user returns to the tab or restores it from the
+    // back/forward (bfcache) cache, so stale snapshots never linger.
+    const onVisible = () => { if (document.visibilityState === 'visible') refresh(); };
+    const onPageShow = (e: PageTransitionEvent) => { if (e.persisted) refresh(); };
+    document.addEventListener('visibilitychange', onVisible);
+    window.addEventListener('pageshow', onPageShow);
+    return () => {
+      clearInterval(id);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('pageshow', onPageShow);
+    };
   }, [refresh, pollMs]);
 
-  return { matches, hasLive };
+  return { matches, hasLive, lastSync, failed };
 }
 
 // ─── Polling hook ─────────────────────────────────────────────────────────────
@@ -193,7 +207,17 @@ export function usePolled<T>(
   useEffect(() => {
     fetch();
     const id = setInterval(fetch, intervalMs);
-    return () => clearInterval(id);
+    // Also refetch on tab re-focus / bfcache restore so back-navigation never
+    // shows a stale cached snapshot.
+    const onVisible = () => { if (document.visibilityState === 'visible') fetch(); };
+    const onPageShow = (e: PageTransitionEvent) => { if (e.persisted) fetch(); };
+    document.addEventListener('visibilitychange', onVisible);
+    window.addEventListener('pageshow', onPageShow);
+    return () => {
+      clearInterval(id);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('pageshow', onPageShow);
+    };
   }, [fetch, intervalMs]);
 
   return { data, loading, error, lastUpdated, refresh: fetch };

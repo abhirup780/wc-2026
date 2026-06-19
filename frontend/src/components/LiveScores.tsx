@@ -364,8 +364,8 @@ function SectionHeader({ label, count, collapsible, collapsed, onToggle }:
 
 export default function LiveScores() {
   const fetcher = useCallback(() => fetchScores(), []);
-  const { data, loading, error, lastUpdated } = usePolled(fetcher, 60_000);
-  const { matches: espnMatches, hasLive } = useESPNLive(30_000);
+  const { data, loading, error } = usePolled(fetcher, 60_000);
+  const { matches: espnMatches, hasLive, lastSync, failed } = useESPNLive(30_000);
   const [earlierOpen, setEarlierOpen] = useState(false);
   const [upcomingOpen, setUpcomingOpen] = useState(true);
 
@@ -421,8 +421,16 @@ export default function LiveScores() {
             </span>
           )}
         </div>
-        <span className="text-[11px] text-gray-600">
-          {hasLive ? '● ESPN · 30s' : lastUpdated ? lastUpdated.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) : ''}
+        <span className="text-[11px] tabular-nums">
+          {lastSync == null
+            ? (failed
+                ? <span className="text-amber-500/90">⚠ Live unavailable · saved scores</span>
+                : <span className="text-amber-400/90 animate-pulse">Syncing live scores…</span>)
+            : hasLive
+              ? <span className="text-green-500">● Live · ESPN</span>
+              : <span className="text-gray-600">
+                  {failed ? 'Offline · ' : ''}Updated {lastSync.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' })}
+                </span>}
         </span>
       </div>
 
