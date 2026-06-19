@@ -307,10 +307,10 @@
       "homeId": "SUI",
       "awayId": "BIH",
       "kickoffUtc": "2026-06-18T19:00Z",
-      "homeXg": 1.8227510860048615,
-      "awayXg": 0.8572207209184637,
-      "homeGoals": 2,
-      "awayGoals": 0
+      "homeXg": 4,
+      "awayXg": 1,
+      "homeGoals": 4,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760440",
@@ -319,10 +319,10 @@
       "homeId": "CAN",
       "awayId": "QAT",
       "kickoffUtc": "2026-06-18T22:00Z",
-      "homeXg": 1.4397288223139448,
-      "awayXg": 1.0852738208635264,
-      "homeGoals": 2,
-      "awayGoals": 1
+      "homeXg": 6,
+      "awayXg": 0,
+      "homeGoals": 6,
+      "awayGoals": 0
     },
     {
       "id": "ESPN-760441",
@@ -333,7 +333,7 @@
       "kickoffUtc": "2026-06-19T01:00Z",
       "homeXg": 1.431750816229882,
       "awayXg": 1.0913211868210486,
-      "homeGoals": 2,
+      "homeGoals": 1,
       "awayGoals": 1
     },
     {
@@ -583,8 +583,8 @@
       "homeId": "BIH",
       "awayId": "QAT",
       "kickoffUtc": "2026-06-24T19:00Z",
-      "homeXg": 1.1325936233870548,
-      "awayXg": 1.3795769000776268,
+      "homeXg": 1.1441525553722511,
+      "awayXg": 1.365639566737356,
       "homeGoals": 0,
       "awayGoals": 0
     },
@@ -595,8 +595,8 @@
       "homeId": "SUI",
       "awayId": "CAN",
       "kickoffUtc": "2026-06-24T19:00Z",
-      "homeXg": 1.4339063197421824,
-      "awayXg": 1.0896806705482256,
+      "homeXg": 1.4194201172290477,
+      "awayXg": 1.100801645005757,
       "homeGoals": 4,
       "awayGoals": 2
     },
@@ -634,7 +634,7 @@
       "homeXg": 0.8924421369977602,
       "awayXg": 1.750813789739201,
       "homeGoals": 1,
-      "awayGoals": 4
+      "awayGoals": 3
     },
     {
       "id": "ESPN-760466",
@@ -871,8 +871,8 @@
       "homeId": "KOR",
       "awayId": "CAN",
       "kickoffUtc": "",
-      "homeXg": 1.166872634651471,
-      "awayXg": 0.9674631287734234,
+      "homeXg": 1.130499906554184,
+      "awayXg": 0.9985903081062238,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "KOR"
@@ -1027,8 +1027,8 @@
       "homeId": "SUI",
       "awayId": "ECU",
       "kickoffUtc": "",
-      "homeXg": 1.1833117623192588,
-      "awayXg": 0.9540226725942237,
+      "homeXg": 1.2090444921396108,
+      "awayXg": 0.9337177062873901,
       "homeGoals": 2,
       "awayGoals": 2,
       "winnerId": "SUI"
@@ -1170,8 +1170,8 @@
       "homeId": "SUI",
       "awayId": "POR",
       "kickoffUtc": "",
-      "homeXg": 0.891688670043676,
-      "awayXg": 1.2660318426438062,
+      "homeXg": 0.9110796575760998,
+      "awayXg": 1.2390862210703082,
       "homeGoals": 1,
       "awayGoals": 3,
       "winnerId": "POR"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-18T18:25:20.744Z"
+  "generatedAt": "2026-06-19T02:56:03.228Z"
 }

@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-06-18T18:25:12.620Z",
+  "timestamp": "2026-06-19T02:55:55.507Z",
   "groups": {
     "A": [
       {
         "groupId": "A",
         "teamId": "MEX",
-        "played": 1,
-        "w": 1,
+        "played": 2,
+        "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 2,
+        "gf": 3,
         "ga": 0,
-        "gd": 2,
-        "points": 3
+        "gd": 3,
+        "points": 6
       },
       {
         "groupId": "A",
@@ -29,13 +29,13 @@
       {
         "groupId": "A",
         "teamId": "KOR",
-        "played": 1,
+        "played": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 2,
-        "ga": 1,
-        "gd": 1,
+        "ga": 2,
+        "gd": 0,
         "points": 3
       },
       {
@@ -55,50 +55,50 @@
       {
         "groupId": "B",
         "teamId": "CAN",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 1,
+        "gf": 7,
         "ga": 1,
-        "gd": 0,
-        "points": 1
+        "gd": 6,
+        "points": 4
       },
       {
         "groupId": "B",
         "teamId": "BIH",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "l": 1,
+        "gf": 2,
+        "ga": 5,
+        "gd": -3,
         "points": 1
       },
       {
         "groupId": "B",
         "teamId": "QAT",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "ga": 7,
+        "gd": -6,
         "points": 1
       },
       {
         "groupId": "B",
         "teamId": "SUI",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 1,
-        "ga": 1,
-        "gd": 0,
-        "points": 1
+        "gf": 5,
+        "ga": 2,
+        "gd": 3,
+        "points": 4
       }
     ],
     "C": [

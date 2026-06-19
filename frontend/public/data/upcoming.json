@@ -1,49 +1,7 @@
 {
-  "timestamp": "2026-06-18T18:25:12.620Z",
+  "timestamp": "2026-06-19T02:55:55.507Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760439",
-      "stage": "group",
-      "groupId": "B",
-      "homeId": "SUI",
-      "awayId": "BIH",
-      "kickoffUtc": "2026-06-18T19:00Z",
-      "homeXg": 1.8227510860048615,
-      "awayXg": 0.8572207209184637,
-      "pHome": 0.5954294091001816,
-      "pDraw": 0.2469090429725893,
-      "pAway": 0.157661547927229,
-      "marketBlended": true
-    },
-    {
-      "id": "ESPN-760440",
-      "stage": "group",
-      "groupId": "B",
-      "homeId": "CAN",
-      "awayId": "QAT",
-      "kickoffUtc": "2026-06-18T22:00Z",
-      "homeXg": 1.4397288223139448,
-      "awayXg": 1.0852738208635264,
-      "pHome": 0.5263029885258589,
-      "pDraw": 0.25902328406047964,
-      "pAway": 0.2146737274136614,
-      "marketBlended": true
-    },
-    {
-      "id": "ESPN-760441",
-      "stage": "group",
-      "groupId": "A",
-      "homeId": "MEX",
-      "awayId": "KOR",
-      "kickoffUtc": "2026-06-19T01:00Z",
-      "homeXg": 1.431750816229882,
-      "awayXg": 1.0913211868210486,
-      "pHome": 0.4411640259889799,
-      "pDraw": 0.29609213211600294,
-      "pAway": 0.26274384189501715,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760442",
       "stage": "group",
@@ -53,9 +11,9 @@
       "kickoffUtc": "2026-06-19T19:00Z",
       "homeXg": 1.4196917103707796,
       "awayXg": 1.1005910569076462,
-      "pHome": 0.47757769938267536,
-      "pDraw": 0.27503441334944734,
-      "pAway": 0.24738788726787728,
+      "pHome": 0.4786201393950992,
+      "pDraw": 0.27455898111919014,
+      "pAway": 0.24682087948571074,
       "marketBlended": true
     },
     {
@@ -67,9 +25,51 @@
       "kickoffUtc": "2026-06-19T22:00Z",
       "homeXg": 0.8689834999507589,
       "awayXg": 1.798077869244398,
-      "pHome": 0.16911504241553707,
-      "pDraw": 0.25990029785660745,
-      "pAway": 0.5709846597278555,
+      "pHome": 0.16884642414883813,
+      "pDraw": 0.25949851115609757,
+      "pAway": 0.5716550646950642,
+      "marketBlended": true
+    },
+    {
+      "id": "ESPN-760444",
+      "stage": "group",
+      "groupId": "C",
+      "homeId": "BRA",
+      "awayId": "HAI",
+      "kickoffUtc": "2026-06-20T00:30Z",
+      "homeXg": 2.642560040906087,
+      "awayXg": 0.5912826864150442,
+      "pHome": 0.8232376882245078,
+      "pDraw": 0.1275574798391472,
+      "pAway": 0.04920483193634499,
+      "marketBlended": true
+    },
+    {
+      "id": "ESPN-760443",
+      "stage": "group",
+      "groupId": "D",
+      "homeId": "TUR",
+      "awayId": "PAR",
+      "kickoffUtc": "2026-06-20T03:00Z",
+      "homeXg": 1.43831512188866,
+      "awayXg": 1.08634052178237,
+      "pHome": 0.44488514312542266,
+      "pDraw": 0.2922517262155374,
+      "pAway": 0.26286313065904005,
+      "marketBlended": true
+    },
+    {
+      "id": "ESPN-760447",
+      "stage": "group",
+      "groupId": "F",
+      "homeId": "NED",
+      "awayId": "SWE",
+      "kickoffUtc": "2026-06-20T17:00Z",
+      "homeXg": 1.7414768178724473,
+      "awayXg": 0.8972269880163536,
+      "pHome": 0.5551500351744593,
+      "pDraw": 0.2595452193012774,
+      "pAway": 0.18530474552426335,
       "marketBlended": true
     }
   ]
