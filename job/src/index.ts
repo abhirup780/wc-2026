@@ -48,8 +48,12 @@ async function main(): Promise<void> {
   const cache = readOddsCache(CONFIG.oddsCachePath);
   const cacheAgeMs = cache ? Date.now() - new Date(cache.fetchedAt).getTime() : Infinity;
   const oddsStale = !!CONFIG.oddsApiKey && cacheAgeMs > CONFIG.oddsTtlHours * 3_600_000;
+  // FORCE_REFRESH (set on manual runs) regenerates artifacts even with no input
+  // change — e.g. after a code change to the output shape. Uses cached odds, so
+  // it still costs no API call unless the odds are also stale.
+  const forced = process.env.FORCE_REFRESH === '1';
 
-  if (!matchChanged && !oddsStale) {
+  if (!forced && !matchChanged && !oddsStale) {
     console.log(`No match changes; odds fresh (${(cacheAgeMs / 3.6e6).toFixed(1)}h old). Skipping.`);
     return;
   }

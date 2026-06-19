@@ -51,6 +51,9 @@ jobs:
           MODEL_TYPE: 'poisson'
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_TTL_HOURS: '7.5'
+          # Manual runs force a full regenerate (e.g. after an output-shape change),
+          # reusing cached odds so no extra API call is spent.
+          FORCE_REFRESH: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
           BLEND_ODDS_WEIGHT: '0.3'
           OUTRIGHT_ODDS_WEIGHT: '0.3'
           KO_GOALS_MULTIPLIER: '0.85'
