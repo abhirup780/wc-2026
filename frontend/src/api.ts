@@ -37,6 +37,61 @@ export interface ESPNGoal {
   forHome: boolean;
 }
 
+export interface ESPNCard {
+  player: string;
+  minute: string;
+  type: 'yellow' | 'red';
+  forHome: boolean;
+}
+
+export interface ESPNStat {
+  label: string;
+  home: string;
+  away: string;
+  /** numeric values used to size the comparison bar */
+  homeVal: number;
+  awayVal: number;
+}
+
+export interface ESPNLineupPlayer {
+  name: string;
+  jersey: string;
+  position: string;
+  subbedOut: boolean;
+  subbedIn: boolean;
+}
+
+export interface ESPNLineup {
+  formation: string;
+  starters: ESPNLineupPlayer[];
+  subs: ESPNLineupPlayer[];
+}
+
+export interface ESPNComment {
+  minute: string;
+  text: string;
+}
+
+export interface ESPNH2HGame {
+  date: string;
+  homeCode: string;
+  awayCode: string;
+  homeScore: number;
+  awayScore: number;
+}
+
+export interface ESPNMatchDetail {
+  goals: ESPNGoal[];
+  cards: ESPNCard[];
+  stats: ESPNStat[];
+  homeLineup?: ESPNLineup;
+  awayLineup?: ESPNLineup;
+  referee?: string;
+  venue?: string;
+  commentary: ESPNComment[];
+  h2h: ESPNH2HGame[];
+}
+
 export interface ESPNLiveMatch {
   id: string;
   homeCode: string;
@@ -45,45 +100,170 @@ export interface ESPNLiveMatch {
   awayScore: number | null;
   status: 'scheduled' | 'live' | 'finished';
   clock: string;
-  goals: ESPNGoal[];
+  venue?: string;
+  homeForm?: string;
+  awayForm?: string;
 }
 
 const ESPN_SUMMARY = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/summary';
 
-export async function fetchGoalsForEvent(eventId: string, homeCode: string): Promise<ESPNGoal[]> {
-  return fetchGoals(eventId, homeCode);
+const EMPTY_DETAIL: ESPNMatchDetail = { goals: [], cards: [], stats: [], commentary: [], h2h: [] };
+
+// Curated, ordered match stats: [ESPN label, display label, format].
+// ESPN is inconsistent: possessionPct is already 0–100, but passPct is a 0–1
+// ratio — hence the explicit 'pct' vs 'ratio' formats.
+type StatFmt = 'num' | 'pct' | 'ratio';
+const STAT_SPEC: [string, string, StatFmt][] = [
+  ['Possession', 'Possession', 'pct'],
+  ['SHOTS', 'Shots', 'num'],
+  ['ON GOAL', 'Shots on target', 'num'],
+  ['Corner Kicks', 'Corners', 'num'],
+  ['Fouls', 'Fouls', 'num'],
+  ['Pass Completion %', 'Pass accuracy', 'ratio'],
+  ['Saves', 'Saves', 'num'],
+  ['Offsides', 'Offsides', 'num'],
+  ['Yellow Cards', 'Yellow cards', 'num'],
+  ['Red Cards', 'Red cards', 'num'],
+];
+
+const toNum = (v?: string) => {
+  const n = parseFloat((v ?? '').replace('%', ''));
+  return Number.isFinite(n) ? n : 0;
+};
+
+function fmtStat(raw: string | undefined, format: StatFmt): string {
+  if (raw == null) return format === 'num' ? '0' : '0%';
+  if (format === 'ratio') return `${Math.round(toNum(raw) * 100)}%`;
+  if (format === 'pct') return `${raw}%`;
+  return raw;
 }
 
-async function fetchGoals(eventId: string, homeCode: string): Promise<ESPNGoal[]> {
+interface RawSummary {
+  keyEvents?: Array<{
+    scoringPlay?: boolean;
+    type?: { type?: string };
+    clock?: { displayValue?: string };
+    team?: { id?: string };
+    participants?: Array<{ athlete?: { displayName?: string } }>;
+    shortText?: string;
+  }>;
+  boxscore?: { teams?: Array<{ homeAway?: string; statistics?: Array<{ label?: string; displayValue?: string }> }> };
+  rosters?: Array<{
+    homeAway?: string;
+    formation?: string;
+    roster?: Array<{
+      starter?: boolean; jersey?: string; subbedOut?: boolean; subbedIn?: boolean;
+      athlete?: { displayName?: string }; position?: { abbreviation?: string };
+    }>;
+  }>;
+  gameInfo?: {
+    venue?: { fullName?: string; address?: { city?: string } };
+    officials?: Array<{ fullName?: string; position?: { name?: string } }>;
+  };
+  commentary?: Array<{ time?: { displayValue?: string }; text?: string }>;
+  headToHeadGames?: Array<{ events?: Array<{
+    gameDate?: string; homeTeamId?: string; awayTeamId?: string; homeTeamScore?: string; awayTeamScore?: string;
+  }> }>;
+  header?: { competitions?: Array<{ competitors?: Array<{ homeAway?: string; team?: { id?: string; abbreviation?: string } }> }> };
+}
+
+function parseLineup(rosters: RawSummary['rosters'], side: 'home' | 'away'): ESPNLineup | undefined {
+  const r = rosters?.find(x => x.homeAway === side);
+  if (!r || !r.roster?.length) return undefined;
+  const starters: ESPNLineupPlayer[] = [];
+  const subs: ESPNLineupPlayer[] = [];
+  for (const p of r.roster) {
+    const player: ESPNLineupPlayer = {
+      name: p.athlete?.displayName ?? '',
+      jersey: p.jersey ?? '',
+      position: p.position?.abbreviation ?? '',
+      subbedOut: !!p.subbedOut,
+      subbedIn: !!p.subbedIn,
+    };
+    (p.starter ? starters : subs).push(player);
+  }
+  return { formation: r.formation ?? '', starters, subs };
+}
+
+/** One rich fetch of ESPN's match summary → goals, cards, stats, lineups, ref, commentary. */
+export async function fetchMatchDetail(eventId: string): Promise<ESPNMatchDetail> {
   try {
     const res = await fetch(`${ESPN_SUMMARY}?event=${eventId}`);
-    if (!res.ok) return [];
-    const data = await res.json() as {
-      keyEvents?: Array<{
-        scoringPlay?: boolean;
-        type?: { type?: string };
-        clock?: { displayValue?: string };
-        team?: { displayName?: string };
-        participants?: Array<{ athlete?: { displayName?: string } }>;
-      }>;
-      header?: { competitions?: Array<{ competitors?: Array<{ homeAway?: string; team?: { displayName?: string } }> }> };
-    };
-    const homeTeamName = data.header?.competitions?.[0]?.competitors
-      ?.find(c => c.homeAway === 'home')?.team?.displayName ?? '';
-    return (data.keyEvents ?? [])
-      .filter(e => e.scoringPlay)
-      .map(e => {
-        const rawType = e.type?.type ?? 'goal';
-        const type: ESPNGoal['type'] =
-          rawType === 'own-goal' ? 'own-goal'
-          : rawType.includes('penalty') ? 'penalty'
-          : 'goal';
-        const scorer = e.participants?.[0]?.athlete?.displayName ?? '?';
-        const forHome = (e.team?.displayName ?? '') === homeTeamName;
-        return { scorer, minute: e.clock?.displayValue ?? '', type, forHome };
+    if (!res.ok) return EMPTY_DETAIL;
+    const data = await res.json() as RawSummary;
+
+    const homeId = data.header?.competitions?.[0]?.competitors?.find(c => c.homeAway === 'home')?.team?.id;
+    const isHome = (id?: string) => id != null && homeId != null && String(id) === String(homeId);
+
+    const goals: ESPNGoal[] = [];
+    const cards: ESPNCard[] = [];
+    for (const e of data.keyEvents ?? []) {
+      const minute = e.clock?.displayValue ?? '';
+      const forHome = isHome(e.team?.id);
+      const player = e.participants?.[0]?.athlete?.displayName ?? e.shortText ?? '';
+      const t = (e.type?.type ?? '').toLowerCase();
+      if (e.scoringPlay) {
+        const type: ESPNGoal['type'] = t === 'own-goal' ? 'own-goal' : t.includes('penalty') ? 'penalty' : 'goal';
+        goals.push({ scorer: player, minute, type, forHome });
+      } else if (t.includes('yellow')) {
+        cards.push({ player, minute, type: 'yellow', forHome });
+      } else if (t.includes('red')) {
+        cards.push({ player, minute, type: 'red', forHome });
+      }
+    }
+
+    const teams = data.boxscore?.teams;
+    const home = teams?.find(t => t.homeAway === 'home');
+    const away = teams?.find(t => t.homeAway === 'away');
+    const statVal = (side: typeof home, label: string) =>
+      side?.statistics?.find(s => s.label === label)?.displayValue;
+    const stats: ESPNStat[] = [];
+    for (const [label, display, format] of STAT_SPEC) {
+      const h = statVal(home, label);
+      const a = statVal(away, label);
+      if (h == null && a == null) continue;
+      stats.push({
+        label: display,
+        home: fmtStat(h, format),
+        away: fmtStat(a, format),
+        homeVal: toNum(h), awayVal: toNum(a),
       });
+    }
+
+    const referee = data.gameInfo?.officials?.find(o => o.position?.name === 'Referee')?.fullName;
+    const v = data.gameInfo?.venue;
+    const venue = v?.fullName ? [v.fullName, v.address?.city].filter(Boolean).join(' · ') : undefined;
+
+    const commentary: ESPNComment[] = (data.commentary ?? [])
+      .map(c => ({ minute: c.time?.displayValue ?? '', text: c.text ?? '' }))
+      .filter(c => c.text);
+
+    // Head-to-head: ESPN gives numeric team ids, so map them to our FIFA codes
+    // via the header competitors (these games only involve the two teams).
+    const idToCode: Record<string, string> = {};
+    for (const c of data.header?.competitions?.[0]?.competitors ?? []) {
+      if (c.team?.id) idToCode[String(c.team.id)] = c.team.abbreviation ?? '';
+    }
+    const h2h: ESPNH2HGame[] = (data.headToHeadGames?.[0]?.events ?? [])
+      .map(e => ({
+        date: e.gameDate ?? '',
+        homeCode: idToCode[String(e.homeTeamId)] ?? '',
+        awayCode: idToCode[String(e.awayTeamId)] ?? '',
+        homeScore: parseInt(e.homeTeamScore ?? '', 10),
+        awayScore: parseInt(e.awayTeamScore ?? '', 10),
+      }))
+      .filter(g => g.homeCode && g.awayCode && Number.isFinite(g.homeScore) && Number.isFinite(g.awayScore))
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .slice(0, 5);
+
+    return {
+      goals, cards, stats,
+      homeLineup: parseLineup(data.rosters, 'home'),
+      awayLineup: parseLineup(data.rosters, 'away'),
+      referee, venue, commentary, h2h,
+    };
   } catch {
-    return [];
+    return EMPTY_DETAIL;
   }
 }
 
@@ -96,7 +276,8 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
   type RawEvent = {
     id: string;
     competitions: Array<{
-      competitors: Array<{ homeAway: string; team: { abbreviation: string }; score?: string }>;
+      competitors: Array<{ homeAway: string; team: { abbreviation: string }; score?: string; form?: string }>;
+      venue?: { fullName?: string; address?: { city?: string } };
       status: {
         // ESPN puts the running clock ("23'", "45'+2'") and period directly on
         // `status`, NOT under `status.type` — reading the wrong path left it blank.
@@ -107,7 +288,11 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
     }>;
   };
 
-  const rawMatches = (data.events as RawEvent[]).map(event => {
+  // The scoreboard already carries everything we poll frequently (score, clock,
+  // venue). The expensive per-match summary (goals, cards, stats, lineups,
+  // commentary) is fetched lazily by each card via fetchMatchDetail instead, so
+  // a board full of finished matches no longer triggers 50+ summary requests.
+  return (data.events as RawEvent[]).map(event => {
     const comp = event.competitions[0];
     const home = comp.competitors.find(c => c.homeAway === 'home');
     const away = comp.competitors.find(c => c.homeAway === 'away');
@@ -116,11 +301,12 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
       st.completed || st.state === 'post' ? 'finished'
       : st.state === 'in' ? 'live'
       : 'scheduled';
-    // Prefer the live minute ("23'"); fall back to ESPN's short detail
-    // ("Halftime", "End of 1st Half") when the clock isn't a running minute.
     const dc = comp.status.displayClock?.trim();
     const detail = st.shortDetail?.trim();
     const clock = dc && dc !== '0\'' ? dc : (detail || dc || '');
+    const venue = comp.venue?.fullName
+      ? [comp.venue.fullName, comp.venue.address?.city].filter(Boolean).join(' · ')
+      : undefined;
     return {
       id: event.id,
       homeCode: home?.team.abbreviation ?? '',
@@ -129,21 +315,11 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
       awayScore: away?.score != null ? parseInt(away.score, 10) : null,
       status,
       clock,
+      venue,
+      homeForm: home?.form,
+      awayForm: away?.form,
     };
   });
-
-  // Fetch goal scorers for live and today-finished matches (not scheduled)
-  const today = new Date().toISOString().slice(0, 10);
-  const withGoals = await Promise.all(
-    rawMatches.map(async m => {
-      const needsGoals = m.status === 'live' || m.status === 'finished';
-      const goals = needsGoals ? await fetchGoals(m.id, m.homeCode) : [];
-      return { ...m, goals };
-    }),
-  );
-
-  return withGoals;
-  void today; // suppress unused warning
 }
 
 export function useESPNLive(pollMs = 30_000) {
@@ -181,6 +357,31 @@ export function useESPNLive(pollMs = 30_000) {
   }, [refresh, pollMs]);
 
   return { matches, hasLive, lastSync, failed };
+}
+
+/**
+ * Lazily load a single match's full detail (goals, cards, stats, lineups,
+ * referee, commentary). When `pollMs` > 0 it refreshes on an interval — used by
+ * live cards so stats and commentary tick along with the match.
+ */
+export function useMatchDetail(eventId: string | null, pollMs = 0) {
+  const [detail, setDetail] = useState<ESPNMatchDetail | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!eventId) { setDetail(null); return; }
+    let cancelled = false;
+    const load = async () => {
+      setLoading(true);
+      const d = await fetchMatchDetail(eventId);
+      if (!cancelled) { setDetail(d); setLoading(false); }
+    };
+    load();
+    const id = pollMs > 0 ? setInterval(load, pollMs) : undefined;
+    return () => { cancelled = true; if (id) clearInterval(id); };
+  }, [eventId, pollMs]);
+
+  return { detail, loading };
 }
 
 // ─── Polling hook ─────────────────────────────────────────────────────────────

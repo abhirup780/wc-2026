@@ -74,9 +74,12 @@
     font-feature-settings: 'tnum' 1;
   }
 
-  /* Theme-aware internal hairline divider (replaces border-white/5 on cards) */
+  /* Theme-aware internal hairline dividers (replace border-white/5 on cards) */
   .hairline-t {
     border-top: 1px solid rgb(var(--hairline) / var(--hairline-alpha));
+  }
+  .hairline-b {
+    border-bottom: 1px solid rgb(var(--hairline) / var(--hairline-alpha));
   }
 }
 

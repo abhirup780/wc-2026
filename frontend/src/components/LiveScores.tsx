@@ -1,11 +1,18 @@
 import { useCallback, useMemo, useState } from 'react';
-import { usePolled, fetchScores, useESPNLive, fetchGoalsForEvent } from '../api.ts';
-import type { ESPNLiveMatch, ESPNGoal } from '../api.ts';
+import { usePolled, fetchScores, fetchUpcoming, useESPNLive, useMatchDetail } from '../api.ts';
+import type { ESPNLiveMatch } from '../api.ts';
 import { teamName, formatKickoff } from '../utils.ts';
 import Flag from './Flag.tsx';
-import type { Match } from '@wc2026/shared';
+import MatchDetailPanel from './MatchDetail.tsx';
+import SoonCard from './PreMatch.tsx';
+import type { Match, UpcomingMatch } from '@wc2026/shared';
 
-type RichMatch = Match & { clock?: string; goals?: ESPNGoal[] };
+type RichMatch = Match & { clock?: string; venue?: string; homeForm?: string; awayForm?: string };
+
+const SOON_MS = 60 * 60 * 1000; // "kicking off soon" window: next 60 minutes
+
+// ESPN-sourced matches carry id "ESPN-<eventId>"; everything else has no detail.
+const espnEventId = (m: RichMatch) => (m.id.startsWith('ESPN-') ? m.id.slice(5) : null);
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -62,70 +69,18 @@ function mergeESPN(base: Match[], live: ESPNLiveMatch[]): RichMatch[] {
       return m;
     }
     return { ...m, status: o.status, homeGoals: o.homeScore ?? m.homeGoals,
-      awayGoals: o.awayScore ?? m.awayGoals, clock: o.clock || undefined, goals: o.goals };
+      awayGoals: o.awayScore ?? m.awayGoals, clock: o.clock || undefined, venue: o.venue,
+      homeForm: o.homeForm, awayForm: o.awayForm };
   });
 }
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
-
-
-function GoalLine({ g }: { g: ESPNGoal }) {
-  return (
-    <span className="flex items-center gap-1.5 text-[11px] text-gray-400 leading-snug">
-      <span className="text-gray-500">⚽</span>
-      <span className="text-gray-100">{g.scorer.split(' ').slice(-1)[0]}</span>
-      {g.type === 'own-goal' && <span className="text-red-400 text-[10px] font-semibold">OG</span>}
-      {g.type === 'penalty'  && <span className="text-amber-400 text-[10px] font-semibold">pen.</span>}
-      <span className="text-gray-500 tabular-nums">{g.minute}&apos;</span>
-    </span>
-  );
-}
-
-// Scorer drawer — used inside finished cards
-function ScorerDrawer({ goals, open }: { goals: ESPNGoal[]; open: boolean }) {
-  const home = goals.filter(g => g.forHome);
-  const away = goals.filter(g => !g.forHome);
-  return (
-    <div className={`scorer-grid ${open ? 'open' : ''}`}>
-      <div className="scorer-inner">
-        <div className="flex gap-2 pt-3 mt-3 hairline-t">
-          {/* home side */}
-          <div className="flex-1 flex flex-col gap-0.5">
-            {home.length ? home.map((g, i) => <GoalLine key={i} g={g} />) : (
-              <span className="text-[11px] text-gray-600">—</span>
-            )}
-          </div>
-          {/* spacer matching score column */}
-          <div className="w-20 flex-shrink-0" />
-          {/* away side */}
-          <div className="flex-1 flex flex-col items-end gap-0.5">
-            {away.length ? away.map((g, i) => (
-              <span key={i} className="flex items-center gap-1.5 text-[11px] text-gray-400 leading-snug">
-                <span className="text-gray-500 tabular-nums">{g.minute}&apos;</span>
-                {g.type === 'penalty'  && <span className="text-amber-400 text-[10px] font-semibold">pen.</span>}
-                {g.type === 'own-goal' && <span className="text-red-400 text-[10px] font-semibold">OG</span>}
-                <span className="text-gray-100">{g.scorer.split(' ').slice(-1)[0]}</span>
-                <span className="text-gray-500">⚽</span>
-              </span>
-            )) : (
-              <span className="text-[11px] text-gray-600">—</span>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ─── LIVE CARD ────────────────────────────────────────────────────────────────
-// Always shows scorers. Prominent, glowing.
+// Prominent, glowing. Polls full match detail (stats, lineups, commentary, cards).
 
 function LiveCard({ m }: { m: RichMatch }) {
   const hW = (m.homeGoals ?? 0) > (m.awayGoals ?? 0);
   const aW = (m.awayGoals ?? 0) > (m.homeGoals ?? 0);
-  const hGoals = m.goals?.filter(g => g.forHome) ?? [];
-  const aGoals = m.goals?.filter(g => !g.forHome) ?? [];
-  const hasGoals = hGoals.length + aGoals.length > 0;
+  const { detail, loading } = useMatchDetail(espnEventId(m), 30_000);
 
   return (
     <div className="live-card relative rounded-2xl overflow-hidden">
@@ -174,24 +129,10 @@ function LiveCard({ m }: { m: RichMatch }) {
           </div>
         </div>
 
-        {/* Scorers — always visible for live */}
-        {hasGoals && (
-          <div className="flex gap-2 mt-4 pt-4 hairline-t">
-            <div className="flex-1 flex flex-col gap-0.5">
-              {hGoals.map((g, i) => <GoalLine key={i} g={g} />)}
-            </div>
-            <div className="w-16 flex-shrink-0" />
-            <div className="flex-1 flex flex-col items-end gap-0.5">
-              {aGoals.map((g, i) => (
-                <span key={i} className="flex items-center gap-1.5 text-[11px] text-gray-400 leading-snug">
-                  <span className="text-gray-500 tabular-nums">{g.minute}&apos;</span>
-                  {g.type === 'penalty'  && <span className="text-amber-400 text-[10px] font-semibold">pen.</span>}
-                  {g.type === 'own-goal' && <span className="text-red-400 text-[10px] font-semibold">OG</span>}
-                  <span className="text-gray-100">{g.scorer.split(' ').slice(-1)[0]}</span>
-                  <span className="text-gray-500">⚽</span>
-                </span>
-              ))}
-            </div>
+        {/* Live detail — timeline, stats, lineups, commentary */}
+        {espnEventId(m) && (
+          <div className="mt-4 pt-4 hairline-t">
+            <MatchDetailPanel detail={detail} homeId={m.homeId} awayId={m.awayId} live loading={loading} />
           </div>
         )}
       </div>
@@ -199,97 +140,63 @@ function LiveCard({ m }: { m: RichMatch }) {
   );
 }
 
+// ─── TEAM ROW ─────────────────────────────────────────────────────────────────
+// Stacked layout: one row per team — flag + full name (gets the whole card width,
+// so names never truncate) and an optional right-aligned score.
+
+function TeamRow({ code, win, score }: { code: string; win?: boolean; score?: number | null }) {
+  return (
+    <div className="flex items-center gap-2.5 py-1">
+      <Flag code={code} size={24} />
+      <span className={`flex-1 min-w-0 truncate text-sm leading-tight ${win ? 'font-bold text-gray-50' : 'font-medium text-gray-300'}`}>
+        {teamName(code)}
+      </span>
+      {score != null && (
+        <span className={`text-lg font-bold tabular-nums tracking-tight w-5 text-right ${win ? 'text-gray-50' : 'text-gray-400'}`}>
+          {score}
+        </span>
+      )}
+    </div>
+  );
+}
+
 // ─── FINISHED CARD ────────────────────────────────────────────────────────────
-// Goals lazy-loaded from ESPN on first expand. Works for all historical matches.
+// Full detail (timeline, stats, lineups) lazy-loaded from ESPN on first expand.
 
 function FinishedCard({ m }: { m: RichMatch }) {
-  // null  = not yet fetched; []  = fetched, no goals (0-0); [...] = fetched, has goals
-  const [goals, setGoals] = useState<ESPNGoal[] | null>(m.goals ?? null);
-  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const eventId = espnEventId(m);
+  const { detail, loading } = useMatchDetail(open ? eventId : null);
 
   const hW = (m.homeGoals ?? -1) > (m.awayGoals ?? -1);
   const aW = (m.awayGoals ?? -1) > (m.homeGoals ?? -1);
-  // Non-zero score: worth fetching (0-0 could still have own-goals listed, but rare)
-  const fetchable = m.id.startsWith('ESPN-');
-
-  async function handleClick() {
-    if (!open && goals === null && fetchable) {
-      setLoading(true);
-      const espnId = m.id.slice(5);
-      const fetched = await fetchGoalsForEvent(espnId, m.homeId);
-      setGoals(fetched);
-      setLoading(false);
-    }
-    setOpen(o => !o);
-  }
-
-  const hasGoals = (goals?.length ?? 0) > 0;
-  // Show chevron if we haven't fetched yet (optimistic) or have goals
-  const showToggle = fetchable && (goals === null || hasGoals);
+  const showToggle = !!eventId;
 
   return (
     <div
       className={`rounded-xl border transition-colors duration-150 overflow-hidden
         ${open ? 'bg-gray-900 border-gray-700' : 'bg-gray-900/80 border-gray-800/80'}
         ${showToggle ? 'cursor-pointer hover:border-gray-600 hover:bg-gray-900' : ''}`}
-      onClick={showToggle ? handleClick : undefined}
+      onClick={showToggle ? () => setOpen(o => !o) : undefined}
     >
-      <div className="flex items-center gap-2 px-3 py-3">
-        <span className="hidden sm:block text-[10px] text-gray-500 w-12 flex-shrink-0 uppercase tracking-wider text-center">
-          {stageLabel(m)}
-        </span>
-
-        {/* Home */}
-        <div className="flex items-center gap-2 flex-1 justify-end min-w-0">
-          <div className="text-right min-w-0">
-            <p className={`text-sm font-semibold truncate leading-tight ${hW ? 'text-gray-50' : 'text-gray-400'}`}>
-              {teamName(m.homeId)}
-            </p>
-            <p className="text-[10px] font-mono text-gray-500 tracking-widest">{m.homeId}</p>
-          </div>
-          <Flag code={m.homeId} size={28} />
-        </div>
-
-        {/* Score */}
-        <div className="flex flex-col items-center w-20 flex-shrink-0 select-none">
-          <div className="text-xl font-bold tabular-nums leading-none tracking-tight">
-            <span className={hW ? 'text-gray-50' : 'text-gray-500'}>{m.homeGoals ?? '–'}</span>
-            <span className="text-gray-600 mx-1.5">–</span>
-            <span className={aW ? 'text-gray-50' : 'text-gray-500'}>{m.awayGoals ?? '–'}</span>
-          </div>
-          <span className="text-[10px] text-gray-500 mt-0.5 font-medium tracking-wide">FT</span>
-        </div>
-
-        {/* Away */}
-        <div className="flex items-center gap-2 flex-1 min-w-0">
-          <Flag code={m.awayId} size={28} />
-          <div className="min-w-0">
-            <p className={`text-sm font-semibold truncate leading-tight ${aW ? 'text-gray-50' : 'text-gray-400'}`}>
-              {teamName(m.awayId)}
-            </p>
-            <p className="text-[10px] font-mono text-gray-500 tracking-widest">{m.awayId}</p>
+      {/* Stacked rows — full-width names on every breakpoint */}
+      <div className="px-3.5 py-2.5">
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <span className="text-[10px] text-gray-500 uppercase tracking-wider truncate">{stageLabel(m)}</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-[10px] text-gray-500 font-medium tracking-wide">FT</span>
+            {showToggle && (
+              <span className={`text-gray-500 text-xs transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>▾</span>
+            )}
           </div>
         </div>
-
-        {/* Chevron / spinner */}
-        {showToggle && (
-          <span className={`text-gray-500 text-xs flex-shrink-0 ml-1 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
-            {loading ? '·' : '▾'}
-          </span>
-        )}
+        <TeamRow code={m.homeId} win={hW} score={m.homeGoals} />
+        <TeamRow code={m.awayId} win={aW} score={m.awayGoals} />
       </div>
 
-      {/* Scorer drawer — shown once goals are loaded */}
       {open && (
-        <div className="px-3 pb-3">
-          {loading ? (
-            <div className="pt-3 mt-3 hairline-t text-[11px] text-gray-600 text-center">Loading scorers…</div>
-          ) : hasGoals ? (
-            <ScorerDrawer goals={goals!} open />
-          ) : goals !== null ? (
-            <div className="pt-3 mt-3 hairline-t text-[11px] text-gray-600 text-center">No scorer data available</div>
-          ) : null}
+        <div className="px-3.5 pb-3 pt-3 hairline-t" onClick={e => e.stopPropagation()}>
+          <MatchDetailPanel detail={detail} homeId={m.homeId} awayId={m.awayId} live={false} loading={loading} />
         </div>
       )}
     </div>
@@ -305,38 +212,18 @@ function UpcomingCard({ m, accent }: { m: RichMatch; accent?: boolean }) {
   // Soon matches always get the focus treatment (incl. after-midnight ones in
   // the Upcoming list); today's matches only when their section opts in.
   const hi = isSoon || (accent && isToday);
+  const kickoff = (isToday || isSoon) ? countdown(m.kickoffUtc) : formatKickoff(m.kickoffUtc);
   return (
-    <div className={`rounded-xl border px-3 py-3 flex items-center gap-2 transition-colors duration-150
+    <div className={`rounded-xl border transition-colors duration-150
       ${hi ? 'bg-gray-900 border-blue-900/70 hover:border-blue-700' : 'bg-gray-900/50 border-gray-800/50 hover:border-gray-700'}`}>
-      <span className="hidden sm:block text-[10px] text-gray-500 w-12 flex-shrink-0 uppercase tracking-wider text-center">
-        {stageLabel(m)}
-      </span>
-
-      {/* Home */}
-      <div className="flex items-center gap-2 flex-1 justify-end min-w-0">
-        <div className="text-right min-w-0">
-          <p className="text-sm font-semibold text-gray-300 truncate leading-tight">{teamName(m.homeId)}</p>
-          <p className="text-[10px] font-mono text-gray-500 tracking-widest">{m.homeId}</p>
+      {/* Stacked rows — full-width names on every breakpoint */}
+      <div className="px-3.5 py-2.5">
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <span className="text-[10px] text-gray-500 uppercase tracking-wider truncate">{stageLabel(m)}</span>
+          <span className={`text-[11px] font-semibold tabular-nums shrink-0 whitespace-nowrap ${hi ? 'text-blue-300' : 'text-gray-400'}`}>{kickoff}</span>
         </div>
-        <Flag code={m.homeId} size={28} />
-      </div>
-
-      {/* Kickoff */}
-      <div className="flex flex-col items-center w-20 flex-shrink-0">
-        <span className={`text-xs font-semibold tabular-nums leading-tight text-center
-          ${hi ? 'text-blue-300' : 'text-gray-400'}`}>
-          {(isToday || isSoon) ? countdown(m.kickoffUtc) : formatKickoff(m.kickoffUtc)}
-        </span>
-        <span className="text-[10px] text-gray-500 mt-0.5">vs</span>
-      </div>
-
-      {/* Away */}
-      <div className="flex items-center gap-2 flex-1 min-w-0">
-        <Flag code={m.awayId} size={28} />
-        <div className="min-w-0">
-          <p className="text-sm font-semibold text-gray-300 truncate leading-tight">{teamName(m.awayId)}</p>
-          <p className="text-[10px] font-mono text-gray-500 tracking-widest">{m.awayId}</p>
-        </div>
+        <TeamRow code={m.homeId} />
+        <TeamRow code={m.awayId} />
       </div>
     </div>
   );
@@ -365,10 +252,19 @@ function SectionHeader({ label, count, collapsible, collapsed, onToggle }:
 
 export default function LiveScores() {
   const fetcher = useCallback(() => fetchScores(), []);
+  const upcomingFetcher = useCallback(() => fetchUpcoming(), []);
   const { data, loading, error } = usePolled(fetcher, 60_000);
+  const { data: upcomingData } = usePolled(upcomingFetcher, 60_000);
   const { matches: espnMatches, hasLive, lastSync, failed } = useESPNLive(30_000);
   const [earlierOpen, setEarlierOpen] = useState(false);
   const [upcomingOpen, setUpcomingOpen] = useState(true);
+
+  // Our model's 1X2 + xG per fixture, keyed by "home-away" for quick lookup.
+  const predictionByKey = useMemo(() => {
+    const map = new Map<string, UpcomingMatch>();
+    for (const u of upcomingData?.matches ?? []) map.set(`${u.homeId}-${u.awayId}`, u);
+    return map;
+  }, [upcomingData]);
 
   const all = useMemo(() => {
     if (!data) return [];
@@ -383,8 +279,17 @@ export default function LiveScores() {
     .sort((a,b) => b.kickoffUtc.localeCompare(a.kickoffUtc)), [all]);
   const earlier   = useMemo(() => all.filter(m => bucketOf(m) === 'earlier')
     .sort((a,b) => b.kickoffUtc.localeCompare(a.kickoffUtc)), [all]);
-  const upcoming  = useMemo(() => all.filter(m => bucketOf(m) === 'upcoming')
+  const upcomingAll = useMemo(() => all.filter(m => bucketOf(m) === 'upcoming')
     .sort((a,b) => a.kickoffUtc.localeCompare(b.kickoffUtc)), [all]);
+
+  // "Kicking off soon" = scheduled within the next 60 min. These get the rich
+  // pre-match card up top and are removed from the regular upcoming lists.
+  const isSoonKO = (m: RichMatch) => {
+    const diff = new Date(m.kickoffUtc).getTime() - Date.now();
+    return diff > 0 && diff <= SOON_MS;
+  };
+  const soon     = upcomingAll.filter(isSoonKO);
+  const upcoming = upcomingAll.filter(m => !isSoonKO(m));
 
   // Keep "Today" strictly calendar-today so after-midnight matches aren't
   // mislabelled. Matches within the next 12h still get focus styling (accent +
@@ -444,6 +349,16 @@ export default function LiveScores() {
         <section className="space-y-3">
           <SectionHeader label="Live Now" count={live.length} />
           {live.map(m => <LiveCard key={m.id} m={m} />)}
+        </section>
+      )}
+
+      {/* ── KICKING OFF SOON ── rich pre-match card (next 60 min) */}
+      {soon.length > 0 && (
+        <section className="space-y-3">
+          <SectionHeader label="Kicking Off Soon" count={soon.length} />
+          {soon.map(m => (
+            <SoonCard key={m.id} m={m} prediction={predictionByKey.get(`${m.homeId}-${m.awayId}`)} />
+          ))}
         </section>
       )}
 
