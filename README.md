@@ -158,8 +158,9 @@ Live scores need **no key** (ESPN is public). Odds are used only to derive blend
 
 ## Known limitations
 
-- **Best-third-placed assignment** — FIFA's table for which of the eight best third-placed teams fills which Round-of-32 slot (it depends on the exact combination of groups they come from) is not yet published. The bracket pairings are official; the third-placed-to-slot mapping uses a rank-order approximation until the table is released.
 - **Forecast vs. live** — the Forecast (Monte Carlo) probabilities update on the refresh cycle, whereas Scores, Groups and the Simulate "Most Likely Outcome" reflect live ESPN results immediately.
+
+The Round-of-32 bracket — including the official **Annex C** table for which of the eight best third-placed teams fills which slot (all 495 group combinations) — matches FIFA's published regulations exactly.
 
 ---
 
