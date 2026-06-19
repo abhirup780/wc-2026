@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-19T21:46:47.531Z",
+  "timestamp": "2026-06-19T23:05:49.383Z",
   "groups": {
     "A": [
       {
@@ -117,14 +117,14 @@
       {
         "groupId": "C",
         "teamId": "MAR",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 1,
+        "gf": 2,
         "ga": 1,
-        "gd": 0,
-        "points": 1
+        "gd": 1,
+        "points": 4
       },
       {
         "groupId": "C",
@@ -141,13 +141,13 @@
       {
         "groupId": "C",
         "teamId": "SCO",
-        "played": 1,
+        "played": 2,
         "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 0,
-        "gd": 1,
+        "ga": 1,
+        "gd": 0,
         "points": 3
       }
     ],
