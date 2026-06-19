@@ -149,10 +149,13 @@ async function main(): Promise<void> {
   // 7b. Blend pChampion with outright market odds (current sim + baseline equally)
   //     Applying the same blend to both ensures the trend arrow reflects only the
   //     impact of match results, not a model vs. market comparison.
+  //     Capture model-only (pre-blend) and market-only values for the UI toggle.
+  for (const team of simResult.teams) team.pChampionModel = team.pChampion;
   if (outrightOdds && CONFIG.outrightOddsWeight > 0) {
     const w = CONFIG.outrightOddsWeight;
     for (const team of simResult.teams) {
       const mktP = outrightOdds.get(team.code);
+      if (mktP != null) team.pChampionMarket = mktP;
       if (mktP != null && team.pAdvanceGroup >= 0.005) {
         team.pChampion = (1 - w) * team.pChampion + w * mktP;
       }

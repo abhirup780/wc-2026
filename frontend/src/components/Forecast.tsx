@@ -87,9 +87,17 @@ function fmtProb(v: number): string {
   return r === 0 ? '<1%' : `${r}%`;
 }
 
+type ChampView = 'combo' | 'model' | 'market';
+const CHAMP_VIEWS: { key: ChampView; label: string; hint: string }[] = [
+  { key: 'combo',  label: 'Combo',  hint: 'blended model + bookmaker odds' },
+  { key: 'model',  label: 'Model',  hint: 'simulation only' },
+  { key: 'market', label: 'Market', hint: 'bookmaker outright odds' },
+];
+
 export default function Forecast() {
   const [sortKey, setSortKey] = useState<SortKey>('pChampion');
   const [filterGroup, setFilterGroup] = useState<string>('');
+  const [champView, setChampView] = useState<ChampView>('combo');
 
   const fetcher = useCallback(() => fetchForecast(), []);
   const { data: forecast, loading, error, lastUpdated } = usePolled(fetcher, 60_000);
@@ -119,30 +127,56 @@ export default function Forecast() {
       {/* Next match predictions — model 1X2 blended with bookmaker odds */}
       <NextMatches />
 
-      {/* Champion probability bar chart — mobile-first, always visible */}
+      {/* Champion probability bar chart — toggle between combo / model / market */}
       <div className="card">
-        <h3 className="text-sm font-semibold mb-3 text-gray-300">Champion probability</h3>
-        <div className="space-y-2">
-          {[...forecast.teams]
-            .sort((a, b) => b.pChampion - a.pChampion)
-            .filter(t => t.pChampion > 0.001)
-            .slice(0, 16)
-            .map(t => (
-              <div key={t.teamId} className="flex items-center gap-2">
-                <Flag code={t.code} size={20} />
-                <span className="text-xs text-gray-400 w-7 shrink-0 tabular-nums">{t.code}</span>
-                <div className="flex-1 bg-gray-800 rounded-full h-2.5 relative">
-                  <div
-                    className="h-2.5 rounded-full bg-gradient-to-r from-fifa-blue to-fifa-gold transition-all duration-500"
-                    style={{ width: `${Math.min(100, t.pChampion * 200)}%` }}
-                  />
-                </div>
-                <span className="text-xs tabular-nums w-9 text-right text-gray-300 shrink-0">
-                  {pct(t.pChampion)}
-                </span>
-              </div>
+        <div className="flex items-center justify-between mb-3 gap-2">
+          <h3 className="text-sm font-semibold text-gray-300">Champion probability</h3>
+          <div className="flex rounded-md border border-gray-700 overflow-hidden shrink-0">
+            {CHAMP_VIEWS.map(v => (
+              <button
+                key={v.key}
+                onClick={() => setChampView(v.key)}
+                className={`text-[11px] px-2.5 py-1 transition-colors ${
+                  champView === v.key ? 'bg-fifa-gold text-fifa-navy font-semibold' : 'text-gray-400 hover:text-gray-200'
+                }`}
+              >
+                {v.label}
+              </button>
             ))}
+          </div>
         </div>
+        <p className="text-[10px] text-gray-600 mb-3 -mt-1">{CHAMP_VIEWS.find(v => v.key === champView)!.hint}</p>
+        {(() => {
+          const champProb = (t: typeof forecast.teams[number]) =>
+            champView === 'model' ? (t.pChampionModel ?? t.pChampion)
+            : champView === 'market' ? (t.pChampionMarket ?? 0)
+            : t.pChampion;
+          const ranked = [...forecast.teams]
+            .map(t => ({ t, p: champProb(t) }))
+            .sort((a, b) => b.p - a.p)
+            .filter(x => x.p > 0.001)
+            .slice(0, 16);
+          if (ranked.length === 0) return (
+            <p className="text-xs text-gray-600">No market data available yet — refresh after the next data update.</p>
+          );
+          return (
+            <div className="space-y-2">
+              {ranked.map(({ t, p }) => (
+                <div key={t.teamId} className="flex items-center gap-2">
+                  <Flag code={t.code} size={20} />
+                  <span className="text-xs text-gray-400 w-7 shrink-0 tabular-nums">{t.code}</span>
+                  <div className="flex-1 bg-gray-800 rounded-full h-2.5 relative">
+                    <div
+                      className="h-2.5 rounded-full bg-gradient-to-r from-fifa-blue to-fifa-gold transition-all duration-500"
+                      style={{ width: `${Math.min(100, p * 200)}%` }}
+                    />
+                  </div>
+                  <span className="text-xs tabular-nums w-9 text-right text-gray-300 shrink-0">{pct(p)}</span>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
       </div>
 
       {/* Group filter */}

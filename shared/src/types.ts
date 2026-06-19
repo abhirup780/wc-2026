@@ -61,6 +61,10 @@ export interface TeamForecast {
   pChampion: number;
   /** Pre-tournament baseline champion probability (initial Elo, no match results) */
   pChampionInitial?: number;
+  /** Model-only champion probability (Monte Carlo, before market blending) */
+  pChampionModel?: number;
+  /** Market-only champion probability (bookmaker outright odds, normalised) */
+  pChampionMarket?: number;
 }
 
 export interface Forecast {
