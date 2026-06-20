@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
-  MATCHES, NETWORKS, streamUrlFor, focusFor, postFor, nextFor, phaseOf,
+  MATCHES, NETWORKS, STREAMS, focusFor, postFor, nextFor, phaseOf,
   type Network, type WatchMatch, type MatchPhase,
 } from '../watchSchedule.ts';
 import { useESPNLive, type ESPNLiveMatch } from '../api.ts';
@@ -283,19 +283,17 @@ export default function WatchLive() {
     return () => clearInterval(id);
   }, []);
 
+  // Reset the loading overlay whenever the stream (and thus the iframe) changes.
+  useEffect(() => setLoaded(false), [channel]);
+
   const liveCount = useMemo(
     () => NETWORKS.filter(n => isLiveNow(n, now, espn)).length,
     [now, espn],
   );
 
-  // The match the selected stream is showing: its live/soon focus, or a
-  // just-ended match if that's all there is. Each match has its own embed URL,
-  // so the player follows the fixture rather than a fixed channel feed.
-  const playerMatch = focusFor(channel, now)?.match ?? postFor(channel, now);
-  const playerUrl = playerMatch ? streamUrlFor(playerMatch) : null;
-
-  // Reset the loading overlay whenever the playing stream changes.
-  useEffect(() => setLoaded(false), [playerUrl]);
+  // What the currently-selected stream is showing, for the caption under the
+  // player — its live/soon focus, or a just-ended match if that's all there is.
+  const selectedMatch = focusFor(channel, now)?.match ?? postFor(channel, now);
 
   return (
     <div className="space-y-5 max-w-2xl mx-auto">
@@ -318,45 +316,33 @@ export default function WatchLive() {
         className="relative w-full overflow-hidden rounded-xl bg-black ring-1 ring-black/20"
         style={{ aspectRatio: '16 / 9' }}
       >
-        {playerUrl ? (
-          <>
-            {!loaded && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/70">
-                <svg className="animate-spin" style={{ width: 28, height: 28 }} viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
-                  <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                </svg>
-                <span className="text-xs font-medium tracking-wide">Loading stream… this can take a moment</span>
-              </div>
-            )}
-            <iframe
-              key={playerUrl}
-              src={playerUrl}
-              title="Live stream"
-              className="absolute inset-0 h-full w-full"
-              frameBorder={0}
-              scrolling="no"
-              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-              allowFullScreen
-              onLoad={() => setLoaded(true)}
-            />
-          </>
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center text-white/55">
-            <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.6">
-              <rect x="2" y="4" width="20" height="14" rx="2.5" /><path d="M8 21h8" />
+        {!loaded && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/70">
+            <svg className="animate-spin" style={{ width: 28, height: 28 }} viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
+              <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
             </svg>
-            <p className="text-sm font-medium text-white/70">No match on this stream right now</p>
-            <p className="text-xs text-white/40">Streams go live about an hour before kick-off — pick a live match below.</p>
+            <span className="text-xs font-medium tracking-wide">Loading stream… this can take a moment</span>
           </div>
         )}
+        <iframe
+          key={channel}
+          src={STREAMS[channel]}
+          title="Live stream"
+          className="absolute inset-0 h-full w-full"
+          frameBorder={0}
+          scrolling="no"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowFullScreen
+          onLoad={() => setLoaded(true)}
+        />
       </div>
 
       {/* Caption — which match the player is showing (by teams, not channel) */}
       <p className="-mt-2 text-center text-xs text-gray-400">
-        {playerMatch
-          ? <>Now watching · <span className="text-gray-200 font-semibold">{teamName(playerMatch.home)} v {teamName(playerMatch.away)}</span></>
-          : 'Select a live match to start watching'}
+        {selectedMatch
+          ? <>Now watching · <span className="text-gray-200 font-semibold">{teamName(selectedMatch.home)} v {teamName(selectedMatch.away)}</span></>
+          : 'Live stream'}
       </p>
 
       {/* Both streams at a glance — tap either match to watch it */}
