@@ -20,15 +20,7 @@ export default function Footer() {
           )}
         </div>
         <div>
-          Updates after every match ·{' '}
-          <a
-            href="https://github.com/abhirup780/wc-2026"
-            className="text-gray-500 hover:text-gray-300 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            source
-          </a>
+          Updates after every match
         </div>
       </div>
     </footer>
