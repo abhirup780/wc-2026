@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
-  MATCHES, NETWORKS, streamSources, focusFor, postFor, nextFor, phaseOf,
+  MATCHES, NETWORKS, STREAMS, focusFor, postFor, nextFor, phaseOf,
   type Network, type WatchMatch, type MatchPhase,
 } from '../watchSchedule.ts';
 import { useESPNLive, type ESPNLiveMatch } from '../api.ts';
@@ -276,12 +276,6 @@ export default function WatchLive() {
     return defaultChannel(Date.now());
   });
   const [loaded, setLoaded] = useState(false);
-  // Which source we're on for this channel: 0 = primary, 1 = fallback feed.
-  const [sourceIndex, setSourceIndex] = useState(0);
-  const loadedRef = useRef(false);
-
-  const sources = useMemo(() => streamSources(channel), [channel]);
-  const src = sources[sourceIndex] ?? sources[0];
 
   // Tick every 30s so badges, countdowns and live windows stay current.
   useEffect(() => {
@@ -289,22 +283,8 @@ export default function WatchLive() {
     return () => clearInterval(id);
   }, []);
 
-  // Switching channel restarts from the primary source.
-  useEffect(() => setSourceIndex(0), [channel]);
-
-  // When the iframe source changes, reset the overlay and arm a fallback timer:
-  // if the primary hasn't fired `load` within a few seconds (domain down /
-  // frame blocked), drop to the next source automatically.
-  useEffect(() => {
-    setLoaded(false);
-    loadedRef.current = false;
-    const timer = window.setTimeout(() => {
-      if (!loadedRef.current && sourceIndex < sources.length - 1) {
-        setSourceIndex(i => i + 1);
-      }
-    }, 8000);
-    return () => window.clearTimeout(timer);
-  }, [src, sourceIndex, sources.length]);
+  // Reset the loading overlay whenever the stream (and thus the iframe) changes.
+  useEffect(() => setLoaded(false), [channel]);
 
   // Fullscreen the player shell (the wrapper we own) — never the cross-origin
   // iframe — so going fullscreen requires no click inside the ad-prone player.
@@ -361,21 +341,19 @@ export default function WatchLive() {
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
               <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
             </svg>
-            <span className="text-xs font-medium tracking-wide">
-              {sourceIndex === 0 ? 'Loading stream… this can take a moment' : 'Primary source unavailable — loading backup…'}
-            </span>
+            <span className="text-xs font-medium tracking-wide">Loading stream… this can take a moment</span>
           </div>
         )}
         <iframe
-          key={src}
-          src={src}
+          key={channel}
+          src={STREAMS[channel]}
           title="Live stream"
           className="absolute inset-0 h-full w-full"
           frameBorder={0}
           scrolling="no"
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
           allowFullScreen
-          onLoad={() => { setLoaded(true); loadedRef.current = true; }}
+          onLoad={() => setLoaded(true)}
         />
       </div>
 
@@ -387,29 +365,15 @@ export default function WatchLive() {
             ? <>Now watching · <span className="text-gray-200 font-semibold">{teamName(selectedMatch.home)} v {teamName(selectedMatch.away)}</span></>
             : 'Live stream'}
         </p>
-        <div className="flex items-center gap-2 shrink-0">
-          {/* Manual fallback in case the primary loads but the stream is dead —
-              we can't see inside the cross-origin frame to detect that. */}
-          <button
-            onClick={() => setSourceIndex(i => (i + 1) % sources.length)}
-            title="Not working? Try another source"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-gray-100 transition-colors"
-          >
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5" />
-            </svg>
-            Switch source
-          </button>
-          <button
-            onClick={goFullscreen}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-gray-100 transition-colors"
-          >
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3" />
-            </svg>
-            Fullscreen
-          </button>
-        </div>
+        <button
+          onClick={goFullscreen}
+          className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-gray-100 transition-colors"
+        >
+          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3" />
+          </svg>
+          Fullscreen
+        </button>
       </div>
 
       {/* Both streams at a glance — tap either match to watch it */}

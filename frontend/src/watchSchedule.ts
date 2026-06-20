@@ -13,21 +13,10 @@ export type Network = 'FOX' | 'FS1';
 
 export const NETWORKS: Network[] = ['FOX', 'FS1'];
 
-// Primary per-channel feeds, tried first for each stream.
 export const STREAMS: Record<Network, string> = {
   FOX: 'https://findleembeds.pages.dev/embed/fox-usa',
   FS1: 'https://findleembeds.pages.dev/embed/fox-sports-1',
 };
-
-// Generic backup embeds, tried in order if the channel feed above fails.
-export const BACKUP_STREAMS = [1, 2, 3, 4, 5, 6].map(
-  n => `https://xyzstreams.shop/wc-${n}-embed.html`,
-);
-
-/** Ordered stream sources for a channel: its own feed first, then the backups. */
-export function streamSources(network: Network): string[] {
-  return [STREAMS[network], ...BACKUP_STREAMS];
-}
 
 export interface WatchMatch {
   no: number;
