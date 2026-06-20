@@ -355,10 +355,10 @@
       "homeId": "SCO",
       "awayId": "MAR",
       "kickoffUtc": "2026-06-19T22:00Z",
-      "homeXg": 0.8689834999507589,
-      "awayXg": 1.798077869244398,
+      "homeXg": 0,
+      "awayXg": 1,
       "homeGoals": 0,
-      "awayGoals": 2
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760444",
@@ -607,8 +607,8 @@
       "homeId": "MAR",
       "awayId": "HAI",
       "kickoffUtc": "2026-06-24T22:00Z",
-      "homeXg": 2.603392501195147,
-      "awayXg": 0.6001784207654814,
+      "homeXg": 2.661420912231753,
+      "awayXg": 0.5870924034671972,
       "homeGoals": 2,
       "awayGoals": 0
     },
@@ -619,8 +619,8 @@
       "homeId": "SCO",
       "awayId": "BRA",
       "kickoffUtc": "2026-06-24T22:00Z",
-      "homeXg": 0.8561035860734557,
-      "awayXg": 1.825129605129272,
+      "homeXg": 0.8374374928770494,
+      "awayXg": 1.8658108972789957,
       "homeGoals": 2,
       "awayGoals": 2
     },
@@ -884,8 +884,8 @@
       "homeId": "GER",
       "awayId": "SCO",
       "kickoffUtc": "",
-      "homeXg": 1.5003020783080607,
-      "awayXg": 0.7524526335877,
+      "homeXg": 1.5337431155850627,
+      "awayXg": 0.7360464986141873,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "GER"
@@ -910,8 +910,8 @@
       "homeId": "MAR",
       "awayId": "NED",
       "kickoffUtc": "",
-      "homeXg": 1.073012283742283,
-      "awayXg": 1.0520907049290982,
+      "homeXg": 1.096929229734768,
+      "awayXg": 1.0291513977369022,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "MAR"
@@ -1105,8 +1105,8 @@
       "homeId": "MAR",
       "awayId": "SEN",
       "kickoffUtc": "",
-      "homeXg": 1.2160941573970196,
-      "awayXg": 0.9283049697536248,
+      "homeXg": 1.2432003319720226,
+      "awayXg": 0.9080646304278861,
       "homeGoals": 3,
       "awayGoals": 0,
       "winnerId": "MAR"
@@ -1209,8 +1209,8 @@
       "homeId": "MAR",
       "awayId": "ENG",
       "kickoffUtc": "",
-      "homeXg": 0.9224774709106462,
-      "awayXg": 1.223776499262982,
+      "homeXg": 0.9430390657640683,
+      "awayXg": 1.197093833101536,
       "homeGoals": 1,
       "awayGoals": 2,
       "winnerId": "ENG"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-19T23:05:57.199Z"
+  "generatedAt": "2026-06-20T01:31:02.664Z"
 }

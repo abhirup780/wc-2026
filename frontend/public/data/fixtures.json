@@ -86,9 +86,9 @@
       "name": "Morocco",
       "code": "MAR",
       "groupId": "C",
-      "rankingElo": 1755.6160894944783,
-      "attackRating": 1.4805078904544986,
-      "defenseRating": 1.4805078904544986
+      "rankingElo": 1769.9769627010946,
+      "attackRating": 1.5135077244675383,
+      "defenseRating": 1.5135077244675383
     },
     {
       "id": "HAI",
@@ -104,9 +104,9 @@
       "name": "Scotland",
       "code": "SCO",
       "groupId": "C",
-      "rankingElo": 1518.7683653544127,
-      "attackRating": 1.029229542681492,
-      "defenseRating": 1.029229542681492
+      "rankingElo": 1504.4074921477963,
+      "attackRating": 1.0067886898726601,
+      "defenseRating": 1.0067886898726601
     },
     {
       "id": "USA",
@@ -876,7 +876,7 @@
       "homeId": "SCO",
       "awayId": "MAR",
       "kickoffUtc": "2026-06-19T22:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
       "awayGoals": 1,
       "homeGoalsAet": null,
@@ -891,9 +891,9 @@
       "homeId": "BRA",
       "awayId": "HAI",
       "kickoffUtc": "2026-06-20T00:30Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 3,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,

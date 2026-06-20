@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-19T23:05:49.383Z",
+  "timestamp": "2026-06-20T01:30:54.798Z",
   "groups": {
     "A": [
       {
@@ -105,14 +105,14 @@
       {
         "groupId": "C",
         "teamId": "BRA",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 1,
+        "gf": 4,
         "ga": 1,
-        "gd": 0,
-        "points": 1
+        "gd": 3,
+        "points": 4
       },
       {
         "groupId": "C",
@@ -129,13 +129,13 @@
       {
         "groupId": "C",
         "teamId": "HAI",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 0,
-        "ga": 1,
-        "gd": -1,
+        "ga": 4,
+        "gd": -4,
         "points": 0
       },
       {
