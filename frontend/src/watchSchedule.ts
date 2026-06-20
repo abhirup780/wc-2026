@@ -13,11 +13,6 @@ export type Network = 'FOX' | 'FS1';
 
 export const NETWORKS: Network[] = ['FOX', 'FS1'];
 
-export const STREAMS: Record<Network, string> = {
-  FOX: 'https://embed.selltvonline.shop/live/embed.php?ch=es1',
-  FS1: 'https://findleembeds.pages.dev/embed/fox-sports-1',
-};
-
 export interface WatchMatch {
   no: number;
   kickoff: number;   // epoch ms
@@ -151,6 +146,19 @@ export const MATCHES: WatchMatch[] = ROWS
     no, kickoff: new Date(iso).getTime(), stage, home, away, venue, network,
   }))
   .sort((a, b) => a.kickoff - b.kickoff);
+
+/**
+ * Per-match embed URL, e.g.
+ *   https://embedindia.st/embed/wc/2026-06-20/ned-swe/fox
+ * Built from the fixture's broadcast (ET) date, lowercased team codes and
+ * network, so each match streams its own feed. The date is resolved in
+ * America/New_York so late-night kickoffs land on the published broadcast day.
+ */
+export function streamUrlFor(m: WatchMatch): string {
+  const date = new Date(m.kickoff).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+  const slug = `${m.home}-${m.away}`.toLowerCase();
+  return `https://embedindia.st/embed/wc/${date}/${slug}/${m.network.toLowerCase()}`;
+}
 
 // ─── Air-window logic ──────────────────────────────────────────────────────────
 // Stream is surfaced from 1h before kickoff through 1h after full time. A match
