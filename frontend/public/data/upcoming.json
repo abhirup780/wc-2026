@@ -1,21 +1,7 @@
 {
-  "timestamp": "2026-06-20T14:20:54.331Z",
+  "timestamp": "2026-06-20T17:50:00.087Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760447",
-      "stage": "group",
-      "groupId": "F",
-      "homeId": "NED",
-      "awayId": "SWE",
-      "kickoffUtc": "2026-06-20T17:00Z",
-      "homeXg": 1.7414768178724473,
-      "awayXg": 0.8972269880163536,
-      "pHome": 0.5592545978748006,
-      "pDraw": 0.2560597214527748,
-      "pAway": 0.1846856806724246,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760448",
       "stage": "group",
@@ -70,6 +56,20 @@
       "pHome": 0.7867747314384873,
       "pDraw": 0.15074471418832788,
       "pAway": 0.06248055437318489,
+      "marketBlended": true
+    },
+    {
+      "id": "ESPN-760451",
+      "stage": "group",
+      "groupId": "G",
+      "homeId": "BEL",
+      "awayId": "IRN",
+      "kickoffUtc": "2026-06-21T19:00Z",
+      "homeXg": 1.5233134601672873,
+      "awayXg": 1.025724541177762,
+      "pHome": 0.5305155507155169,
+      "pDraw": 0.26409254911340163,
+      "pAway": 0.20539190017108155,
       "marketBlended": true
     }
   ]
