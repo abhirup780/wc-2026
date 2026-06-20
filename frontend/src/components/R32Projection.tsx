@@ -96,9 +96,9 @@ export default function R32Projection() {
   );
   if (error || !data) return null; // stay quiet inside Forecast if the artifact isn't there yet
 
-  // Show every matchup at ≥50%, but always at least the top 10.
-  const focusCount = Math.max(10, sorted.filter(m => m.prob >= 0.5).length);
-  const shown = showAll ? sorted : sorted.slice(0, focusCount);
+  // Top 6 ties by default; the rest behind "show more".
+  const DEFAULT_COUNT = 6;
+  const shown = showAll ? sorted : sorted.slice(0, DEFAULT_COUNT);
 
   return (
     <section className="space-y-3">
@@ -116,12 +116,12 @@ export default function R32Projection() {
         {shown.map((m, i) => <MatchupCard key={m.num} m={m} rank={i + 1} />)}
       </div>
 
-      {sorted.length > focusCount && (
+      {sorted.length > DEFAULT_COUNT && (
         <button
           onClick={() => setShowAll(s => !s)}
           className="w-full py-2.5 rounded-lg border border-gray-800 text-sm font-semibold text-gray-300 hover:border-gray-600 hover:text-gray-100 transition-colors"
         >
-          {showAll ? 'Show fewer' : `Show all ${sorted.length} ties`}
+          {showAll ? 'Show fewer' : `Show more (${sorted.length - DEFAULT_COUNT})`}
         </button>
       )}
 

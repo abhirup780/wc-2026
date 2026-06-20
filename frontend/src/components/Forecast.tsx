@@ -125,6 +125,9 @@ export default function Forecast() {
         </p>
       </div>
 
+      {/* Round of 32 — most likely ties, projected from current standings (top of tab) */}
+      <R32Projection />
+
       {/* Winner probability bar chart — toggle between combo / model / market */}
       <div className="card">
         <div className="flex items-center justify-between mb-3 gap-2">
@@ -271,9 +274,6 @@ export default function Forecast() {
           </table>
         </div>
       </div>
-
-      {/* Round of 32 — most likely ties, projected from current standings */}
-      <R32Projection />
 
       {/* Next match predictions — model 1X2 blended with bookmaker odds */}
       <NextMatches />
