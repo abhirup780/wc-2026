@@ -124,6 +124,29 @@ export interface Meta {
   version: string;
 }
 
+// ─── R32 matchup projection (Monte-Carlo over remaining group games) ─────────
+
+export interface R32MatchupProjection {
+  num: number;          // R32 fixture number (73–88)
+  slot1: string;        // bracket slot, e.g. "2A" / "3-ABCDF"
+  slot2: string;
+  home: string;         // most-likely team code in slot1
+  away: string;         // most-likely team code in slot2
+  homeName: string;
+  awayName: string;
+  prob: number;         // P(this exact matchup) across sims
+  homeWinProb: number;  // Elo head-to-head P(home advances)
+  slot1Prob: number;    // marginal P(home occupies slot1)
+  slot2Prob: number;    // marginal P(away occupies slot2)
+}
+
+export interface R32Projection {
+  generatedAt: string;
+  simCount: number;
+  remainingGroupMatches: number;
+  matchups: R32MatchupProjection[]; // one per fixture, in bracket order
+}
+
 // ─── Upcoming-match predictions (model 1X2 blended with bookmaker odds) ───────
 
 export interface UpcomingMatch {

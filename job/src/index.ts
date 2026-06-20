@@ -9,6 +9,7 @@ import { applyInTournamentUpdates, regressEloToMean } from './ratings.js';
 import { runSimulation } from './sim/engine.js';
 import { predictTournament } from './sim/predict.js';
 import { predictUpcoming } from './sim/upcoming.js';
+import { projectR32 } from './sim/r32.js';
 import { readOddsCache, writeOddsCache, mapToObj, objToMap } from './odds-cache.js';
 import { writeArtifacts } from './write-artifacts.js';
 import type { Fixtures, Standings, Scores, Forecast, Meta, Match } from '@wc2026/shared';
@@ -188,6 +189,10 @@ async function main(): Promise<void> {
   const upcomingMatches = predictUpcoming(teams, matches, oddsMap, CONFIG.model, 5);
   console.log(`Upcoming predictions: ${upcomingMatches.length} (market blended: ${upcomingMatches.filter(u => u.marketBlended).length})`);
 
+  // 9c. R32 matchup projection (most-likely Round-of-32 ties from current standings)
+  const r32 = projectR32(teams, matches, oddsMap, CONFIG.model, CONFIG.simCount);
+  console.log(`R32 projection: ${r32.remainingGroupMatches} group matches still to play`);
+
   // 10. Write artifacts
   const forecast: Forecast = { ...simResult, dataSnapshotTimestamp: snapshotAt };
 
@@ -204,6 +209,7 @@ async function main(): Promise<void> {
     forecast,
     prediction,
     upcoming: { timestamp: snapshotAt, blendWeight: oddsMap ? CONFIG.model.blendOddsWeight : 0, matches: upcomingMatches },
+    r32,
     meta: {
       dataSource: 'espn',
       lastUpdated: snapshotAt,

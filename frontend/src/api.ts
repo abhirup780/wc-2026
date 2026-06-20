@@ -7,7 +7,7 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import type { Fixtures, Standings, Scores, Forecast, Prediction, Meta, Upcoming } from '@wc2026/shared';
+import type { Fixtures, Standings, Scores, Forecast, Prediction, Meta, Upcoming, R32Projection } from '@wc2026/shared';
 
 const BASE = import.meta.env.BASE_URL + 'data';
 
@@ -24,6 +24,7 @@ export const fetchForecast = (): Promise<Forecast> => fetchJson<Forecast>('forec
 export const fetchMeta = (): Promise<Meta> => fetchJson<Meta>('meta.json');
 export const fetchPrediction = (): Promise<Prediction> => fetchJson<Prediction>('prediction.json');
 export const fetchUpcoming = (): Promise<Upcoming> => fetchJson<Upcoming>('upcoming.json');
+export const fetchR32 = (): Promise<R32Projection> => fetchJson<R32Projection>('r32.json');
 
 // ─── ESPN live overlay ────────────────────────────────────────────────────────
 
