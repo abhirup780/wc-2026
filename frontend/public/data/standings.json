@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T01:30:54.798Z",
+  "timestamp": "2026-06-20T06:04:55.371Z",
   "groups": {
     "A": [
       {
@@ -167,14 +167,14 @@
       {
         "groupId": "D",
         "teamId": "PAR",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 0,
         "l": 1,
-        "gf": 1,
+        "gf": 2,
         "ga": 4,
-        "gd": -3,
-        "points": 0
+        "gd": -2,
+        "points": 3
       },
       {
         "groupId": "D",
@@ -191,13 +191,13 @@
       {
         "groupId": "D",
         "teamId": "TUR",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 0,
-        "ga": 2,
-        "gd": -2,
+        "ga": 3,
+        "gd": -3,
         "points": 0
       }
     ],

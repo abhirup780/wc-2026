@@ -77,9 +77,9 @@
       "name": "Brazil",
       "code": "BRA",
       "groupId": "C",
-      "rankingElo": 1765.3439105055215,
-      "attackRating": 1.502781847057322,
-      "defenseRating": 1.502781847057322
+      "rankingElo": 1772.012256695786,
+      "attackRating": 1.5182437586754074,
+      "defenseRating": 1.5182437586754074
     },
     {
       "id": "MAR",
@@ -95,9 +95,9 @@
       "name": "Haiti",
       "code": "HAI",
       "groupId": "C",
-      "rankingElo": 1277.6716346455873,
-      "attackRating": 0.7108551100990523,
-      "defenseRating": 0.7108551100990523
+      "rankingElo": 1271.003288455323,
+      "attackRating": 0.7036157067932187,
+      "defenseRating": 0.7036157067932187
     },
     {
       "id": "SCO",
@@ -122,9 +122,9 @@
       "name": "Paraguay",
       "code": "PAR",
       "groupId": "D",
-      "rankingElo": 1488.0490886183097,
-      "attackRating": 0.9818219242590669,
-      "defenseRating": 0.9818219242590669
+      "rankingElo": 1517.3899341935096,
+      "attackRating": 1.027054026292134,
+      "defenseRating": 1.027054026292134
     },
     {
       "id": "AUS",
@@ -140,9 +140,9 @@
       "name": "Türkiye",
       "code": "TUR",
       "groupId": "D",
-      "rankingElo": 1579.4651388277916,
-      "attackRating": 1.1297354565309108,
-      "defenseRating": 1.1297354565309108
+      "rankingElo": 1550.1242932525918,
+      "attackRating": 1.0799812000536135,
+      "defenseRating": 1.0799812000536135
     },
     {
       "id": "GER",
@@ -891,7 +891,7 @@
       "homeId": "BRA",
       "awayId": "HAI",
       "kickoffUtc": "2026-06-20T00:30Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 3,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -906,9 +906,9 @@
       "homeId": "TUR",
       "awayId": "PAR",
       "kickoffUtc": "2026-06-20T03:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "finished",
+      "homeGoals": 0,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1653,7 +1653,7 @@
       "id": "ESPN-760494",
       "stage": "r32",
       "groupId": null,
-      "homeId": "1D",
+      "homeId": "USA",
       "awayId": "3RD",
       "kickoffUtc": "2026-07-02T00:00Z",
       "status": "scheduled",
