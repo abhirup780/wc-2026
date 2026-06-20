@@ -13,7 +13,7 @@ export default function WatchLink({ homeId, awayId, className = '' }: { homeId: 
 
   return (
     <a
-      href={`#/watch?m=${air.match.no}`}
+      href={`#/watch?m=${air.match.no}&fs=1`}
       className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-bold bg-fifa-gold text-fifa-navy hover:brightness-95 transition-[filter] ${className}`}
     >
       <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="currentColor">

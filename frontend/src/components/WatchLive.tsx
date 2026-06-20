@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
   MATCHES, NETWORKS, STREAMS, focusFor, postFor, nextFor, phaseOf,
@@ -286,6 +286,24 @@ export default function WatchLive() {
   // Reset the loading overlay whenever the stream (and thus the iframe) changes.
   useEffect(() => setLoaded(false), [channel]);
 
+  // Fullscreen the player shell (the wrapper we own) — never the cross-origin
+  // iframe — so going fullscreen requires no click inside the ad-prone player.
+  const shellRef = useRef<HTMLDivElement>(null);
+  const goFullscreen = () => {
+    const el = shellRef.current as (HTMLDivElement & { webkitRequestFullscreen?: () => void }) | null;
+    if (!el) return;
+    if (el.requestFullscreen) el.requestFullscreen().catch(() => { /* blocked — ignore */ });
+    else el.webkitRequestFullscreen?.();
+  };
+
+  // If the Scores "Watch live" CTA asked for it (#/watch?…&fs=1), try to enter
+  // fullscreen on arrival. Browsers may block this without a fresh gesture, in
+  // which case the button below is the guaranteed path.
+  useEffect(() => {
+    if (searchParams.get('fs') === '1') goFullscreen();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const liveCount = useMemo(
     () => NETWORKS.filter(n => isLiveNow(n, now, espn)).length,
     [now, espn],
@@ -313,7 +331,8 @@ export default function WatchLive() {
 
       {/* Player */}
       <div
-        className="relative w-full overflow-hidden rounded-xl bg-black ring-1 ring-black/20"
+        ref={shellRef}
+        className="player-shell relative w-full overflow-hidden rounded-xl bg-black ring-1 ring-black/20"
         style={{ aspectRatio: '16 / 9' }}
       >
         {!loaded && (
@@ -338,12 +357,24 @@ export default function WatchLive() {
         />
       </div>
 
-      {/* Caption — which match the player is showing (by teams, not channel) */}
-      <p className="-mt-2 text-center text-xs text-gray-400">
-        {selectedMatch
-          ? <>Now watching · <span className="text-gray-200 font-semibold">{teamName(selectedMatch.home)} v {teamName(selectedMatch.away)}</span></>
-          : 'Live stream'}
-      </p>
+      {/* Caption + fullscreen — both sit outside the player so no click lands
+          inside the ad-prone iframe */}
+      <div className="-mt-2 flex items-center justify-between gap-3">
+        <p className="min-w-0 truncate text-xs text-gray-400">
+          {selectedMatch
+            ? <>Now watching · <span className="text-gray-200 font-semibold">{teamName(selectedMatch.home)} v {teamName(selectedMatch.away)}</span></>
+            : 'Live stream'}
+        </p>
+        <button
+          onClick={goFullscreen}
+          className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-gray-100 transition-colors"
+        >
+          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3" />
+          </svg>
+          Fullscreen
+        </button>
+      </div>
 
       {/* Both streams at a glance — tap either match to watch it */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
