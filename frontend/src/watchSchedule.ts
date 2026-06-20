@@ -157,7 +157,7 @@ export const MATCHES: WatchMatch[] = ROWS
 export function streamUrlFor(m: WatchMatch): string {
   const date = new Date(m.kickoff).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
   const slug = `${m.home}-${m.away}`.toLowerCase();
-  return `https://embedindia.st/embed/wc/${date}/${slug}/${m.network.toLowerCase()}`;
+  return `https://embedindia.st/embed/wc/${date}/${slug}/${m.network.toLowerCase()}?autoplay=1`;
 }
 
 // ─── Air-window logic ──────────────────────────────────────────────────────────
