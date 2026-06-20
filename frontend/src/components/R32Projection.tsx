@@ -73,6 +73,11 @@ function MatchupCard({ m, rank }: { m: R32MatchupProjection; rank: number }) {
   );
 }
 
+/**
+ * Round-of-32 "most likely ties" — an embeddable section of the Forecast tab.
+ * Lists projected R32 matchups high→low: every tie at ≥50%, but always at least
+ * the top 10 (expandable to all 16).
+ */
 export default function R32Projection() {
   const fetcher = useCallback(() => fetchR32(), []);
   const { data, loading, error } = usePolled(fetcher, 120_000);
@@ -83,27 +88,31 @@ export default function R32Projection() {
     [data],
   );
 
-  if (loading) return <div className="flex items-center justify-center h-64 text-gray-600 text-sm">Loading…</div>;
-  if (error || !data) return (
-    <div className="card text-red-400 text-sm">Failed to load projection: {error ?? 'unknown error'}.</div>
+  if (loading) return (
+    <section className="space-y-3">
+      <h3 className="text-sm font-semibold text-gray-300">Round of 32 — most likely ties</h3>
+      <p className="text-xs text-gray-500">Loading projection…</p>
+    </section>
   );
+  if (error || !data) return null; // stay quiet inside Forecast if the artifact isn't there yet
 
   // Show every matchup at ≥50%, but always at least the top 10.
   const focusCount = Math.max(10, sorted.filter(m => m.prob >= 0.5).length);
   const shown = showAll ? sorted : sorted.slice(0, focusCount);
 
   return (
-    <div className="space-y-5 max-w-2xl mx-auto">
-      <div>
-        <h2 className="text-lg font-bold tracking-tight">Round of 32 — Most Likely Ties</h2>
-        <p className="text-xs text-gray-500 mt-0.5">
-          Projected from {data.simCount.toLocaleString()} simulations off the current standings ·{' '}
-          {data.remainingGroupMatches} group {data.remainingGroupMatches === 1 ? 'match' : 'matches'} still to play ·
-          updates after every game.
-        </p>
+    <section className="space-y-3">
+      <div className="flex items-center justify-between gap-2">
+        <h3 className="text-sm font-semibold text-gray-300">Round of 32 — most likely ties</h3>
+        <span className="text-[10px] text-gray-600 text-right">
+          {data.simCount.toLocaleString()} sims · {data.remainingGroupMatches} to play
+        </span>
       </div>
+      <p className="text-[11px] text-gray-500 -mt-1.5">
+        Most probable knockout pairings from the current standings — updates after every game.
+      </p>
 
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {shown.map((m, i) => <MatchupCard key={m.num} m={m} rank={i + 1} />)}
       </div>
 
@@ -117,11 +126,10 @@ export default function R32Projection() {
       )}
 
       <p className="text-[11px] leading-relaxed text-gray-500">
-        “Likely tie” is the probability of that exact pairing forming. A team often reaches its bracket slot far
-        more often than the tie itself occurs (its opponent varies). Head-to-head “advance” split is from current
-        Elo ratings; who fills each slot is market-blended from the remaining group games. Early in the group
-        stage these are volatile and sharpen with every result.
+        “Likely tie” is the probability of that exact pairing forming; a team reaches its bracket slot more often
+        than the tie itself occurs (its opponent varies). Head-to-head “advance” split is from current Elo; who
+        fills each slot is market-blended from the remaining group games.
       </p>
-    </div>
+    </section>
   );
 }

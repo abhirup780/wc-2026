@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { usePolled, fetchForecast, fetchUpcoming } from '../api.ts';
 import { pct, teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
+import R32Projection from './R32Projection.tsx';
 import type { TeamForecast, UpcomingMatch } from '@wc2026/shared';
 
 // ─── Next matches (model 1X2 blended with bookmaker odds) ──────────────────────
@@ -270,6 +271,9 @@ export default function Forecast() {
           </table>
         </div>
       </div>
+
+      {/* Round of 32 — most likely ties, projected from current standings */}
+      <R32Projection />
 
       {/* Next match predictions — model 1X2 blended with bookmaker odds */}
       <NextMatches />

@@ -5,7 +5,6 @@ import Groups from './components/Groups.tsx';
 import Forecast from './components/Forecast.tsx';
 import Prediction from './components/Prediction.tsx';
 import WatchLive from './components/WatchLive.tsx';
-import R32Projection from './components/R32Projection.tsx';
 import Footer from './components/Footer.tsx';
 
 // ─── Nav icons ────────────────────────────────────────────────────────────────
@@ -35,14 +34,6 @@ function IcoForecast() {
     </svg>
   );
 }
-function IcoBracket() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-      <path d="M3 5h5v14H3M8 12h4M16 5h5M16 19h5M21 5v14" />
-      <rect x="12" y="9" width="4" height="6" rx="1" />
-    </svg>
-  );
-}
 function IcoSimulate() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
@@ -60,7 +51,6 @@ const NAV = [
   { to: '/scores',     label: 'Scores',   Icon: IcoScores   },
   { to: '/watch',      label: 'Watch',    Icon: IcoWatch    },
   { to: '/groups',     label: 'Groups',   Icon: IcoGroups   },
-  { to: '/r32',        label: 'R32',      Icon: IcoBracket  },
   { to: '/forecast',   label: 'Forecast', Icon: IcoForecast },
   { to: '/prediction', label: 'Simulate', Icon: IcoSimulate },
 ];
@@ -245,7 +235,6 @@ export default function App() {
             <Route path="/scores"     element={<LiveScores />} />
             <Route path="/watch"      element={<WatchLive />} />
             <Route path="/groups"     element={<Groups />} />
-            <Route path="/r32"        element={<R32Projection />} />
             <Route path="/forecast"   element={<Forecast />} />
             <Route path="/prediction" element={<Prediction />} />
           </Routes>
