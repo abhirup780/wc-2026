@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import {
-  MATCHES, NETWORKS, STREAMS, onAirFor, nextFor, phaseOf,
-  type Network, type WatchMatch,
+  MATCHES, NETWORKS, STREAMS, focusFor, postFor, nextFor, phaseOf,
+  type Network, type WatchMatch, type MatchPhase,
 } from '../watchSchedule.ts';
 import { useESPNLive, type ESPNLiveMatch } from '../api.ts';
 import { FIFA_NAMES, teamName } from '../utils.ts';
@@ -42,8 +42,8 @@ function fmtCountdown(ms: number) {
 
 type LiveInfo = ESPNLiveMatch & { home: number | null; away: number | null };
 
-function liveFor(m: WatchMatch, espn: ESPNLiveMatch[]): LiveInfo | null {
-  if (!isTeamCode(m.home) || !isTeamCode(m.away)) return null;
+function liveFor(m: WatchMatch | null, espn: ESPNLiveMatch[]): LiveInfo | null {
+  if (!m || !isTeamCode(m.home) || !isTeamCode(m.away)) return null;
   const direct = espn.find(e => e.homeCode === m.home && e.awayCode === m.away);
   if (direct) return { ...direct, home: direct.homeScore, away: direct.awayScore };
   const rev = espn.find(e => e.homeCode === m.away && e.awayCode === m.home);
@@ -53,11 +53,28 @@ function liveFor(m: WatchMatch, espn: ESPNLiveMatch[]): LiveInfo | null {
 
 // True live state, preferring ESPN ground-truth over the published schedule.
 function isLiveNow(network: Network, now: number, espn: ESPNLiveMatch[]): boolean {
-  const onAir = onAirFor(network, now);
-  if (!onAir) return false;
-  const live = liveFor(onAir.match, espn);
-  if (live) return live.status === 'live';
-  return onAir.phase === 'live';
+  const focus = focusFor(network, now);
+  if (focus?.phase !== 'live') return false;
+  const live = liveFor(focus.match, espn);
+  return live ? live.status === 'live' : true;
+}
+
+// The stream a person landing on the tab should see first: live, then about to
+// start, then a just-ended (still watchable) match, then whoever kicks off next.
+function defaultChannel(now: number): Network {
+  const live = NETWORKS.find(n => focusFor(n, now)?.phase === 'live');
+  if (live) return live;
+  const pre = NETWORKS.find(n => focusFor(n, now)?.phase === 'pre');
+  if (pre) return pre;
+  const ended = NETWORKS.find(n => postFor(n, now));
+  if (ended) return ended;
+  let best: Network | null = null;
+  let bestT = Infinity;
+  for (const n of NETWORKS) {
+    const nx = nextFor(n, now);
+    if (nx && nx.kickoff < bestT) { bestT = nx.kickoff; best = n; }
+  }
+  return best ?? NETWORKS[0];
 }
 
 // ─── Team row (flag/slot badge + name + optional score) ────────────────────────
@@ -87,57 +104,64 @@ function TeamRow({ code, size = 26, score, win }: { code: string; size?: number;
   );
 }
 
-// ─── Status pill ───────────────────────────────────────────────────────────────
+// ─── Stream card (labelled by its match — never by channel name) ───────────────
+// Focus order: live → starting soon → next upcoming. A just-ended match only
+// becomes the headline when there's nothing else, and otherwise shows as a small
+// "still watchable" note so it never steals focus from live/upcoming.
 
-function StatusPill(
-  { network, now, espn }: { network: Network; now: number; espn: ESPNLiveMatch[] },
+type CardMode = MatchPhase | 'next' | 'none';
+
+function PhasePill(
+  { mode, match, now, espn }:
+  { mode: CardMode; match: WatchMatch | null; now: number; espn: ESPNLiveMatch[] },
 ) {
-  const onAir = onAirFor(network, now);
-  if (!onAir) {
-    const next = nextFor(network, now);
-    return next
-      ? <span className="text-[11px] text-gray-500 tabular-nums">in {fmtCountdown(next.kickoff - now)}</span>
-      : <span className="text-[11px] text-gray-500">—</span>;
-  }
-  const live = liveFor(onAir.match, espn);
-  if (live?.status === 'live') {
+  if (mode === 'live') {
+    const live = liveFor(match, espn);
     return (
       <span className="flex items-center gap-1.5 bg-green-950 border border-green-800/60 text-green-300 text-[11px] font-semibold px-2.5 py-1 rounded-full">
-        <span className="live-dot" /> {live.clock || 'LIVE'}
+        <span className="live-dot" /> {live?.clock || 'LIVE'}
       </span>
     );
   }
-  if (live?.status === 'finished' || onAir.phase === 'post') {
+  if (mode === 'pre' && match) {
+    return <span className="badge-scheduled tabular-nums">Kick-off in {fmtCountdown(match.kickoff - now)}</span>;
+  }
+  if (mode === 'next' && match) {
+    return <span className="text-[11px] text-gray-500 tabular-nums">in {fmtCountdown(match.kickoff - now)}</span>;
+  }
+  if (mode === 'post') {
     return <span className="badge-finished">Full time</span>;
   }
-  if (onAir.phase === 'live') {
-    return (
-      <span className="flex items-center gap-1.5 bg-green-950 border border-green-800/60 text-green-300 text-[11px] font-semibold px-2.5 py-1 rounded-full">
-        <span className="live-dot" /> LIVE
-      </span>
-    );
-  }
-  // pre-match
-  return <span className="badge-scheduled tabular-nums">Kick-off in {fmtCountdown(onAir.match.kickoff - now)}</span>;
+  return <span className="text-[11px] text-gray-500">—</span>;
 }
 
-// ─── Stream card (labelled by its match — never by channel name) ───────────────
+const PHASE_LABEL: Record<CardMode, string> = {
+  live: 'On air now', pre: 'Starting soon', next: 'Up next', post: 'Just ended', none: '',
+};
 
 function StreamCard(
   { network, now, espn, selected, onSelect }:
   { network: Network; now: number; espn: ESPNLiveMatch[]; selected: boolean; onSelect: () => void },
 ) {
-  const onAir = onAirFor(network, now);
+  const focus = focusFor(network, now);
   const next = nextFor(network, now);
-  const m = onAir?.match ?? next ?? null;
-  const live = m ? liveFor(m, espn) : null;
+  const ended = postFor(network, now);
+
+  let primary: WatchMatch | null;
+  let mode: CardMode;
+  if (focus) { primary = focus.match; mode = focus.phase; }
+  else if (next) { primary = next; mode = 'next'; }
+  else if (ended) { primary = ended; mode = 'post'; }
+  else { primary = null; mode = 'none'; }
+
+  // Show the ended match as a secondary note only when it isn't the headline.
+  const endedNote = ended && ended !== primary ? ended : null;
+
+  const live = mode === 'live' || mode === 'post' ? liveFor(primary, espn) : null;
   const showScore = !!live && (live.status === 'live' || live.status === 'finished');
   const hW = showScore && (live!.home ?? -1) > (live!.away ?? -1);
   const aW = showScore && (live!.away ?? -1) > (live!.home ?? -1);
-
-  const phaseLabel = onAir
-    ? (onAir.phase === 'live' ? 'On air now' : onAir.phase === 'pre' ? 'Starting soon' : 'Replay window')
-    : 'Up next';
+  const onAir = mode === 'live' || mode === 'pre';
 
   return (
     <button
@@ -147,7 +171,7 @@ function StreamCard(
         selected
           ? 'border-fifa-gold bg-gray-900 ring-1 ring-fifa-gold/40'
           : 'border-gray-800 bg-gray-900/50 hover:border-gray-600'
-      }`}
+      } ${mode === 'post' ? 'opacity-80' : ''}`}
     >
       {/* header — selection state + phase on the left, live/countdown on the right */}
       <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -158,27 +182,35 @@ function StreamCard(
               Watching
             </span>
           )}
-          <span className="text-gray-500">{phaseLabel}</span>
+          <span className="text-gray-500">{PHASE_LABEL[mode]}</span>
         </span>
-        <StatusPill network={network} now={now} espn={espn} />
+        <PhasePill mode={mode} match={primary} now={now} espn={espn} />
       </div>
 
       {/* match */}
-      {m ? (
+      {primary ? (
         <>
           <div className="space-y-1.5">
-            <TeamRow code={m.home} score={showScore ? live!.home : null} win={hW} />
-            <TeamRow code={m.away} score={showScore ? live!.away : null} win={aW} />
+            <TeamRow code={primary.home} score={showScore ? live!.home : null} win={hW} />
+            <TeamRow code={primary.away} score={showScore ? live!.away : null} win={aW} />
           </div>
           <div className="mt-2.5 pt-2.5 hairline-t flex items-center justify-between text-[11px] text-gray-500">
-            <span>{m.stage}</span>
+            <span>{primary.stage}</span>
             <span className="tabular-nums">
-              {onAir ? `${fmtClock(m.kickoff)} · ${m.venue}` : `${fmtDay(m.kickoff)} · ${fmtClock(m.kickoff)}`}
+              {onAir ? `${fmtClock(primary.kickoff)} · ${primary.venue}` : `${fmtDay(primary.kickoff)} · ${fmtClock(primary.kickoff)}`}
             </span>
           </div>
         </>
       ) : (
         <p className="text-sm text-gray-500 py-2">No more matches scheduled.</p>
+      )}
+
+      {/* just-ended fixture — accessible but out of focus */}
+      {endedNote && (
+        <div className="mt-2.5 pt-2.5 hairline-t flex items-center gap-2 text-[11px] text-gray-500">
+          <span className="badge-finished shrink-0">Ended</span>
+          <span className="truncate">{teamName(endedNote.home)} v {teamName(endedNote.away)} — still watchable</span>
+        </div>
       )}
     </button>
   );
@@ -241,10 +273,7 @@ export default function WatchLive() {
       const match = MATCHES.find(x => String(x.no) === mParam);
       if (match) return match.network;
     }
-    const t = Date.now();
-    const inPlay = NETWORKS.find(n => onAirFor(n, t)?.phase === 'live');
-    if (inPlay) return inPlay;
-    return NETWORKS.find(n => onAirFor(n, t)) ?? NETWORKS[0];
+    return defaultChannel(Date.now());
   });
   const [loaded, setLoaded] = useState(false);
 
@@ -262,8 +291,9 @@ export default function WatchLive() {
     [now, espn],
   );
 
-  // What the currently-selected stream is showing, for the caption under the player.
-  const selectedMatch = onAirFor(channel, now)?.match ?? null;
+  // What the currently-selected stream is showing, for the caption under the
+  // player — its live/soon focus, or a just-ended match if that's all there is.
+  const selectedMatch = focusFor(channel, now)?.match ?? postFor(channel, now);
 
   return (
     <div className="space-y-5 max-w-2xl mx-auto">

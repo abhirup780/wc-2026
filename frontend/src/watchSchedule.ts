@@ -193,6 +193,28 @@ export function onAirFor(network: Network, now: number): { match: WatchMatch; ph
   return best;
 }
 
+/**
+ * The match a network should put in focus: a live or pre-match fixture only.
+ * A just-ended (post) match is deliberately excluded so Live/Upcoming lead —
+ * use {@link postFor} to surface the ended one as a secondary, still-watchable
+ * option.
+ */
+export function focusFor(network: Network, now: number): { match: WatchMatch; phase: MatchPhase } | null {
+  const air = onAirFor(network, now);
+  return air && air.phase !== 'post' ? air : null;
+}
+
+/** A recently-finished match still inside its 1h post-match window, or null. */
+export function postFor(network: Network, now: number): WatchMatch | null {
+  let best: WatchMatch | null = null;
+  for (const match of MATCHES) {
+    if (match.network !== network) continue;
+    if (phaseOf(match, now) !== 'post') continue;
+    if (!best || match.kickoff > best.kickoff) best = match; // most recent
+  }
+  return best;
+}
+
 /** Next not-yet-on-air match for a network. */
 export function nextFor(network: Network, now: number): WatchMatch | null {
   for (const match of MATCHES) {
