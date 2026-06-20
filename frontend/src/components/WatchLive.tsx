@@ -35,11 +35,6 @@ function fmtCountdown(ms: number) {
   return `${m}m`;
 }
 
-const NET_TAG: Record<Network, string> = {
-  FOX: 'bg-blue-950 text-blue-300',
-  FS1: 'bg-purple-950 text-purple-300',
-};
-
 // ─── ESPN overlay ──────────────────────────────────────────────────────────────
 // ESPN's live scoreboard carries the same FIFA codes we use, so a schedule match
 // can be matched on home/away. The reversed lookup (and score swap) guards
@@ -126,9 +121,9 @@ function StatusPill(
   return <span className="badge-scheduled tabular-nums">Kick-off in {fmtCountdown(onAir.match.kickoff - now)}</span>;
 }
 
-// ─── Channel card (also the channel selector) ──────────────────────────────────
+// ─── Stream card (labelled by its match — never by channel name) ───────────────
 
-function ChannelCard(
+function StreamCard(
   { network, now, espn, selected, onSelect }:
   { network: Network; now: number; espn: ESPNLiveMatch[]; selected: boolean; onSelect: () => void },
 ) {
@@ -140,6 +135,10 @@ function ChannelCard(
   const hW = showScore && (live!.home ?? -1) > (live!.away ?? -1);
   const aW = showScore && (live!.away ?? -1) > (live!.home ?? -1);
 
+  const phaseLabel = onAir
+    ? (onAir.phase === 'live' ? 'On air now' : onAir.phase === 'pre' ? 'Starting soon' : 'Replay window')
+    : 'Up next';
+
   return (
     <button
       onClick={onSelect}
@@ -150,19 +149,17 @@ function ChannelCard(
           : 'border-gray-800 bg-gray-900/50 hover:border-gray-600'
       }`}
     >
-      {/* header */}
+      {/* header — selection state + phase on the left, live/countdown on the right */}
       <div className="flex items-center justify-between gap-2 mb-2.5">
-        <div className="flex items-center gap-2">
-          <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded ${NET_TAG[network]}`}>{network}</span>
+        <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-semibold">
           {selected && (
-            <span className="flex items-center gap-1 text-[10px] font-semibold text-fifa-gold uppercase tracking-wide">
-              <svg viewBox="0 0 24 24" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 3l14 9-14 9z" fill="currentColor" stroke="none" />
-              </svg>
+            <span className="flex items-center gap-1 text-fifa-gold">
+              <svg viewBox="0 0 24 24" className="w-3 h-3" fill="currentColor"><path d="M5 3l14 9-14 9z" /></svg>
               Watching
             </span>
           )}
-        </div>
+          <span className="text-gray-500">{phaseLabel}</span>
+        </span>
         <StatusPill network={network} now={now} espn={espn} />
       </div>
 
@@ -183,16 +180,11 @@ function ChannelCard(
       ) : (
         <p className="text-sm text-gray-500 py-2">No more matches scheduled.</p>
       )}
-
-      {/* label clarifying whether this is live now or what's next */}
-      <p className="mt-2 text-[10px] uppercase tracking-widest text-gray-500 font-semibold">
-        {onAir ? (onAir.phase === 'live' ? 'On air now' : onAir.phase === 'pre' ? 'Starting soon' : 'Replay window') : 'Up next'}
-      </p>
     </button>
   );
 }
 
-// ─── Upcoming list (both channels) ─────────────────────────────────────────────
+// ─── Upcoming list (both streams) ──────────────────────────────────────────────
 
 function UpcomingList({ now }: { now: number }) {
   const upcoming = useMemo(
@@ -224,10 +216,9 @@ function UpcomingList({ now }: { now: number }) {
                 <TeamRow code={m.home} size={20} />
                 <TeamRow code={m.away} size={20} />
               </div>
-              <div className="flex flex-col items-end gap-1 shrink-0">
-                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${NET_TAG[m.network]}`}>{m.network}</span>
-                <span className="text-[11px] text-gray-400 tabular-nums whitespace-nowrap">{fmtClock(m.kickoff)}</span>
-              </div>
+              <span className="text-[11px] text-gray-400 tabular-nums whitespace-nowrap shrink-0">
+                {fmtClock(m.kickoff)}
+              </span>
             </div>
           ))}
         </div>
@@ -243,13 +234,17 @@ export default function WatchLive() {
   const [searchParams] = useSearchParams();
   const [now, setNow] = useState(() => Date.now());
   const [channel, setChannel] = useState<Network>(() => {
-    // Honour a deep-link from the Scores page (#/watch?ch=FOX) first.
-    const ch = searchParams.get('ch');
-    if (ch === 'FOX' || ch === 'FS1') return ch;
+    // Deep-link from the Scores page carries a match number (#/watch?m=51) — no
+    // channel name in the URL. Resolve it to the stream that carries that match.
+    const mParam = searchParams.get('m');
+    if (mParam) {
+      const match = MATCHES.find(x => String(x.no) === mParam);
+      if (match) return match.network;
+    }
     const t = Date.now();
     const inPlay = NETWORKS.find(n => onAirFor(n, t)?.phase === 'live');
     if (inPlay) return inPlay;
-    return NETWORKS.find(n => onAirFor(n, t)) ?? 'FOX';
+    return NETWORKS.find(n => onAirFor(n, t)) ?? NETWORKS[0];
   });
   const [loaded, setLoaded] = useState(false);
 
@@ -259,13 +254,16 @@ export default function WatchLive() {
     return () => clearInterval(id);
   }, []);
 
-  // Reset the loading overlay whenever the channel (and thus the iframe) changes.
+  // Reset the loading overlay whenever the stream (and thus the iframe) changes.
   useEffect(() => setLoaded(false), [channel]);
 
   const liveCount = useMemo(
     () => NETWORKS.filter(n => isLiveNow(n, now, espn)).length,
     [now, espn],
   );
+
+  // What the currently-selected stream is showing, for the caption under the player.
+  const selectedMatch = onAirFor(channel, now)?.match ?? null;
 
   return (
     <div className="space-y-5 max-w-2xl mx-auto">
@@ -274,7 +272,7 @@ export default function WatchLive() {
       <div className="flex items-center justify-between gap-2">
         <div>
           <h2 className="text-lg font-bold tracking-tight">Watch Live</h2>
-          <p className="text-xs text-gray-500">Pick a channel — the right match is mapped to each.</p>
+          <p className="text-xs text-gray-500">Two matches can run at once — pick the one you want to watch.</p>
         </div>
         {liveCount === 2 && (
           <span className="flex items-center gap-1.5 bg-green-950 border border-green-800/60 text-green-300 text-[11px] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
@@ -294,13 +292,13 @@ export default function WatchLive() {
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
               <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
             </svg>
-            <span className="text-xs font-medium tracking-wide">Loading {channel} stream… this can take a moment</span>
+            <span className="text-xs font-medium tracking-wide">Loading stream… this can take a moment</span>
           </div>
         )}
         <iframe
           key={channel}
           src={STREAMS[channel]}
-          title={`${channel} live stream`}
+          title="Live stream"
           className="absolute inset-0 h-full w-full"
           frameBorder={0}
           scrolling="no"
@@ -310,10 +308,17 @@ export default function WatchLive() {
         />
       </div>
 
-      {/* Both channels at a glance — tap either to watch */}
+      {/* Caption — which match the player is showing (by teams, not channel) */}
+      <p className="-mt-2 text-center text-xs text-gray-400">
+        {selectedMatch
+          ? <>Now watching · <span className="text-gray-200 font-semibold">{teamName(selectedMatch.home)} v {teamName(selectedMatch.away)}</span></>
+          : 'Live stream'}
+      </p>
+
+      {/* Both streams at a glance — tap either match to watch it */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {NETWORKS.map(n => (
-          <ChannelCard
+          <StreamCard
             key={n}
             network={n}
             now={now}
@@ -324,13 +329,13 @@ export default function WatchLive() {
         ))}
       </div>
 
-      {/* Coming up across both channels */}
+      {/* Coming up across both streams */}
       <UpcomingList now={now} />
 
       <p className="text-[11px] leading-relaxed text-gray-500">
         Live scores via ESPN. Streams are provided by a third party and are not hosted or controlled by this site.
         Coverage appears from about an hour before kick-off through full time. If the player is blank, give it a
-        moment to buffer or switch channels and back.
+        moment to buffer, or pick the other match and switch back.
       </p>
     </div>
   );
