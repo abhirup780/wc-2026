@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   MATCHES, NETWORKS, STREAMS, onAirFor, nextFor, phaseOf,
   type Network, type WatchMatch,
@@ -239,8 +240,12 @@ function UpcomingList({ now }: { now: number }) {
 
 export default function WatchLive() {
   const { matches: espn } = useESPNLive(30_000);
+  const [searchParams] = useSearchParams();
   const [now, setNow] = useState(() => Date.now());
   const [channel, setChannel] = useState<Network>(() => {
+    // Honour a deep-link from the Scores page (#/watch?ch=FOX) first.
+    const ch = searchParams.get('ch');
+    if (ch === 'FOX' || ch === 'FS1') return ch;
     const t = Date.now();
     const inPlay = NETWORKS.find(n => onAirFor(n, t)?.phase === 'live');
     if (inPlay) return inPlay;

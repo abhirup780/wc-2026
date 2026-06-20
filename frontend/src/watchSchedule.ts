@@ -202,3 +202,21 @@ export function nextFor(network: Network, now: number): WatchMatch | null {
   }
   return null;
 }
+
+/**
+ * For a fixture identified by team codes, the schedule match that is currently
+ * on air (within its stream window), or null. Orientation-agnostic so it works
+ * regardless of which side a caller treats as home. Used by the Scores page to
+ * deep-link a live/soon match straight to its broadcast channel.
+ */
+export function findAirByTeams(home: string, away: string, now: number):
+  { match: WatchMatch; phase: MatchPhase } | null {
+  for (const match of MATCHES) {
+    const phase = phaseOf(match, now);
+    if (!phase) continue;
+    if ((match.home === home && match.away === away) || (match.home === away && match.away === home)) {
+      return { match, phase };
+    }
+  }
+  return null;
+}

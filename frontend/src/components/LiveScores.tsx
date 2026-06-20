@@ -5,6 +5,7 @@ import { teamName, formatKickoff } from '../utils.ts';
 import Flag from './Flag.tsx';
 import MatchDetailPanel from './MatchDetail.tsx';
 import SoonCard from './PreMatch.tsx';
+import WatchLink from './WatchLink.tsx';
 import type { Match, UpcomingMatch } from '@wc2026/shared';
 
 type RichMatch = Match & { clock?: string; venue?: string; homeForm?: string; awayForm?: string };
@@ -127,6 +128,11 @@ function LiveCard({ m }: { m: RichMatch }) {
               <p className="text-[10px] font-mono text-gray-500 tracking-widest mt-0.5">{m.awayId}</p>
             </div>
           </div>
+        </div>
+
+        {/* Watch CTA — only renders when the match is inside its broadcast window */}
+        <div className="mt-4 flex justify-center">
+          <WatchLink homeId={m.homeId} awayId={m.awayId} className="w-full sm:w-auto" />
         </div>
 
         {/* Live detail — timeline, stats, lineups, commentary */}

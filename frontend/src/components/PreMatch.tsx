@@ -4,6 +4,7 @@ import type { ESPNH2HGame } from '../api.ts';
 import { teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
 import { Lineups } from './MatchDetail.tsx';
+import WatchLink from './WatchLink.tsx';
 import type { Match, UpcomingMatch } from '@wc2026/shared';
 
 type SoonMatch = Match & { venue?: string; homeForm?: string; awayForm?: string };
@@ -185,6 +186,11 @@ export default function SoonCard({ m, prediction }: { m: SoonMatch; prediction?:
 
         <TeamLine code={m.homeId} form={m.homeForm} />
         <TeamLine code={m.awayId} form={m.awayForm} />
+
+        {/* Watch CTA — appears once the match enters its broadcast window (~1h out) */}
+        <div className="mt-2.5" onClick={e => e.stopPropagation()}>
+          <WatchLink homeId={m.homeId} awayId={m.awayId} className="w-full" />
+        </div>
 
         <div className="flex items-center justify-between gap-2 mt-2 text-[10px] text-gray-500">
           <span className="truncate">{m.venue ?? ''}</span>
