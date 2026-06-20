@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   MATCHES, NETWORKS, STREAMS, onAirFor, nextFor, phaseOf,
-  type Network, type WatchMatch, type MatchPhase,
+  type Network, type WatchMatch,
 } from '../watchSchedule.ts';
+import { useESPNLive, type ESPNLiveMatch } from '../api.ts';
 import { FIFA_NAMES, teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
 
@@ -33,123 +34,164 @@ function fmtCountdown(ms: number) {
   return `${m}m`;
 }
 
-// ─── Team name + flag (or bracket-slot badge) ──────────────────────────────────
+const NET_TAG: Record<Network, string> = {
+  FOX: 'bg-blue-950 text-blue-300',
+  FS1: 'bg-purple-950 text-purple-300',
+};
 
-function Side({ code, size = 24 }: { code: string; size?: number }) {
+// ─── ESPN overlay ──────────────────────────────────────────────────────────────
+// ESPN's live scoreboard carries the same FIFA codes we use, so a schedule match
+// can be matched on home/away. The reversed lookup (and score swap) guards
+// against ESPN listing the fixture with the opposite home/away orientation.
+
+type LiveInfo = ESPNLiveMatch & { home: number | null; away: number | null };
+
+function liveFor(m: WatchMatch, espn: ESPNLiveMatch[]): LiveInfo | null {
+  if (!isTeamCode(m.home) || !isTeamCode(m.away)) return null;
+  const direct = espn.find(e => e.homeCode === m.home && e.awayCode === m.away);
+  if (direct) return { ...direct, home: direct.homeScore, away: direct.awayScore };
+  const rev = espn.find(e => e.homeCode === m.away && e.awayCode === m.home);
+  if (rev) return { ...rev, home: rev.awayScore, away: rev.homeScore };
+  return null;
+}
+
+// True live state, preferring ESPN ground-truth over the published schedule.
+function isLiveNow(network: Network, now: number, espn: ESPNLiveMatch[]): boolean {
+  const onAir = onAirFor(network, now);
+  if (!onAir) return false;
+  const live = liveFor(onAir.match, espn);
+  if (live) return live.status === 'live';
+  return onAir.phase === 'live';
+}
+
+// ─── Team row (flag/slot badge + name + optional score) ────────────────────────
+
+function TeamRow({ code, size = 26, score, win }: { code: string; size?: number; score?: number | null; win?: boolean }) {
   return (
-    <span className="flex items-center gap-2 min-w-0">
+    <div className="flex items-center gap-2.5">
       {isTeamCode(code) ? (
         <Flag code={code} size={size} />
       ) : (
         <span
-          className="flex items-center justify-center rounded bg-gray-800 text-gray-400 font-mono text-[10px] font-bold px-1 flex-shrink-0"
+          className="flex items-center justify-center rounded bg-gray-800 text-gray-400 font-mono text-[10px] font-bold flex-shrink-0"
           style={{ width: size, height: Math.round(size * 0.67) }}
         >
           {code}
         </span>
       )}
-      <span className="truncate text-sm font-semibold text-gray-100">{teamName(code)}</span>
-    </span>
+      <span className={`flex-1 min-w-0 truncate text-sm leading-tight ${win ? 'font-bold text-gray-50' : 'font-semibold text-gray-200'}`}>
+        {teamName(code)}
+      </span>
+      {score != null && (
+        <span className={`text-lg font-bold tabular-nums w-5 text-right ${win ? 'text-gray-50' : 'text-gray-400'}`}>
+          {score}
+        </span>
+      )}
+    </div>
   );
 }
 
-// ─── Phase badge ───────────────────────────────────────────────────────────────
+// ─── Status pill ───────────────────────────────────────────────────────────────
 
-function PhaseBadge({ phase, now, kickoff }: { phase: MatchPhase; now: number; kickoff: number }) {
-  if (phase === 'live') {
+function StatusPill(
+  { network, now, espn }: { network: Network; now: number; espn: ESPNLiveMatch[] },
+) {
+  const onAir = onAirFor(network, now);
+  if (!onAir) {
+    const next = nextFor(network, now);
+    return next
+      ? <span className="text-[11px] text-gray-500 tabular-nums">in {fmtCountdown(next.kickoff - now)}</span>
+      : <span className="text-[11px] text-gray-500">—</span>;
+  }
+  const live = liveFor(onAir.match, espn);
+  if (live?.status === 'live') {
+    return (
+      <span className="flex items-center gap-1.5 bg-green-950 border border-green-800/60 text-green-300 text-[11px] font-semibold px-2.5 py-1 rounded-full">
+        <span className="live-dot" /> {live.clock || 'LIVE'}
+      </span>
+    );
+  }
+  if (live?.status === 'finished' || onAir.phase === 'post') {
+    return <span className="badge-finished">Full time</span>;
+  }
+  if (onAir.phase === 'live') {
     return (
       <span className="flex items-center gap-1.5 bg-green-950 border border-green-800/60 text-green-300 text-[11px] font-semibold px-2.5 py-1 rounded-full">
         <span className="live-dot" /> LIVE
       </span>
     );
   }
-  if (phase === 'pre') {
-    return (
-      <span className="badge-scheduled tabular-nums">Kick-off in {fmtCountdown(kickoff - now)}</span>
-    );
-  }
-  return <span className="badge-finished">Just finished</span>;
+  // pre-match
+  return <span className="badge-scheduled tabular-nums">Kick-off in {fmtCountdown(onAir.match.kickoff - now)}</span>;
 }
 
-// ─── Channel tab ───────────────────────────────────────────────────────────────
+// ─── Channel card (also the channel selector) ──────────────────────────────────
 
-function ChannelTab(
-  { network, active, live, onSelect }:
-  { network: Network; active: boolean; live: boolean; onSelect: () => void },
+function ChannelCard(
+  { network, now, espn, selected, onSelect }:
+  { network: Network; now: number; espn: ESPNLiveMatch[]; selected: boolean; onSelect: () => void },
 ) {
+  const onAir = onAirFor(network, now);
+  const next = nextFor(network, now);
+  const m = onAir?.match ?? next ?? null;
+  const live = m ? liveFor(m, espn) : null;
+  const showScore = !!live && (live.status === 'live' || live.status === 'finished');
+  const hW = showScore && (live!.home ?? -1) > (live!.away ?? -1);
+  const aW = showScore && (live!.away ?? -1) > (live!.home ?? -1);
+
   return (
     <button
       onClick={onSelect}
-      className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-colors border ${
-        active
-          ? 'bg-fifa-gold text-fifa-navy border-fifa-gold'
-          : 'text-gray-300 border-gray-800 hover:border-gray-600 hover:text-gray-100'
+      aria-pressed={selected}
+      className={`text-left rounded-xl border p-3.5 transition-colors ${
+        selected
+          ? 'border-fifa-gold bg-gray-900 ring-1 ring-fifa-gold/40'
+          : 'border-gray-800 bg-gray-900/50 hover:border-gray-600'
       }`}
     >
-      {network}
-      {live && (
-        <span className={`flex items-center gap-1 text-[10px] font-semibold ${active ? 'text-fifa-navy/80' : 'text-green-400'}`}>
-          <span className={`inline-block w-1.5 h-1.5 rounded-full ${active ? 'bg-fifa-navy/80' : 'bg-green-400'}`} /> LIVE
-        </span>
+      {/* header */}
+      <div className="flex items-center justify-between gap-2 mb-2.5">
+        <div className="flex items-center gap-2">
+          <span className={`text-[11px] font-bold px-1.5 py-0.5 rounded ${NET_TAG[network]}`}>{network}</span>
+          {selected && (
+            <span className="flex items-center gap-1 text-[10px] font-semibold text-fifa-gold uppercase tracking-wide">
+              <svg viewBox="0 0 24 24" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 3l14 9-14 9z" fill="currentColor" stroke="none" />
+              </svg>
+              Watching
+            </span>
+          )}
+        </div>
+        <StatusPill network={network} now={now} espn={espn} />
+      </div>
+
+      {/* match */}
+      {m ? (
+        <>
+          <div className="space-y-1.5">
+            <TeamRow code={m.home} score={showScore ? live!.home : null} win={hW} />
+            <TeamRow code={m.away} score={showScore ? live!.away : null} win={aW} />
+          </div>
+          <div className="mt-2.5 pt-2.5 hairline-t flex items-center justify-between text-[11px] text-gray-500">
+            <span>{m.stage}</span>
+            <span className="tabular-nums">
+              {onAir ? `${fmtClock(m.kickoff)} · ${m.venue}` : `${fmtDay(m.kickoff)} · ${fmtClock(m.kickoff)}`}
+            </span>
+          </div>
+        </>
+      ) : (
+        <p className="text-sm text-gray-500 py-2">No more matches scheduled.</p>
       )}
+
+      {/* label clarifying whether this is live now or what's next */}
+      <p className="mt-2 text-[10px] uppercase tracking-widest text-gray-500 font-semibold">
+        {onAir ? (onAir.phase === 'live' ? 'On air now' : onAir.phase === 'pre' ? 'Starting soon' : 'Replay window') : 'Up next'}
+      </p>
     </button>
   );
 }
 
-// ─── On-air / up-next info card for the selected channel ───────────────────────
-
-function NowCard({ network, now }: { network: Network; now: number }) {
-  const onAir = onAirFor(network, now);
-  const next = nextFor(network, now);
-
-  if (onAir) {
-    const { match: m, phase } = onAir;
-    return (
-      <div className="card">
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">
-            {phase === 'live' ? 'On air now' : phase === 'pre' ? 'Up next' : 'Replay window'} · {network}
-          </span>
-          <PhaseBadge phase={phase} now={now} kickoff={m.kickoff} />
-        </div>
-        <div className="space-y-1.5">
-          <Side code={m.home} size={28} />
-          <Side code={m.away} size={28} />
-        </div>
-        <div className="mt-3 pt-3 hairline-t flex items-center justify-between text-[11px] text-gray-500">
-          <span>{m.stage}</span>
-          <span className="tabular-nums">{fmtClock(m.kickoff)} · {m.venue}</span>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="card">
-      <span className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">No live match · {network}</span>
-      {next ? (
-        <div className="mt-3">
-          <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="text-[11px] text-gray-500">Next on {network}</span>
-            <span className="badge-scheduled tabular-nums">in {fmtCountdown(next.kickoff - now)}</span>
-          </div>
-          <div className="space-y-1.5">
-            <Side code={next.home} size={28} />
-            <Side code={next.away} size={28} />
-          </div>
-          <div className="mt-3 pt-3 hairline-t flex items-center justify-between text-[11px] text-gray-500">
-            <span>{next.stage}</span>
-            <span className="tabular-nums">{fmtDay(next.kickoff)} · {fmtClock(next.kickoff)}</span>
-          </div>
-        </div>
-      ) : (
-        <p className="mt-2 text-sm text-gray-500">No further matches scheduled on {network}.</p>
-      )}
-    </div>
-  );
-}
-
-// ─── Upcoming list (both channels, next few) ───────────────────────────────────
+// ─── Upcoming list (both channels) ─────────────────────────────────────────────
 
 function UpcomingList({ now }: { now: number }) {
   const upcoming = useMemo(
@@ -158,7 +200,6 @@ function UpcomingList({ now }: { now: number }) {
   );
   if (upcoming.length === 0) return null;
 
-  // Group by day for readable headers.
   const groups: { day: string; items: WatchMatch[] }[] = [];
   for (const m of upcoming) {
     const day = fmtDay(m.kickoff);
@@ -179,15 +220,11 @@ function UpcomingList({ now }: { now: number }) {
           {g.items.map(m => (
             <div key={m.no} className="flex items-center gap-3 rounded-xl border border-gray-800/60 bg-gray-900/50 px-3.5 py-2.5">
               <div className="flex-1 min-w-0 space-y-1">
-                <Side code={m.home} size={20} />
-                <Side code={m.away} size={20} />
+                <TeamRow code={m.home} size={20} />
+                <TeamRow code={m.away} size={20} />
               </div>
               <div className="flex flex-col items-end gap-1 shrink-0">
-                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                  m.network === 'FOX' ? 'bg-blue-950 text-blue-300' : 'bg-purple-950 text-purple-300'
-                }`}>
-                  {m.network}
-                </span>
+                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${NET_TAG[m.network]}`}>{m.network}</span>
                 <span className="text-[11px] text-gray-400 tabular-nums whitespace-nowrap">{fmtClock(m.kickoff)}</span>
               </div>
             </div>
@@ -201,14 +238,13 @@ function UpcomingList({ now }: { now: number }) {
 // ─── Main ──────────────────────────────────────────────────────────────────────
 
 export default function WatchLive() {
+  const { matches: espn } = useESPNLive(30_000);
   const [now, setNow] = useState(() => Date.now());
   const [channel, setChannel] = useState<Network>(() => {
     const t = Date.now();
-    // Default to a channel that's live; prefer the one actually in-progress.
     const inPlay = NETWORKS.find(n => onAirFor(n, t)?.phase === 'live');
     if (inPlay) return inPlay;
-    const onAir = NETWORKS.find(n => onAirFor(n, t));
-    return onAir ?? 'FOX';
+    return NETWORKS.find(n => onAirFor(n, t)) ?? 'FOX';
   });
   const [loaded, setLoaded] = useState(false);
 
@@ -221,9 +257,9 @@ export default function WatchLive() {
   // Reset the loading overlay whenever the channel (and thus the iframe) changes.
   useEffect(() => setLoaded(false), [channel]);
 
-  const liveNetworks = useMemo(
-    () => NETWORKS.filter(n => onAirFor(n, now)?.phase === 'live'),
-    [now],
+  const liveCount = useMemo(
+    () => NETWORKS.filter(n => isLiveNow(n, now, espn)).length,
+    [now, espn],
   );
 
   return (
@@ -233,26 +269,13 @@ export default function WatchLive() {
       <div className="flex items-center justify-between gap-2">
         <div>
           <h2 className="text-lg font-bold tracking-tight">Watch Live</h2>
-          <p className="text-xs text-gray-500">Live FOX &amp; FS1 broadcast — the right match for each channel.</p>
+          <p className="text-xs text-gray-500">Pick a channel — the right match is mapped to each.</p>
         </div>
-        {liveNetworks.length === 2 && (
+        {liveCount === 2 && (
           <span className="flex items-center gap-1.5 bg-green-950 border border-green-800/60 text-green-300 text-[11px] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
             <span className="live-dot" /> 2 matches live
           </span>
         )}
-      </div>
-
-      {/* Channel selector */}
-      <div className="flex gap-2">
-        {NETWORKS.map(n => (
-          <ChannelTab
-            key={n}
-            network={n}
-            active={channel === n}
-            live={liveNetworks.includes(n)}
-            onSelect={() => setChannel(n)}
-          />
-        ))}
       </div>
 
       {/* Player */}
@@ -282,16 +305,27 @@ export default function WatchLive() {
         />
       </div>
 
-      {/* What's on the selected channel */}
-      <NowCard network={channel} now={now} />
+      {/* Both channels at a glance — tap either to watch */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {NETWORKS.map(n => (
+          <ChannelCard
+            key={n}
+            network={n}
+            now={now}
+            espn={espn}
+            selected={channel === n}
+            onSelect={() => setChannel(n)}
+          />
+        ))}
+      </div>
 
       {/* Coming up across both channels */}
       <UpcomingList now={now} />
 
       <p className="text-[11px] leading-relaxed text-gray-500">
-        Streams are provided by a third party and are not hosted or controlled by this site. Coverage appears
-        from about an hour before kick-off through full time. If the player is blank, give it a moment to buffer
-        or switch channels and back.
+        Live scores via ESPN. Streams are provided by a third party and are not hosted or controlled by this site.
+        Coverage appears from about an hour before kick-off through full time. If the player is blank, give it a
+        moment to buffer or switch channels and back.
       </p>
     </div>
   );
