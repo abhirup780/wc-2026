@@ -403,10 +403,10 @@
       "homeId": "GER",
       "awayId": "CIV",
       "kickoffUtc": "2026-06-20T20:00Z",
-      "homeXg": 1.635017900896968,
-      "awayXg": 0.9556470293951003,
-      "homeGoals": 0,
-      "awayGoals": 0
+      "homeXg": 2,
+      "awayXg": 1,
+      "homeGoals": 2,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760446",
@@ -655,8 +655,8 @@
       "homeId": "CUW",
       "awayId": "CIV",
       "kickoffUtc": "2026-06-25T20:00Z",
-      "homeXg": 0.8112570434252098,
-      "awayXg": 1.9260233395360935,
+      "homeXg": 0.8325919167089875,
+      "awayXg": 1.876669672912684,
       "homeGoals": 0,
       "awayGoals": 3
     },
@@ -667,8 +667,8 @@
       "homeId": "ECU",
       "awayId": "GER",
       "kickoffUtc": "2026-06-25T20:00Z",
-      "homeXg": 0.9587936455966412,
-      "awayXg": 1.6296520186339811,
+      "homeXg": 0.9342248976619365,
+      "awayXg": 1.6725094823638647,
       "homeGoals": 0,
       "awayGoals": 4
     },
@@ -884,8 +884,8 @@
       "homeId": "GER",
       "awayId": "PAR",
       "kickoffUtc": "",
-      "homeXg": 1.5034800335828484,
-      "awayXg": 0.7508621496687088,
+      "homeXg": 1.5430193587093826,
+      "awayXg": 0.7316215727482794,
       "homeGoals": 3,
       "awayGoals": 1,
       "winnerId": "GER"
@@ -936,8 +936,8 @@
       "homeId": "CIV",
       "awayId": "SEN",
       "kickoffUtc": "",
-      "homeXg": 0.9126536446741919,
-      "awayXg": 1.2369492595441376,
+      "homeXg": 0.8892672179381904,
+      "awayXg": 1.269479215277298,
       "homeGoals": 2,
       "awayGoals": 2,
       "winnerId": "SEN"
@@ -1079,8 +1079,8 @@
       "homeId": "GER",
       "awayId": "FRA",
       "kickoffUtc": "",
-      "homeXg": 0.8523476161960375,
-      "awayXg": 1.3244669528592368,
+      "homeXg": 0.8747631114236595,
+      "awayXg": 1.2905279558059182,
       "homeGoals": 0,
       "awayGoals": 1,
       "winnerId": "FRA"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-20T21:24:33.364Z"
+  "generatedAt": "2026-06-20T22:45:32.282Z"
 }

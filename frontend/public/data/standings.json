@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T21:24:22.683Z",
+  "timestamp": "2026-06-20T22:45:21.682Z",
   "groups": {
     "A": [
       {
@@ -206,13 +206,13 @@
         "groupId": "E",
         "teamId": "GER",
         "played": 2,
-        "w": 1,
+        "w": 2,
         "d": 0,
-        "l": 1,
-        "gf": 7,
+        "l": 0,
+        "gf": 9,
         "ga": 2,
-        "gd": 5,
-        "points": 3
+        "gd": 7,
+        "points": 6
       },
       {
         "groupId": "E",
@@ -230,13 +230,13 @@
         "groupId": "E",
         "teamId": "CIV",
         "played": 2,
-        "w": 2,
+        "w": 1,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 2,
-        "ga": 0,
-        "gd": 2,
-        "points": 6
+        "ga": 2,
+        "gd": 0,
+        "points": 3
       },
       {
         "groupId": "E",

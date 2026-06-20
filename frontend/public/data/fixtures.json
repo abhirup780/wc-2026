@@ -149,9 +149,9 @@
       "name": "Germany",
       "code": "GER",
       "groupId": "E",
-      "rankingElo": 1743.5430235884983,
-      "attackRating": 1.453322561826915,
-      "defenseRating": 1.453322561826915
+      "rankingElo": 1760.453588238981,
+      "attackRating": 1.4915428188321673,
+      "defenseRating": 1.4915428188321673
     },
     {
       "id": "CUW",
@@ -167,9 +167,9 @@
       "name": "Ivory Coast",
       "code": "CIV",
       "groupId": "E",
-      "rankingElo": 1568.6242752958356,
-      "attackRating": 1.1110907111702146,
-      "defenseRating": 1.1110907111702146
+      "rankingElo": 1551.7137106453529,
+      "attackRating": 1.0826194048148774,
+      "defenseRating": 1.0826194048148774
     },
     {
       "id": "ECU",
@@ -936,8 +936,8 @@
       "homeId": "GER",
       "awayId": "CIV",
       "kickoffUtc": "2026-06-20T20:00Z",
-      "status": "live",
-      "homeGoals": 0,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
