@@ -13,10 +13,19 @@ export type Network = 'FOX' | 'FS1';
 
 export const NETWORKS: Network[] = ['FOX', 'FS1'];
 
+// Primary embed tried first for every stream; the per-channel feeds below are
+// the fallbacks used if the primary fails to load.
+export const PRIMARY_STREAM = 'https://xyzstreams.shop/wc-1-embed.html';
+
 export const STREAMS: Record<Network, string> = {
   FOX: 'https://findleembeds.pages.dev/embed/fox-usa',
   FS1: 'https://findleembeds.pages.dev/embed/fox-sports-1',
 };
+
+/** Ordered stream sources to try for a channel: primary first, then fallback. */
+export function streamSources(network: Network): string[] {
+  return [PRIMARY_STREAM, STREAMS[network]];
+}
 
 export interface WatchMatch {
   no: number;
