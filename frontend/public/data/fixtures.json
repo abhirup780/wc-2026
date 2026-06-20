@@ -185,9 +185,9 @@
       "name": "Netherlands",
       "code": "NED",
       "groupId": "F",
-      "rankingElo": 1749.2024569436776,
-      "attackRating": 1.4660033789377558,
-      "defenseRating": 1.4660033789377558
+      "rankingElo": 1764.3955505552951,
+      "attackRating": 1.5005957094589402,
+      "defenseRating": 1.5005957094589402
     },
     {
       "id": "JPN",
@@ -203,9 +203,9 @@
       "name": "Sweden",
       "code": "SWE",
       "groupId": "F",
-      "rankingElo": 1533.1909300448146,
-      "attackRating": 1.0522702368848957,
-      "defenseRating": 1.0522702368848957
+      "rankingElo": 1517.997836433197,
+      "attackRating": 1.0280128838866973,
+      "defenseRating": 1.0280128838866973
     },
     {
       "id": "TUN",
@@ -921,8 +921,8 @@
       "homeId": "NED",
       "awayId": "SWE",
       "kickoffUtc": "2026-06-20T17:00Z",
-      "status": "live",
-      "homeGoals": 4,
+      "status": "finished",
+      "homeGoals": 5,
       "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
