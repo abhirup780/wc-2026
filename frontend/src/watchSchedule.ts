@@ -14,7 +14,7 @@ export type Network = 'FOX' | 'FS1';
 export const NETWORKS: Network[] = ['FOX', 'FS1'];
 
 export const STREAMS: Record<Network, string> = {
-  FOX: 'https://findleembeds.pages.dev/embed/fox-usa',
+  FOX: 'https://embed.selltvonline.shop/live/embed.php?ch=es1',
   FS1: 'https://findleembeds.pages.dev/embed/fox-sports-1',
 };
 
