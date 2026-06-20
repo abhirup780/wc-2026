@@ -4,6 +4,7 @@ import LiveScores from './components/LiveScores.tsx';
 import Groups from './components/Groups.tsx';
 import Forecast from './components/Forecast.tsx';
 import Prediction from './components/Prediction.tsx';
+import WatchLive from './components/WatchLive.tsx';
 import Footer from './components/Footer.tsx';
 
 // ─── Nav icons ────────────────────────────────────────────────────────────────
@@ -48,12 +49,23 @@ function IcoSimulate() {
 
 const NAV = [
   { to: '/scores',     label: 'Scores',   Icon: IcoScores   },
+  { to: '/watch',      label: 'Watch',    Icon: IcoWatch    },
   { to: '/groups',     label: 'Groups',   Icon: IcoGroups   },
   { to: '/forecast',   label: 'Forecast', Icon: IcoForecast },
   { to: '/prediction', label: 'Simulate', Icon: IcoSimulate },
 ];
 
 // ─── Theme toggle ─────────────────────────────────────────────────────────────
+
+function IcoWatch() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <rect x="2" y="4" width="20" height="14" rx="2.5"/>
+      <path d="M10 9l4 2.5-4 2.5z" fill="currentColor" stroke="none"/>
+      <path d="M8 21h8"/>
+    </svg>
+  );
+}
 
 function IcoSun() {
   return (
@@ -221,6 +233,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/scores" replace />} />
             <Route path="/scores"     element={<LiveScores />} />
+            <Route path="/watch"      element={<WatchLive />} />
             <Route path="/groups"     element={<Groups />} />
             <Route path="/forecast"   element={<Forecast />} />
             <Route path="/prediction" element={<Prediction />} />
