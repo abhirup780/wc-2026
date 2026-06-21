@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T15:25:26.625Z",
+  "timestamp": "2026-06-21T17:07:33.907Z",
   "groups": {
     "A": [
       {
@@ -355,14 +355,14 @@
       {
         "groupId": "H",
         "teamId": "ESP",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 0,
+        "gf": 3,
         "ga": 0,
-        "gd": 0,
-        "points": 1
+        "gd": 3,
+        "points": 4
       },
       {
         "groupId": "H",
@@ -379,13 +379,13 @@
       {
         "groupId": "H",
         "teamId": "KSA",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "ga": 4,
+        "gd": -3,
         "points": 1
       },
       {

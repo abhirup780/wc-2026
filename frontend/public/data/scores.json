@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T15:25:26.625Z",
+  "timestamp": "2026-06-21T17:07:33.907Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -548,9 +548,9 @@
       "homeId": "ESP",
       "awayId": "KSA",
       "kickoffUtc": "2026-06-21T16:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 3,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
