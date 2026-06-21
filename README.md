@@ -1,6 +1,6 @@
 # FIFA World Cup 2026 — Live Scores & Monte Carlo Forecast
 
-A fast, static web app that shows **live World Cup 2026 scores** and a **probabilistic forecast** of how the tournament will unfold — champion odds, round-by-round advancement probabilities, a most-likely bracket, and per-match predictions blended with bookmaker odds.
+A fast, static web app that shows **live World Cup 2026 scores** alongside a **probabilistic forecast** of how the tournament will unfold — champion odds, round-by-round advancement, a most-likely bracket, Round-of-32 matchup projections, and per-match predictions blended with bookmaker odds.
 
 No backend server. Live scores come straight from a public feed in the browser; the heavy simulation runs in CI and ships its results as static JSON.
 
@@ -10,9 +10,10 @@ No backend server. Live scores come straight from a public feed in the browser; 
 
 ## Features
 
-- **Live scores & goals** — pulled from the public ESPN scoreboard, polled every 30s, with goalscorers and match clock.
-- **Group tables** — computed live from results; "Q" shown only once a group is mathematically decided.
+- **Live scores & goals** — from the public ESPN scoreboard, polled every ~10s, with goalscorers, cards and the match clock.
+- **Group tables** — computed live from results; qualification marked only once a group is mathematically decided.
 - **Championship forecast** — Monte Carlo probabilities for every team to win its group, reach each round, and lift the trophy, plus the change since the pre-tournament baseline.
+- **Round-of-32 projection** — from the current standings: the most likely knockout ties (how often each exact pairing forms), and each top contender's most likely R32 opponent. Sharpens after every match and locks to 100% once the group stage ends.
 - **Next-match predictions** — model 1X2 (home/draw/away) probabilities blended with bookmaker odds.
 - **Most Likely Outcome** — a deterministic favourites-advance bracket, recomputed live from the latest results.
 - **Roll the dice** — sample an alternative but plausible tournament (upset-damped) on demand.
@@ -22,14 +23,14 @@ No backend server. Live scores come straight from a public feed in the browser; 
 ## How it works
 
 ```
-ESPN scoreboard ─┐                          ┌─► Live overlay (browser, 30s polling)
+ESPN scoreboard ─┐                          ┌─► Live overlay (browser, ~10s polling)
                  ├─► GitHub Actions job ─────┤
 The Odds API ────┘   (Monte Carlo, every     └─► frontend/public/data/*.json ─► Vercel (static site)
-                      15 min, odds cached)
+                      5 min, odds cached)
 ```
 
 1. **Data fetch** — the job reads fixtures, results and live ratings from the [ESPN public scoreboard](https://www.espn.com/) (no key) and bookmaker odds from [The Odds API](https://the-odds-api.com/) (optional key).
-2. **Simulation** — it runs a Monte Carlo of the remaining tournament plus a deterministic "most likely" prediction, then commits the results as JSON under `frontend/public/data/`.
+2. **Simulation** — it runs a Monte Carlo of the remaining tournament, a Round-of-32 matchup projection, and a deterministic "most likely" prediction, then commits the results as JSON under `frontend/public/data/`.
 3. **Delivery** — Vercel rebuilds the static site on every commit. The frontend reads the JSON and overlays live ESPN scores client-side, so scores stay current between simulation runs.
 4. **No secret reaches the browser** — the Odds API key lives only in CI.
 
@@ -40,7 +41,8 @@ The Odds API ────┘   (Monte Carlo, every     └─► frontend/public
 | **Ratings** | Seeded with the official **FIFA / Coca-Cola World Ranking points**, updated in-tournament using FIFA's **SUM** method (importance `I` = 50 group / 60 knockout, expected result on the `/600` curve, no goal-difference term, penalty-shootout results). |
 | **Match model** | **Dixon-Coles Poisson** — expected goals derived from the rating gap with a low-score correction; draws resolved via extra time then penalties. |
 | **Forecast** | **Monte Carlo** (50,000 tournaments) producing per-team probabilities for each milestone. |
-| **Market blend** | Bookmaker 1X2 and outright odds blended into the model (default **30% market / 70% model**) for next-match and champion probabilities. |
+| **R32 projection** | The same simulation tallies, across all 16 R32 slots, how often each exact two-team pairing forms — using FIFA tiebreakers, the eight best third-placed teams, and the official **Annex C** assignment table. |
+| **Market blend** | Bookmaker 1X2 and outright odds blended into the model (default **30% market / 70% model** in CI) for next-match and champion probabilities. |
 
 ---
 
@@ -52,7 +54,7 @@ wc-2026/
 ├── job/         Data-fetch + simulation (Node/TypeScript, runs in GitHub Actions)
 │   └── src/
 │       ├── adapters/    espn, odds-api, outrights-api, team-codes
-│       ├── sim/         engine (Monte Carlo), poisson, predict, bracket, tiebreakers, …
+│       ├── sim/         engine (Monte Carlo), poisson, predict, r32, bracket, tiebreakers, …
 │       ├── ratings.ts   FIFA SUM rating updates
 │       └── index.ts     pipeline entry point
 ├── frontend/    Vite + React + Tailwind static site (Scores · Groups · Forecast · Simulate)
@@ -70,6 +72,7 @@ npm workspaces tie the three packages together.
 | `scores.json` | Recent / live / upcoming matches |
 | `standings.json` | Group standings |
 | `forecast.json` | Monte Carlo probabilities per team (+ pre-tournament baseline) |
+| `r32.json` | Round-of-32 projection — most-likely ties + top contenders' likely opponents |
 | `prediction.json` | Deterministic full-tournament prediction |
 | `upcoming.json` | Next matches with model + market 1X2 |
 | `meta.json` | Snapshot timestamp, sim count, seed |
@@ -78,13 +81,13 @@ npm workspaces tie the three packages together.
 
 ## Refresh pipeline
 
-The workflow runs **every 15 minutes** but is designed to be cheap and quota-friendly:
+The workflow runs **every 5 minutes** but is designed to be cheap and quota-friendly:
 
 - It **exits early** unless a match result has changed (detected from ESPN) **or** the cached odds are stale (older than `ODDS_TTL_HOURS`).
 - Odds are fetched from The Odds API **only when the cache is stale (~3×/day)** and cached privately (via GitHub Actions cache) for reuse. Match-driven re-runs use the cached odds — **no API call**.
 - A run commits `frontend/public/data/*.json` only when something actually changed, which triggers a Vercel deploy.
 
-Result: the forecast refreshes within ~15 min of any match finishing, while Odds API usage stays around **~180 requests/month** (within the free 500/month tier).
+Result: the forecast and R32 projection refresh within ~5 min of any match finishing, while Odds API usage stays around **~180 requests/month** (within the free 500/month tier).
 
 ---
 
@@ -156,11 +159,11 @@ Live scores need **no key** (ESPN is public). Odds are used only to derive blend
 
 ---
 
-## Known limitations
+## Notes & limitations
 
-- **Forecast vs. live** — the Forecast (Monte Carlo) probabilities update on the refresh cycle, whereas Scores, Groups and the Simulate "Most Likely Outcome" reflect live ESPN results immediately.
-
-The Round-of-32 bracket — including the official **Annex C** table for which of the eight best third-placed teams fills which slot (all 495 group combinations) — matches FIFA's published regulations exactly.
+- **Forecast vs. live** — the Forecast and R32 projection update on the refresh cycle (~5 min), whereas Scores, Groups and the Simulate "Most Likely Outcome" reflect live ESPN results immediately.
+- **R32 convergence** — projected pairings sharpen with every result and reach 100% once the group stage is complete; the only residual uncertainty is FIFA's drawing of lots for teams level on every tiebreaker.
+- **Annex C accuracy** — the Round-of-32 third-placed assignment (all 495 group combinations of which eight thirds qualify and which slot each fills) matches FIFA's published regulations exactly.
 
 ---
 
