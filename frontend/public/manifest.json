@@ -2,6 +2,7 @@
   "name": "FIFA World Cup 2026",
   "short_name": "WC 2026",
   "description": "Live scores, group standings, and Monte Carlo championship forecasts for FIFA World Cup 2026.",
+  "id": "/",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
