@@ -101,8 +101,7 @@ export default function R32Projection() {
         )}
 
         <p className="text-[10px] leading-relaxed text-gray-500">
-          Probability that these two teams meet anywhere in the Round of 32 · advance split from current Elo ·
-          from {data.distinctMatchups} possible pairings over {data.simCount.toLocaleString()} sims, updates after every game.
+          Probability that these two teams meet anywhere in the Round of 32.
         </p>
       </section>
 
