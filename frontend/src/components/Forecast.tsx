@@ -72,14 +72,17 @@ function NextMatches() {
 
 type SortKey = keyof Pick<TeamForecast, 'pChampion' | 'pReachFinal' | 'pReachSF' | 'pReachQF' | 'pReachR16' | 'pAdvanceGroup' | 'pWinGroup'>;
 
+// Every middle column is the probability of REACHING that stage (cumulative —
+// i.e. still alive at that round). "Win Group" = finish 1st in the group;
+// "Champion" = win the tournament.
 const COLUMNS: { key: SortKey; label: string; short: string; mobileHide?: boolean }[] = [
-  { key: 'pWinGroup',    label: 'Win Group',     short: 'W.Grp', mobileHide: true },
-  { key: 'pAdvanceGroup',label: 'Advance',        short: 'Adv.',  mobileHide: true },
-  { key: 'pReachR16',    label: 'Round of 16',    short: 'R16',   mobileHide: true },
-  { key: 'pReachQF',     label: 'Quarter-finals', short: 'QF',    mobileHide: true },
-  { key: 'pReachSF',     label: 'Semi-finals',    short: 'SF'    },
-  { key: 'pReachFinal',  label: 'Final',          short: 'Final' },
-  { key: 'pChampion',    label: 'Winner',         short: 'Win'   },
+  { key: 'pWinGroup',    label: 'Win Group',  short: 'Win Grp', mobileHide: true },
+  { key: 'pAdvanceGroup',label: 'Reach R32',  short: 'R32',     mobileHide: true },
+  { key: 'pReachR16',    label: 'Reach R16',  short: 'R16',     mobileHide: true },
+  { key: 'pReachQF',     label: 'Reach QF',   short: 'QF',      mobileHide: true },
+  { key: 'pReachSF',     label: 'Reach SF',   short: 'SF'    },
+  { key: 'pReachFinal',  label: 'Reach Final',short: 'Final' },
+  { key: 'pChampion',    label: 'Champion',   short: 'Win'   },
 ];
 
 function fmtProb(v: number): string {
@@ -216,6 +219,12 @@ export default function Forecast() {
           ))}
         </div>
       </div>
+
+      {/* Legend — clarify the columns are cumulative "reach" probabilities */}
+      <p className="text-[11px] text-gray-500 -mb-1">
+        Each column is the chance of <span className="text-gray-300 font-medium">reaching</span> that round (48 teams → 32 → 16 → 8 → 4 → 2 → champion).
+        <span className="hidden sm:inline"> “Win Group” = finishing 1st; “Champion” = winning it all.</span>
+      </p>
 
       {/* Probability table — horizontally scrollable on mobile */}
       <div className="card p-0 overflow-hidden">
