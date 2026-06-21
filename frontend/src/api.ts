@@ -287,7 +287,7 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
         // `status`, NOT under `status.type` — reading the wrong path left it blank.
         displayClock?: string;
         period?: number;
-        type: { state: string; completed: boolean; shortDetail?: string; description?: string };
+        type: { state: string; completed: boolean; name?: string; shortDetail?: string; description?: string };
       };
     }>;
   };
@@ -305,9 +305,14 @@ async function fetchESPNLive(): Promise<ESPNLiveMatch[]> {
       st.completed || st.state === 'post' ? 'finished'
       : st.state === 'in' ? 'live'
       : 'scheduled';
+    // At the interval ESPN keeps the running clock at "45'+x'" but flags the
+    // status as halftime — show "HT" instead of the stoppage-time reading.
+    const isHalftime = st.name === 'STATUS_HALFTIME'
+      || /^ht$|half[- ]?time/i.test(st.shortDetail ?? '')
+      || /half[- ]?time/i.test(st.description ?? '');
     const dc = comp.status.displayClock?.trim();
     const detail = st.shortDetail?.trim();
-    const clock = dc && dc !== '0\'' ? dc : (detail || dc || '');
+    const clock = isHalftime ? 'HT' : (dc && dc !== '0\'' ? dc : (detail || dc || ''));
     const venue = comp.venue?.fullName
       ? [comp.venue.fullName, comp.venue.address?.city].filter(Boolean).join(' · ')
       : undefined;
