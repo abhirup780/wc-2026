@@ -99,6 +99,7 @@ export default function Forecast() {
   const [sortKey, setSortKey] = useState<SortKey>('pChampion');
   const [filterGroup, setFilterGroup] = useState<string>('');
   const [champView, setChampView] = useState<ChampView>('combo');
+  const [champShowAll, setChampShowAll] = useState(false);
 
   const fetcher = useCallback(() => fetchForecast(), []);
   const { data: forecast, loading, error, lastUpdated } = usePolled(fetcher, 60_000);
@@ -124,9 +125,6 @@ export default function Forecast() {
           {lastUpdated ? ` · updated ${lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}
         </p>
       </div>
-
-      {/* Round of 32 — most likely ties, projected from current standings (top of tab) */}
-      <R32Projection />
 
       {/* Winner probability bar chart — toggle between combo / model / market */}
       <div className="card">
@@ -155,33 +153,47 @@ export default function Forecast() {
           const ranked = [...forecast.teams]
             .map(t => ({ t, p: champProb(t) }))
             .sort((a, b) => b.p - a.p)
-            .filter(x => x.p > 0.001)
-            .slice(0, 16);
+            .filter(x => x.p > 0.001);
           if (ranked.length === 0) return (
             <p className="text-xs text-gray-400">No market data available yet — refresh after the next data update.</p>
           );
+          // Top 10 by default; the rest behind "show more".
+          const visible = champShowAll ? ranked : ranked.slice(0, 10);
           // Scale bars relative to the leader so they fill the track (the % label
           // still shows the true probability).
           const maxP = ranked[0].p || 1;
           return (
-            <div className="space-y-2">
-              {ranked.map(({ t, p }) => (
-                <div key={t.teamId} className="flex items-center gap-2">
-                  <Flag code={t.code} size={20} />
-                  <span className="text-xs text-gray-400 w-7 shrink-0 tabular-nums font-medium">{t.code}</span>
-                  <div className="flex-1 bg-gray-800 rounded-full h-2.5 relative overflow-hidden">
-                    <div
-                      className="h-2.5 rounded-full bg-gradient-to-r from-fifa-blue to-fifa-gold transition-all duration-500"
-                      style={{ width: `${Math.max(3, (p / maxP) * 100)}%` }}
-                    />
+            <>
+              <div className="space-y-2">
+                {visible.map(({ t, p }) => (
+                  <div key={t.teamId} className="flex items-center gap-2">
+                    <Flag code={t.code} size={20} />
+                    <span className="text-xs text-gray-400 w-7 shrink-0 tabular-nums font-medium">{t.code}</span>
+                    <div className="flex-1 bg-gray-800 rounded-full h-2.5 relative overflow-hidden">
+                      <div
+                        className="h-2.5 rounded-full bg-gradient-to-r from-fifa-blue to-fifa-gold transition-all duration-500"
+                        style={{ width: `${Math.max(3, (p / maxP) * 100)}%` }}
+                      />
+                    </div>
+                    <span className="text-xs tabular-nums w-9 text-right text-gray-100 shrink-0 font-bold">{pct(p)}</span>
                   </div>
-                  <span className="text-xs tabular-nums w-9 text-right text-gray-100 shrink-0 font-bold">{pct(p)}</span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+              {ranked.length > 10 && (
+                <button
+                  onClick={() => setChampShowAll(s => !s)}
+                  className="w-full mt-3 py-2 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:border-gray-600 hover:text-gray-100 transition-colors"
+                >
+                  {champShowAll ? 'Show fewer' : `Show more (${ranked.length - 10})`}
+                </button>
+              )}
+            </>
           );
         })()}
       </div>
+
+      {/* Round of 32 — most likely ties (compact), projected from current standings */}
+      <R32Projection />
 
       {/* Group filter */}
       <div className="flex items-center gap-2 flex-wrap">

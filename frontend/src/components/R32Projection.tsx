@@ -7,76 +7,41 @@ import type { R32MatchupProjection } from '@wc2026/shared';
 const isTeamCode = (code: string) => code in FIFA_NAMES;
 const pct = (p: number) => `${Math.round(p * 100)}%`;
 
-// Flag, or a neutral badge for unresolved third-place slots.
-function Side({ code, name, align = 'left' }: { code: string; name: string; align?: 'left' | 'right' }) {
-  const flag = isTeamCode(code)
-    ? <Flag code={code} size={22} />
-    : <span className="inline-block w-[22px] h-[15px] rounded bg-gray-800" />;
-  return (
-    <span className={`flex items-center gap-2 min-w-0 ${align === 'right' ? 'flex-row-reverse text-right' : ''}`}>
-      {flag}
-      <span className="truncate text-sm font-semibold text-gray-100">{name}</span>
-    </span>
-  );
+// Small flag, or a neutral badge for unresolved third-place slots.
+function MiniFlag({ code }: { code: string }) {
+  return isTeamCode(code)
+    ? <Flag code={code} size={16} />
+    : <span className="inline-block w-4 h-[11px] rounded-sm bg-gray-700 shrink-0" />;
 }
 
-function MatchupCard({ m, rank }: { m: R32MatchupProjection; rank: number }) {
-  const homePctH2H = Math.round(m.homeWinProb * 100);
-
+// One compact ranked row per tie.
+function MatchupRow({ m, rank }: { m: R32MatchupProjection; rank: number }) {
+  const h2h = Math.round(m.homeWinProb * 100);
   return (
-    <div className="card">
-      {/* header — rank + slot pairing + matchup probability */}
-      <div className="flex items-center justify-between gap-3 mb-3">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800 text-gray-300 text-xs font-bold tabular-nums shrink-0">
-            {rank}
+    <div className="flex items-center gap-3 rounded-lg border border-gray-800/60 bg-gray-900/50 px-3 py-2">
+      <span className="w-4 text-center text-[11px] font-bold tabular-nums text-gray-500 shrink-0">{rank}</span>
+      <span className="w-9 text-right text-base font-bold tabular-nums text-fifa-gold shrink-0">{pct(m.prob)}</span>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-1.5 text-sm">
+          <span className="flex items-center gap-1.5 min-w-0 flex-1">
+            <MiniFlag code={m.home} /><span className="truncate font-semibold text-gray-100">{m.homeName}</span>
           </span>
-          <span className="text-[11px] uppercase tracking-widest text-gray-500 font-semibold truncate">
-            R32 · {m.slot1} v {m.slot2}
+          <span className="text-gray-600 text-xs shrink-0">v</span>
+          <span className="flex items-center gap-1.5 min-w-0 flex-1">
+            <MiniFlag code={m.away} /><span className="truncate font-semibold text-gray-100">{m.awayName}</span>
           </span>
         </div>
-        <div className="text-right shrink-0">
-          <div className="text-xl font-bold tabular-nums text-fifa-gold leading-none">{pct(m.prob)}</div>
-          <div className="text-[10px] text-gray-500 uppercase tracking-wide">likely tie</div>
+        <div className="text-[10px] text-gray-500 mt-0.5 truncate">
+          {m.slot1} v {m.slot2} · advance {h2h}/{100 - h2h}
         </div>
-      </div>
-
-      {/* matchup-probability bar */}
-      <div className="h-1.5 rounded-full bg-gray-800 overflow-hidden mb-3">
-        <div className="h-full bg-fifa-gold/80 rounded-full" style={{ width: `${Math.min(100, m.prob * 100)}%` }} />
-      </div>
-
-      {/* the two teams + Elo head-to-head split */}
-      <div className="flex items-center gap-3">
-        <div className="flex-1 min-w-0"><Side code={m.home} name={m.homeName} /></div>
-        <div className="shrink-0 text-center px-1">
-          <div className="text-[11px] font-bold tabular-nums text-gray-300">
-            {homePctH2H}<span className="text-gray-600"> / </span>{100 - homePctH2H}
-          </div>
-          <div className="text-[9px] text-gray-500 uppercase tracking-wide">advance</div>
-        </div>
-        <div className="flex-1 min-w-0 flex justify-end"><Side code={m.away} name={m.awayName} align="right" /></div>
-      </div>
-
-      {/* head-to-head bar */}
-      <div className="flex h-1.5 rounded-full overflow-hidden mt-2 bg-gray-800">
-        <div className="bg-green-500/70" style={{ width: `${homePctH2H}%` }} />
-        <div className="bg-blue-500/70" style={{ width: `${100 - homePctH2H}%` }} />
-      </div>
-
-      {/* marginal slot probabilities */}
-      <div className="mt-2.5 pt-2.5 hairline-t flex items-center justify-between text-[10px] text-gray-500">
-        <span>reaches {m.slot1} · {pct(m.slot1Prob)}</span>
-        <span>reaches {m.slot2} · {pct(m.slot2Prob)}</span>
       </div>
     </div>
   );
 }
 
 /**
- * Round-of-32 "most likely ties" — an embeddable section of the Forecast tab.
- * Lists projected R32 matchups high→low: every tie at ≥50%, but always at least
- * the top 10 (expandable to all 16).
+ * Round-of-32 "most likely ties" — a compact, embeddable section of the
+ * Forecast tab. Top 6 ties by default (high→low), the rest behind "Show more".
  */
 export default function R32Projection() {
   const fetcher = useCallback(() => fetchR32(), []);
@@ -89,46 +54,38 @@ export default function R32Projection() {
   );
 
   if (loading) return (
-    <section className="space-y-3">
+    <section className="space-y-2">
       <h3 className="text-sm font-semibold text-gray-300">Round of 32 — most likely ties</h3>
       <p className="text-xs text-gray-500">Loading projection…</p>
     </section>
   );
   if (error || !data) return null; // stay quiet inside Forecast if the artifact isn't there yet
 
-  // Top 6 ties by default; the rest behind "show more".
   const DEFAULT_COUNT = 6;
   const shown = showAll ? sorted : sorted.slice(0, DEFAULT_COUNT);
 
   return (
-    <section className="space-y-3">
+    <section className="space-y-2">
       <div className="flex items-center justify-between gap-2">
         <h3 className="text-sm font-semibold text-gray-300">Round of 32 — most likely ties</h3>
-        <span className="text-[10px] text-gray-600 text-right">
-          {data.simCount.toLocaleString()} sims · {data.remainingGroupMatches} to play
-        </span>
+        <span className="text-[10px] text-gray-600 shrink-0">{data.remainingGroupMatches} games to play</span>
       </div>
-      <p className="text-[11px] text-gray-500 -mt-1.5">
-        Most probable knockout pairings from the current standings — updates after every game.
-      </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {shown.map((m, i) => <MatchupCard key={m.num} m={m} rank={i + 1} />)}
+      <div className="space-y-1.5">
+        {shown.map((m, i) => <MatchupRow key={m.num} m={m} rank={i + 1} />)}
       </div>
 
       {sorted.length > DEFAULT_COUNT && (
         <button
           onClick={() => setShowAll(s => !s)}
-          className="w-full py-2.5 rounded-lg border border-gray-800 text-sm font-semibold text-gray-300 hover:border-gray-600 hover:text-gray-100 transition-colors"
+          className="w-full py-2 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:border-gray-600 hover:text-gray-100 transition-colors"
         >
           {showAll ? 'Show fewer' : `Show more (${sorted.length - DEFAULT_COUNT})`}
         </button>
       )}
 
-      <p className="text-[11px] leading-relaxed text-gray-500">
-        “Likely tie” is the probability of that exact pairing forming; a team reaches its bracket slot more often
-        than the tie itself occurs (its opponent varies). Head-to-head “advance” split is from current Elo; who
-        fills each slot is market-blended from the remaining group games.
+      <p className="text-[10px] leading-relaxed text-gray-500">
+        Probability of each exact pairing forming · advance split from current Elo · {data.simCount.toLocaleString()} sims, updates after every game.
       </p>
     </section>
   );
