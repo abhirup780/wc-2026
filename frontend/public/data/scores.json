@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T18:52:04.869Z",
+  "timestamp": "2026-06-21T20:23:34.768Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -563,9 +563,9 @@
       "homeId": "BEL",
       "awayId": "IRN",
       "kickoffUtc": "2026-06-21T19:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1073,6 +1073,21 @@
       "homeId": "JOR",
       "awayId": "ARG",
       "kickoffUtc": "2026-06-28T02:00Z",
+      "status": "scheduled",
+      "homeGoals": null,
+      "awayGoals": null,
+      "homeGoalsAet": null,
+      "awayGoalsAet": null,
+      "homePens": null,
+      "awayPens": null
+    },
+    {
+      "id": "ESPN-760486",
+      "stage": "r32",
+      "groupId": null,
+      "homeId": "2A",
+      "awayId": "2B",
+      "kickoffUtc": "2026-06-28T19:00Z",
       "status": "scheduled",
       "homeGoals": null,
       "awayGoals": null,
