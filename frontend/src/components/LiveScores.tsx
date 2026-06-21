@@ -77,9 +77,13 @@ function mergeESPN(base: Match[], live: ESPNLiveMatch[]): RichMatch[] {
 // ─── LIVE CARD ────────────────────────────────────────────────────────────────
 // Prominent, glowing. Polls full match detail (stats, lineups, commentary, cards).
 
-function LiveCard({ m }: { m: RichMatch }) {
-  const hW = (m.homeGoals ?? 0) > (m.awayGoals ?? 0);
-  const aW = (m.awayGoals ?? 0) > (m.homeGoals ?? 0);
+function LiveCard({ m, syncing }: { m: RichMatch; syncing?: boolean }) {
+  // Until the ESPN live overlay has synced, the score from the saved snapshot is
+  // stale — show nothing (blank) rather than an out-of-date number.
+  const hg = syncing ? null : m.homeGoals;
+  const ag = syncing ? null : m.awayGoals;
+  const hW = (hg ?? 0) > (ag ?? 0);
+  const aW = (ag ?? 0) > (hg ?? 0);
   const { detail, loading } = useMatchDetail(espnEventId(m), 15_000);
 
   return (
@@ -93,7 +97,7 @@ function LiveCard({ m }: { m: RichMatch }) {
           <span className="text-xs text-gray-400 uppercase tracking-widest font-medium">{stageLabel(m)}</span>
           <span className="flex items-center gap-1.5 bg-green-950/80 border border-green-800/60 rounded-full px-2.5 py-0.5">
             <span className="live-dot" />
-            <span className="text-green-300 text-xs font-semibold tabular-nums">{m.clock || 'LIVE'}</span>
+            <span className="text-green-300 text-xs font-semibold tabular-nums">{syncing ? 'LIVE' : (m.clock || 'LIVE')}</span>
           </span>
         </div>
 
@@ -113,9 +117,9 @@ function LiveCard({ m }: { m: RichMatch }) {
             <div className="font-bold tabular-nums leading-none tracking-tight"
               style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)',
                 textShadow: '0 0 30px rgba(255,255,255,0.12)' }}>
-              <span className={hW ? 'text-gray-50' : 'text-gray-500'}>{m.homeGoals ?? '–'}</span>
+              <span className={hW ? 'text-gray-50' : 'text-gray-500'}>{hg ?? '–'}</span>
               <span className="text-gray-600 mx-3">:</span>
-              <span className={aW ? 'text-gray-50' : 'text-gray-500'}>{m.awayGoals ?? '–'}</span>
+              <span className={aW ? 'text-gray-50' : 'text-gray-500'}>{ag ?? '–'}</span>
             </div>
           </div>
 
@@ -349,7 +353,7 @@ export default function LiveScores() {
       {live.length > 0 && (
         <section className="space-y-3">
           <SectionHeader label="Live Now" count={live.length} />
-          {live.map(m => <LiveCard key={m.id} m={m} />)}
+          {live.map(m => <LiveCard key={m.id} m={m} syncing={lastSync == null && !failed} />)}
         </section>
       )}
 

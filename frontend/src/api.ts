@@ -12,7 +12,10 @@ import type { Fixtures, Standings, Scores, Forecast, Prediction, Meta, Upcoming,
 const BASE = import.meta.env.BASE_URL + 'data';
 
 async function fetchJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}/${path}?_t=${Date.now()}`);
+  // No cache-busting query: the `must-revalidate` header (see vercel.json) keeps
+  // it fresh online, and a clean URL lets the service worker's network-first
+  // cache serve the last response offline.
+  const res = await fetch(`${BASE}/${path}`, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`${path}: ${res.status}`);
   return res.json() as Promise<T>;
 }

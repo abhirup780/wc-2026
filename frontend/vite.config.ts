@@ -17,6 +17,20 @@ export default defineConfig({
         navigateFallback: '/index.html',
         skipWaiting: true,
         clientsClaim: true,
+        // Live data: network-first so it's always fresh online, but the last
+        // successful response is kept so the installed app still shows data offline.
+        runtimeCaching: [
+          {
+            urlPattern: /\/data\/.*\.json$/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'wc-data',
+              networkTimeoutSeconds: 5,
+              expiration: { maxEntries: 24, maxAgeSeconds: 86400 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
       devOptions: {
         enabled: false,
