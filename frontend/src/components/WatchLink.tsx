@@ -1,25 +1,23 @@
-import { findAirByTeams } from '../watchSchedule.ts';
-
 /**
- * A "Watch live" CTA for a fixture, shown on the Scores page when the match is
- * inside its broadcast window. Deep-links to the Watch tab with the carrying
- * stream pre-selected via the match number (#/watch?m=<no>) — no channel name
- * is exposed anywhere. Renders nothing when the fixture isn't on air, so callers
- * can drop it in unconditionally.
+ * Subtle "Watch live" CTA shown on live / about-to-kick-off matches on the
+ * Scores page. Points all requests to a single external stream aggregator — no
+ * per-match links to maintain. Intentionally low-key.
  */
-export default function WatchLink({ homeId, awayId, className = '' }: { homeId: string; awayId: string; className?: string }) {
-  const air = findAirByTeams(homeId, awayId, Date.now());
-  if (!air) return null;
+const WATCH_URL = 'https://timstreams.net/';
 
+export default function WatchLink({ className = '' }: { className?: string }) {
   return (
     <a
-      href={`#/watch?m=${air.match.no}&fs=1`}
-      className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-bold bg-fifa-gold text-fifa-navy hover:brightness-95 transition-[filter] ${className}`}
+      href={WATCH_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-1 text-[11px] font-medium text-gray-500 hover:text-gray-300 transition-colors ${className}`}
     >
-      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="currentColor">
-        <path d="M5 3l14 9-14 9z" />
-      </svg>
+      <svg viewBox="0 0 24 24" className="w-3 h-3" fill="currentColor"><path d="M5 3l14 9-14 9z" /></svg>
       Watch live
+      <svg viewBox="0 0 24 24" className="w-2.5 h-2.5 opacity-70" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 17 17 7M9 7h8v8" />
+      </svg>
     </a>
   );
 }

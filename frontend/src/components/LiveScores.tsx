@@ -130,9 +130,9 @@ function LiveCard({ m }: { m: RichMatch }) {
           </div>
         </div>
 
-        {/* Watch CTA — only renders when the match is inside its broadcast window */}
-        <div className="mt-4 flex justify-center">
-          <WatchLink homeId={m.homeId} awayId={m.awayId} className="w-full sm:w-auto" />
+        {/* Subtle external watch CTA */}
+        <div className="mt-3 flex justify-center">
+          <WatchLink />
         </div>
 
         {/* Live detail — timeline, stats, lineups, commentary */}

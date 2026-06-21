@@ -187,13 +187,11 @@ export default function SoonCard({ m, prediction }: { m: SoonMatch; prediction?:
         <TeamLine code={m.homeId} form={m.homeForm} />
         <TeamLine code={m.awayId} form={m.awayForm} />
 
-        {/* Watch CTA — appears once the match enters its broadcast window (~1h out) */}
-        <div className="mt-2.5" onClick={e => e.stopPropagation()}>
-          <WatchLink homeId={m.homeId} awayId={m.awayId} className="w-full" />
-        </div>
-
         <div className="flex items-center justify-between gap-2 mt-2 text-[10px] text-gray-500">
-          <span className="truncate">{m.venue ?? ''}</span>
+          <div className="flex items-center gap-3 min-w-0">
+            <span className="truncate">{m.venue ?? ''}</span>
+            <span className="shrink-0" onClick={e => e.stopPropagation()}><WatchLink /></span>
+          </div>
           <span className="flex items-center gap-1 shrink-0 text-gray-400">
             {open ? 'Hide info' : 'Match info'}
             <span className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>▾</span>
