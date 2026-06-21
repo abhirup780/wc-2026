@@ -189,8 +189,12 @@ async function main(): Promise<void> {
   const upcomingMatches = predictUpcoming(teams, matches, oddsMap, CONFIG.model, 5);
   console.log(`Upcoming predictions: ${upcomingMatches.length} (market blended: ${upcomingMatches.filter(u => u.marketBlended).length})`);
 
-  // 9c. R32 matchup projection (most-likely Round-of-32 ties from current standings)
-  const r32 = projectR32(teams, matches, oddsMap, CONFIG.model, CONFIG.simCount);
+  // 9c. R32 matchup projection (most-likely ties + top contenders' likely opponents)
+  const contenderCodes = [...simResult.teams]
+    .sort((a, b) => b.pChampion - a.pChampion)
+    .slice(0, 10)
+    .map(t => t.teamId);
+  const r32 = projectR32(teams, matches, oddsMap, CONFIG.model, CONFIG.simCount, contenderCodes);
   console.log(`R32 projection: ${r32.remainingGroupMatches} group matches still to play`);
 
   // 10. Write artifacts

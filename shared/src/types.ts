@@ -138,12 +138,26 @@ export interface R32Matchup {
   homeWinProb: number;  // Elo head-to-head P(home advances)
 }
 
+export interface R32Opponent {
+  code: string;
+  name: string;
+  prob: number;   // P(this opponent | the contender reaches the R32)
+}
+
+export interface R32Contender {
+  code: string;
+  name: string;
+  reachProb: number;          // P(team reaches the R32)
+  opponents: R32Opponent[];   // most likely R32 opponents, high→low
+}
+
 export interface R32Projection {
   generatedAt: string;
   simCount: number;
   remainingGroupMatches: number;
   distinctMatchups: number;   // total distinct pairings seen across sims
   matchups: R32Matchup[];     // ranked high→low (top N)
+  contenders: R32Contender[]; // top title contenders + their likely R32 opponents
 }
 
 // ─── Upcoming-match predictions (model 1X2 blended with bookmaker odds) ───────

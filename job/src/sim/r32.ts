@@ -11,7 +11,7 @@
  * teams meet anywhere in the Round of 32. Re-runs whenever results change.
  */
 
-import type { Team, Match, GroupStanding, ModelConfig, R32Projection, R32Matchup } from '@wc2026/shared';
+import type { Team, Match, GroupStanding, ModelConfig, R32Projection, R32Matchup, R32Contender } from '@wc2026/shared';
 import { R32_MATCHES, resolveSlot, assignBestThird } from './bracket.js';
 import { selectBestThird } from './best-third.js';
 import { rankGroup } from './tiebreakers.js';
@@ -30,6 +30,7 @@ export function projectR32(
   oddsMap: Map<string, MatchOdds> | undefined,
   config: ModelConfig,
   simCount: number,
+  contenderCodes: string[] = [],
   seed = 20260621,
 ): R32Projection {
   const teamMap = new Map(teams.map(t => [t.id, t]));
@@ -38,6 +39,9 @@ export function projectR32(
 
   // "A|B" (codes sorted) → number of sims the pair meets in the R32.
   const pairCount = new Map<string, number>();
+  // Per-team R32 opponent distribution: team → (#sims in R32, opponent → count).
+  const appeared = new Map<string, number>();
+  const oppCount = new Map<string, Map<string, number>>();
   const rng = createRng(seed);
 
   for (let i = 0; i < simCount; i++) {
@@ -94,6 +98,13 @@ export function projectR32(
       if (!t1 || !t2) continue;
       const key = t1 < t2 ? `${t1}|${t2}` : `${t2}|${t1}`;
       pairCount.set(key, (pairCount.get(key) ?? 0) + 1);
+      // Per-team opponent tally (both directions).
+      for (const [me, you] of [[t1, t2], [t2, t1]] as [string, string][]) {
+        appeared.set(me, (appeared.get(me) ?? 0) + 1);
+        if (!oppCount.has(me)) oppCount.set(me, new Map());
+        const om = oppCount.get(me)!;
+        om.set(you, (om.get(you) ?? 0) + 1);
+      }
     }
   }
 
@@ -117,11 +128,24 @@ export function projectR32(
       };
     });
 
+  // Top title contenders + their 2 most likely R32 opponents (conditional on
+  // reaching the R32). Order follows the supplied contender ranking.
+  const contenders: R32Contender[] = contenderCodes.map(code => {
+    const app = appeared.get(code) ?? 0;
+    const om = oppCount.get(code) ?? new Map<string, number>();
+    const opponents = [...om.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 2)
+      .map(([oc, cnt]) => ({ code: oc, name: nameOf(oc), prob: app ? cnt / app : 0 }));
+    return { code, name: nameOf(code), reachProb: app / simCount, opponents };
+  });
+
   return {
     generatedAt: new Date().toISOString(),
     simCount,
     remainingGroupMatches: remaining,
     distinctMatchups: pairCount.size,
     matchups,
+    contenders,
   };
 }
