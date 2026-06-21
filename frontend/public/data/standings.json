@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-20T22:45:21.682Z",
+  "timestamp": "2026-06-21T00:15:56.254Z",
   "groups": {
     "A": [
       {
@@ -217,14 +217,14 @@
       {
         "groupId": "E",
         "teamId": "CUW",
-        "played": 1,
+        "played": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 1,
         "ga": 7,
         "gd": -6,
-        "points": 0
+        "points": 1
       },
       {
         "groupId": "E",
@@ -241,14 +241,14 @@
       {
         "groupId": "E",
         "teamId": "ECU",
-        "played": 1,
+        "played": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 0,
         "ga": 1,
         "gd": -1,
-        "points": 0
+        "points": 1
       }
     ],
     "F": [
