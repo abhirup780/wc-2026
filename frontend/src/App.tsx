@@ -188,11 +188,20 @@ export default function App() {
         >
           <div className="max-w-5xl mx-auto px-4">
             <div className="flex items-center gap-4 py-3">
-              <div className="flex-1 min-w-0">
-                <h1 className="font-display text-xl font-bold tracking-tight text-white">
-                  <span className="text-fifa-gold">WC</span> 2026
-                </h1>
-                <p className="text-xs text-white/55">Live scores &amp; winner forecast</p>
+              <div className="flex items-center gap-3 flex-1 min-w-0">
+                <img
+                  src="/icons/icon-192.png"
+                  alt="FIFA World Cup 2026"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-xl shrink-0 ring-1 ring-white/15 shadow-lg shadow-black/25"
+                />
+                <div className="min-w-0">
+                  <h1 className="font-display text-xl font-bold tracking-tight text-white leading-tight">
+                    <span className="text-fifa-gold">WC</span> 2026
+                  </h1>
+                  <p className="text-xs text-white/55 truncate">Live scores &amp; winner forecast</p>
+                </div>
               </div>
               <RunSimButton />
               <ThemeToggle />
