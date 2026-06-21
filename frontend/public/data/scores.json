@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T20:23:34.768Z",
+  "timestamp": "2026-06-21T21:55:50.540Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -563,7 +563,7 @@
       "homeId": "BEL",
       "awayId": "IRN",
       "kickoffUtc": "2026-06-21T19:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
       "awayGoals": 0,
       "homeGoalsAet": null,

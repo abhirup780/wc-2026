@@ -221,9 +221,9 @@
       "name": "Belgium",
       "code": "BEL",
       "groupId": "G",
-      "rankingElo": 1733.9385768680227,
-      "attackRating": 1.4320528675183373,
-      "defenseRating": 1.4320528675183373
+      "rankingElo": 1727.8819175984008,
+      "attackRating": 1.4188003221139658,
+      "defenseRating": 1.4188003221139658
     },
     {
       "id": "EGY",
@@ -239,9 +239,9 @@
       "name": "Iran",
       "code": "IRN",
       "groupId": "G",
-      "rankingElo": 1605.1196770160786,
-      "attackRating": 1.175113416382036,
-      "defenseRating": 1.175113416382036
+      "rankingElo": 1611.1763362857005,
+      "attackRating": 1.1860897628510625,
+      "defenseRating": 1.1860897628510625
     },
     {
       "id": "NZL",
@@ -996,7 +996,7 @@
       "homeId": "BEL",
       "awayId": "IRN",
       "kickoffUtc": "2026-06-21T19:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
       "awayGoals": 0,
       "homeGoalsAet": null,
