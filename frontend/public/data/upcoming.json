@@ -1,21 +1,7 @@
 {
-  "timestamp": "2026-06-21T00:15:56.254Z",
+  "timestamp": "2026-06-21T05:27:27.495Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760449",
-      "stage": "group",
-      "groupId": "F",
-      "homeId": "TUN",
-      "awayId": "JPN",
-      "kickoffUtc": "2026-06-21T04:00Z",
-      "homeXg": 0.9014694862991356,
-      "awayXg": 1.733281074675792,
-      "pHome": 0.163573681804301,
-      "pDraw": 0.2521466047801426,
-      "pAway": 0.5842797134155564,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760453",
       "stage": "group",
@@ -70,6 +56,20 @@
       "pHome": 0.14763349533617545,
       "pDraw": 0.2380971125923144,
       "pAway": 0.6142693920715101,
+      "marketBlended": true
+    },
+    {
+      "id": "ESPN-760456",
+      "stage": "group",
+      "groupId": "J",
+      "homeId": "ARG",
+      "awayId": "AUT",
+      "kickoffUtc": "2026-06-22T17:00Z",
+      "homeXg": 1.9100830074248205,
+      "awayXg": 0.8180272762630181,
+      "pHome": 0.6138378209685663,
+      "pDraw": 0.24113708859281618,
+      "pAway": 0.14502509043861744,
       "marketBlended": true
     }
   ]
