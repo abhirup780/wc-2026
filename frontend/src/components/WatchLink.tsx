@@ -3,7 +3,7 @@
  * Scores page. Points all requests to a single external stream aggregator — no
  * per-match links to maintain. Intentionally low-key.
  */
-const WATCH_URL = 'https://timstreams.net/';
+const WATCH_URL = 'https://watchfooty.su/en/football';
 
 export default function WatchLink({ className = '' }: { className?: string }) {
   return (
