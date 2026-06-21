@@ -609,7 +609,7 @@
       "kickoffUtc": "2026-06-24T22:00Z",
       "homeXg": 2.6888038986605753,
       "awayXg": 0.5811134091178451,
-      "homeGoals": 2,
+      "homeGoals": 3,
       "awayGoals": 0
     },
     {
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-21T07:27:13.353Z"
+  "generatedAt": "2026-06-21T15:25:34.842Z"
 }
