@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.biswacup.wc2026",
+    "sha256_cert_fingerprints": ["E6:55:C3:BC:8C:24:85:AA:39:0C:7E:61:C1:63:1B:16:82:94:F1:76:0A:B0:D6:5E:E7:80:5A:FC:C7:99:7D:78"]
+  }
+}]
