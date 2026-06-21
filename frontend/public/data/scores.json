@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T21:55:50.540Z",
+  "timestamp": "2026-06-21T23:24:35.788Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -578,9 +578,9 @@
       "homeId": "URU",
       "awayId": "CPV",
       "kickoffUtc": "2026-06-21T22:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 2,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
