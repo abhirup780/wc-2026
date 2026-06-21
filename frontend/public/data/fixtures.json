@@ -257,9 +257,9 @@
       "name": "Spain",
       "code": "ESP",
       "groupId": "H",
-      "rankingElo": 1856.0329527602046,
-      "attackRating": 1.7272503996398085,
-      "defenseRating": 1.7272503996398085
+      "rankingElo": 1864.3223551696196,
+      "attackRating": 1.7493695794261352,
+      "defenseRating": 1.7493695794261352
     },
     {
       "id": "CPV",
@@ -275,9 +275,9 @@
       "name": "Saudi Arabia",
       "code": "KSA",
       "groupId": "H",
-      "rankingElo": 1434.9990393218332,
-      "attackRating": 0.9050363574976987,
-      "defenseRating": 0.9050363574976987
+      "rankingElo": 1426.709636912418,
+      "attackRating": 0.8935929997646684,
+      "defenseRating": 0.8935929997646684
     },
     {
       "id": "URU",
@@ -981,8 +981,8 @@
       "homeId": "ESP",
       "awayId": "KSA",
       "kickoffUtc": "2026-06-21T16:00Z",
-      "status": "live",
-      "homeGoals": 3,
+      "status": "finished",
+      "homeGoals": 4,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
