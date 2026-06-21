@@ -1,22 +1,25 @@
 /**
- * Round-of-32 matchup projection.
+ * Round-of-32 matchup projection (global pairing frequencies).
  *
- * Monte-Carlo simulates the REMAINING group matches from current results using
- * the same Poisson model (market-blended), FIFA tiebreakers, best-third
- * selection and Annex-C bracket mapping as the main engine. For each of the 16
- * R32 fixtures it tallies which two teams meet, then reports the single most
- * likely matchup with its probability, marginal slot probabilities, and an Elo
- * head-to-head advance probability. Re-runs whenever results change, so the
- * projection sharpens after every match.
+ * Keeps every played group result fixed, then Monte-Carlo predicts the
+ * remaining group matches with the same market-blended Poisson model the engine
+ * uses (favourite-leaning, minimal upset noise). Each simulation produces a full
+ * R32 bracket via FIFA tiebreakers, the 8 best thirds and Annex-C assignment.
+ *
+ * Across all 16 slots and all sims it counts how often each exact two-team
+ * pairing occurs, then ranks them high→low. `prob` is the probability those two
+ * teams meet anywhere in the Round of 32. Re-runs whenever results change.
  */
 
-import type { Team, Match, GroupStanding, ModelConfig, R32Projection, R32MatchupProjection } from '@wc2026/shared';
+import type { Team, Match, GroupStanding, ModelConfig, R32Projection, R32Matchup } from '@wc2026/shared';
 import { R32_MATCHES, resolveSlot, assignBestThird } from './bracket.js';
 import { selectBestThird } from './best-third.js';
 import { rankGroup } from './tiebreakers.js';
 import { sampleMatch, type MatchOdds } from './poisson.js';
 import { eloWinProb } from '../ratings.js';
 import { createRng, childSeed } from './rng.js';
+
+const TOP_N = 50;
 
 const isFixed = (m: Match) =>
   m.status === 'finished' || (m.status === 'live' && m.homeGoals != null && m.awayGoals != null);
@@ -27,19 +30,14 @@ export function projectR32(
   oddsMap: Map<string, MatchOdds> | undefined,
   config: ModelConfig,
   simCount: number,
-  seed = 123456789,
+  seed = 20260621,
 ): R32Projection {
   const teamMap = new Map(teams.map(t => [t.id, t]));
   const groupMatches = matches.filter(m => m.stage === 'group');
   const remaining = groupMatches.filter(m => !isFixed(m)).length;
 
-  // fixture num → "t1|t2" (ordered by slot) → count
-  const matchupCounts = new Map<number, Map<string, number>>();
-  // slot label → teamId → count
-  const slotCounts = new Map<string, Map<string, number>>();
-  for (const rm of R32_MATCHES) matchupCounts.set(rm.num, new Map());
-
-  const bump = (m: Map<string, number>, k: string) => m.set(k, (m.get(k) ?? 0) + 1);
+  // "A|B" (codes sorted) → number of sims the pair meets in the R32.
+  const pairCount = new Map<string, number>();
   const rng = createRng(seed);
 
   for (let i = 0; i < simCount; i++) {
@@ -89,46 +87,41 @@ export function projectR32(
     const bestThird = selectBestThird(thirds, r);
     const assignment = assignBestThird(bestThird.map(t => ({ teamId: t.teamId, groupId: t.groupId })));
 
-    // 5. Resolve each R32 fixture; tally matchup + marginal slot occupancy.
+    // 5. Resolve each R32 fixture; tally the (unordered) pairing globally.
     for (const rm of R32_MATCHES) {
       const t1 = resolveSlot(rm.slot1, groupResults, assignment);
       const t2 = resolveSlot(rm.slot2, groupResults, assignment);
       if (!t1 || !t2) continue;
-      bump(matchupCounts.get(rm.num)!, `${t1}|${t2}`);
-      if (!slotCounts.has(rm.slot1)) slotCounts.set(rm.slot1, new Map());
-      if (!slotCounts.has(rm.slot2)) slotCounts.set(rm.slot2, new Map());
-      bump(slotCounts.get(rm.slot1)!, t1);
-      bump(slotCounts.get(rm.slot2)!, t2);
+      const key = t1 < t2 ? `${t1}|${t2}` : `${t2}|${t1}`;
+      pairCount.set(key, (pairCount.get(key) ?? 0) + 1);
     }
   }
 
   const nameOf = (id: string) => teamMap.get(id)?.name ?? id;
   const eloOf = (id: string) => teamMap.get(id)?.rankingElo ?? 1500;
-  const slotProb = (slot: string, team: string) => (slotCounts.get(slot)?.get(team) ?? 0) / simCount;
 
-  const matchups: R32MatchupProjection[] = R32_MATCHES.map(rm => {
-    const counts = matchupCounts.get(rm.num)!;
-    const [bestKey, bestCnt] = [...counts.entries()].sort((a, b) => b[1] - a[1])[0] ?? ['?|?', 0];
-    const [home, away] = bestKey.split('|');
-    return {
-      num: rm.num,
-      slot1: rm.slot1,
-      slot2: rm.slot2,
-      home,
-      away,
-      homeName: nameOf(home),
-      awayName: nameOf(away),
-      prob: bestCnt / simCount,
-      homeWinProb: eloWinProb(eloOf(home), eloOf(away)),
-      slot1Prob: slotProb(rm.slot1, home),
-      slot2Prob: slotProb(rm.slot2, away),
-    };
-  });
+  const matchups: R32Matchup[] = [...pairCount.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, TOP_N)
+    .map(([key, cnt]) => {
+      const [x, y] = key.split('|');
+      const home = eloOf(x) >= eloOf(y) ? x : y; // favourite first
+      const away = home === x ? y : x;
+      return {
+        home,
+        away,
+        homeName: nameOf(home),
+        awayName: nameOf(away),
+        prob: cnt / simCount,
+        homeWinProb: eloWinProb(eloOf(home), eloOf(away)),
+      };
+    });
 
   return {
     generatedAt: new Date().toISOString(),
     simCount,
     remainingGroupMatches: remaining,
+    distinctMatchups: pairCount.size,
     matchups,
   };
 }
