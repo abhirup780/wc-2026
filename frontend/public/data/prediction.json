@@ -427,10 +427,10 @@
       "homeId": "TUN",
       "awayId": "JPN",
       "kickoffUtc": "2026-06-21T04:00Z",
-      "homeXg": 0.9014694862991356,
-      "awayXg": 1.733281074675792,
+      "homeXg": 0,
+      "awayXg": 4,
       "homeGoals": 0,
-      "awayGoals": 5
+      "awayGoals": 4
     },
     {
       "id": "ESPN-760453",
@@ -634,7 +634,7 @@
       "homeXg": 0.8644000464784978,
       "awayXg": 1.8076121193717076,
       "homeGoals": 1,
-      "awayGoals": 3
+      "awayGoals": 4
     },
     {
       "id": "ESPN-760466",
@@ -679,8 +679,8 @@
       "homeId": "JPN",
       "awayId": "SWE",
       "kickoffUtc": "2026-06-25T23:00Z",
-      "homeXg": 1.5687117544537765,
-      "awayXg": 0.9960402193480475,
+      "homeXg": 1.6060358152917282,
+      "awayXg": 0.9728923758254917,
       "homeGoals": 1,
       "awayGoals": 0
     },
@@ -691,8 +691,8 @@
       "homeId": "TUN",
       "awayId": "NED",
       "kickoffUtc": "2026-06-25T23:00Z",
-      "homeXg": 0.7750309143460464,
-      "awayXg": 2.016048613129713,
+      "homeXg": 0.757019297965567,
+      "awayXg": 2.064016074886205,
       "homeGoals": 0,
       "awayGoals": 0
     },
@@ -897,9 +897,9 @@
       "homeId": "JPN",
       "awayId": "BRA",
       "kickoffUtc": "",
-      "homeXg": 0.9028573327885486,
-      "awayXg": 1.2503705834821994,
-      "homeGoals": 2,
+      "homeXg": 0.9243388458334509,
+      "awayXg": 1.221312135791606,
+      "homeGoals": 1,
       "awayGoals": 2,
       "winnerId": "BRA"
     },
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-21T05:27:37.719Z"
+  "generatedAt": "2026-06-21T07:27:13.353Z"
 }
