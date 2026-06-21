@@ -102,7 +102,7 @@ export default function Forecast() {
   const [champShowAll, setChampShowAll] = useState(false);
 
   const fetcher = useCallback(() => fetchForecast(), []);
-  const { data: forecast, loading, error, lastUpdated } = usePolled(fetcher, 60_000);
+  const { data: forecast, loading, error, lastUpdated } = usePolled(fetcher, 30_000);
 
   if (loading) return (
     <div className="flex items-center justify-center h-64 text-gray-500">Running forecast…</div>

@@ -262,7 +262,7 @@ function UpcomingList({ now }: { now: number }) {
 // ─── Main ──────────────────────────────────────────────────────────────────────
 
 export default function WatchLive() {
-  const { matches: espn } = useESPNLive(30_000);
+  const { matches: espn } = useESPNLive(10_000);
   const [searchParams] = useSearchParams();
   const [now, setNow] = useState(() => Date.now());
   const [channel, setChannel] = useState<Network>(() => {

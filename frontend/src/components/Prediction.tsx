@@ -181,8 +181,8 @@ export default function Prediction() {
   const fixturesFetcher   = useCallback(() => fetchFixtures(), []);
   const forecastFetcher   = useCallback(() => fetchForecast(), []);
   const { data: fixtures, loading: loadFix } = usePolled(fixturesFetcher, 300_000);
-  const { data: forecast }   = usePolled(forecastFetcher, 60_000);
-  const { matches: espnMatches } = useESPNLive(30_000);
+  const { data: forecast }   = usePolled(forecastFetcher, 30_000);
+  const { matches: espnMatches } = useESPNLive(10_000);
 
   // 'likely' = deterministic favourites' path (computed live); 'random' = one re-rolled sim
   const [mode, setMode] = useState<'likely' | 'random'>('likely');

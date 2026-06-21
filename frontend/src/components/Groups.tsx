@@ -137,9 +137,9 @@ export default function Groups() {
   const standingsFetcher = useCallback(() => fetchStandings(), []);
   const fixturesFetcher = useCallback(() => fetchFixtures(), []);
 
-  const { data: standings, loading: sLoading, error: sError } = usePolled(standingsFetcher, 60_000);
+  const { data: standings, loading: sLoading, error: sError } = usePolled(standingsFetcher, 30_000);
   const { data: fixtures, loading: fLoading, error: fError } = usePolled(fixturesFetcher, 60_000);
-  const { matches: espnMatches } = useESPNLive(30_000);
+  const { matches: espnMatches } = useESPNLive(10_000);
 
   const computedGroups = useMemo(() => {
     if (!fixtures) return null;

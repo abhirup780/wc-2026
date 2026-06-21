@@ -2,10 +2,11 @@ name: Refresh data
 
 on:
   schedule:
-    # Check every 15 min. The job exits early unless a match result changed or the
-    # cached odds are stale (>7.5h), so it re-sims after every match but only hits
-    # the Odds API ~3×/day (~180 requests/month, within the free 500 tier).
-    - cron: '*/15 * * * *'
+    # Every 5 min (GitHub's minimum scheduling interval). The job exits early
+    # unless a match result changed or the cached odds are stale (>7.5h), so it
+    # re-sims within ~5 min of a result but only hits the Odds API ~3×/day
+    # (~180 requests/month, within the free 500 tier).
+    - cron: '*/5 * * * *'
   workflow_dispatch:   # manual trigger
   push:
     branches: [master]

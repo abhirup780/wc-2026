@@ -81,7 +81,7 @@ function mergeESPN(base: Match[], live: ESPNLiveMatch[]): RichMatch[] {
 function LiveCard({ m }: { m: RichMatch }) {
   const hW = (m.homeGoals ?? 0) > (m.awayGoals ?? 0);
   const aW = (m.awayGoals ?? 0) > (m.homeGoals ?? 0);
-  const { detail, loading } = useMatchDetail(espnEventId(m), 30_000);
+  const { detail, loading } = useMatchDetail(espnEventId(m), 15_000);
 
   return (
     <div className="live-card relative rounded-2xl overflow-hidden">
@@ -259,9 +259,9 @@ function SectionHeader({ label, count, collapsible, collapsed, onToggle }:
 export default function LiveScores() {
   const fetcher = useCallback(() => fetchScores(), []);
   const upcomingFetcher = useCallback(() => fetchUpcoming(), []);
-  const { data, loading, error } = usePolled(fetcher, 60_000);
-  const { data: upcomingData } = usePolled(upcomingFetcher, 60_000);
-  const { matches: espnMatches, hasLive, lastSync, failed } = useESPNLive(30_000);
+  const { data, loading, error } = usePolled(fetcher, 30_000);
+  const { data: upcomingData } = usePolled(upcomingFetcher, 30_000);
+  const { matches: espnMatches, hasLive, lastSync, failed } = useESPNLive(10_000);
   const [earlierOpen, setEarlierOpen] = useState(false);
   const [upcomingOpen, setUpcomingOpen] = useState(true);
 

@@ -65,7 +65,7 @@ function ContenderRow({ c }: { c: R32Contender }) {
  */
 export default function R32Projection() {
   const fetcher = useCallback(() => fetchR32(), []);
-  const { data, loading, error } = usePolled(fetcher, 120_000);
+  const { data, loading, error } = usePolled(fetcher, 60_000);
   const [showAll, setShowAll] = useState(false);
 
   if (loading) return (
