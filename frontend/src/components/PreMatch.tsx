@@ -4,7 +4,6 @@ import type { ESPNH2HGame } from '../api.ts';
 import { teamName } from '../utils.ts';
 import Flag from './Flag.tsx';
 import { Lineups } from './MatchDetail.tsx';
-import WatchLink from './WatchLink.tsx';
 import type { Match, UpcomingMatch } from '@wc2026/shared';
 
 type SoonMatch = Match & { venue?: string; homeForm?: string; awayForm?: string };
@@ -188,10 +187,7 @@ export default function SoonCard({ m, prediction }: { m: SoonMatch; prediction?:
         <TeamLine code={m.awayId} form={m.awayForm} />
 
         <div className="flex items-center justify-between gap-2 mt-2 text-[10px] text-gray-500">
-          <div className="flex items-center gap-3 min-w-0">
-            <span className="truncate">{m.venue ?? ''}</span>
-            <span className="shrink-0" onClick={e => e.stopPropagation()}><WatchLink /></span>
-          </div>
+          <span className="truncate">{m.venue ?? ''}</span>
           <span className="flex items-center gap-1 shrink-0 text-gray-400">
             {open ? 'Hide info' : 'Match info'}
             <span className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>▾</span>
