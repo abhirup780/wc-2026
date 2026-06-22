@@ -266,9 +266,9 @@
       "name": "Cape Verde",
       "code": "CPV",
       "groupId": "H",
-      "rankingElo": 1389.7870472397954,
-      "attackRating": 0.8443542586450343,
-      "defenseRating": 0.8443542586450343
+      "rankingElo": 1401.77260300975,
+      "attackRating": 0.8600329068488374,
+      "defenseRating": 0.8600329068488374
     },
     {
       "id": "KSA",
@@ -284,9 +284,9 @@
       "name": "Uruguay",
       "code": "URU",
       "groupId": "H",
-      "rankingElo": 1661.950960678167,
-      "attackRating": 1.2822340548269406,
-      "defenseRating": 1.2822340548269406
+      "rankingElo": 1649.9654049082123,
+      "attackRating": 1.2588585577959865,
+      "defenseRating": 1.2588585577959865
     },
     {
       "id": "FRA",
@@ -1011,9 +1011,9 @@
       "homeId": "URU",
       "awayId": "CPV",
       "kickoffUtc": "2026-06-21T22:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 2,
-      "awayGoals": 1,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1026,9 +1026,9 @@
       "homeId": "NZL",
       "awayId": "EGY",
       "kickoffUtc": "2026-06-22T01:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 1,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T23:24:35.788Z",
+  "timestamp": "2026-06-22T02:04:10.101Z",
   "groups": {
     "A": [
       {
@@ -317,13 +317,13 @@
       {
         "groupId": "G",
         "teamId": "EGY",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 1,
-        "gd": 0,
+        "ga": 2,
+        "gd": -1,
         "points": 1
       },
       {
@@ -341,14 +341,14 @@
       {
         "groupId": "G",
         "teamId": "NZL",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 2,
+        "gf": 3,
         "ga": 2,
-        "gd": 0,
-        "points": 1
+        "gd": 1,
+        "points": 4
       }
     ],
     "H": [
@@ -369,12 +369,12 @@
         "teamId": "CPV",
         "played": 2,
         "w": 0,
-        "d": 1,
-        "l": 1,
-        "gf": 1,
+        "d": 2,
+        "l": 0,
+        "gf": 2,
         "ga": 2,
-        "gd": -1,
-        "points": 1
+        "gd": 0,
+        "points": 2
       },
       {
         "groupId": "H",
@@ -392,13 +392,13 @@
         "groupId": "H",
         "teamId": "URU",
         "played": 2,
-        "w": 1,
-        "d": 1,
+        "w": 0,
+        "d": 2,
         "l": 0,
         "gf": 3,
-        "ga": 2,
-        "gd": 1,
-        "points": 4
+        "ga": 3,
+        "gd": 0,
+        "points": 2
       }
     ],
     "I": [

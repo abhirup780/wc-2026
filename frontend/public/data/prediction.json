@@ -463,10 +463,10 @@
       "homeId": "URU",
       "awayId": "CPV",
       "kickoffUtc": "2026-06-21T22:00Z",
-      "homeXg": 1.8982465619415891,
-      "awayXg": 0.8231280547674604,
+      "homeXg": 2,
+      "awayXg": 2,
       "homeGoals": 2,
-      "awayGoals": 0
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760452",
@@ -751,8 +751,8 @@
       "homeId": "CPV",
       "awayId": "KSA",
       "kickoffUtc": "2026-06-27T00:00Z",
-      "homeXg": 1.1811225284712932,
-      "awayXg": 1.3228940794333313,
+      "homeXg": 1.2030545604589151,
+      "awayXg": 1.2987773384142873,
       "homeGoals": 0,
       "awayGoals": 0
     },
@@ -763,8 +763,8 @@
       "homeId": "URU",
       "awayId": "ESP",
       "kickoffUtc": "2026-06-27T00:00Z",
-      "homeXg": 0.9162115240734079,
-      "awayXg": 1.7053922145109484,
+      "homeXg": 0.8995087234574981,
+      "awayXg": 1.7370593072117422,
       "homeGoals": 1,
       "awayGoals": 2
     },
@@ -1038,11 +1038,11 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "ARG",
-      "awayId": "URU",
+      "awayId": "CPV",
       "kickoffUtc": "",
-      "homeXg": 1.5057005402231391,
-      "awayXg": 0.749754828295871,
-      "homeGoals": 2,
+      "homeXg": 2.244868183148219,
+      "awayXg": 0.5028830906306552,
+      "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "ARG"
     },
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-21T23:24:43.900Z"
+  "generatedAt": "2026-06-22T02:04:17.823Z"
 }
