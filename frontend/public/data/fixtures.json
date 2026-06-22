@@ -329,9 +329,9 @@
       "name": "Argentina",
       "code": "ARG",
       "groupId": "J",
-      "rankingElo": 1889.0654619249433,
-      "attackRating": 1.8170922438074644,
-      "defenseRating": 1.8170922438074644
+      "rankingElo": 1901.9308594332913,
+      "attackRating": 1.853334909845822,
+      "defenseRating": 1.853334909845822
     },
     {
       "id": "ALG",
@@ -347,9 +347,9 @@
       "name": "Austria",
       "code": "AUT",
       "groupId": "J",
-      "rankingElo": 1612.8521199241557,
-      "attackRating": 1.1891448151363808,
-      "defenseRating": 1.1891448151363808
+      "rankingElo": 1599.9867224158077,
+      "attackRating": 1.1658906379354466,
+      "defenseRating": 1.1658906379354466
     },
     {
       "id": "JOR",
@@ -1041,8 +1041,8 @@
       "homeId": "ARG",
       "awayId": "AUT",
       "kickoffUtc": "2026-06-22T17:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1056,9 +1056,9 @@
       "homeId": "FRA",
       "awayId": "IRQ",
       "kickoffUtc": "2026-06-22T21:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
