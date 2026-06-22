@@ -475,9 +475,9 @@
       "homeId": "NZL",
       "awayId": "EGY",
       "kickoffUtc": "2026-06-22T01:00Z",
-      "homeXg": 0.812498584250993,
-      "awayXg": 1.9230802739679855,
-      "homeGoals": 0,
+      "homeXg": 1,
+      "awayXg": 3,
+      "homeGoals": 1,
       "awayGoals": 3
     },
     {
@@ -775,8 +775,8 @@
       "homeId": "EGY",
       "awayId": "IRN",
       "kickoffUtc": "2026-06-27T03:00Z",
-      "homeXg": 1.1746452790333082,
-      "awayXg": 1.3301888049862018,
+      "homeXg": 1.1977774111684842,
+      "awayXg": 1.3044994716303029,
       "homeGoals": 0,
       "awayGoals": 2
     },
@@ -787,8 +787,8 @@
       "homeId": "NZL",
       "awayId": "BEL",
       "kickoffUtc": "2026-06-27T03:00Z",
-      "homeXg": 0.638286437630563,
-      "awayXg": 2.447960520358678,
+      "homeXg": 0.6259595010247397,
+      "awayXg": 2.4961678789795148,
       "homeGoals": 1,
       "awayGoals": 3
     },
@@ -1027,8 +1027,8 @@
       "homeId": "SUI",
       "awayId": "EGY",
       "kickoffUtc": "",
-      "homeXg": 1.2092195239884207,
-      "awayXg": 0.9335825527167145,
+      "homeXg": 1.1858664155155807,
+      "awayXg": 0.951967468873114,
       "homeGoals": 5,
       "awayGoals": 1,
       "winnerId": "SUI"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-22T02:04:17.823Z"
+  "generatedAt": "2026-06-22T07:39:46.303Z"
 }

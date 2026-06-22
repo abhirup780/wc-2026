@@ -230,9 +230,9 @@
       "name": "Egypt",
       "code": "EGY",
       "groupId": "G",
-      "rankingElo": 1570.6714231319772,
-      "attackRating": 1.1145877923541894,
-      "defenseRating": 1.1145877923541894
+      "rankingElo": 1583.3754945009462,
+      "attackRating": 1.1365372204489497,
+      "defenseRating": 1.1365372204489497
     },
     {
       "id": "IRN",
@@ -248,9 +248,9 @@
       "name": "New Zealand",
       "code": "NZL",
       "groupId": "G",
-      "rankingElo": 1290.0403229839212,
-      "attackRating": 0.7244808026489749,
-      "defenseRating": 0.7244808026489749
+      "rankingElo": 1277.3362516149523,
+      "attackRating": 0.7104892333473585,
+      "defenseRating": 0.7104892333473585
     },
     {
       "id": "ESP",
@@ -1026,9 +1026,9 @@
       "homeId": "NZL",
       "awayId": "EGY",
       "kickoffUtc": "2026-06-22T01:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
-      "awayGoals": 0,
+      "awayGoals": 3,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,

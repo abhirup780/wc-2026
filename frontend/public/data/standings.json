@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T02:04:10.101Z",
+  "timestamp": "2026-06-22T07:39:38.370Z",
   "groups": {
     "A": [
       {
@@ -318,13 +318,13 @@
         "groupId": "G",
         "teamId": "EGY",
         "played": 2,
-        "w": 0,
+        "w": 1,
         "d": 1,
-        "l": 1,
-        "gf": 1,
+        "l": 0,
+        "gf": 4,
         "ga": 2,
-        "gd": -1,
-        "points": 1
+        "gd": 2,
+        "points": 4
       },
       {
         "groupId": "G",
@@ -342,13 +342,13 @@
         "groupId": "G",
         "teamId": "NZL",
         "played": 2,
-        "w": 1,
+        "w": 0,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 3,
-        "ga": 2,
-        "gd": 1,
-        "points": 4
+        "ga": 5,
+        "gd": -2,
+        "points": 1
       }
     ],
     "H": [
