@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T21:12:02.240Z",
+  "timestamp": "2026-06-22T22:57:18.699Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -624,7 +624,7 @@
       "awayId": "IRQ",
       "kickoffUtc": "2026-06-22T21:00Z",
       "status": "live",
-      "homeGoals": 0,
+      "homeGoals": 1,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
