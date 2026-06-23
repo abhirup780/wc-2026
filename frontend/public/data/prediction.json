@@ -535,9 +535,9 @@
       "homeId": "POR",
       "awayId": "UZB",
       "kickoffUtc": "2026-06-23T17:00Z",
-      "homeXg": 2.013668180501715,
-      "awayXg": 0.7759471074378778,
-      "homeGoals": 1,
+      "homeXg": 5,
+      "awayXg": 0,
+      "homeGoals": 5,
       "awayGoals": 0
     },
     {
@@ -823,8 +823,8 @@
       "homeId": "COL",
       "awayId": "POR",
       "kickoffUtc": "2026-06-27T23:30Z",
-      "homeXg": 1.1710669968468117,
-      "awayXg": 1.3342532956757827,
+      "homeXg": 1.1503197500664402,
+      "awayXg": 1.358317980639516,
       "homeGoals": 2,
       "awayGoals": 3
     },
@@ -835,8 +835,8 @@
       "homeId": "COD",
       "awayId": "UZB",
       "kickoffUtc": "2026-06-27T23:30Z",
-      "homeXg": 1.3346941034752282,
-      "awayXg": 1.1706802299730095,
+      "homeXg": 1.3587667388790001,
+      "awayXg": 1.1499398353606172,
       "homeGoals": 3,
       "awayGoals": 0
     },
@@ -1053,8 +1053,8 @@
       "homeId": "POR",
       "awayId": "GHA",
       "kickoffUtc": "",
-      "homeXg": 1.8876470464905317,
-      "awayXg": 0.598049435194379,
+      "homeXg": 1.9216927795186884,
+      "awayXg": 0.5874540728007255,
       "homeGoals": 3,
       "awayGoals": 0,
       "winnerId": "POR"
@@ -1170,8 +1170,8 @@
       "homeId": "SUI",
       "awayId": "POR",
       "kickoffUtc": "",
-      "homeXg": 0.9110796575760998,
-      "awayXg": 1.2390862210703082,
+      "homeXg": 0.8949384850016836,
+      "awayXg": 1.2614344660771586,
       "homeGoals": 1,
       "awayGoals": 3,
       "winnerId": "POR"
@@ -1222,10 +1222,10 @@
       "homeId": "ARG",
       "awayId": "POR",
       "kickoffUtc": "",
-      "homeXg": 1.331127826327822,
-      "awayXg": 0.8480825264650278,
-      "homeGoals": 3,
-      "awayGoals": 2,
+      "homeXg": 1.3075448566229253,
+      "awayXg": 0.8633786017220809,
+      "homeGoals": 2,
+      "awayGoals": 1,
       "winnerId": "ARG"
     },
     {
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-23T18:33:44.711Z"
+  "generatedAt": "2026-06-23T20:54:44.016Z"
 }

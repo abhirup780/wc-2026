@@ -365,9 +365,9 @@
       "name": "Portugal",
       "code": "POR",
       "groupId": "K",
-      "rankingElo": 1755.0946242710856,
-      "attackRating": 1.4793232496262394,
-      "defenseRating": 1.4793232496262394
+      "rankingElo": 1766.7393724701965,
+      "attackRating": 1.5060044263392045,
+      "defenseRating": 1.5060044263392045
     },
     {
       "id": "COD",
@@ -383,9 +383,9 @@
       "name": "Uzbekistan",
       "code": "UZB",
       "groupId": "K",
-      "rankingElo": 1444.4777825275567,
-      "attackRating": 0.9183012772104657,
-      "defenseRating": 0.9183012772104657
+      "rankingElo": 1432.8330343284458,
+      "attackRating": 0.9020321625754232,
+      "defenseRating": 0.9020321625754232
     },
     {
       "id": "COL",
@@ -1101,8 +1101,8 @@
       "homeId": "POR",
       "awayId": "UZB",
       "kickoffUtc": "2026-06-23T17:00Z",
-      "status": "live",
-      "homeGoals": 4,
+      "status": "finished",
+      "homeGoals": 5,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1116,9 +1116,9 @@
       "homeId": "ENG",
       "awayId": "GHA",
       "kickoffUtc": "2026-06-23T20:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
