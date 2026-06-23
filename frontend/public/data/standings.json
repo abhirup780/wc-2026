@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-23T22:19:00.147Z",
+  "timestamp": "2026-06-23T23:34:16.671Z",
   "groups": {
     "A": [
       {
@@ -567,14 +567,14 @@
       {
         "groupId": "L",
         "teamId": "CRO",
-        "played": 1,
+        "played": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 2,
         "ga": 4,
         "gd": -2,
-        "points": 0
+        "points": 1
       },
       {
         "groupId": "L",
@@ -591,14 +591,14 @@
       {
         "groupId": "L",
         "teamId": "PAN",
-        "played": 1,
+        "played": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 0,
         "ga": 1,
         "gd": -1,
-        "points": 0
+        "points": 1
       }
     ]
   }
