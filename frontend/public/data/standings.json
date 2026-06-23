@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T22:57:18.699Z",
+  "timestamp": "2026-06-23T00:17:04.803Z",
   "groups": {
     "A": [
       {
@@ -409,22 +409,22 @@
         "w": 2,
         "d": 0,
         "l": 0,
-        "gf": 4,
+        "gf": 5,
         "ga": 1,
-        "gd": 3,
+        "gd": 4,
         "points": 6
       },
       {
         "groupId": "I",
         "teamId": "SEN",
-        "played": 1,
+        "played": 2,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 1,
         "gf": 1,
         "ga": 3,
         "gd": -2,
-        "points": 0
+        "points": 1
       },
       {
         "groupId": "I",
@@ -434,21 +434,21 @@
         "d": 0,
         "l": 2,
         "gf": 1,
-        "ga": 5,
-        "gd": -4,
+        "ga": 6,
+        "gd": -5,
         "points": 0
       },
       {
         "groupId": "I",
         "teamId": "NOR",
-        "played": 1,
+        "played": 2,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 0,
         "gf": 4,
         "ga": 1,
         "gd": 3,
-        "points": 3
+        "points": 4
       }
     ],
     "J": [
