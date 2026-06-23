@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-23T14:05:21.315Z",
+  "timestamp": "2026-06-23T18:33:36.988Z",
   "groups": {
     "A": [
       {
@@ -505,14 +505,14 @@
       {
         "groupId": "K",
         "teamId": "POR",
-        "played": 1,
-        "w": 0,
+        "played": 2,
+        "w": 1,
         "d": 1,
         "l": 0,
-        "gf": 1,
+        "gf": 5,
         "ga": 1,
-        "gd": 0,
-        "points": 1
+        "gd": 4,
+        "points": 4
       },
       {
         "groupId": "K",
@@ -529,13 +529,13 @@
       {
         "groupId": "K",
         "teamId": "UZB",
-        "played": 1,
+        "played": 2,
         "w": 0,
         "d": 0,
-        "l": 1,
+        "l": 2,
         "gf": 1,
-        "ga": 3,
-        "gd": -2,
+        "ga": 7,
+        "gd": -6,
         "points": 0
       },
       {
