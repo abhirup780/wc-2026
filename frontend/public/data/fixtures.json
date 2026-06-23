@@ -338,9 +338,9 @@
       "name": "Algeria",
       "code": "ALG",
       "groupId": "J",
-      "rankingElo": 1559.2345380750567,
-      "attackRating": 1.0951905607848453,
-      "defenseRating": 1.0951905607848453
+      "rankingElo": 1575.6324488087093,
+      "attackRating": 1.1231082890276773,
+      "defenseRating": 1.1231082890276773
     },
     {
       "id": "AUT",
@@ -356,9 +356,9 @@
       "name": "Jordan",
       "code": "JOR",
       "groupId": "J",
-      "rankingElo": 1372.2878800758444,
-      "attackRating": 0.8219749580730394,
-      "defenseRating": 0.8219749580730394
+      "rankingElo": 1355.8899693421918,
+      "attackRating": 0.8015426687505529,
+      "defenseRating": 0.8015426687505529
     },
     {
       "id": "POR",
@@ -1086,9 +1086,9 @@
       "homeId": "JOR",
       "awayId": "ALG",
       "kickoffUtc": "2026-06-23T03:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
-      "awayGoals": 1,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1728,7 +1728,7 @@
       "id": "ESPN-760500",
       "stage": "r32",
       "groupId": null,
-      "homeId": "1J",
+      "homeId": "ARG",
       "awayId": "2H",
       "kickoffUtc": "2026-07-03T22:00Z",
       "status": "scheduled",

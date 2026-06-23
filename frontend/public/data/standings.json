@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-23T04:36:02.096Z",
+  "timestamp": "2026-06-23T08:20:02.012Z",
   "groups": {
     "A": [
       {
@@ -468,13 +468,13 @@
         "groupId": "J",
         "teamId": "ALG",
         "played": 2,
-        "w": 0,
-        "d": 1,
+        "w": 1,
+        "d": 0,
         "l": 1,
-        "gf": 1,
+        "gf": 2,
         "ga": 4,
-        "gd": -3,
-        "points": 1
+        "gd": -2,
+        "points": 3
       },
       {
         "groupId": "J",
@@ -493,12 +493,12 @@
         "teamId": "JOR",
         "played": 2,
         "w": 0,
-        "d": 1,
-        "l": 1,
+        "d": 0,
+        "l": 2,
         "gf": 2,
-        "ga": 4,
-        "gd": -2,
-        "points": 1
+        "ga": 5,
+        "gd": -3,
+        "points": 0
       }
     ],
     "K": [
