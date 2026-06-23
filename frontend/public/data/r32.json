@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-23T20:54:47.479Z",
+  "generatedAt": "2026-06-23T22:19:11.590Z",
   "simCount": 50000,
   "remainingGroupMatches": 26,
-  "distinctMatchups": 325,
+  "distinctMatchups": 326,
   "matchups": [
     {
       "home": "NOR",
       "away": "CIV",
       "homeName": "Norway",
       "awayName": "Ivory Coast",
-      "prob": 0.82294,
+      "prob": 0.82356,
       "homeWinProb": 0.5523544988442892
     },
     {
@@ -17,7 +17,7 @@
       "away": "SWE",
       "homeName": "France",
       "awayName": "Sweden",
-      "prob": 0.63086,
+      "prob": 0.631,
       "homeWinProb": 0.8091522542850569
     },
     {
@@ -25,31 +25,31 @@
       "away": "AUT",
       "homeName": "Spain",
       "awayName": "Austria",
-      "prob": 0.60836,
+      "prob": 0.60668,
       "homeWinProb": 0.7338853290377283
-    },
-    {
-      "home": "MEX",
-      "away": "SCO",
-      "homeName": "Mexico",
-      "awayName": "Scotland",
-      "prob": 0.55252,
-      "homeWinProb": 0.6972424401530903
     },
     {
       "home": "ARG",
       "away": "CPV",
       "homeName": "Argentina",
       "awayName": "Cape Verde",
-      "prob": 0.5524,
+      "prob": 0.5517,
       "homeWinProb": 0.8720746617049692
+    },
+    {
+      "home": "MEX",
+      "away": "SCO",
+      "homeName": "Mexico",
+      "awayName": "Scotland",
+      "prob": 0.54756,
+      "homeWinProb": 0.6972424401530903
     },
     {
       "home": "MAR",
       "away": "NED",
       "homeName": "Morocco",
       "awayName": "Netherlands",
-      "prob": 0.51012,
+      "prob": 0.51092,
       "homeWinProb": 0.5053546604466951
     },
     {
@@ -57,15 +57,15 @@
       "away": "GHA",
       "homeName": "Portugal",
       "awayName": "Ghana",
-      "prob": 0.47376,
-      "homeWinProb": 0.8147921858195101
+      "prob": 0.4729,
+      "homeWinProb": 0.8042258133765686
     },
     {
       "home": "USA",
       "away": "BIH",
       "homeName": "United States",
       "awayName": "Bosnia-Herzegovina",
-      "prob": 0.4451,
+      "prob": 0.44628,
       "homeWinProb": 0.7790783631546521
     },
     {
@@ -73,23 +73,15 @@
       "away": "PAR",
       "homeName": "Germany",
       "awayName": "Paraguay",
-      "prob": 0.44214,
+      "prob": 0.44134,
       "homeWinProb": 0.7176412251297924
-    },
-    {
-      "home": "COL",
-      "away": "GHA",
-      "homeName": "Colombia",
-      "awayName": "Ghana",
-      "prob": 0.43114,
-      "homeWinProb": 0.7813747120592506
     },
     {
       "home": "BRA",
       "away": "NED",
       "homeName": "Brazil",
       "awayName": "Netherlands",
-      "prob": 0.43054,
+      "prob": 0.43012,
       "homeWinProb": 0.5073070272516312
     },
     {
@@ -97,15 +89,23 @@
       "away": "KOR",
       "homeName": "Switzerland",
       "awayName": "South Korea",
-      "prob": 0.4295,
+      "prob": 0.4286,
       "homeWinProb": 0.5603269087885161
+    },
+    {
+      "home": "COL",
+      "away": "GHA",
+      "homeName": "Colombia",
+      "awayName": "Ghana",
+      "prob": 0.42448,
+      "homeWinProb": 0.7694413040396338
     },
     {
       "home": "MAR",
       "away": "JPN",
       "homeName": "Morocco",
       "awayName": "Japan",
-      "prob": 0.40198,
+      "prob": 0.40164,
       "homeWinProb": 0.5842979396839725
     },
     {
@@ -113,7 +113,7 @@
       "away": "JPN",
       "homeName": "Brazil",
       "awayName": "Japan",
-      "prob": 0.39504,
+      "prob": 0.39626,
       "homeWinProb": 0.586193859898986
     },
     {
@@ -121,15 +121,15 @@
       "away": "COD",
       "homeName": "England",
       "awayName": "Congo DR",
-      "prob": 0.38558,
-      "homeWinProb": 0.7995418374059945
+      "prob": 0.3917,
+      "homeWinProb": 0.7883314353208898
     },
     {
       "home": "KOR",
       "away": "CAN",
       "homeName": "South Korea",
       "awayName": "Canada",
-      "prob": 0.36808,
+      "prob": 0.36864,
       "homeWinProb": 0.5188094368016029
     },
     {
@@ -137,7 +137,7 @@
       "away": "CRO",
       "homeName": "Portugal",
       "awayName": "Croatia",
-      "prob": 0.3597,
+      "prob": 0.35462,
       "homeWinProb": 0.5681944095004284
     },
     {
@@ -145,7 +145,7 @@
       "away": "CRO",
       "homeName": "Colombia",
       "awayName": "Croatia",
-      "prob": 0.34914,
+      "prob": 0.34648,
       "homeWinProb": 0.5166761013714597
     },
     {
@@ -153,7 +153,7 @@
       "away": "AUS",
       "homeName": "Belgium",
       "awayName": "Australia",
-      "prob": 0.34408,
+      "prob": 0.34576,
       "homeWinProb": 0.6341490426974288
     },
     {
@@ -161,7 +161,7 @@
       "away": "KSA",
       "homeName": "Argentina",
       "awayName": "Saudi Arabia",
-      "prob": 0.32152,
+      "prob": 0.32246,
       "homeWinProb": 0.8610129567544917
     },
     {
@@ -169,7 +169,7 @@
       "away": "QAT",
       "homeName": "United States",
       "awayName": "Qatar",
-      "prob": 0.27872,
+      "prob": 0.27784,
       "homeWinProb": 0.7386773351682944
     },
     {
@@ -177,7 +177,7 @@
       "away": "ALG",
       "homeName": "Spain",
       "awayName": "Algeria",
-      "prob": 0.2758,
+      "prob": 0.27752,
       "homeWinProb": 0.7517352452261815
     },
     {
@@ -185,7 +185,7 @@
       "away": "AUS",
       "homeName": "Germany",
       "awayName": "Australia",
-      "prob": 0.25078,
+      "prob": 0.2475,
       "homeWinProb": 0.6626344422440391
     },
     {
@@ -193,15 +193,15 @@
       "away": "SEN",
       "homeName": "England",
       "awayName": "Senegal",
-      "prob": 0.20908,
-      "homeWinProb": 0.690674029982576
+      "prob": 0.1997,
+      "homeWinProb": 0.6758436853426826
     },
     {
       "home": "BEL",
       "away": "PAR",
       "homeName": "Belgium",
       "awayName": "Paraguay",
-      "prob": 0.1735,
+      "prob": 0.1717,
       "homeWinProb": 0.6916389722721811
     },
     {
@@ -209,7 +209,7 @@
       "away": "AUS",
       "homeName": "Iran",
       "awayName": "Australia",
-      "prob": 0.16678,
+      "prob": 0.16764,
       "homeWinProb": 0.5255237350501828
     },
     {
@@ -217,15 +217,15 @@
       "away": "COL",
       "homeName": "England",
       "awayName": "Colombia",
-      "prob": 0.15518,
-      "homeWinProb": 0.6267651824451415
+      "prob": 0.1645,
+      "homeWinProb": 0.610598297799318
     },
     {
       "home": "GER",
       "away": "SCO",
       "homeName": "Germany",
       "awayName": "Scotland",
-      "prob": 0.15198,
+      "prob": 0.1547,
       "homeWinProb": 0.7276264258142506
     },
     {
@@ -233,7 +233,7 @@
       "away": "CAN",
       "homeName": "Egypt",
       "awayName": "Canada",
-      "prob": 0.14876,
+      "prob": 0.14826,
       "homeWinProb": 0.5107832219847162
     },
     {
@@ -241,7 +241,7 @@
       "away": "JPN",
       "homeName": "France",
       "awayName": "Japan",
-      "prob": 0.1482,
+      "prob": 0.14744,
       "homeWinProb": 0.6938005245405877
     },
     {
@@ -249,7 +249,7 @@
       "away": "CAN",
       "homeName": "Iran",
       "awayName": "Canada",
-      "prob": 0.14748,
+      "prob": 0.1468,
       "homeWinProb": 0.537387396821232
     },
     {
@@ -257,7 +257,7 @@
       "away": "EGY",
       "homeName": "Australia",
       "awayName": "Egypt",
-      "prob": 0.14144,
+      "prob": 0.14114,
       "homeWinProb": 0.5011264763011065
     },
     {
@@ -265,79 +265,79 @@
       "away": "CAN",
       "homeName": "Algeria",
       "awayName": "Canada",
-      "prob": 0.12938,
+      "prob": 0.12888,
       "homeWinProb": 0.5033560848555625
-    },
-    {
-      "home": "BEL",
-      "away": "ALG",
-      "homeName": "Belgium",
-      "awayName": "Algeria",
-      "prob": 0.12774,
-      "homeWinProb": 0.6420513923321629
-    },
-    {
-      "home": "SUI",
-      "away": "EGY",
-      "homeName": "Switzerland",
-      "awayName": "Egypt",
-      "prob": 0.12674,
-      "homeWinProb": 0.5682273913900403
     },
     {
       "home": "SUI",
       "away": "IRN",
       "homeName": "Switzerland",
       "awayName": "Iran",
-      "prob": 0.12638,
+      "prob": 0.12674,
       "homeWinProb": 0.541884842175471
     },
     {
-      "home": "USA",
-      "away": "SEN",
-      "homeName": "United States",
-      "awayName": "Senegal",
-      "prob": 0.12018,
-      "homeWinProb": 0.5679110949397901
+      "home": "SUI",
+      "away": "EGY",
+      "homeName": "Switzerland",
+      "awayName": "Egypt",
+      "prob": 0.12608,
+      "homeWinProb": 0.5682273913900403
+    },
+    {
+      "home": "BEL",
+      "away": "ALG",
+      "homeName": "Belgium",
+      "awayName": "Algeria",
+      "prob": 0.1258,
+      "homeWinProb": 0.6420513923321629
     },
     {
       "home": "CRO",
       "away": "COD",
       "homeName": "Croatia",
       "awayName": "Congo DR",
-      "prob": 0.11918,
+      "prob": 0.1222,
       "homeWinProb": 0.6896192670809164
     },
     {
-      "home": "SUI",
-      "away": "ALG",
-      "homeName": "Switzerland",
-      "awayName": "Algeria",
-      "prob": 0.11404,
-      "homeWinProb": 0.5755025427729114
+      "home": "USA",
+      "away": "SEN",
+      "homeName": "United States",
+      "awayName": "Senegal",
+      "prob": 0.12128,
+      "homeWinProb": 0.5679110949397901
     },
     {
       "home": "SEN",
       "away": "EGY",
       "homeName": "Senegal",
       "awayName": "Egypt",
-      "prob": 0.11318,
+      "prob": 0.11498,
       "homeWinProb": 0.5525595470734324
+    },
+    {
+      "home": "SUI",
+      "away": "ALG",
+      "homeName": "Switzerland",
+      "awayName": "Algeria",
+      "prob": 0.11466,
+      "homeWinProb": 0.5755025427729114
     },
     {
       "home": "ENG",
       "away": "POR",
       "homeName": "England",
       "awayName": "Portugal",
-      "prob": 0.0944,
-      "homeWinProb": 0.5770329746239313
+      "prob": 0.09758,
+      "homeWinProb": 0.560223413822266
     },
     {
       "home": "BRA",
       "away": "SWE",
       "homeName": "Brazil",
       "awayName": "Sweden",
-      "prob": 0.09224,
+      "prob": 0.09182,
       "homeWinProb": 0.7260784593853932
     },
     {
@@ -345,63 +345,63 @@
       "away": "CIV",
       "homeName": "France",
       "awayName": "Ivory Coast",
-      "prob": 0.09108,
+      "prob": 0.0907,
       "homeWinProb": 0.7883689368398515
-    },
-    {
-      "home": "ENG",
-      "away": "UZB",
-      "homeName": "England",
-      "awayName": "Uzbekistan",
-      "prob": 0.08808,
-      "homeWinProb": 0.8308998488808338
     },
     {
       "home": "MAR",
       "away": "SWE",
       "homeName": "Morocco",
       "awayName": "Sweden",
-      "prob": 0.08618,
+      "prob": 0.08574,
       "homeWinProb": 0.7245222548115203
-    },
-    {
-      "home": "IRN",
-      "away": "PAR",
-      "homeName": "Iran",
-      "awayName": "Paraguay",
-      "prob": 0.0844,
-      "homeWinProb": 0.5890207338638299
-    },
-    {
-      "home": "MEX",
-      "away": "URU",
-      "homeName": "Mexico",
-      "awayName": "Uruguay",
-      "prob": 0.08322,
-      "homeWinProb": 0.568467593377721
-    },
-    {
-      "home": "MEX",
-      "away": "SEN",
-      "homeName": "Mexico",
-      "awayName": "Senegal",
-      "prob": 0.08264,
-      "homeWinProb": 0.5793564652451909
     },
     {
       "home": "COD",
       "away": "GHA",
       "homeName": "Congo DR",
       "awayName": "Ghana",
-      "prob": 0.07896,
-      "homeWinProb": 0.600758486479271
+      "prob": 0.0853,
+      "homeWinProb": 0.5842124083760455
+    },
+    {
+      "home": "MEX",
+      "away": "SEN",
+      "homeName": "Mexico",
+      "awayName": "Senegal",
+      "prob": 0.08514,
+      "homeWinProb": 0.5793564652451909
+    },
+    {
+      "home": "MEX",
+      "away": "URU",
+      "homeName": "Mexico",
+      "awayName": "Uruguay",
+      "prob": 0.08448,
+      "homeWinProb": 0.568467593377721
+    },
+    {
+      "home": "IRN",
+      "away": "PAR",
+      "homeName": "Iran",
+      "awayName": "Paraguay",
+      "prob": 0.0842,
+      "homeWinProb": 0.5890207338638299
+    },
+    {
+      "home": "ENG",
+      "away": "UZB",
+      "homeName": "England",
+      "awayName": "Uzbekistan",
+      "prob": 0.08106,
+      "homeWinProb": 0.8210506133004841
     },
     {
       "home": "ARG",
       "away": "ESP",
       "homeName": "Argentina",
       "awayName": "Spain",
-      "prob": 0.0749,
+      "prob": 0.07496,
       "homeWinProb": 0.5360194883824149
     }
   ],
@@ -414,12 +414,12 @@
         {
           "code": "CPV",
           "name": "Cape Verde",
-          "prob": 0.5524
+          "prob": 0.5517
         },
         {
           "code": "KSA",
           "name": "Saudi Arabia",
-          "prob": 0.32152
+          "prob": 0.32246
         }
       ]
     },
@@ -431,12 +431,12 @@
         {
           "code": "SWE",
           "name": "Sweden",
-          "prob": 0.63086
+          "prob": 0.631
         },
         {
           "code": "JPN",
           "name": "Japan",
-          "prob": 0.1482
+          "prob": 0.14744
         }
       ]
     },
@@ -448,29 +448,29 @@
         {
           "code": "AUT",
           "name": "Austria",
-          "prob": 0.60836
+          "prob": 0.60668
         },
         {
           "code": "ALG",
           "name": "Algeria",
-          "prob": 0.2758
+          "prob": 0.27752
         }
       ]
     },
     {
       "code": "ENG",
       "name": "England",
-      "reachProb": 0.99994,
+      "reachProb": 0.99992,
       "opponents": [
         {
           "code": "COD",
           "name": "Congo DR",
-          "prob": 0.38560313618817127
+          "prob": 0.3917313385070806
         },
         {
           "code": "SEN",
           "name": "Senegal",
-          "prob": 0.20909254555273316
+          "prob": 0.19971597727818224
         }
       ]
     },
@@ -482,29 +482,12 @@
         {
           "code": "GHA",
           "name": "Ghana",
-          "prob": 0.47376
+          "prob": 0.4729
         },
         {
           "code": "CRO",
           "name": "Croatia",
-          "prob": 0.3597
-        }
-      ]
-    },
-    {
-      "code": "BRA",
-      "name": "Brazil",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "NED",
-          "name": "Netherlands",
-          "prob": 0.43054
-        },
-        {
-          "code": "JPN",
-          "name": "Japan",
-          "prob": 0.39504
+          "prob": 0.35462
         }
       ]
     },
@@ -516,12 +499,29 @@
         {
           "code": "PAR",
           "name": "Paraguay",
-          "prob": 0.44214
+          "prob": 0.44134
         },
         {
           "code": "AUS",
           "name": "Australia",
-          "prob": 0.25078
+          "prob": 0.2475
+        }
+      ]
+    },
+    {
+      "code": "BRA",
+      "name": "Brazil",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "NED",
+          "name": "Netherlands",
+          "prob": 0.43012
+        },
+        {
+          "code": "JPN",
+          "name": "Japan",
+          "prob": 0.39626
         }
       ]
     },
@@ -533,12 +533,12 @@
         {
           "code": "MAR",
           "name": "Morocco",
-          "prob": 0.51012
+          "prob": 0.51092
         },
         {
           "code": "BRA",
           "name": "Brazil",
-          "prob": 0.43054
+          "prob": 0.43012
         }
       ]
     },
@@ -550,12 +550,12 @@
         {
           "code": "NED",
           "name": "Netherlands",
-          "prob": 0.51012
+          "prob": 0.51092
         },
         {
           "code": "JPN",
           "name": "Japan",
-          "prob": 0.40198
+          "prob": 0.40164
         }
       ]
     },
@@ -567,12 +567,12 @@
         {
           "code": "BIH",
           "name": "Bosnia-Herzegovina",
-          "prob": 0.4451
+          "prob": 0.44628
         },
         {
           "code": "QAT",
           "name": "Qatar",
-          "prob": 0.27872
+          "prob": 0.27784
         }
       ]
     }

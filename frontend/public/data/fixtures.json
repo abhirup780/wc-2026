@@ -401,9 +401,9 @@
       "name": "England",
       "code": "ENG",
       "groupId": "L",
-      "rankingElo": 1847.67584489016,
-      "attackRating": 1.7052336595874154,
-      "defenseRating": 1.7052336595874154
+      "rankingElo": 1829.816863648309,
+      "attackRating": 1.6591204221577982,
+      "defenseRating": 1.6591204221577982
     },
     {
       "id": "CRO",
@@ -419,9 +419,9 @@
       "name": "Ghana",
       "code": "GHA",
       "groupId": "L",
-      "rankingElo": 1380.706843034978,
-      "attackRating": 0.8326667613260101,
-      "defenseRating": 0.8326667613260101
+      "rankingElo": 1398.565824276829,
+      "attackRating": 0.8558097228325888,
+      "defenseRating": 0.8558097228325888
     },
     {
       "id": "PAN",
@@ -1116,7 +1116,7 @@
       "homeId": "ENG",
       "awayId": "GHA",
       "kickoffUtc": "2026-06-23T20:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
       "awayGoals": 0,
       "homeGoalsAet": null,

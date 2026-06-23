@@ -547,9 +547,9 @@
       "homeId": "ENG",
       "awayId": "GHA",
       "kickoffUtc": "2026-06-23T20:00Z",
-      "homeXg": 2.559898117092867,
-      "awayXg": 0.6103758542447164,
-      "homeGoals": 6,
+      "homeXg": 0,
+      "awayXg": 0,
+      "homeGoals": 0,
       "awayGoals": 0
     },
     {
@@ -799,8 +799,8 @@
       "homeId": "CRO",
       "awayId": "GHA",
       "kickoffUtc": "2026-06-27T21:00Z",
-      "homeXg": 2.025729974688443,
-      "awayXg": 0.7713268893305053,
+      "homeXg": 1.9709498178660039,
+      "awayXg": 0.7927649835812447,
       "homeGoals": 3,
       "awayGoals": 0
     },
@@ -811,8 +811,8 @@
       "homeId": "PAN",
       "awayId": "ENG",
       "kickoffUtc": "2026-06-27T21:00Z",
-      "homeXg": 0.7390631596638597,
-      "awayXg": 2.114163017827401,
+      "homeXg": 0.7596045227270294,
+      "awayXg": 2.056991438637732,
       "homeGoals": 1,
       "awayGoals": 1
     },
@@ -959,14 +959,14 @@
       "id": "R32-08",
       "stage": "r32",
       "groupId": null,
-      "homeId": "ENG",
+      "homeId": "CRO",
       "awayId": "COD",
       "kickoffUtc": "",
-      "homeXg": 1.8478040649181038,
-      "awayXg": 0.6109447811232269,
-      "homeGoals": 2,
-      "awayGoals": 1,
-      "winnerId": "ENG"
+      "homeXg": 1.4622269756214519,
+      "awayXg": 0.7720458374940119,
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winnerId": "CRO"
     },
     {
       "id": "R32-09",
@@ -999,13 +999,13 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "COL",
-      "awayId": "CRO",
+      "awayId": "ENG",
       "kickoffUtc": "",
-      "homeXg": 1.0912417673932109,
-      "awayXg": 1.0345152501784853,
-      "homeGoals": 3,
-      "awayGoals": 1,
-      "winnerId": "COL"
+      "homeXg": 0.8875357209421385,
+      "awayXg": 1.271955847367632,
+      "homeGoals": 2,
+      "awayGoals": 2,
+      "winnerId": "ENG"
     },
     {
       "id": "R32-12",
@@ -1053,8 +1053,8 @@
       "homeId": "POR",
       "awayId": "GHA",
       "kickoffUtc": "",
-      "homeXg": 1.9216927795186884,
-      "awayXg": 0.5874540728007255,
+      "homeXg": 1.8697260153685094,
+      "awayXg": 0.6037816453965854,
       "homeGoals": 3,
       "awayGoals": 0,
       "winnerId": "POR"
@@ -1116,25 +1116,25 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "MEX",
-      "awayId": "ENG",
+      "awayId": "CRO",
       "kickoffUtc": "",
-      "homeXg": 0.8757878127677399,
-      "awayXg": 1.2890179944755495,
-      "homeGoals": 0,
-      "awayGoals": 2,
-      "winnerId": "ENG"
+      "homeXg": 1.1067257733705727,
+      "awayXg": 1.0200415289524485,
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winnerId": "MEX"
     },
     {
       "id": "R16-05",
       "stage": "r16",
       "groupId": null,
-      "homeId": "COL",
+      "homeId": "ENG",
       "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 0.8417481687847208,
-      "awayXg": 1.341144883783787,
+      "homeXg": 1.0076861226322091,
+      "awayXg": 1.120295521239439,
       "homeGoals": 0,
-      "awayGoals": 3,
+      "awayGoals": 0,
       "winnerId": "ESP"
     },
     {
@@ -1207,13 +1207,13 @@
       "stage": "qf",
       "groupId": null,
       "homeId": "MAR",
-      "awayId": "ENG",
+      "awayId": "MEX",
       "kickoffUtc": "",
-      "homeXg": 0.9430390657640683,
-      "awayXg": 1.197093833101536,
-      "homeGoals": 1,
-      "awayGoals": 2,
-      "winnerId": "ENG"
+      "homeXg": 1.1440887767183954,
+      "awayXg": 0.9867295903715237,
+      "homeGoals": 2,
+      "awayGoals": 0,
+      "winnerId": "MAR"
     },
     {
       "id": "QF-04",
@@ -1245,13 +1245,13 @@
       "id": "SF-02",
       "stage": "sf",
       "groupId": null,
-      "homeId": "ENG",
+      "homeId": "MAR",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 0.9775949040221513,
-      "awayXg": 1.1547791885527465,
-      "homeGoals": 1,
-      "awayGoals": 2,
+      "homeXg": 0.8676801741033069,
+      "awayXg": 1.3010626307863422,
+      "homeGoals": 3,
+      "awayGoals": 3,
       "winnerId": "ARG"
     },
     {
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-23T20:54:44.016Z"
+  "generatedAt": "2026-06-23T22:19:08.089Z"
 }
