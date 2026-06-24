@@ -597,8 +597,8 @@
       "kickoffUtc": "2026-06-24T19:00Z",
       "homeXg": 1.4194201172290477,
       "awayXg": 1.100801645005757,
-      "homeGoals": 4,
-      "awayGoals": 2
+      "homeGoals": 3,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760464",
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-24T08:47:08.470Z"
+  "generatedAt": "2026-06-24T16:23:05.873Z"
 }

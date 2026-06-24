@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-24T08:47:00.936Z",
+  "timestamp": "2026-06-24T16:22:58.120Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1178,6 +1178,21 @@
       "homeId": "MEX",
       "awayId": "3RD",
       "kickoffUtc": "2026-07-01T01:00Z",
+      "status": "scheduled",
+      "homeGoals": null,
+      "awayGoals": null,
+      "homeGoalsAet": null,
+      "awayGoalsAet": null,
+      "homePens": null,
+      "awayPens": null
+    },
+    {
+      "id": "ESPN-760495",
+      "stage": "r32",
+      "groupId": null,
+      "homeId": "1L",
+      "awayId": "3RD",
+      "kickoffUtc": "2026-07-01T16:00Z",
       "status": "scheduled",
       "homeGoals": null,
       "awayGoals": null,
