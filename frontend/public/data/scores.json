@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-24T01:29:33.439Z",
+  "timestamp": "2026-06-24T05:47:02.680Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -713,9 +713,9 @@
       "homeId": "COL",
       "awayId": "COD",
       "kickoffUtc": "2026-06-24T02:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "finished",
+      "homeGoals": 1,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,

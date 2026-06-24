@@ -374,9 +374,9 @@
       "name": "Congo DR",
       "code": "COD",
       "groupId": "K",
-      "rankingElo": 1487.1853757289143,
-      "attackRating": 0.9805210399252637,
-      "defenseRating": 0.9805210399252637
+      "rankingElo": 1472.3713079935576,
+      "attackRating": 0.9584751818116065,
+      "defenseRating": 0.9584751818116065
     },
     {
       "id": "UZB",
@@ -392,9 +392,9 @@
       "name": "Colombia",
       "code": "COL",
       "groupId": "K",
-      "rankingElo": 1712.6022174724433,
-      "attackRating": 1.3859093082443732,
-      "defenseRating": 1.3859093082443732
+      "rankingElo": 1727.4162852078,
+      "attackRating": 1.417786565525259,
+      "defenseRating": 1.417786565525259
     },
     {
       "id": "ENG",
@@ -1146,9 +1146,9 @@
       "homeId": "COL",
       "awayId": "COD",
       "kickoffUtc": "2026-06-24T02:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "finished",
+      "homeGoals": 1,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
