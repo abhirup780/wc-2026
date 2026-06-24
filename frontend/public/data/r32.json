@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T20:15:44.228Z",
+  "generatedAt": "2026-06-24T21:51:18.104Z",
   "simCount": 50000,
   "remainingGroupMatches": 22,
   "distinctMatchups": 261,
@@ -10,7 +10,7 @@
       "homeName": "United States",
       "awayName": "Bosnia-Herzegovina",
       "prob": 0.99534,
-      "homeWinProb": 0.7790783631546521
+      "homeWinProb": 0.7602033321199423
     },
     {
       "home": "NOR",
@@ -26,7 +26,7 @@
       "homeName": "South Korea",
       "awayName": "Canada",
       "prob": 0.80232,
-      "homeWinProb": 0.5188094368016029
+      "homeWinProb": 0.5389454707341893
     },
     {
       "home": "FRA",
@@ -178,7 +178,7 @@
       "homeName": "Switzerland",
       "awayName": "Algeria",
       "prob": 0.26726,
-      "homeWinProb": 0.5755025427729114
+      "homeWinProb": 0.5951176146719372
     },
     {
       "home": "SUI",
@@ -186,7 +186,7 @@
       "homeName": "Switzerland",
       "awayName": "Egypt",
       "prob": 0.26174,
-      "homeWinProb": 0.5682273913900403
+      "homeWinProb": 0.5879379337938904
     },
     {
       "home": "GER",
@@ -202,7 +202,7 @@
       "homeName": "Switzerland",
       "awayName": "Iran",
       "prob": 0.24732,
-      "homeWinProb": 0.541884842175471
+      "homeWinProb": 0.5618707123952978
     },
     {
       "home": "BEL",
@@ -258,7 +258,7 @@
       "homeName": "Switzerland",
       "awayName": "Austria",
       "prob": 0.13862,
-      "homeWinProb": 0.5525241694915771
+      "homeWinProb": 0.5724121379908058
     },
     {
       "home": "BEL",
@@ -274,7 +274,7 @@
       "homeName": "Canada",
       "awayName": "South Africa",
       "prob": 0.12978,
-      "homeWinProb": 0.6435250203678655
+      "homeWinProb": 0.6247764784387242
     },
     {
       "home": "FRA",
@@ -492,23 +492,6 @@
       ]
     },
     {
-      "code": "BRA",
-      "name": "Brazil",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "NED",
-          "name": "Netherlands",
-          "prob": 0.42744
-        },
-        {
-          "code": "JPN",
-          "name": "Japan",
-          "prob": 0.40416
-        }
-      ]
-    },
-    {
       "code": "GER",
       "name": "Germany",
       "reachProb": 1,
@@ -522,6 +505,23 @@
           "code": "AUS",
           "name": "Australia",
           "prob": 0.24888
+        }
+      ]
+    },
+    {
+      "code": "BRA",
+      "name": "Brazil",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "NED",
+          "name": "Netherlands",
+          "prob": 0.42744
+        },
+        {
+          "code": "JPN",
+          "name": "Japan",
+          "prob": 0.40416
         }
       ]
     },
