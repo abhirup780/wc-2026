@@ -410,9 +410,9 @@
       "name": "Croatia",
       "code": "CRO",
       "groupId": "L",
-      "rankingElo": 1695.2141551098398,
-      "attackRating": 1.349406413875877,
-      "defenseRating": 1.349406413875877
+      "rankingElo": 1711.4882105593126,
+      "attackRating": 1.3835413401607983,
+      "defenseRating": 1.3835413401607983
     },
     {
       "id": "GHA",
@@ -428,9 +428,9 @@
       "name": "Panama",
       "code": "PAN",
       "groupId": "L",
-      "rankingElo": 1505.3331569650222,
-      "attackRating": 1.0082203011358735,
-      "defenseRating": 1.0082203011358735
+      "rankingElo": 1489.0591015155494,
+      "attackRating": 0.9833453482456082,
+      "defenseRating": 0.9833453482456082
     }
   ],
   "matches": [
@@ -1131,9 +1131,9 @@
       "homeId": "PAN",
       "awayId": "CRO",
       "kickoffUtc": "2026-06-23T23:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
-      "awayGoals": 0,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
