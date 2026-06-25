@@ -1,53 +1,53 @@
 {
-  "timestamp": "2026-06-25T00:20:27.702Z",
+  "timestamp": "2026-06-25T04:42:21.519Z",
   "groups": {
     "A": [
       {
         "groupId": "A",
         "teamId": "MEX",
-        "played": 2,
-        "w": 2,
+        "played": 3,
+        "w": 3,
         "d": 0,
         "l": 0,
-        "gf": 3,
+        "gf": 6,
         "ga": 0,
-        "gd": 3,
-        "points": 6
+        "gd": 6,
+        "points": 9
       },
       {
         "groupId": "A",
         "teamId": "RSA",
-        "played": 2,
-        "w": 0,
-        "d": 1,
-        "l": 1,
-        "gf": 1,
-        "ga": 3,
-        "gd": -2,
-        "points": 1
-      },
-      {
-        "groupId": "A",
-        "teamId": "KOR",
-        "played": 2,
+        "played": 3,
         "w": 1,
-        "d": 0,
-        "l": 1,
-        "gf": 2,
-        "ga": 2,
-        "gd": 0,
-        "points": 3
-      },
-      {
-        "groupId": "A",
-        "teamId": "CZE",
-        "played": 2,
-        "w": 0,
         "d": 1,
         "l": 1,
         "gf": 2,
         "ga": 3,
         "gd": -1,
+        "points": 4
+      },
+      {
+        "groupId": "A",
+        "teamId": "KOR",
+        "played": 3,
+        "w": 1,
+        "d": 0,
+        "l": 2,
+        "gf": 2,
+        "ga": 3,
+        "gd": -1,
+        "points": 3
+      },
+      {
+        "groupId": "A",
+        "teamId": "CZE",
+        "played": 3,
+        "w": 0,
+        "d": 1,
+        "l": 2,
+        "gf": 2,
+        "ga": 6,
+        "gd": -4,
         "points": 1
       }
     ],
