@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-25T16:05:36.654Z",
+  "timestamp": "2026-06-25T20:33:12.536Z",
   "groups": {
     "A": [
       {
@@ -205,50 +205,50 @@
       {
         "groupId": "E",
         "teamId": "GER",
-        "played": 2,
+        "played": 3,
         "w": 2,
-        "d": 0,
+        "d": 1,
         "l": 0,
-        "gf": 9,
-        "ga": 2,
+        "gf": 10,
+        "ga": 3,
         "gd": 7,
-        "points": 6
+        "points": 7
       },
       {
         "groupId": "E",
         "teamId": "CUW",
-        "played": 2,
+        "played": 3,
         "w": 0,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 1,
-        "ga": 7,
-        "gd": -6,
+        "ga": 8,
+        "gd": -7,
         "points": 1
       },
       {
         "groupId": "E",
         "teamId": "CIV",
-        "played": 2,
-        "w": 1,
+        "played": 3,
+        "w": 2,
         "d": 0,
         "l": 1,
-        "gf": 2,
+        "gf": 3,
         "ga": 2,
-        "gd": 0,
-        "points": 3
+        "gd": 1,
+        "points": 6
       },
       {
         "groupId": "E",
         "teamId": "ECU",
-        "played": 2,
+        "played": 3,
         "w": 0,
-        "d": 1,
+        "d": 2,
         "l": 1,
-        "gf": 0,
-        "ga": 1,
+        "gf": 1,
+        "ga": 2,
         "gd": -1,
-        "points": 1
+        "points": 2
       }
     ],
     "F": [
