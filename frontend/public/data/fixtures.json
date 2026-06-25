@@ -149,36 +149,36 @@
       "name": "Germany",
       "code": "GER",
       "groupId": "E",
-      "rankingElo": 1760.453588238981,
-      "attackRating": 1.4915428188321673,
-      "defenseRating": 1.4915428188321673
+      "rankingElo": 1726.2172732762272,
+      "attackRating": 1.4151794565666638,
+      "defenseRating": 1.4151794565666638
     },
     {
       "id": "CUW",
       "name": "Curaçao",
       "code": "CUW",
       "groupId": "E",
-      "rankingElo": 1299.4066713553516,
-      "attackRating": 0.7349725415806505,
-      "defenseRating": 0.7349725415806505
+      "rankingElo": 1285.6453388615566,
+      "attackRating": 0.7196095074215889,
+      "defenseRating": 0.7196095074215889
     },
     {
       "id": "CIV",
       "name": "Ivory Coast",
       "code": "CIV",
       "groupId": "E",
-      "rankingElo": 1551.7137106453529,
-      "attackRating": 1.0826194048148774,
-      "defenseRating": 1.0826194048148774
+      "rankingElo": 1565.4750431391478,
+      "attackRating": 1.1057323830703047,
+      "defenseRating": 1.1057323830703047
     },
     {
       "id": "ECU",
       "name": "Ecuador",
       "code": "ECU",
       "groupId": "E",
-      "rankingElo": 1558.3560297603144,
-      "attackRating": 1.0937146259100892,
-      "defenseRating": 1.0937146259100892
+      "rankingElo": 1592.5923447230682,
+      "attackRating": 1.1527316825850618,
+      "defenseRating": 1.1527316825850618
     },
     {
       "id": "NED",
@@ -1251,9 +1251,9 @@
       "homeId": "CUW",
       "awayId": "CIV",
       "kickoffUtc": "2026-06-25T20:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
-      "awayGoals": 1,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1266,8 +1266,8 @@
       "homeId": "ECU",
       "awayId": "GER",
       "kickoffUtc": "2026-06-25T20:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1578,7 +1578,7 @@
       "id": "ESPN-760490",
       "stage": "r32",
       "groupId": null,
-      "homeId": "2E",
+      "homeId": "CIV",
       "awayId": "2I",
       "kickoffUtc": "2026-06-30T17:00Z",
       "status": "scheduled",

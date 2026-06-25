@@ -655,10 +655,10 @@
       "homeId": "CUW",
       "awayId": "CIV",
       "kickoffUtc": "2026-06-25T20:00Z",
-      "homeXg": 0.8486044799214633,
-      "awayXg": 1.8412582504214525,
+      "homeXg": 0,
+      "awayXg": 2,
       "homeGoals": 0,
-      "awayGoals": 3
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760468",
@@ -667,10 +667,10 @@
       "homeId": "ECU",
       "awayId": "GER",
       "kickoffUtc": "2026-06-25T20:00Z",
-      "homeXg": 0.91659673803937,
-      "awayXg": 1.7046754970372664,
-      "homeGoals": 0,
-      "awayGoals": 4
+      "homeXg": 2,
+      "awayXg": 1,
+      "homeGoals": 2,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760471",
@@ -884,10 +884,10 @@
       "homeId": "GER",
       "awayId": "SWE",
       "kickoffUtc": "",
-      "homeXg": 1.541580139557709,
-      "awayXg": 0.732304614616981,
+      "homeXg": 1.4626549882499362,
+      "awayXg": 0.7718199158851085,
       "homeGoals": 2,
-      "awayGoals": 1,
+      "awayGoals": 2,
       "winnerId": "GER"
     },
     {
@@ -936,8 +936,8 @@
       "homeId": "CIV",
       "awayId": "NOR",
       "kickoffUtc": "",
-      "homeXg": 0.9768220852753842,
-      "awayXg": 1.1556927991464696,
+      "homeXg": 0.9976763832086932,
+      "awayXg": 1.1315355048991433,
       "homeGoals": 0,
       "awayGoals": 2,
       "winnerId": "NOR"
@@ -947,11 +947,11 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "MEX",
-      "awayId": "SEN",
+      "awayId": "ECU",
       "kickoffUtc": "",
-      "homeXg": 1.2343136782345243,
-      "awayXg": 0.9146023980020282,
-      "homeGoals": 2,
+      "homeXg": 1.3241540443689717,
+      "awayXg": 0.8525490329472827,
+      "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "MEX"
     },
@@ -1079,8 +1079,8 @@
       "homeId": "GER",
       "awayId": "FRA",
       "kickoffUtc": "",
-      "homeXg": 0.8650253223989448,
-      "awayXg": 1.305055725847705,
+      "homeXg": 0.82073813115699,
+      "awayXg": 1.375476789909331,
       "homeGoals": 0,
       "awayGoals": 1,
       "winnerId": "FRA"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-25T20:33:19.842Z"
+  "generatedAt": "2026-06-25T22:09:37.871Z"
 }
