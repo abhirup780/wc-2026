@@ -293,36 +293,36 @@
       "name": "France",
       "code": "FRA",
       "groupId": "I",
-      "rankingElo": 1894.4037648065048,
-      "attackRating": 1.8320437610013611,
-      "defenseRating": 1.8320437610013611
+      "rankingElo": 1906.8445993684177,
+      "attackRating": 1.86736722874879,
+      "defenseRating": 1.86736722874879
     },
     {
       "id": "SEN",
       "name": "Senegal",
       "code": "SEN",
       "groupId": "I",
-      "rankingElo": 1638.3617991443418,
-      "attackRating": 1.2366340473116253,
-      "defenseRating": 1.2366340473116253
+      "rankingElo": 1653.4289680381828,
+      "attackRating": 1.2655694383153744,
+      "defenseRating": 1.2655694383153744
     },
     {
       "id": "IRQ",
       "name": "Iraq",
       "code": "IRQ",
       "groupId": "I",
-      "rankingElo": 1419.2405225412424,
-      "attackRating": 0.8834060076204332,
-      "defenseRating": 0.8834060076204332
+      "rankingElo": 1404.1733536474014,
+      "attackRating": 0.8632082235465827,
+      "defenseRating": 0.8632082235465827
     },
     {
       "id": "NOR",
       "name": "Norway",
       "code": "NOR",
       "groupId": "I",
-      "rankingElo": 1606.483913507911,
-      "attackRating": 1.1775768944572145,
-      "defenseRating": 1.1775768944572145
+      "rankingElo": 1594.043078945998,
+      "attackRating": 1.1553016296827825,
+      "defenseRating": 1.1553016296827825
     },
     {
       "id": "ARG",
@@ -1341,9 +1341,9 @@
       "homeId": "NOR",
       "awayId": "FRA",
       "kickoffUtc": "2026-06-26T19:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
-      "awayGoals": 3,
+      "awayGoals": 4,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1356,7 +1356,7 @@
       "homeId": "SEN",
       "awayId": "IRQ",
       "kickoffUtc": "2026-06-26T19:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 5,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -1579,7 +1579,7 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "CIV",
-      "awayId": "2I",
+      "awayId": "NOR",
       "kickoffUtc": "2026-06-30T17:00Z",
       "status": "scheduled",
       "homeGoals": null,
@@ -1593,7 +1593,7 @@
       "id": "ESPN-760492",
       "stage": "r32",
       "groupId": null,
-      "homeId": "1I",
+      "homeId": "FRA",
       "awayId": "3RD",
       "kickoffUtc": "2026-06-30T21:00Z",
       "status": "scheduled",

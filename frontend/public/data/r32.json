@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T20:53:45.975Z",
+  "generatedAt": "2026-06-26T22:17:01.718Z",
   "simCount": 50000,
   "remainingGroupMatches": 10,
   "distinctMatchups": 99,
@@ -34,7 +34,7 @@
       "homeName": "Norway",
       "awayName": "Ivory Coast",
       "prob": 1,
-      "homeWinProb": 0.5392633341108137
+      "homeWinProb": 0.5273810519856045
     },
     {
       "home": "USA",
@@ -50,7 +50,7 @@
       "homeName": "France",
       "awayName": "Sweden",
       "prob": 0.99856,
-      "homeWinProb": 0.8046163841225717
+      "homeWinProb": 0.812013101366146
     },
     {
       "home": "GER",
@@ -114,7 +114,7 @@
       "homeName": "England",
       "awayName": "Senegal",
       "prob": 0.43478,
-      "homeWinProb": 0.6758436853426826
+      "homeWinProb": 0.6630494893399558
     },
     {
       "home": "POR",
@@ -210,7 +210,7 @@
       "homeName": "Switzerland",
       "awayName": "Senegal",
       "prob": 0.13444,
-      "homeWinProb": 0.5360447794263387
+      "homeWinProb": 0.5216382921880637
     },
     {
       "home": "BEL",
@@ -218,7 +218,7 @@
       "homeName": "Belgium",
       "awayName": "Senegal",
       "prob": 0.1285,
-      "homeWinProb": 0.5850516672801126
+      "homeWinProb": 0.5709489160451245
     },
     {
       "home": "BEL",
@@ -234,7 +234,7 @@
       "homeName": "Senegal",
       "awayName": "Egypt",
       "prob": 0.09456,
-      "homeWinProb": 0.5525595470734324
+      "homeWinProb": 0.5668081388489051
     },
     {
       "home": "ARG",
@@ -298,7 +298,7 @@
       "homeName": "Croatia",
       "awayName": "Senegal",
       "prob": 0.0616,
-      "homeWinProb": 0.5697013992871092
+      "homeWinProb": 0.5554733382128423
     },
     {
       "home": "CRO",
@@ -354,7 +354,7 @@
       "homeName": "Senegal",
       "awayName": "Iran",
       "prob": 0.02962,
-      "homeWinProb": 0.5260583858809998
+      "homeWinProb": 0.5404490290539405
     },
     {
       "home": "BEL",
@@ -386,7 +386,7 @@
       "homeName": "Colombia",
       "awayName": "Senegal",
       "prob": 0.02472,
-      "homeWinProb": 0.5846177951429812
+      "homeWinProb": 0.5705111230321936
     },
     {
       "home": "IRN",
@@ -407,23 +407,6 @@
   ],
   "contenders": [
     {
-      "code": "ARG",
-      "name": "Argentina",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "CPV",
-          "name": "Cape Verde",
-          "prob": 0.53438
-        },
-        {
-          "code": "KSA",
-          "name": "Saudi Arabia",
-          "prob": 0.32952
-        }
-      ]
-    },
-    {
       "code": "FRA",
       "name": "France",
       "reachProb": 1,
@@ -437,6 +420,23 @@
           "code": "EGY",
           "name": "Egypt",
           "prob": 0.00138
+        }
+      ]
+    },
+    {
+      "code": "ARG",
+      "name": "Argentina",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "CPV",
+          "name": "Cape Verde",
+          "prob": 0.53438
+        },
+        {
+          "code": "KSA",
+          "name": "Saudi Arabia",
+          "prob": 0.32952
         }
       ]
     },
