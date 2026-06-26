@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-25T23:47:01.362Z",
+  "generatedAt": "2026-06-26T01:55:45.153Z",
   "simCount": 50000,
   "remainingGroupMatches": 14,
   "distinctMatchups": 151,
@@ -18,7 +18,7 @@
       "homeName": "Morocco",
       "awayName": "Netherlands",
       "prob": 1,
-      "homeWinProb": 0.5115138443304136
+      "homeWinProb": 0.5008641534608913
     },
     {
       "home": "BRA",
@@ -26,7 +26,7 @@
       "homeName": "Brazil",
       "awayName": "Japan",
       "prob": 1,
-      "homeWinProb": 0.5984105671727745
+      "homeWinProb": 0.6053857678506492
     },
     {
       "home": "USA",
@@ -58,7 +58,7 @@
       "homeName": "France",
       "awayName": "Sweden",
       "prob": 0.64934,
-      "homeWinProb": 0.8091522542850569
+      "homeWinProb": 0.8046163841225717
     },
     {
       "home": "ESP",
@@ -170,7 +170,7 @@
       "homeName": "Germany",
       "awayName": "Sweden",
       "prob": 0.27616,
-      "homeWinProb": 0.6897758563936064
+      "homeWinProb": 0.6835125051493594
     },
     {
       "home": "SUI",
@@ -330,7 +330,7 @@
       "homeName": "Norway",
       "awayName": "Sweden",
       "prob": 0.07184,
-      "homeWinProb": 0.58408797887261
+      "homeWinProb": 0.5769993618355945
     },
     {
       "home": "ENG",

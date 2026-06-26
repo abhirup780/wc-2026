@@ -679,10 +679,10 @@
       "homeId": "JPN",
       "awayId": "SWE",
       "kickoffUtc": "2026-06-25T23:00Z",
-      "homeXg": 1.6060358152917282,
-      "awayXg": 0.9728923758254917,
+      "homeXg": 1,
+      "awayXg": 1,
       "homeGoals": 1,
-      "awayGoals": 0
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760472",
@@ -691,10 +691,10 @@
       "homeId": "TUN",
       "awayId": "NED",
       "kickoffUtc": "2026-06-25T23:00Z",
-      "homeXg": 0.757019297965567,
-      "awayXg": 2.064016074886205,
-      "homeGoals": 0,
-      "awayGoals": 0
+      "homeXg": 1,
+      "awayXg": 3,
+      "homeGoals": 1,
+      "awayGoals": 3
     },
     {
       "id": "ESPN-760469",
@@ -884,8 +884,8 @@
       "homeId": "GER",
       "awayId": "SWE",
       "kickoffUtc": "",
-      "homeXg": 1.4626549882499362,
-      "awayXg": 0.7718199158851085,
+      "homeXg": 1.4457223755034143,
+      "awayXg": 0.7808596374576442,
       "homeGoals": 2,
       "awayGoals": 2,
       "winnerId": "GER"
@@ -894,13 +894,13 @@
       "id": "R32-03",
       "stage": "r32",
       "groupId": null,
-      "homeId": "JPN",
+      "homeId": "NED",
       "awayId": "MAR",
       "kickoffUtc": "",
-      "homeXg": 0.9181358720786242,
-      "awayXg": 1.2295633841690552,
-      "homeGoals": 2,
-      "awayGoals": 2,
+      "homeXg": 1.061031952783116,
+      "awayXg": 1.0639700784117274,
+      "homeGoals": 0,
+      "awayGoals": 1,
       "winnerId": "MAR"
     },
     {
@@ -908,12 +908,12 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "BRA",
-      "awayId": "NED",
+      "awayId": "JPN",
       "kickoffUtc": "",
-      "homeXg": 1.096972650489281,
-      "awayXg": 1.0291106615068988,
-      "homeGoals": 3,
-      "awayGoals": 2,
+      "homeXg": 1.2608770027651268,
+      "awayXg": 0.8953341583075015,
+      "homeGoals": 2,
+      "awayGoals": 0,
       "winnerId": "BRA"
     },
     {
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-25T23:46:57.882Z"
+  "generatedAt": "2026-06-26T01:55:42.167Z"
 }
