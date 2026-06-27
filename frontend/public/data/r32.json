@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T21:43:47.599Z",
+  "generatedAt": "2026-06-27T22:46:16.498Z",
   "simCount": 50000,
   "remainingGroupMatches": 4,
   "distinctMatchups": 31,
@@ -109,20 +109,20 @@
       "homeWinProb": 0.779371972501531
     },
     {
-      "home": "ENG",
-      "away": "POR",
-      "homeName": "England",
-      "awayName": "Portugal",
+      "home": "POR",
+      "away": "CRO",
+      "homeName": "Portugal",
+      "awayName": "Croatia",
       "prob": 0.55192,
-      "homeWinProb": 0.560223413822266
+      "homeWinProb": 0.5528108325724274
     },
     {
-      "home": "CRO",
+      "home": "ENG",
       "away": "SEN",
-      "homeName": "Croatia",
+      "homeName": "England",
       "awayName": "Senegal",
       "prob": 0.50524,
-      "homeWinProb": 0.5554733382128423
+      "homeWinProb": 0.6630494893399558
     },
     {
       "home": "BEL",
@@ -133,20 +133,20 @@
       "homeWinProb": 0.5780180503198614
     },
     {
-      "home": "CRO",
+      "home": "ENG",
       "away": "COD",
-      "homeName": "Croatia",
+      "homeName": "England",
       "awayName": "Congo DR",
       "prob": 0.48762,
-      "homeWinProb": 0.7145620205225499
+      "homeWinProb": 0.7976624246192144
     },
     {
-      "home": "ENG",
-      "away": "COL",
-      "homeName": "England",
-      "awayName": "Colombia",
+      "home": "COL",
+      "away": "CRO",
+      "homeName": "Colombia",
+      "awayName": "Croatia",
       "prob": 0.4411,
-      "homeWinProb": 0.5969990835739193
+      "homeWinProb": 0.5152768049379771
     },
     {
       "home": "POR",
@@ -197,20 +197,20 @@
       "homeWinProb": 0.627085740859986
     },
     {
-      "home": "POR",
-      "away": "CRO",
-      "homeName": "Portugal",
-      "awayName": "Croatia",
+      "home": "ENG",
+      "away": "POR",
+      "homeName": "England",
+      "awayName": "Portugal",
       "prob": 0.00698,
-      "homeWinProb": 0.5528108325724274
+      "homeWinProb": 0.560223413822266
     },
     {
-      "home": "ENG",
+      "home": "CRO",
       "away": "COD",
-      "homeName": "England",
+      "homeName": "Croatia",
       "awayName": "Congo DR",
       "prob": 0.00698,
-      "homeWinProb": 0.7976624246192144
+      "homeWinProb": 0.7145620205225499
     },
     {
       "home": "BEL",
@@ -221,12 +221,12 @@
       "homeWinProb": 0.8109953438265463
     },
     {
-      "home": "CRO",
+      "home": "ENG",
       "away": "UZB",
-      "homeName": "Croatia",
+      "homeName": "England",
       "awayName": "Uzbekistan",
       "prob": 0.00016,
-      "homeWinProb": 0.7444787548496833
+      "homeWinProb": 0.8210506133004841
     },
     {
       "home": "SUI",
@@ -306,14 +306,14 @@
       "reachProb": 1,
       "opponents": [
         {
-          "code": "POR",
-          "name": "Portugal",
-          "prob": 0.55192
+          "code": "SEN",
+          "name": "Senegal",
+          "prob": 0.50524
         },
         {
-          "code": "COL",
-          "name": "Colombia",
-          "prob": 0.4411
+          "code": "COD",
+          "name": "Congo DR",
+          "prob": 0.48762
         }
       ]
     },
@@ -335,8 +335,8 @@
       "reachProb": 1,
       "opponents": [
         {
-          "code": "ENG",
-          "name": "England",
+          "code": "CRO",
+          "name": "Croatia",
           "prob": 0.55192
         },
         {
@@ -371,18 +371,6 @@
       ]
     },
     {
-      "code": "MEX",
-      "name": "Mexico",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "ECU",
-          "name": "Ecuador",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "MAR",
       "name": "Morocco",
       "reachProb": 1,
@@ -391,6 +379,23 @@
           "code": "NED",
           "name": "Netherlands",
           "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "BEL",
+      "name": "Belgium",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "SEN",
+          "name": "Senegal",
+          "prob": 0.49476
+        },
+        {
+          "code": "KOR",
+          "name": "South Korea",
+          "prob": 0.26468
         }
       ]
     }

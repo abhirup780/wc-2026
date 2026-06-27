@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-27T21:43:37.648Z",
+  "timestamp": "2026-06-27T22:46:10.915Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -999,8 +999,8 @@
       "awayId": "GHA",
       "kickoffUtc": "2026-06-27T21:00Z",
       "status": "live",
-      "homeGoals": 1,
-      "awayGoals": 0,
+      "homeGoals": 2,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1015,7 +1015,7 @@
       "kickoffUtc": "2026-06-27T21:00Z",
       "status": "live",
       "homeGoals": 0,
-      "awayGoals": 0,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
