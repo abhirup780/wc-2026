@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-27T14:03:05.734Z",
+  "timestamp": "2026-06-27T21:43:37.648Z",
   "groups": {
     "A": [
       {
@@ -555,50 +555,50 @@
       {
         "groupId": "L",
         "teamId": "ENG",
-        "played": 2,
+        "played": 3,
         "w": 1,
-        "d": 1,
+        "d": 2,
         "l": 0,
         "gf": 4,
         "ga": 2,
         "gd": 2,
-        "points": 4
+        "points": 5
       },
       {
         "groupId": "L",
         "teamId": "CRO",
-        "played": 2,
-        "w": 1,
+        "played": 3,
+        "w": 2,
         "d": 0,
         "l": 1,
-        "gf": 3,
+        "gf": 4,
         "ga": 4,
-        "gd": -1,
-        "points": 3
+        "gd": 0,
+        "points": 6
       },
       {
         "groupId": "L",
         "teamId": "GHA",
-        "played": 2,
+        "played": 3,
         "w": 1,
         "d": 1,
-        "l": 0,
+        "l": 1,
         "gf": 1,
-        "ga": 0,
-        "gd": 1,
+        "ga": 1,
+        "gd": 0,
         "points": 4
       },
       {
         "groupId": "L",
         "teamId": "PAN",
-        "played": 2,
+        "played": 3,
         "w": 0,
-        "d": 0,
+        "d": 1,
         "l": 2,
         "gf": 0,
         "ga": 2,
         "gd": -2,
-        "points": 0
+        "points": 1
       }
     ]
   }
