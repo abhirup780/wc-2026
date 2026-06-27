@@ -799,10 +799,10 @@
       "homeId": "CRO",
       "awayId": "GHA",
       "kickoffUtc": "2026-06-27T21:00Z",
-      "homeXg": 2.0208074634591453,
-      "awayXg": 0.7732057745498272,
-      "homeGoals": 3,
-      "awayGoals": 0
+      "homeXg": 2,
+      "awayXg": 1,
+      "homeGoals": 2,
+      "awayGoals": 1
     },
     {
       "id": "ESPN-760485",
@@ -811,10 +811,10 @@
       "homeId": "PAN",
       "awayId": "ENG",
       "kickoffUtc": "2026-06-27T21:00Z",
-      "homeXg": 0.7408634532437232,
-      "awayXg": 2.1090256148537287,
-      "homeGoals": 1,
-      "awayGoals": 1
+      "homeXg": 0,
+      "awayXg": 2,
+      "homeGoals": 0,
+      "awayGoals": 2
     },
     {
       "id": "ESPN-760481",
@@ -959,14 +959,14 @@
       "id": "R32-08",
       "stage": "r32",
       "groupId": null,
-      "homeId": "CRO",
+      "homeId": "ENG",
       "awayId": "COD",
       "kickoffUtc": "",
-      "homeXg": 1.533699256711466,
-      "awayXg": 0.7360675471803926,
-      "homeGoals": 1,
-      "awayGoals": 0,
-      "winnerId": "CRO"
+      "homeXg": 1.8694836589964203,
+      "awayXg": 0.603859918522113,
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "winnerId": "ENG"
     },
     {
       "id": "R32-09",
@@ -999,13 +999,13 @@
       "stage": "r32",
       "groupId": null,
       "homeId": "COL",
-      "awayId": "ENG",
+      "awayId": "CRO",
       "kickoffUtc": "",
-      "homeXg": 0.9079499027029123,
-      "awayXg": 1.2433574216367156,
-      "homeGoals": 2,
-      "awayGoals": 2,
-      "winnerId": "ENG"
+      "homeXg": 1.0696385719985273,
+      "awayXg": 1.0554090695240508,
+      "homeGoals": 3,
+      "awayGoals": 1,
+      "winnerId": "COL"
     },
     {
       "id": "R32-12",
@@ -1053,8 +1053,8 @@
       "homeId": "POR",
       "awayId": "GHA",
       "kickoffUtc": "",
-      "homeXg": 1.8697260153685094,
-      "awayXg": 0.6037816453965854,
+      "homeXg": 1.9032181490524154,
+      "awayXg": 0.5931565178495517,
       "homeGoals": 3,
       "awayGoals": 0,
       "winnerId": "POR"
@@ -1116,25 +1116,25 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "MEX",
-      "awayId": "CRO",
+      "awayId": "ENG",
       "kickoffUtc": "",
-      "homeXg": 1.1032516884460122,
-      "awayXg": 1.0232535892060348,
-      "homeGoals": 1,
-      "awayGoals": 0,
-      "winnerId": "MEX"
+      "homeXg": 0.9050928508482666,
+      "awayXg": 1.2472822528008836,
+      "homeGoals": 0,
+      "awayGoals": 2,
+      "winnerId": "ENG"
     },
     {
       "id": "R16-05",
       "stage": "r16",
       "groupId": null,
-      "homeId": "ENG",
+      "homeId": "COL",
       "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 0.9843549316201008,
-      "awayXg": 1.1468487775461127,
+      "homeXg": 0.8411717311902139,
+      "awayXg": 1.3420639426418393,
       "homeGoals": 0,
-      "awayGoals": 0,
+      "awayGoals": 3,
       "winnerId": "ESP"
     },
     {
@@ -1207,13 +1207,13 @@
       "stage": "qf",
       "groupId": null,
       "homeId": "BRA",
-      "awayId": "MEX",
+      "awayId": "ENG",
       "kickoffUtc": "",
-      "homeXg": 1.1458339818171899,
-      "awayXg": 0.9852267151386591,
-      "homeGoals": 1,
-      "awayGoals": 1,
-      "winnerId": "BRA"
+      "homeXg": 0.976081077836933,
+      "awayXg": 1.156570161673187,
+      "homeGoals": 0,
+      "awayGoals": 2,
+      "winnerId": "ENG"
     },
     {
       "id": "QF-04",
@@ -1245,13 +1245,13 @@
       "id": "SF-02",
       "stage": "sf",
       "groupId": null,
-      "homeId": "BRA",
+      "homeId": "ENG",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 0.8881894168037637,
-      "awayXg": 1.2710197044032334,
+      "homeXg": 0.9668267081309576,
+      "awayXg": 1.1676407369655417,
       "homeGoals": 1,
-      "awayGoals": 3,
+      "awayGoals": 2,
       "winnerId": "ARG"
     },
     {
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-06-27T22:46:14.899Z"
+  "generatedAt": "2026-06-27T23:47:03.667Z"
 }
