@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-26T22:16:51.577Z",
+  "timestamp": "2026-06-27T01:34:34.750Z",
   "groups": {
     "A": [
       {
@@ -355,49 +355,49 @@
       {
         "groupId": "H",
         "teamId": "ESP",
-        "played": 2,
-        "w": 1,
+        "played": 3,
+        "w": 2,
         "d": 1,
         "l": 0,
-        "gf": 4,
+        "gf": 5,
         "ga": 0,
-        "gd": 4,
-        "points": 4
+        "gd": 5,
+        "points": 7
       },
       {
         "groupId": "H",
         "teamId": "CPV",
-        "played": 2,
+        "played": 3,
         "w": 0,
-        "d": 2,
+        "d": 3,
         "l": 0,
         "gf": 2,
         "ga": 2,
         "gd": 0,
-        "points": 2
+        "points": 3
       },
       {
         "groupId": "H",
         "teamId": "KSA",
-        "played": 2,
+        "played": 3,
         "w": 0,
-        "d": 1,
+        "d": 2,
         "l": 1,
         "gf": 1,
         "ga": 5,
         "gd": -4,
-        "points": 1
+        "points": 2
       },
       {
         "groupId": "H",
         "teamId": "URU",
-        "played": 2,
+        "played": 3,
         "w": 0,
         "d": 2,
-        "l": 0,
+        "l": 1,
         "gf": 3,
-        "ga": 3,
-        "gd": 0,
+        "ga": 4,
+        "gd": -1,
         "points": 2
       }
     ],
