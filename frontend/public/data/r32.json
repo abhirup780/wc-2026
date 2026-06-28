@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-27T23:47:06.419Z",
+  "generatedAt": "2026-06-28T01:58:29.686Z",
   "simCount": 50000,
   "remainingGroupMatches": 2,
-  "distinctMatchups": 22,
+  "distinctMatchups": 21,
   "matchups": [
     {
       "home": "CAN",
@@ -62,11 +62,11 @@
     },
     {
       "home": "ENG",
-      "away": "SEN",
+      "away": "COD",
       "homeName": "England",
-      "awayName": "Senegal",
+      "awayName": "Congo DR",
       "prob": 1,
-      "homeWinProb": 0.6721134934705781
+      "homeWinProb": 0.7898328044501616
     },
     {
       "home": "USA",
@@ -77,20 +77,20 @@
       "homeWinProb": 0.7367958143259156
     },
     {
+      "home": "BEL",
+      "away": "SEN",
+      "homeName": "Belgium",
+      "awayName": "Senegal",
+      "prob": 1,
+      "homeWinProb": 0.5780180503198614
+    },
+    {
       "home": "POR",
       "away": "CRO",
       "homeName": "Portugal",
       "awayName": "Croatia",
       "prob": 1,
-      "homeWinProb": 0.5418142076316713
-    },
-    {
-      "home": "SUI",
-      "away": "IRN",
-      "homeName": "Switzerland",
-      "awayName": "Iran",
-      "prob": 1,
-      "homeWinProb": 0.5631290162366069
+      "homeWinProb": 0.540019950220663
     },
     {
       "home": "COL",
@@ -98,7 +98,7 @@
       "homeName": "Colombia",
       "awayName": "Ghana",
       "prob": 1,
-      "homeWinProb": 0.7869094616425728
+      "homeWinProb": 0.788118530595592
     },
     {
       "home": "EGY",
@@ -117,20 +117,20 @@
       "homeWinProb": 0.8715620319909584
     },
     {
+      "home": "SUI",
+      "away": "IRN",
+      "homeName": "Switzerland",
+      "awayName": "Iran",
+      "prob": 0.72278,
+      "homeWinProb": 0.5631290162366069
+    },
+    {
       "home": "ESP",
       "away": "AUT",
       "homeName": "Spain",
       "awayName": "Austria",
       "prob": 0.65424,
       "homeWinProb": 0.7451649588311022
-    },
-    {
-      "home": "BEL",
-      "away": "KOR",
-      "homeName": "Belgium",
-      "awayName": "South Korea",
-      "prob": 0.53094,
-      "homeWinProb": 0.6633159246881676
     },
     {
       "home": "ESP",
@@ -141,28 +141,20 @@
       "homeWinProb": 0.7625031275817159
     },
     {
-      "home": "BEL",
+      "home": "SUI",
       "away": "ALG",
-      "homeName": "Belgium",
+      "homeName": "Switzerland",
       "awayName": "Algeria",
       "prob": 0.2771,
-      "homeWinProb": 0.6486699026756124
+      "homeWinProb": 0.5951176146719372
     },
     {
-      "home": "BEL",
-      "away": "AUT",
-      "homeName": "Belgium",
-      "awayName": "Austria",
-      "prob": 0.19086,
-      "homeWinProb": 0.627085740859986
-    },
-    {
-      "home": "BEL",
+      "home": "SUI",
       "away": "JOR",
-      "homeName": "Belgium",
+      "homeName": "Switzerland",
       "awayName": "Jordan",
-      "prob": 0.0011,
-      "homeWinProb": 0.8109953438265463
+      "prob": 0.00012,
+      "homeWinProb": 0.7735481133090787
     },
     {
       "home": "ARG",
@@ -234,8 +226,8 @@
       "reachProb": 1,
       "opponents": [
         {
-          "code": "SEN",
-          "name": "Senegal",
+          "code": "COD",
+          "name": "Congo DR",
           "prob": 1
         }
       ]
@@ -253,18 +245,6 @@
       ]
     },
     {
-      "code": "POR",
-      "name": "Portugal",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "CRO",
-          "name": "Croatia",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "NED",
       "name": "Netherlands",
       "reachProb": 1,
@@ -272,6 +252,18 @@
         {
           "code": "MAR",
           "name": "Morocco",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "POR",
+      "name": "Portugal",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "CRO",
+          "name": "Croatia",
           "prob": 1
         }
       ]
