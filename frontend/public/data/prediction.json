@@ -871,8 +871,8 @@
       "homeId": "RSA",
       "awayId": "CAN",
       "kickoffUtc": "",
-      "homeXg": 0.9115386747130336,
-      "awayXg": 1.238462263112859,
+      "homeXg": 0.8459506497769006,
+      "awayXg": 1.3344823959857732,
       "homeGoals": 0,
       "awayGoals": 4,
       "winnerId": "CAN"
@@ -1092,8 +1092,8 @@
       "homeId": "CAN",
       "awayId": "MAR",
       "kickoffUtc": "",
-      "homeXg": 0.7518168045275422,
-      "awayXg": 1.5015709188748834,
+      "homeXg": 0.7804176168317671,
+      "awayXg": 1.4465412179993828,
       "homeGoals": 3,
       "awayGoals": 4,
       "winnerId": "MAR"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-28T20:17:38.697Z"
+  "generatedAt": "2026-06-28T21:34:06.921Z"
 }
