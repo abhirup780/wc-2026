@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-28T01:58:29.686Z",
+  "generatedAt": "2026-06-28T06:35:27.161Z",
   "simCount": 50000,
-  "remainingGroupMatches": 2,
-  "distinctMatchups": 21,
+  "remainingGroupMatches": 0,
+  "distinctMatchups": 16,
   "matchups": [
     {
       "home": "CAN",
@@ -93,6 +93,30 @@
       "homeWinProb": 0.540019950220663
     },
     {
+      "home": "ESP",
+      "away": "AUT",
+      "homeName": "Spain",
+      "awayName": "Austria",
+      "prob": 1,
+      "homeWinProb": 0.7460147890511134
+    },
+    {
+      "home": "SUI",
+      "away": "ALG",
+      "homeName": "Switzerland",
+      "awayName": "Algeria",
+      "prob": 1,
+      "homeWinProb": 0.5940376385260334
+    },
+    {
+      "home": "ARG",
+      "away": "CPV",
+      "homeName": "Argentina",
+      "awayName": "Cape Verde",
+      "prob": 1,
+      "homeWinProb": 0.8738964632496536
+    },
+    {
       "home": "COL",
       "away": "GHA",
       "homeName": "Colombia",
@@ -107,70 +131,6 @@
       "awayName": "Australia",
       "prob": 1,
       "homeWinProb": 0.5032256763698272
-    },
-    {
-      "home": "ARG",
-      "away": "CPV",
-      "homeName": "Argentina",
-      "awayName": "Cape Verde",
-      "prob": 0.99992,
-      "homeWinProb": 0.8715620319909584
-    },
-    {
-      "home": "SUI",
-      "away": "IRN",
-      "homeName": "Switzerland",
-      "awayName": "Iran",
-      "prob": 0.72278,
-      "homeWinProb": 0.5631290162366069
-    },
-    {
-      "home": "ESP",
-      "away": "AUT",
-      "homeName": "Spain",
-      "awayName": "Austria",
-      "prob": 0.65424,
-      "homeWinProb": 0.7451649588311022
-    },
-    {
-      "home": "ESP",
-      "away": "ALG",
-      "homeName": "Spain",
-      "awayName": "Algeria",
-      "prob": 0.34568,
-      "homeWinProb": 0.7625031275817159
-    },
-    {
-      "home": "SUI",
-      "away": "ALG",
-      "homeName": "Switzerland",
-      "awayName": "Algeria",
-      "prob": 0.2771,
-      "homeWinProb": 0.5951176146719372
-    },
-    {
-      "home": "SUI",
-      "away": "JOR",
-      "homeName": "Switzerland",
-      "awayName": "Jordan",
-      "prob": 0.00012,
-      "homeWinProb": 0.7735481133090787
-    },
-    {
-      "home": "ARG",
-      "away": "ESP",
-      "homeName": "Argentina",
-      "awayName": "Spain",
-      "prob": 0.00008,
-      "homeWinProb": 0.5214279349993383
-    },
-    {
-      "home": "AUT",
-      "away": "CPV",
-      "homeName": "Austria",
-      "awayName": "Cape Verde",
-      "prob": 0.00008,
-      "homeWinProb": 0.6805036952543917
     }
   ],
   "contenders": [
@@ -182,12 +142,7 @@
         {
           "code": "CPV",
           "name": "Cape Verde",
-          "prob": 0.99992
-        },
-        {
-          "code": "ESP",
-          "name": "Spain",
-          "prob": 0.00008
+          "prob": 1
         }
       ]
     },
@@ -211,12 +166,7 @@
         {
           "code": "AUT",
           "name": "Austria",
-          "prob": 0.65424
-        },
-        {
-          "code": "ALG",
-          "name": "Algeria",
-          "prob": 0.34568
+          "prob": 1
         }
       ]
     },
@@ -269,18 +219,6 @@
       ]
     },
     {
-      "code": "GER",
-      "name": "Germany",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "PAR",
-          "name": "Paraguay",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "COL",
       "name": "Colombia",
       "reachProb": 1,
@@ -288,6 +226,18 @@
         {
           "code": "GHA",
           "name": "Ghana",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "GER",
+      "name": "Germany",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "PAR",
+          "name": "Paraguay",
           "prob": 1
         }
       ]

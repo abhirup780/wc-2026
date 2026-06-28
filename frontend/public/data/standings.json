@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-28T01:58:20.060Z",
+  "timestamp": "2026-06-28T06:35:17.416Z",
   "groups": {
     "A": [
       {
@@ -455,49 +455,49 @@
       {
         "groupId": "J",
         "teamId": "ARG",
-        "played": 2,
-        "w": 2,
+        "played": 3,
+        "w": 3,
         "d": 0,
         "l": 0,
-        "gf": 5,
-        "ga": 0,
-        "gd": 5,
-        "points": 6
+        "gf": 8,
+        "ga": 1,
+        "gd": 7,
+        "points": 9
       },
       {
         "groupId": "J",
         "teamId": "ALG",
-        "played": 2,
+        "played": 3,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 1,
-        "gf": 2,
-        "ga": 4,
+        "gf": 5,
+        "ga": 7,
         "gd": -2,
-        "points": 3
+        "points": 4
       },
       {
         "groupId": "J",
         "teamId": "AUT",
-        "played": 2,
+        "played": 3,
         "w": 1,
-        "d": 0,
+        "d": 1,
         "l": 1,
-        "gf": 3,
-        "ga": 3,
+        "gf": 6,
+        "ga": 6,
         "gd": 0,
-        "points": 3
+        "points": 4
       },
       {
         "groupId": "J",
         "teamId": "JOR",
-        "played": 2,
+        "played": 3,
         "w": 0,
         "d": 0,
-        "l": 2,
-        "gf": 2,
-        "ga": 5,
-        "gd": -3,
+        "l": 3,
+        "gf": 3,
+        "ga": 8,
+        "gd": -5,
         "points": 0
       }
     ],
