@@ -910,8 +910,8 @@
       "homeId": "BRA",
       "awayId": "JPN",
       "kickoffUtc": "",
-      "homeXg": 1.2608770027651268,
-      "awayXg": 0.8953341583075015,
+      "homeXg": 1.3559443388894936,
+      "awayXg": 0.8325609080123187,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "BRA"
@@ -1105,8 +1105,8 @@
       "homeId": "BRA",
       "awayId": "NOR",
       "kickoffUtc": "",
-      "homeXg": 1.424833489735489,
-      "awayXg": 0.7923074928633057,
+      "homeXg": 1.4775721055676765,
+      "awayXg": 0.7640278574197089,
       "homeGoals": 4,
       "awayGoals": 2,
       "winnerId": "BRA"
@@ -1209,8 +1209,8 @@
       "homeId": "BRA",
       "awayId": "ENG",
       "kickoffUtc": "",
-      "homeXg": 0.976081077836933,
-      "awayXg": 1.156570161673187,
+      "homeXg": 1.0122096257381097,
+      "awayXg": 1.1152889888562305,
       "homeGoals": 0,
       "awayGoals": 2,
       "winnerId": "ENG"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-29T18:54:27.439Z"
+  "generatedAt": "2026-06-29T20:50:29.278Z"
 }

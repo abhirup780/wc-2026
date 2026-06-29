@@ -77,9 +77,9 @@
       "name": "Brazil",
       "code": "BRA",
       "groupId": "C",
-      "rankingElo": 1785.1958424168095,
-      "attackRating": 1.5492823084404863,
-      "defenseRating": 1.5492823084404863
+      "rankingElo": 1808.8726963457705,
+      "attackRating": 1.6066272579163832,
+      "defenseRating": 1.6066272579163832
     },
     {
       "id": "MAR",
@@ -194,9 +194,9 @@
       "name": "Japan",
       "code": "JPN",
       "groupId": "F",
-      "rankingElo": 1673.6801650011755,
-      "attackRating": 1.3055297615136618,
-      "defenseRating": 1.3055297615136618
+      "rankingElo": 1650.0033110722145,
+      "attackRating": 1.258931810530076,
+      "defenseRating": 1.258931810530076
     },
     {
       "id": "SWE",
@@ -1536,8 +1536,8 @@
       "homeId": "BRA",
       "awayId": "JPN",
       "kickoffUtc": "2026-06-29T17:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1551,9 +1551,9 @@
       "homeId": "GER",
       "awayId": "PAR",
       "kickoffUtc": "2026-06-29T20:30Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1788,7 +1788,7 @@
       "id": "ESPN-760504",
       "stage": "r16",
       "groupId": null,
-      "homeId": "RD32",
+      "homeId": "BRA",
       "awayId": "RD32",
       "kickoffUtc": "2026-07-05T20:00Z",
       "status": "scheduled",
