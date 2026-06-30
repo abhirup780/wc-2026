@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-30T09:24:38.341Z",
+  "timestamp": "2026-06-30T16:54:59.503Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1403,6 +1403,21 @@
       "homeId": "RD32",
       "awayId": "RD32",
       "kickoffUtc": "2026-07-07T00:00Z",
+      "status": "scheduled",
+      "homeGoals": null,
+      "awayGoals": null,
+      "homeGoalsAet": null,
+      "awayGoalsAet": null,
+      "homePens": null,
+      "awayPens": null
+    },
+    {
+      "id": "ESPN-760509",
+      "stage": "r16",
+      "groupId": null,
+      "homeId": "RD32",
+      "awayId": "RD32",
+      "kickoffUtc": "2026-07-07T16:00Z",
       "status": "scheduled",
       "homeGoals": null,
       "awayGoals": null,
