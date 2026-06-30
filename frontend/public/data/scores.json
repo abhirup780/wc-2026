@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-30T22:36:41.613Z",
+  "timestamp": "2026-06-30T23:49:28.811Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1163,7 +1163,7 @@
       "homeId": "FRA",
       "awayId": "SWE",
       "kickoffUtc": "2026-06-30T21:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 3,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -1341,7 +1341,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "PAR",
-      "awayId": "RD32",
+      "awayId": "FRA",
       "kickoffUtc": "2026-07-04T21:00Z",
       "status": "scheduled",
       "homeGoals": null,

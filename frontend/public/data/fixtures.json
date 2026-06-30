@@ -203,9 +203,9 @@
       "name": "Sweden",
       "code": "SWE",
       "groupId": "F",
-      "rankingElo": 1525.5833273606477,
-      "attackRating": 1.0400531928396715,
-      "defenseRating": 1.0400531928396715
+      "rankingElo": 1514.3041134426164,
+      "attackRating": 1.0222004684085384,
+      "defenseRating": 1.0222004684085384
     },
     {
       "id": "TUN",
@@ -293,9 +293,9 @@
       "name": "France",
       "code": "FRA",
       "groupId": "I",
-      "rankingElo": 1906.8445993684177,
-      "attackRating": 1.86736722874879,
-      "defenseRating": 1.86736722874879
+      "rankingElo": 1918.123813286449,
+      "attackRating": 1.8999807850686024,
+      "defenseRating": 1.8999807850686024
     },
     {
       "id": "SEN",
@@ -1596,7 +1596,7 @@
       "homeId": "FRA",
       "awayId": "SWE",
       "kickoffUtc": "2026-06-30T21:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 3,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -1774,7 +1774,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "PAR",
-      "awayId": "RD32",
+      "awayId": "FRA",
       "kickoffUtc": "2026-07-04T21:00Z",
       "status": "scheduled",
       "homeGoals": null,

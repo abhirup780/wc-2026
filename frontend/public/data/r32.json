@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T22:36:50.490Z",
+  "generatedAt": "2026-06-30T23:49:37.668Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -42,7 +42,7 @@
       "homeName": "France",
       "awayName": "Sweden",
       "prob": 1,
-      "homeWinProb": 0.812013101366146
+      "homeWinProb": 0.8248726184071019
     },
     {
       "home": "NOR",
@@ -243,13 +243,13 @@
       ]
     },
     {
-      "code": "BEL",
-      "name": "Belgium",
+      "code": "MEX",
+      "name": "Mexico",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "SEN",
-          "name": "Senegal",
+          "code": "ECU",
+          "name": "Ecuador",
           "prob": 1
         }
       ]
