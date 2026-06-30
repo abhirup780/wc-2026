@@ -122,9 +122,9 @@
       "name": "Paraguay",
       "code": "PAR",
       "groupId": "D",
-      "rankingElo": 1520.593903623421,
-      "attackRating": 1.0321178025748003,
-      "defenseRating": 1.0321178025748003
+      "rankingElo": 1531.8523006143346,
+      "attackRating": 1.0501101762025633,
+      "defenseRating": 1.0501101762025633
     },
     {
       "id": "AUS",
@@ -149,9 +149,9 @@
       "name": "Germany",
       "code": "GER",
       "groupId": "E",
-      "rankingElo": 1726.2172732762272,
-      "attackRating": 1.4151794565666638,
-      "defenseRating": 1.4151794565666638
+      "rankingElo": 1714.9588762853136,
+      "attackRating": 1.3909320603315753,
+      "defenseRating": 1.3909320603315753
     },
     {
       "id": "CUW",
@@ -1551,7 +1551,7 @@
       "homeId": "GER",
       "awayId": "PAR",
       "kickoffUtc": "2026-06-29T20:30Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
       "awayGoals": 1,
       "homeGoalsAet": null,
@@ -1566,9 +1566,9 @@
       "homeId": "NED",
       "awayId": "MAR",
       "kickoffUtc": "2026-06-30T01:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1773,7 +1773,7 @@
       "id": "ESPN-760503",
       "stage": "r16",
       "groupId": null,
-      "homeId": "RD32",
+      "homeId": "PAR",
       "awayId": "RD32",
       "kickoffUtc": "2026-07-04T21:00Z",
       "status": "scheduled",

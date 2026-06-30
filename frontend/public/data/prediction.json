@@ -884,8 +884,8 @@
       "homeId": "GER",
       "awayId": "PAR",
       "kickoffUtc": "",
-      "homeXg": 1.4568377455083266,
-      "awayXg": 0.7749018402911415,
+      "homeXg": 1.407343103222364,
+      "awayXg": 0.8021542489639997,
       "homeGoals": 3,
       "awayGoals": 1,
       "winnerId": "GER"
@@ -1079,8 +1079,8 @@
       "homeId": "GER",
       "awayId": "FRA",
       "kickoffUtc": "",
-      "homeXg": 0.8052128951676906,
-      "awayXg": 1.4019972317568241,
+      "homeXg": 0.7914165416153989,
+      "awayXg": 1.4264375213787348,
       "homeGoals": 0,
       "awayGoals": 1,
       "winnerId": "FRA"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-29T22:06:11.207Z"
+  "generatedAt": "2026-06-30T01:29:09.382Z"
 }
