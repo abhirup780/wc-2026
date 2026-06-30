@@ -167,9 +167,9 @@
       "name": "Ivory Coast",
       "code": "CIV",
       "groupId": "E",
-      "rankingElo": 1565.4750431391478,
-      "attackRating": 1.1057323830703047,
-      "defenseRating": 1.1057323830703047
+      "rankingElo": 1537.1179062582842,
+      "attackRating": 1.058632617359384,
+      "defenseRating": 1.058632617359384
     },
     {
       "id": "ECU",
@@ -320,9 +320,9 @@
       "name": "Norway",
       "code": "NOR",
       "groupId": "I",
-      "rankingElo": 1594.043078945998,
-      "attackRating": 1.1553016296827825,
-      "defenseRating": 1.1553016296827825
+      "rankingElo": 1622.4002158268618,
+      "attackRating": 1.2067023093814992,
+      "defenseRating": 1.2067023093814992
     },
     {
       "id": "ARG",
@@ -1581,9 +1581,9 @@
       "homeId": "CIV",
       "awayId": "NOR",
       "kickoffUtc": "2026-06-30T17:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "finished",
+      "homeGoals": 1,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,

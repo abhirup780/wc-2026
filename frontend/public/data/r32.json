@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T16:55:08.756Z",
+  "generatedAt": "2026-06-30T19:00:02.105Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -50,7 +50,7 @@
       "homeName": "Norway",
       "awayName": "Ivory Coast",
       "prob": 1,
-      "homeWinProb": 0.5273810519856045
+      "homeWinProb": 0.581098132147558
     },
     {
       "home": "MEX",

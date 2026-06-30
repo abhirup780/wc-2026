@@ -936,8 +936,8 @@
       "homeId": "CIV",
       "awayId": "NOR",
       "kickoffUtc": "",
-      "homeXg": 1.016912490060956,
-      "awayXg": 1.110131167660583,
+      "homeXg": 0.9321248059273753,
+      "awayXg": 1.2111106182576548,
       "homeGoals": 0,
       "awayGoals": 2,
       "winnerId": "NOR"
@@ -1105,8 +1105,8 @@
       "homeId": "BRA",
       "awayId": "NOR",
       "kickoffUtc": "",
-      "homeXg": 1.4775721055676765,
-      "awayXg": 0.7640278574197089,
+      "homeXg": 1.4146334586954663,
+      "awayXg": 0.7980203232581846,
       "homeGoals": 4,
       "awayGoals": 2,
       "winnerId": "BRA"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-30T16:55:06.064Z"
+  "generatedAt": "2026-06-30T18:59:59.441Z"
 }
