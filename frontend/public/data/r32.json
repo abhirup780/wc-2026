@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T01:29:12.111Z",
+  "generatedAt": "2026-06-30T05:50:52.022Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -26,7 +26,7 @@
       "homeName": "Morocco",
       "awayName": "Netherlands",
       "prob": 1,
-      "homeWinProb": 0.5008641534608913
+      "homeWinProb": 0.5007646643813142
     },
     {
       "home": "BRA",

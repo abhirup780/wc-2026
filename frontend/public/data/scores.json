@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-30T01:29:02.589Z",
+  "timestamp": "2026-06-30T05:50:43.125Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1133,9 +1133,9 @@
       "homeId": "NED",
       "awayId": "MAR",
       "kickoffUtc": "2026-06-30T01:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 1,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1326,7 +1326,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "CAN",
-      "awayId": "RD32",
+      "awayId": "MAR",
       "kickoffUtc": "2026-07-04T17:00Z",
       "status": "scheduled",
       "homeGoals": null,

@@ -897,8 +897,8 @@
       "homeId": "NED",
       "awayId": "MAR",
       "kickoffUtc": "",
-      "homeXg": 1.061031952783116,
-      "awayXg": 1.0639700784117274,
+      "homeXg": 1.061200864423153,
+      "awayXg": 1.063800725995121,
       "homeGoals": 0,
       "awayGoals": 1,
       "winnerId": "MAR"
@@ -1092,8 +1092,8 @@
       "homeId": "CAN",
       "awayId": "MAR",
       "kickoffUtc": "",
-      "homeXg": 0.7804176168317671,
-      "awayXg": 1.4465412179993828,
+      "homeXg": 0.7804797338930339,
+      "awayXg": 1.4464260902317274,
       "homeGoals": 3,
       "awayGoals": 4,
       "winnerId": "MAR"
@@ -1183,8 +1183,8 @@
       "homeId": "FRA",
       "awayId": "MAR",
       "kickoffUtc": "",
-      "homeXg": 1.2980544732399135,
-      "awayXg": 0.8696909669609446,
+      "homeXg": 1.298157791421747,
+      "awayXg": 0.8696217497286041,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "FRA"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "ARG",
-  "generatedAt": "2026-06-30T01:29:09.382Z"
+  "generatedAt": "2026-06-30T05:50:49.339Z"
 }

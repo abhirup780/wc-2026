@@ -86,9 +86,9 @@
       "name": "Morocco",
       "code": "MAR",
       "groupId": "C",
-      "rankingElo": 1776.3986302371916,
-      "attackRating": 1.5285010925569078,
-      "defenseRating": 1.5285010925569078
+      "rankingElo": 1776.346781029538,
+      "attackRating": 1.5283794417415315,
+      "defenseRating": 1.5283794417415315
     },
     {
       "id": "HAI",
@@ -185,9 +185,9 @@
       "name": "Netherlands",
       "code": "NED",
       "groupId": "F",
-      "rankingElo": 1775.497916349368,
-      "attackRating": 1.5263891755922656,
-      "defenseRating": 1.5263891755922656
+      "rankingElo": 1775.5497655570216,
+      "attackRating": 1.5265106679931193,
+      "defenseRating": 1.5265106679931193
     },
     {
       "id": "JPN",
@@ -1566,9 +1566,9 @@
       "homeId": "NED",
       "awayId": "MAR",
       "kickoffUtc": "2026-06-30T01:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 1,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1759,7 +1759,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "CAN",
-      "awayId": "RD32",
+      "awayId": "MAR",
       "kickoffUtc": "2026-07-04T17:00Z",
       "status": "scheduled",
       "homeGoals": null,
