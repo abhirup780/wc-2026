@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T23:49:37.668Z",
+  "generatedAt": "2026-07-01T02:39:49.972Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -219,6 +219,18 @@
       ]
     },
     {
+      "code": "MEX",
+      "name": "Mexico",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "ECU",
+          "name": "Ecuador",
+          "prob": 1
+        }
+      ]
+    },
+    {
       "code": "COL",
       "name": "Colombia",
       "reachProb": 1,
@@ -238,18 +250,6 @@
         {
           "code": "PAR",
           "name": "Paraguay",
-          "prob": 1
-        }
-      ]
-    },
-    {
-      "code": "MEX",
-      "name": "Mexico",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "ECU",
-          "name": "Ecuador",
           "prob": 1
         }
       ]
