@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T18:17:22.925Z",
+  "generatedAt": "2026-07-01T20:20:06.394Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -231,6 +231,18 @@
       ]
     },
     {
+      "code": "BEL",
+      "name": "Belgium",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "SEN",
+          "name": "Senegal",
+          "prob": 1
+        }
+      ]
+    },
+    {
       "code": "COL",
       "name": "Colombia",
       "reachProb": 1,
@@ -238,18 +250,6 @@
         {
           "code": "GHA",
           "name": "Ghana",
-          "prob": 1
-        }
-      ]
-    },
-    {
-      "code": "GER",
-      "name": "Germany",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "PAR",
-          "name": "Paraguay",
           "prob": 1
         }
       ]
