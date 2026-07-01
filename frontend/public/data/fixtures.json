@@ -5,9 +5,9 @@
       "name": "Mexico",
       "code": "MEX",
       "groupId": "A",
-      "rankingElo": 1736.0067036393043,
-      "attackRating": 1.436606418416244,
-      "defenseRating": 1.436606418416244
+      "rankingElo": 1757.9533769202649,
+      "attackRating": 1.4858292990571413,
+      "defenseRating": 1.4858292990571413
     },
     {
       "id": "RSA",
@@ -176,9 +176,9 @@
       "name": "Ecuador",
       "code": "ECU",
       "groupId": "E",
-      "rankingElo": 1592.5923447230682,
-      "attackRating": 1.1527316825850618,
-      "defenseRating": 1.1527316825850618
+      "rankingElo": 1570.6456714421076,
+      "attackRating": 1.1145437332298624,
+      "defenseRating": 1.1145437332298624
     },
     {
       "id": "NED",
@@ -1611,7 +1611,7 @@
       "homeId": "MEX",
       "awayId": "ECU",
       "kickoffUtc": "2026-07-01T02:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -1803,7 +1803,7 @@
       "id": "ESPN-760505",
       "stage": "r16",
       "groupId": null,
-      "homeId": "RD32",
+      "homeId": "MEX",
       "awayId": "RD32",
       "kickoffUtc": "2026-07-06T00:00Z",
       "status": "scheduled",

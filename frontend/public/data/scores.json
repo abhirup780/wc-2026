@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-01T02:39:40.762Z",
+  "timestamp": "2026-07-01T06:58:55.098Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1178,7 +1178,7 @@
       "homeId": "MEX",
       "awayId": "ECU",
       "kickoffUtc": "2026-07-01T02:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -1370,7 +1370,7 @@
       "id": "ESPN-760505",
       "stage": "r16",
       "groupId": null,
-      "homeId": "RD32",
+      "homeId": "MEX",
       "awayId": "RD32",
       "kickoffUtc": "2026-07-06T00:00Z",
       "status": "scheduled",

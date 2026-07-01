@@ -949,8 +949,8 @@
       "homeId": "MEX",
       "awayId": "ECU",
       "kickoffUtc": "",
-      "homeXg": 1.3241540443689717,
-      "awayXg": 0.8525490329472827,
+      "homeXg": 1.4164483484854196,
+      "awayXg": 0.796997822904815,
       "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "MEX"
@@ -1118,10 +1118,10 @@
       "homeId": "MEX",
       "awayId": "ENG",
       "kickoffUtc": "",
-      "homeXg": 0.9050928508482666,
-      "awayXg": 1.2472822528008836,
+      "homeXg": 0.9361043212100296,
+      "awayXg": 1.2059620113074045,
       "homeGoals": 0,
-      "awayGoals": 2,
+      "awayGoals": 1,
       "winnerId": "ENG"
     },
     {
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-07-01T02:39:47.272Z"
+  "generatedAt": "2026-07-01T06:59:01.312Z"
 }
