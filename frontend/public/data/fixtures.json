@@ -374,9 +374,9 @@
       "name": "Congo DR",
       "code": "COD",
       "groupId": "K",
-      "rankingElo": 1495.478266920363,
-      "attackRating": 0.993082917122481,
-      "defenseRating": 0.993082917122481
+      "rankingElo": 1482.8682351873726,
+      "attackRating": 0.9740445561524601,
+      "defenseRating": 0.9740445561524601
     },
     {
       "id": "UZB",
@@ -401,9 +401,9 @@
       "name": "England",
       "code": "ENG",
       "groupId": "L",
-      "rankingElo": 1840.4604099715218,
-      "attackRating": 1.6864505317180436,
-      "defenseRating": 1.6864505317180436
+      "rankingElo": 1853.0704417045122,
+      "attackRating": 1.719413350285356,
+      "defenseRating": 1.719413350285356
     },
     {
       "id": "CRO",
@@ -1626,8 +1626,8 @@
       "homeId": "ENG",
       "awayId": "COD",
       "kickoffUtc": "2026-07-01T16:00Z",
-      "status": "live",
-      "homeGoals": 0,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1804,7 +1804,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "MEX",
-      "awayId": "RD32",
+      "awayId": "ENG",
       "kickoffUtc": "2026-07-06T00:00Z",
       "status": "scheduled",
       "homeGoals": null,
