@@ -988,8 +988,8 @@
       "homeId": "BEL",
       "awayId": "SEN",
       "kickoffUtc": "",
-      "homeXg": 1.2050025037250942,
-      "awayXg": 0.9368497131832894,
+      "homeXg": 1.3024063507811852,
+      "awayXg": 0.8667849702382674,
       "homeGoals": 1,
       "awayGoals": 1,
       "winnerId": "BEL"
@@ -1144,10 +1144,10 @@
       "homeId": "USA",
       "awayId": "BEL",
       "kickoffUtc": "",
-      "homeXg": 0.9716170735387774,
-      "awayXg": 1.161883915736836,
-      "homeGoals": 1,
-      "awayGoals": 1,
+      "homeXg": 0.9345786590583557,
+      "awayXg": 1.207930695889676,
+      "homeGoals": 2,
+      "awayGoals": 2,
       "winnerId": "BEL"
     },
     {
@@ -1196,8 +1196,8 @@
       "homeId": "ESP",
       "awayId": "BEL",
       "kickoffUtc": "",
-      "homeXg": 1.3256811341221475,
-      "awayXg": 0.8515669575003421,
+      "homeXg": 1.2751456622251194,
+      "awayXg": 0.8853155238987107,
       "homeGoals": 0,
       "awayGoals": 0,
       "winnerId": "ESP"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-07-01T21:57:22.788Z"
+  "generatedAt": "2026-07-02T01:33:24.830Z"
 }

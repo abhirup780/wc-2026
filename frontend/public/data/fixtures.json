@@ -221,9 +221,9 @@
       "name": "Belgium",
       "code": "BEL",
       "groupId": "G",
-      "rankingElo": 1735.4174838722715,
-      "attackRating": 1.4353076158192821,
-      "defenseRating": 1.4353076158192821
+      "rankingElo": 1760.7364008530799,
+      "attackRating": 1.4921904879738677,
+      "defenseRating": 1.4921904879738677
     },
     {
       "id": "EGY",
@@ -302,9 +302,9 @@
       "name": "Senegal",
       "code": "SEN",
       "groupId": "I",
-      "rankingElo": 1653.4289680381828,
-      "attackRating": 1.2655694383153744,
-      "defenseRating": 1.2655694383153744
+      "rankingElo": 1628.1100510573744,
+      "attackRating": 1.2173254472548278,
+      "defenseRating": 1.2173254472548278
     },
     {
       "id": "IRQ",
@@ -1641,8 +1641,8 @@
       "homeId": "BEL",
       "awayId": "SEN",
       "kickoffUtc": "2026-07-01T20:00Z",
-      "status": "live",
-      "homeGoals": 2,
+      "status": "finished",
+      "homeGoals": 3,
       "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1656,9 +1656,9 @@
       "homeId": "USA",
       "awayId": "BIH",
       "kickoffUtc": "2026-07-02T00:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 1,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1834,7 +1834,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "RD32",
-      "awayId": "RD32",
+      "awayId": "BEL",
       "kickoffUtc": "2026-07-07T00:00Z",
       "status": "scheduled",
       "homeGoals": null,
