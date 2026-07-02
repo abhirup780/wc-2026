@@ -257,9 +257,9 @@
       "name": "Spain",
       "code": "ESP",
       "groupId": "H",
-      "rankingElo": 1879.5826895566154,
-      "attackRating": 1.790833155720905,
-      "defenseRating": 1.790833155720905
+      "rankingElo": 1894.8218022135486,
+      "attackRating": 1.833219781173978,
+      "defenseRating": 1.833219781173978
     },
     {
       "id": "CPV",
@@ -347,9 +347,9 @@
       "name": "Austria",
       "code": "AUT",
       "groupId": "J",
-      "rankingElo": 1598.8192848846625,
-      "attackRating": 1.1638031363793604,
-      "defenseRating": 1.1638031363793604
+      "rankingElo": 1583.5801722277292,
+      "attackRating": 1.1368943673657328,
+      "defenseRating": 1.1368943673657328
     },
     {
       "id": "JOR",
@@ -1671,8 +1671,8 @@
       "homeId": "ESP",
       "awayId": "AUT",
       "kickoffUtc": "2026-07-02T19:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 3,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1819,7 +1819,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "RD32",
-      "awayId": "RD32",
+      "awayId": "ESP",
       "kickoffUtc": "2026-07-06T19:00Z",
       "status": "scheduled",
       "homeGoals": null,
