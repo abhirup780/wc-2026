@@ -50,9 +50,9 @@
       "name": "Bosnia-Herzegovina",
       "code": "BIH",
       "groupId": "B",
-      "rankingElo": 1408.9341672972,
-      "attackRating": 0.8695397596191455,
-      "defenseRating": 0.8695397596191455
+      "rankingElo": 1393.1419161567549,
+      "attackRating": 0.8487138266161092,
+      "defenseRating": 0.8487138266161092
     },
     {
       "id": "QAT",
@@ -113,9 +113,9 @@
       "name": "United States",
       "code": "USA",
       "groupId": "D",
-      "rankingElo": 1677.16678241304,
-      "attackRating": 1.3125358920567065,
-      "defenseRating": 1.3125358920567065
+      "rankingElo": 1692.9590335534851,
+      "attackRating": 1.3447431964446173,
+      "defenseRating": 1.3447431964446173
     },
     {
       "id": "PAR",
@@ -1656,8 +1656,8 @@
       "homeId": "USA",
       "awayId": "BIH",
       "kickoffUtc": "2026-07-02T00:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1833,7 +1833,7 @@
       "id": "ESPN-760507",
       "stage": "r16",
       "groupId": null,
-      "homeId": "RD32",
+      "homeId": "USA",
       "awayId": "BEL",
       "kickoffUtc": "2026-07-07T00:00Z",
       "status": "scheduled",

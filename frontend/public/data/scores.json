@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-02T01:33:18.964Z",
+  "timestamp": "2026-07-02T05:41:09.582Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1223,8 +1223,8 @@
       "homeId": "USA",
       "awayId": "BIH",
       "kickoffUtc": "2026-07-02T00:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1400,7 +1400,7 @@
       "id": "ESPN-760507",
       "stage": "r16",
       "groupId": null,
-      "homeId": "RD32",
+      "homeId": "USA",
       "awayId": "BEL",
       "kickoffUtc": "2026-07-07T00:00Z",
       "status": "scheduled",
