@@ -1066,8 +1066,8 @@
       "homeId": "AUS",
       "awayId": "EGY",
       "kickoffUtc": "",
-      "homeXg": 1.0570304009552813,
-      "awayXg": 1.067997901460319,
+      "homeXg": 1.0576586661197478,
+      "awayXg": 1.0673634946344641,
       "homeGoals": 0,
       "awayGoals": 1,
       "winnerId": "EGY"
@@ -1157,8 +1157,8 @@
       "homeId": "ARG",
       "awayId": "EGY",
       "kickoffUtc": "",
-      "homeXg": 1.7436611005144513,
-      "awayXg": 0.6474344410544723,
+      "homeXg": 1.744179211817416,
+      "awayXg": 0.6472421195891286,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-07-03T19:26:35.351Z"
+  "generatedAt": "2026-07-03T21:47:34.341Z"
 }

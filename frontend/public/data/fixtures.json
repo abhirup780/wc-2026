@@ -131,9 +131,9 @@
       "name": "Australia",
       "code": "AUS",
       "groupId": "D",
-      "rankingElo": 1581.345660917352,
-      "attackRating": 1.1330013846320182,
-      "defenseRating": 1.1330013846320182
+      "rankingElo": 1581.5392014995416,
+      "attackRating": 1.1333380445617942,
+      "defenseRating": 1.1333380445617942
     },
     {
       "id": "TUR",
@@ -230,9 +230,9 @@
       "name": "Egypt",
       "code": "EGY",
       "groupId": "G",
-      "rankingElo": 1584.7078518373835,
-      "attackRating": 1.1388640951892999,
-      "defenseRating": 1.1388640951892999
+      "rankingElo": 1584.514311255194,
+      "attackRating": 1.138525793737098,
+      "defenseRating": 1.138525793737098
     },
     {
       "id": "IRN",
@@ -1716,7 +1716,7 @@
       "homeId": "AUS",
       "awayId": "EGY",
       "kickoffUtc": "2026-07-03T18:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
       "awayGoals": 1,
       "homeGoalsAet": null,
@@ -1849,7 +1849,7 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "RD32",
-      "awayId": "RD32",
+      "awayId": "EGY",
       "kickoffUtc": "2026-07-07T16:00Z",
       "status": "scheduled",
       "homeGoals": null,
