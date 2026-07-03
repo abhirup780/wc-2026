@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T22:48:39.297Z",
+  "generatedAt": "2026-07-03T23:55:15.888Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -219,18 +219,6 @@
       ]
     },
     {
-      "code": "MEX",
-      "name": "Mexico",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "ECU",
-          "name": "Ecuador",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "BEL",
       "name": "Belgium",
       "reachProb": 1,
@@ -238,6 +226,18 @@
         {
           "code": "SEN",
           "name": "Senegal",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "MEX",
+      "name": "Mexico",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "ECU",
+          "name": "Ecuador",
           "prob": 1
         }
       ]
