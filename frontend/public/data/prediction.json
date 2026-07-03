@@ -1001,8 +1001,8 @@
       "homeId": "POR",
       "awayId": "CRO",
       "kickoffUtc": "",
-      "homeXg": 1.1329148309041461,
-      "awayXg": 0.9964617102761847,
+      "homeXg": 1.2330925280165757,
+      "awayXg": 0.9155081426175221,
       "homeGoals": 3,
       "awayGoals": 1,
       "winnerId": "POR"
@@ -1131,8 +1131,8 @@
       "homeId": "POR",
       "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 0.870333033197431,
-      "awayXg": 1.2970968663025717,
+      "homeXg": 0.9079975346070681,
+      "awayXg": 1.2432921973610083,
       "homeGoals": 0,
       "awayGoals": 3,
       "winnerId": "ESP"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-07-03T00:03:18.668Z"
+  "generatedAt": "2026-07-03T04:05:06.348Z"
 }

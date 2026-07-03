@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T00:03:21.398Z",
+  "generatedAt": "2026-07-03T04:05:08.992Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -90,7 +90,7 @@
       "homeName": "Portugal",
       "awayName": "Croatia",
       "prob": 1,
-      "homeWinProb": 0.540019950220663
+      "homeWinProb": 0.5920029336665802
     },
     {
       "home": "ESP",
