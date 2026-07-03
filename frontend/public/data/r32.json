@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T21:45:15.207Z",
+  "generatedAt": "2026-07-03T00:03:21.398Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -207,13 +207,13 @@
       ]
     },
     {
-      "code": "MEX",
-      "name": "Mexico",
+      "code": "POR",
+      "name": "Portugal",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "ECU",
-          "name": "Ecuador",
+          "code": "CRO",
+          "name": "Croatia",
           "prob": 1
         }
       ]
@@ -231,13 +231,13 @@
       ]
     },
     {
-      "code": "POR",
-      "name": "Portugal",
+      "code": "MEX",
+      "name": "Mexico",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "CRO",
-          "name": "Croatia",
+          "code": "ECU",
+          "name": "Ecuador",
           "prob": 1
         }
       ]
