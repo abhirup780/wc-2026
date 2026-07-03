@@ -68,9 +68,9 @@
       "name": "Switzerland",
       "code": "SUI",
       "groupId": "B",
-      "rankingElo": 1675.9968020482756,
-      "attackRating": 1.3101807112356696,
-      "defenseRating": 1.3101807112356696
+      "rankingElo": 1700.3545437367136,
+      "attackRating": 1.3600964148146057,
+      "defenseRating": 1.3600964148146057
     },
     {
       "id": "BRA",
@@ -338,9 +338,9 @@
       "name": "Algeria",
       "code": "ALG",
       "groupId": "J",
-      "rankingElo": 1576.7998863398545,
-      "attackRating": 1.125122796660207,
-      "defenseRating": 1.125122796660207
+      "rankingElo": 1552.4421446514166,
+      "attackRating": 1.083830653400165,
+      "defenseRating": 1.083830653400165
     },
     {
       "id": "AUT",
@@ -1701,8 +1701,8 @@
       "homeId": "SUI",
       "awayId": "ALG",
       "kickoffUtc": "2026-07-03T03:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1863,7 +1863,7 @@
       "id": "ESPN-760508",
       "stage": "r16",
       "groupId": null,
-      "homeId": "RD32",
+      "homeId": "SUI",
       "awayId": "RD32",
       "kickoffUtc": "2026-07-07T20:00Z",
       "status": "scheduled",

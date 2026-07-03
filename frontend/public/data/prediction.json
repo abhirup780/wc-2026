@@ -1027,8 +1027,8 @@
       "homeId": "SUI",
       "awayId": "ALG",
       "kickoffUtc": "",
-      "homeXg": 1.2372578440505195,
-      "awayXg": 0.9124260197083904,
+      "homeXg": 1.3333286304525356,
+      "awayXg": 0.8466826738857667,
       "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "SUI"
@@ -1170,8 +1170,8 @@
       "homeId": "SUI",
       "awayId": "COL",
       "kickoffUtc": "",
-      "homeXg": 0.9790257134216007,
-      "awayXg": 1.1530915220342695,
+      "homeXg": 1.0163249629741449,
+      "awayXg": 1.1107729231567829,
       "homeGoals": 0,
       "awayGoals": 3,
       "winnerId": "COL"
@@ -1269,5 +1269,5 @@
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-07-03T04:05:06.348Z"
+  "generatedAt": "2026-07-03T07:34:40.654Z"
 }
