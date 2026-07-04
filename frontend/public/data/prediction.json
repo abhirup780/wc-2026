@@ -1040,8 +1040,8 @@
       "homeId": "ARG",
       "awayId": "CPV",
       "kickoffUtc": "",
-      "homeXg": 2.304740452428559,
-      "awayXg": 0.48981925440257057,
+      "homeXg": 2.3589042209095874,
+      "awayXg": 0.47857231336196293,
       "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1053,8 +1053,8 @@
       "homeId": "COL",
       "awayId": "GHA",
       "kickoffUtc": "",
-      "homeXg": 1.7969184334266581,
-      "awayXg": 0.6282456838328587,
+      "homeXg": 1.8684388178077216,
+      "awayXg": 0.6041976002856595,
       "homeGoals": 3,
       "awayGoals": 1,
       "winnerId": "COL"
@@ -1157,8 +1157,8 @@
       "homeId": "ARG",
       "awayId": "EGY",
       "kickoffUtc": "",
-      "homeXg": 1.744179211817416,
-      "awayXg": 0.6472421195891286,
+      "homeXg": 1.7645551945991178,
+      "awayXg": 0.6397681712962634,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1170,8 +1170,8 @@
       "homeId": "SUI",
       "awayId": "COL",
       "kickoffUtc": "",
-      "homeXg": 1.0163249629741449,
-      "awayXg": 1.1107729231567829,
+      "homeXg": 0.996683650222518,
+      "awayXg": 1.1326625552129426,
       "homeGoals": 0,
       "awayGoals": 3,
       "winnerId": "COL"
@@ -1222,8 +1222,8 @@
       "homeId": "ARG",
       "awayId": "COL",
       "kickoffUtc": "",
-      "homeXg": 1.3965868177976075,
-      "awayXg": 0.8083323110411889,
+      "homeXg": 1.3855966388379435,
+      "awayXg": 0.8147437849927078,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1248,8 +1248,8 @@
       "homeId": "ENG",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 0.9774716984106535,
-      "awayXg": 1.1549247429215348,
+      "homeXg": 0.9661844649155621,
+      "awayXg": 1.168416892418839,
       "homeGoals": 1,
       "awayGoals": 2,
       "winnerId": "ARG"
@@ -1261,13 +1261,13 @@
       "homeId": "FRA",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 1.080122731756383,
-      "awayXg": 1.0451647917494433,
+      "homeXg": 1.0676501481547163,
+      "awayXg": 1.0573746952137424,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "FRA"
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-07-03T23:55:13.295Z"
+  "generatedAt": "2026-07-04T03:46:59.887Z"
 }
