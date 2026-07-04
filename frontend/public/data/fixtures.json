@@ -122,9 +122,9 @@
       "name": "Paraguay",
       "code": "PAR",
       "groupId": "D",
-      "rankingElo": 1531.8523006143346,
-      "attackRating": 1.0501101762025633,
-      "defenseRating": 1.0501101762025633
+      "rankingElo": 1520.748133403453,
+      "attackRating": 1.0323621869011332,
+      "defenseRating": 1.0323621869011332
     },
     {
       "id": "AUS",
@@ -293,9 +293,9 @@
       "name": "France",
       "code": "FRA",
       "groupId": "I",
-      "rankingElo": 1918.123813286449,
-      "attackRating": 1.8999807850686024,
-      "defenseRating": 1.8999807850686024
+      "rankingElo": 1929.2279804973305,
+      "attackRating": 1.9326445527599987,
+      "defenseRating": 1.9326445527599987
     },
     {
       "id": "SEN",
@@ -1776,9 +1776,9 @@
       "homeId": "PAR",
       "awayId": "FRA",
       "kickoffUtc": "2026-07-04T21:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
-      "awayGoals": 0,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1878,7 +1878,7 @@
       "id": "ESPN-760510",
       "stage": "qf",
       "groupId": null,
-      "homeId": "RD16 W1",
+      "homeId": "FRA",
       "awayId": "MAR",
       "kickoffUtc": "2026-07-09T20:00Z",
       "status": "scheduled",

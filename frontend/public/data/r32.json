@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T21:11:21.517Z",
+  "generatedAt": "2026-07-04T23:17:44.504Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -18,7 +18,7 @@
       "homeName": "Germany",
       "awayName": "Paraguay",
       "prob": 1,
-      "homeWinProb": 0.668785560571832
+      "homeWinProb": 0.6781561910278361
     },
     {
       "home": "MAR",
@@ -42,7 +42,7 @@
       "homeName": "France",
       "awayName": "Sweden",
       "prob": 1,
-      "homeWinProb": 0.8248726184071019
+      "homeWinProb": 0.8309435507708535
     },
     {
       "home": "NOR",
