@@ -1,21 +1,7 @@
 {
-  "timestamp": "2026-07-04T19:59:02.210Z",
+  "timestamp": "2026-07-04T21:11:12.899Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760503",
-      "stage": "r16",
-      "groupId": null,
-      "homeId": "PAR",
-      "awayId": "FRA",
-      "kickoffUtc": "2026-07-04T21:00Z",
-      "homeXg": 0.5872386031393142,
-      "awayXg": 1.9223978872727185,
-      "pHome": 0.0813798295902596,
-      "pDraw": 0.19878736980521597,
-      "pAway": 0.7198328006045245,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760504",
       "stage": "r16",
@@ -70,6 +56,20 @@
       "pHome": 0.3008079155803534,
       "pDraw": 0.3159632604768398,
       "pAway": 0.38322882394280683,
+      "marketBlended": true
+    },
+    {
+      "id": "ESPN-760509",
+      "stage": "r16",
+      "groupId": null,
+      "homeId": "ARG",
+      "awayId": "EGY",
+      "kickoffUtc": "2026-07-07T16:00Z",
+      "homeXg": 1.7645551945991178,
+      "awayXg": 0.6397681712962634,
+      "pHome": 0.652517807173869,
+      "pDraw": 0.2359231076405661,
+      "pAway": 0.11155908518556508,
       "marketBlended": true
     }
   ]
