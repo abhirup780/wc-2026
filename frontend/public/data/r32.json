@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T18:42:08.071Z",
+  "generatedAt": "2026-07-04T19:59:10.754Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -10,7 +10,7 @@
       "homeName": "Canada",
       "awayName": "South Africa",
       "prob": 1,
-      "homeWinProb": 0.6387163767660646
+      "homeWinProb": 0.621750260530699
     },
     {
       "home": "GER",
@@ -26,7 +26,7 @@
       "homeName": "Morocco",
       "awayName": "Netherlands",
       "prob": 1,
-      "homeWinProb": 0.5007646643813142
+      "homeWinProb": 0.5189589093557174
     },
     {
       "home": "BRA",
