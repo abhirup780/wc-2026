@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-05T20:31:28.114Z",
+  "timestamp": "2026-07-05T22:40:21.004Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1358,9 +1358,9 @@
       "homeId": "BRA",
       "awayId": "NOR",
       "kickoffUtc": "2026-07-05T20:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 1,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1475,7 +1475,7 @@
       "id": "ESPN-760512",
       "stage": "qf",
       "groupId": null,
-      "homeId": "RD16 W3",
+      "homeId": "NOR",
       "awayId": "RD16 W4",
       "kickoffUtc": "2026-07-11T21:00Z",
       "status": "scheduled",
