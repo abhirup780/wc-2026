@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T19:08:56.484Z",
+  "generatedAt": "2026-07-05T20:31:36.517Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -171,18 +171,6 @@
       ]
     },
     {
-      "code": "ENG",
-      "name": "England",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "COD",
-          "name": "Congo DR",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "BRA",
       "name": "Brazil",
       "reachProb": 1,
@@ -190,6 +178,18 @@
         {
           "code": "JPN",
           "name": "Japan",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "ENG",
+      "name": "England",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "COD",
+          "name": "Congo DR",
           "prob": 1
         }
       ]
@@ -231,18 +231,6 @@
       ]
     },
     {
-      "code": "MEX",
-      "name": "Mexico",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "ECU",
-          "name": "Ecuador",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "BEL",
       "name": "Belgium",
       "reachProb": 1,
@@ -250,6 +238,18 @@
         {
           "code": "SEN",
           "name": "Senegal",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "MEX",
+      "name": "Mexico",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "ECU",
+          "name": "Ecuador",
           "prob": 1
         }
       ]

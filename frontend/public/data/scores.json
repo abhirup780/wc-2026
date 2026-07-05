@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-05T19:08:47.651Z",
+  "timestamp": "2026-07-05T20:31:28.114Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1358,9 +1358,9 @@
       "homeId": "BRA",
       "awayId": "NOR",
       "kickoffUtc": "2026-07-05T20:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
