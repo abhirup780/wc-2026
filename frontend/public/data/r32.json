@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T21:08:44.233Z",
+  "generatedAt": "2026-07-06T22:39:08.964Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -135,18 +135,6 @@
   ],
   "contenders": [
     {
-      "code": "FRA",
-      "name": "France",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "SWE",
-          "name": "Sweden",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "ESP",
       "name": "Spain",
       "reachProb": 1,
@@ -154,6 +142,18 @@
         {
           "code": "AUT",
           "name": "Austria",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "FRA",
+      "name": "France",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "SWE",
+          "name": "Sweden",
           "prob": 1
         }
       ]
