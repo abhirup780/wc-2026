@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T22:40:29.701Z",
+  "generatedAt": "2026-07-06T01:29:21.541Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -171,13 +171,13 @@
       ]
     },
     {
-      "code": "ENG",
-      "name": "England",
+      "code": "MEX",
+      "name": "Mexico",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "COD",
-          "name": "Congo DR",
+          "code": "ECU",
+          "name": "Ecuador",
           "prob": 1
         }
       ]
@@ -219,18 +219,6 @@
       ]
     },
     {
-      "code": "MEX",
-      "name": "Mexico",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "ECU",
-          "name": "Ecuador",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "NOR",
       "name": "Norway",
       "reachProb": 1,
@@ -250,6 +238,18 @@
         {
           "code": "SEN",
           "name": "Senegal",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "GER",
+      "name": "Germany",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "PAR",
+          "name": "Paraguay",
           "prob": 1
         }
       ]
