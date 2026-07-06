@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T19:20:22.576Z",
+  "generatedAt": "2026-07-06T21:08:44.233Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -90,7 +90,7 @@
       "homeName": "Portugal",
       "awayName": "Croatia",
       "prob": 1,
-      "homeWinProb": 0.5920029336665802
+      "homeWinProb": 0.5694113668468903
     },
     {
       "home": "ESP",
@@ -98,7 +98,7 @@
       "homeName": "Spain",
       "awayName": "Austria",
       "prob": 1,
-      "homeWinProb": 0.7675331249097063
+      "homeWinProb": 0.7836789100715944
     },
     {
       "home": "SUI",
@@ -147,6 +147,18 @@
       ]
     },
     {
+      "code": "ESP",
+      "name": "Spain",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "AUT",
+          "name": "Austria",
+          "prob": 1
+        }
+      ]
+    },
+    {
       "code": "ENG",
       "name": "England",
       "reachProb": 1,
@@ -171,18 +183,6 @@
       ]
     },
     {
-      "code": "POR",
-      "name": "Portugal",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "CRO",
-          "name": "Croatia",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "NED",
       "name": "Netherlands",
       "reachProb": 1,
@@ -190,18 +190,6 @@
         {
           "code": "MAR",
           "name": "Morocco",
-          "prob": 1
-        }
-      ]
-    },
-    {
-      "code": "ESP",
-      "name": "Spain",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "AUT",
-          "name": "Austria",
           "prob": 1
         }
       ]
@@ -219,18 +207,6 @@
       ]
     },
     {
-      "code": "BEL",
-      "name": "Belgium",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "SEN",
-          "name": "Senegal",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "NOR",
       "name": "Norway",
       "reachProb": 1,
@@ -243,6 +219,18 @@
       ]
     },
     {
+      "code": "BEL",
+      "name": "Belgium",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "SEN",
+          "name": "Senegal",
+          "prob": 1
+        }
+      ]
+    },
+    {
       "code": "GER",
       "name": "Germany",
       "reachProb": 1,
@@ -250,6 +238,18 @@
         {
           "code": "PAR",
           "name": "Paraguay",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "USA",
+      "name": "United States",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "BIH",
+          "name": "Bosnia-Herzegovina",
           "prob": 1
         }
       ]
