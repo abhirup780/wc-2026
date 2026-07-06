@@ -5,9 +5,9 @@
       "name": "Mexico",
       "code": "MEX",
       "groupId": "A",
-      "rankingElo": 1757.9533769202649,
-      "attackRating": 1.4858292990571413,
-      "defenseRating": 1.4858292990571413
+      "rankingElo": 1733.3687580937844,
+      "attackRating": 1.430800792618772,
+      "defenseRating": 1.430800792618772
     },
     {
       "id": "RSA",
@@ -401,9 +401,9 @@
       "name": "England",
       "code": "ENG",
       "groupId": "L",
-      "rankingElo": 1853.0704417045122,
-      "attackRating": 1.719413350285356,
-      "defenseRating": 1.719413350285356
+      "rankingElo": 1877.6550605309926,
+      "attackRating": 1.7855418771246654,
+      "defenseRating": 1.7855418771246654
     },
     {
       "id": "CRO",
@@ -1806,9 +1806,9 @@
       "homeId": "MEX",
       "awayId": "ENG",
       "kickoffUtc": "2026-07-06T01:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 2,
+      "awayGoals": 3,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1909,7 +1909,7 @@
       "stage": "qf",
       "groupId": null,
       "homeId": "NOR",
-      "awayId": "RD16 W4",
+      "awayId": "ENG",
       "kickoffUtc": "2026-07-11T21:00Z",
       "status": "scheduled",
       "homeGoals": null,

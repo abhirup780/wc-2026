@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-06T01:29:12.935Z",
+  "timestamp": "2026-07-06T06:08:37.713Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1373,9 +1373,9 @@
       "homeId": "MEX",
       "awayId": "ENG",
       "kickoffUtc": "2026-07-06T01:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 2,
+      "awayGoals": 3,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1476,7 +1476,7 @@
       "stage": "qf",
       "groupId": null,
       "homeId": "NOR",
-      "awayId": "RD16 W4",
+      "awayId": "ENG",
       "kickoffUtc": "2026-07-11T21:00Z",
       "status": "scheduled",
       "homeGoals": null,
