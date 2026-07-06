@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T06:08:46.729Z",
+  "generatedAt": "2026-07-06T14:36:17.006Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -243,13 +243,13 @@
       ]
     },
     {
-      "code": "USA",
-      "name": "United States",
+      "code": "GER",
+      "name": "Germany",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "BIH",
-          "name": "Bosnia-Herzegovina",
+          "code": "PAR",
+          "name": "Paraguay",
           "prob": 1
         }
       ]
