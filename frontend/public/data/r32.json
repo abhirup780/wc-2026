@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T01:29:27.660Z",
+  "generatedAt": "2026-07-07T05:48:57.537Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -74,7 +74,7 @@
       "homeName": "United States",
       "awayName": "Bosnia-Herzegovina",
       "prob": 1,
-      "homeWinProb": 0.7596187957414626
+      "homeWinProb": 0.7408421929847694
     },
     {
       "home": "BEL",
@@ -82,7 +82,7 @@
       "homeName": "Belgium",
       "awayName": "Senegal",
       "prob": 1,
-      "homeWinProb": 0.6245655564068088
+      "homeWinProb": 0.6477611799047072
     },
     {
       "home": "POR",
@@ -183,18 +183,6 @@
       ]
     },
     {
-      "code": "NED",
-      "name": "Netherlands",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "MAR",
-          "name": "Morocco",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "BEL",
       "name": "Belgium",
       "reachProb": 1,
@@ -202,6 +190,18 @@
         {
           "code": "SEN",
           "name": "Senegal",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "NED",
+      "name": "Netherlands",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "MAR",
+          "name": "Morocco",
           "prob": 1
         }
       ]
