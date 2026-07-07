@@ -230,9 +230,9 @@
       "name": "Egypt",
       "code": "EGY",
       "groupId": "G",
-      "rankingElo": 1584.514311255194,
-      "attackRating": 1.138525793737098,
-      "defenseRating": 1.138525793737098
+      "rankingElo": 1571.3402253232662,
+      "attackRating": 1.1157326707290596,
+      "defenseRating": 1.1157326707290596
     },
     {
       "id": "IRN",
@@ -329,9 +329,9 @@
       "name": "Argentina",
       "code": "ARG",
       "groupId": "J",
-      "rankingElo": 1914.9737743776755,
-      "attackRating": 1.890815626846005,
-      "defenseRating": 1.890815626846005
+      "rankingElo": 1928.1478603096032,
+      "attackRating": 1.9294427947141475,
+      "defenseRating": 1.9294427947141475
     },
     {
       "id": "ALG",
@@ -1851,8 +1851,8 @@
       "homeId": "ARG",
       "awayId": "EGY",
       "kickoffUtc": "2026-07-07T16:00Z",
-      "status": "live",
-      "homeGoals": 0,
+      "status": "finished",
+      "homeGoals": 3,
       "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1923,7 +1923,7 @@
       "id": "ESPN-760513",
       "stage": "qf",
       "groupId": null,
-      "homeId": "RD16 W7",
+      "homeId": "ARG",
       "awayId": "RD16 W8",
       "kickoffUtc": "2026-07-12T01:00Z",
       "status": "scheduled",

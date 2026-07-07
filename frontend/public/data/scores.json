@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T17:31:44.410Z",
+  "timestamp": "2026-07-07T19:24:17.046Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1418,8 +1418,8 @@
       "homeId": "ARG",
       "awayId": "EGY",
       "kickoffUtc": "2026-07-07T16:00Z",
-      "status": "live",
-      "homeGoals": 0,
+      "status": "finished",
+      "homeGoals": 3,
       "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1490,9 +1490,24 @@
       "id": "ESPN-760513",
       "stage": "qf",
       "groupId": null,
-      "homeId": "RD16 W7",
+      "homeId": "ARG",
       "awayId": "RD16 W8",
       "kickoffUtc": "2026-07-12T01:00Z",
+      "status": "scheduled",
+      "homeGoals": null,
+      "awayGoals": null,
+      "homeGoalsAet": null,
+      "awayGoalsAet": null,
+      "homePens": null,
+      "awayPens": null
+    },
+    {
+      "id": "ESPN-760514",
+      "stage": "sf",
+      "groupId": null,
+      "homeId": "QFW1",
+      "awayId": "QFW2",
+      "kickoffUtc": "2026-07-14T19:00Z",
       "status": "scheduled",
       "homeGoals": null,
       "awayGoals": null,

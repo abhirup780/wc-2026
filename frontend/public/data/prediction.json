@@ -1040,8 +1040,8 @@
       "homeId": "ARG",
       "awayId": "CPV",
       "kickoffUtc": "",
-      "homeXg": 2.3589042209095874,
-      "awayXg": 0.47857231336196293,
+      "homeXg": 2.4070938952661156,
+      "awayXg": 0.4689913643253181,
       "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1066,11 +1066,11 @@
       "homeId": "AUS",
       "awayId": "EGY",
       "kickoffUtc": "",
-      "homeXg": 1.0576586661197478,
-      "awayXg": 1.0673634946344641,
-      "homeGoals": 0,
-      "awayGoals": 1,
-      "winnerId": "EGY"
+      "homeXg": 1.079265404642187,
+      "awayXg": 1.0459950306424126,
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "winnerId": "AUS"
     },
     {
       "id": "R16-01",
@@ -1155,12 +1155,12 @@
       "stage": "r16",
       "groupId": null,
       "homeId": "ARG",
-      "awayId": "EGY",
+      "awayId": "AUS",
       "kickoffUtc": "",
-      "homeXg": 1.7645551945991178,
-      "awayXg": 0.6397681712962634,
-      "homeGoals": 2,
-      "awayGoals": 0,
+      "homeXg": 1.8088451007364075,
+      "awayXg": 0.6241033295445838,
+      "homeGoals": 3,
+      "awayGoals": 2,
       "winnerId": "ARG"
     },
     {
@@ -1222,8 +1222,8 @@
       "homeId": "ARG",
       "awayId": "COL",
       "kickoffUtc": "",
-      "homeXg": 1.3855966388379435,
-      "awayXg": 0.8147437849927078,
+      "homeXg": 1.413902769380774,
+      "awayXg": 0.7984327313358401,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1248,8 +1248,8 @@
       "homeId": "ENG",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 1.0033438572799922,
-      "awayXg": 1.1251439292810346,
+      "homeXg": 0.9832570572407272,
+      "awayXg": 1.148129313374065,
       "homeGoals": 1,
       "awayGoals": 2,
       "winnerId": "ARG"
@@ -1261,13 +1261,13 @@
       "homeId": "FRA",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 1.0860047950485539,
-      "awayXg": 1.0395039277423521,
+      "homeXg": 1.0642631348973064,
+      "awayXg": 1.0607397860388457,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "FRA"
     }
   ],
   "champion": "FRA",
-  "generatedAt": "2026-07-07T17:31:50.396Z"
+  "generatedAt": "2026-07-07T19:24:21.925Z"
 }
