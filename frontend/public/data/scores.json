@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-06T22:38:59.945Z",
+  "timestamp": "2026-07-07T01:29:18.951Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1403,9 +1403,9 @@
       "homeId": "USA",
       "awayId": "BEL",
       "kickoffUtc": "2026-07-07T00:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 1,
+      "awayGoals": 3,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,

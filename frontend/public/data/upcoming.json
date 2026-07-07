@@ -1,21 +1,7 @@
 {
-  "timestamp": "2026-07-06T22:38:59.945Z",
+  "timestamp": "2026-07-07T01:29:18.951Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760507",
-      "stage": "r16",
-      "groupId": null,
-      "homeId": "USA",
-      "awayId": "BEL",
-      "kickoffUtc": "2026-07-07T00:00Z",
-      "homeXg": 0.9575115628584732,
-      "awayXg": 1.1790001225988955,
-      "pHome": 0.3096037964939139,
-      "pDraw": 0.31433933175627415,
-      "pAway": 0.376056871749812,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760509",
       "stage": "r16",
