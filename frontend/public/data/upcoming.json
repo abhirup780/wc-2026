@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T21:07:24.280Z",
+  "timestamp": "2026-07-07T23:33:00.369Z",
   "blendWeight": 0.3,
   "matches": [
     {
@@ -43,6 +43,20 @@
       "pDraw": 0.2847868706257778,
       "pAway": 0.5202583950425027,
       "marketBlended": true
+    },
+    {
+      "id": "ESPN-760513",
+      "stage": "qf",
+      "groupId": null,
+      "homeId": "ARG",
+      "awayId": "SUI",
+      "kickoffUtc": "2026-07-12T01:00Z",
+      "homeXg": 1.5017439250860614,
+      "awayXg": 0.751730192572815,
+      "pHome": 0.5358967598810632,
+      "pDraw": 0.2924081349305735,
+      "pAway": 0.171695105188363,
+      "marketBlended": false
     }
   ]
 }

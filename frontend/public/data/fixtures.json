@@ -68,9 +68,9 @@
       "name": "Switzerland",
       "code": "SUI",
       "groupId": "B",
-      "rankingElo": 1700.3545437367136,
-      "attackRating": 1.3600964148146057,
-      "defenseRating": 1.3600964148146057
+      "rankingElo": 1702.7474426965375,
+      "attackRating": 1.3651015563564202,
+      "defenseRating": 1.3651015563564202
     },
     {
       "id": "BRA",
@@ -392,9 +392,9 @@
       "name": "Colombia",
       "code": "COL",
       "groupId": "K",
-      "rankingElo": 1742.011950708117,
-      "attackRating": 1.4499108522728221,
-      "defenseRating": 1.4499108522728221
+      "rankingElo": 1739.619051748293,
+      "attackRating": 1.4445947576534532,
+      "defenseRating": 1.4445947576534532
     },
     {
       "id": "ENG",
@@ -1866,7 +1866,7 @@
       "homeId": "SUI",
       "awayId": "COL",
       "kickoffUtc": "2026-07-07T20:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
       "awayGoals": 0,
       "homeGoalsAet": null,
@@ -1924,7 +1924,7 @@
       "stage": "qf",
       "groupId": null,
       "homeId": "ARG",
-      "awayId": "RD16 W8",
+      "awayId": "SUI",
       "kickoffUtc": "2026-07-12T01:00Z",
       "status": "scheduled",
       "homeGoals": null,
