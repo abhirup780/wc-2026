@@ -1,21 +1,7 @@
 {
-  "timestamp": "2026-07-07T19:24:17.046Z",
+  "timestamp": "2026-07-07T21:07:24.280Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760508",
-      "stage": "r16",
-      "groupId": null,
-      "homeId": "SUI",
-      "awayId": "COL",
-      "kickoffUtc": "2026-07-07T20:00Z",
-      "homeXg": 0.996683650222518,
-      "awayXg": 1.1326625552129426,
-      "pHome": 0.28915650576839347,
-      "pDraw": 0.32485307127740676,
-      "pAway": 0.3859904229541998,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760510",
       "stage": "qf",
