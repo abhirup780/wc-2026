@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T05:48:57.537Z",
+  "generatedAt": "2026-07-07T09:22:38.803Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -135,18 +135,6 @@
   ],
   "contenders": [
     {
-      "code": "FRA",
-      "name": "France",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "SWE",
-          "name": "Sweden",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "ESP",
       "name": "Spain",
       "reachProb": 1,
@@ -154,6 +142,18 @@
         {
           "code": "AUT",
           "name": "Austria",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "FRA",
+      "name": "France",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "SWE",
+          "name": "Sweden",
           "prob": 1
         }
       ]
@@ -183,18 +183,6 @@
       ]
     },
     {
-      "code": "BEL",
-      "name": "Belgium",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "SEN",
-          "name": "Senegal",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "NED",
       "name": "Netherlands",
       "reachProb": 1,
@@ -202,6 +190,18 @@
         {
           "code": "MAR",
           "name": "Morocco",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "BEL",
+      "name": "Belgium",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "SEN",
+          "name": "Senegal",
           "prob": 1
         }
       ]
