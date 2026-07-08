@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T01:08:16.006Z",
+  "generatedAt": "2026-07-08T09:41:08.539Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -183,18 +183,6 @@
       ]
     },
     {
-      "code": "BEL",
-      "name": "Belgium",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "SEN",
-          "name": "Senegal",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "NED",
       "name": "Netherlands",
       "reachProb": 1,
@@ -207,13 +195,13 @@
       ]
     },
     {
-      "code": "NOR",
-      "name": "Norway",
+      "code": "BEL",
+      "name": "Belgium",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "CIV",
-          "name": "Ivory Coast",
+          "code": "SEN",
+          "name": "Senegal",
           "prob": 1
         }
       ]
@@ -226,6 +214,18 @@
         {
           "code": "ALG",
           "name": "Algeria",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "NOR",
+      "name": "Norway",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "CIV",
+          "name": "Ivory Coast",
           "prob": 1
         }
       ]
