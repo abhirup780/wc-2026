@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T23:33:08.849Z",
+  "generatedAt": "2026-07-08T01:08:16.006Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -159,18 +159,6 @@
       ]
     },
     {
-      "code": "ENG",
-      "name": "England",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "COD",
-          "name": "Congo DR",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "ARG",
       "name": "Argentina",
       "reachProb": 1,
@@ -183,13 +171,13 @@
       ]
     },
     {
-      "code": "NED",
-      "name": "Netherlands",
+      "code": "ENG",
+      "name": "England",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "MAR",
-          "name": "Morocco",
+          "code": "COD",
+          "name": "Congo DR",
           "prob": 1
         }
       ]
@@ -202,6 +190,18 @@
         {
           "code": "SEN",
           "name": "Senegal",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "NED",
+      "name": "Netherlands",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "MAR",
+          "name": "Morocco",
           "prob": 1
         }
       ]
@@ -243,13 +243,13 @@
       ]
     },
     {
-      "code": "COL",
-      "name": "Colombia",
+      "code": "MAR",
+      "name": "Morocco",
       "reachProb": 1,
       "opponents": [
         {
-          "code": "GHA",
-          "name": "Ghana",
+          "code": "NED",
+          "name": "Netherlands",
           "prob": 1
         }
       ]
