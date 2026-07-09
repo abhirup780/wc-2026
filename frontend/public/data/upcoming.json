@@ -1,21 +1,7 @@
 {
-  "timestamp": "2026-07-09T15:48:45.296Z",
+  "timestamp": "2026-07-09T20:58:32.954Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760510",
-      "stage": "qf",
-      "groupId": null,
-      "homeId": "FRA",
-      "awayId": "MAR",
-      "kickoffUtc": "2026-07-09T20:00Z",
-      "homeXg": 1.3049707077883983,
-      "awayXg": 0.8650816782801325,
-      "pHome": 0.4976115041572667,
-      "pDraw": 0.2968969689109729,
-      "pAway": 0.20549152693176045,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760511",
       "stage": "qf",
