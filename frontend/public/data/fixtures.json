@@ -86,9 +86,9 @@
       "name": "Morocco",
       "code": "MAR",
       "groupId": "C",
-      "rankingElo": 1795.3202435850794,
-      "attackRating": 1.5735486053840713,
-      "defenseRating": 1.5735486053840713
+      "rankingElo": 1772.8633188782337,
+      "attackRating": 1.5202285321406384,
+      "defenseRating": 1.5202285321406384
     },
     {
       "id": "HAI",
@@ -293,9 +293,9 @@
       "name": "France",
       "code": "FRA",
       "groupId": "I",
-      "rankingElo": 1929.2279804973305,
-      "attackRating": 1.9326445527599987,
-      "defenseRating": 1.9326445527599987
+      "rankingElo": 1951.6849052041762,
+      "attackRating": 2.000429590948686,
+      "defenseRating": 2.000429590948686
     },
     {
       "id": "SEN",
@@ -1881,8 +1881,8 @@
       "homeId": "FRA",
       "awayId": "MAR",
       "kickoffUtc": "2026-07-09T20:00Z",
-      "status": "live",
-      "homeGoals": 0,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1938,7 +1938,7 @@
       "id": "ESPN-760514",
       "stage": "sf",
       "groupId": null,
-      "homeId": "QFW1",
+      "homeId": "FRA",
       "awayId": "QFW2",
       "kickoffUtc": "2026-07-14T19:00Z",
       "status": "scheduled",
