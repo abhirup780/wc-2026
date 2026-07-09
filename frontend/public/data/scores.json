@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-08T18:48:03.231Z",
+  "timestamp": "2026-07-09T02:50:50.631Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1508,6 +1508,21 @@
       "homeId": "QFW1",
       "awayId": "QFW2",
       "kickoffUtc": "2026-07-14T19:00Z",
+      "status": "scheduled",
+      "homeGoals": null,
+      "awayGoals": null,
+      "homeGoalsAet": null,
+      "awayGoalsAet": null,
+      "homePens": null,
+      "awayPens": null
+    },
+    {
+      "id": "ESPN-760515",
+      "stage": "sf",
+      "groupId": null,
+      "homeId": "QFW3",
+      "awayId": "QW4",
+      "kickoffUtc": "2026-07-15T19:00Z",
       "status": "scheduled",
       "homeGoals": null,
       "awayGoals": null,
