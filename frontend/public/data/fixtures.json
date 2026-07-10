@@ -221,9 +221,9 @@
       "name": "Belgium",
       "code": "BEL",
       "groupId": "G",
-      "rankingElo": 1786.8566708512594,
-      "attackRating": 1.553237190074419,
-      "defenseRating": 1.553237190074419
+      "rankingElo": 1764.3047216491946,
+      "attackRating": 1.5003864997005838,
+      "defenseRating": 1.5003864997005838
     },
     {
       "id": "EGY",
@@ -257,9 +257,9 @@
       "name": "Spain",
       "code": "ESP",
       "groupId": "H",
-      "rankingElo": 1919.0037504193892,
-      "attackRating": 1.9025489246769403,
-      "defenseRating": 1.9025489246769403
+      "rankingElo": 1941.555699621454,
+      "attackRating": 1.9695656728010005,
+      "defenseRating": 1.9695656728010005
     },
     {
       "id": "CPV",
@@ -1896,8 +1896,8 @@
       "homeId": "ESP",
       "awayId": "BEL",
       "kickoffUtc": "2026-07-10T19:00Z",
-      "status": "live",
-      "homeGoals": 1,
+      "status": "finished",
+      "homeGoals": 2,
       "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
@@ -1939,7 +1939,7 @@
       "stage": "sf",
       "groupId": null,
       "homeId": "FRA",
-      "awayId": "QFW2",
+      "awayId": "ESP",
       "kickoffUtc": "2026-07-14T19:00Z",
       "status": "scheduled",
       "homeGoals": null,
