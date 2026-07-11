@@ -1,21 +1,7 @@
 {
-  "timestamp": "2026-07-11T20:34:52.210Z",
+  "timestamp": "2026-07-11T21:31:54.109Z",
   "blendWeight": 0.3,
   "matches": [
-    {
-      "id": "ESPN-760512",
-      "stage": "qf",
-      "groupId": null,
-      "homeId": "NOR",
-      "awayId": "ENG",
-      "kickoffUtc": "2026-07-11T21:00Z",
-      "homeXg": 0.7638791670251222,
-      "awayXg": 1.4778597175210997,
-      "pHome": 0.1924572278149107,
-      "pDraw": 0.2819129599053695,
-      "pAway": 0.5256298122797197,
-      "marketBlended": true
-    },
     {
       "id": "ESPN-760513",
       "stage": "qf",

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-11T20:34:52.210Z",
+  "timestamp": "2026-07-11T21:31:54.109Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1478,9 +1478,9 @@
       "homeId": "NOR",
       "awayId": "ENG",
       "kickoffUtc": "2026-07-11T21:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1523,6 +1523,21 @@
       "homeId": "QFW3",
       "awayId": "QW4",
       "kickoffUtc": "2026-07-15T19:00Z",
+      "status": "scheduled",
+      "homeGoals": null,
+      "awayGoals": null,
+      "homeGoalsAet": null,
+      "awayGoalsAet": null,
+      "homePens": null,
+      "awayPens": null
+    },
+    {
+      "id": "ESPN-760516",
+      "stage": "3rd",
+      "groupId": null,
+      "homeId": "SF L1",
+      "awayId": "SF L2",
+      "kickoffUtc": "2026-07-18T21:00Z",
       "status": "scheduled",
       "homeGoals": null,
       "awayGoals": null,
