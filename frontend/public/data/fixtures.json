@@ -320,9 +320,9 @@
       "name": "Norway",
       "code": "NOR",
       "groupId": "I",
-      "rankingElo": 1662.698651218391,
-      "attackRating": 1.283706580504906,
-      "defenseRating": 1.283706580504906
+      "rankingElo": 1644.4155069761343,
+      "attackRating": 1.248179382638767,
+      "defenseRating": 1.248179382638767
     },
     {
       "id": "ARG",
@@ -401,9 +401,9 @@
       "name": "England",
       "code": "ENG",
       "groupId": "L",
-      "rankingElo": 1877.6550605309926,
-      "attackRating": 1.7855418771246654,
-      "defenseRating": 1.7855418771246654
+      "rankingElo": 1895.9382047732493,
+      "attackRating": 1.836364139092154,
+      "defenseRating": 1.836364139092154
     },
     {
       "id": "CRO",
@@ -1911,7 +1911,7 @@
       "homeId": "NOR",
       "awayId": "ENG",
       "kickoffUtc": "2026-07-11T21:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 1,
       "awayGoals": 2,
       "homeGoalsAet": null,
@@ -1926,9 +1926,9 @@
       "homeId": "ARG",
       "awayId": "SUI",
       "kickoffUtc": "2026-07-12T01:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1953,7 +1953,7 @@
       "id": "ESPN-760515",
       "stage": "sf",
       "groupId": null,
-      "homeId": "QFW3",
+      "homeId": "ENG",
       "awayId": "QW4",
       "kickoffUtc": "2026-07-15T19:00Z",
       "status": "scheduled",
