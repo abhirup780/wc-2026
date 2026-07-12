@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-12T01:11:08.678Z",
+  "timestamp": "2026-07-12T04:42:40.370Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1493,9 +1493,9 @@
       "homeId": "ARG",
       "awayId": "SUI",
       "kickoffUtc": "2026-07-12T01:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 3,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1521,7 +1521,7 @@
       "stage": "sf",
       "groupId": null,
       "homeId": "ENG",
-      "awayId": "QW4",
+      "awayId": "ARG",
       "kickoffUtc": "2026-07-15T19:00Z",
       "status": "scheduled",
       "homeGoals": null,

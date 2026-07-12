@@ -68,9 +68,9 @@
       "name": "Switzerland",
       "code": "SUI",
       "groupId": "B",
-      "rankingElo": 1702.7474426965375,
-      "attackRating": 1.3651015563564202,
-      "defenseRating": 1.3651015563564202
+      "rankingElo": 1684.9697729044265,
+      "attackRating": 1.3283520243396654,
+      "defenseRating": 1.3283520243396654
     },
     {
       "id": "BRA",
@@ -329,9 +329,9 @@
       "name": "Argentina",
       "code": "ARG",
       "groupId": "J",
-      "rankingElo": 1928.1478603096032,
-      "attackRating": 1.9294427947141475,
-      "defenseRating": 1.9294427947141475
+      "rankingElo": 1945.9255301017142,
+      "attackRating": 1.982821807550818,
+      "defenseRating": 1.982821807550818
     },
     {
       "id": "ALG",
@@ -1926,9 +1926,9 @@
       "homeId": "ARG",
       "awayId": "SUI",
       "kickoffUtc": "2026-07-12T01:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 3,
+      "awayGoals": 1,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1954,7 +1954,7 @@
       "stage": "sf",
       "groupId": null,
       "homeId": "ENG",
-      "awayId": "QW4",
+      "awayId": "ARG",
       "kickoffUtc": "2026-07-15T19:00Z",
       "status": "scheduled",
       "homeGoals": null,
