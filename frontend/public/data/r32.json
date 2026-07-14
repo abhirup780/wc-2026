@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T16:36:33.879Z",
+  "generatedAt": "2026-07-14T20:17:22.547Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -159,18 +159,6 @@
       ]
     },
     {
-      "code": "FRA",
-      "name": "France",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "SWE",
-          "name": "Sweden",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "ARG",
       "name": "Argentina",
       "reachProb": 1,
@@ -178,6 +166,18 @@
         {
           "code": "CPV",
           "name": "Cape Verde",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "FRA",
+      "name": "France",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "SWE",
+          "name": "Sweden",
           "prob": 1
         }
       ]
