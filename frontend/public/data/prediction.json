@@ -923,9 +923,9 @@
       "homeId": "FRA",
       "awayId": "SWE",
       "kickoffUtc": "",
-      "homeXg": 2.079295114873208,
-      "awayXg": 0.5429273804978082,
-      "homeGoals": 2,
+      "homeXg": 1.9839350929814121,
+      "awayXg": 0.5690237820752017,
+      "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "FRA"
     },
@@ -1014,8 +1014,8 @@
       "homeId": "ESP",
       "awayId": "AUT",
       "kickoffUtc": "",
-      "homeXg": 1.840684224867713,
-      "awayXg": 0.6133079399217064,
+      "homeXg": 1.9291587362568379,
+      "awayXg": 0.5851805913029354,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "ESP"
@@ -1079,8 +1079,8 @@
       "homeId": "GER",
       "awayId": "FRA",
       "kickoffUtc": "",
-      "homeXg": 0.738773971745456,
-      "awayXg": 1.528080702860717,
+      "homeXg": 0.7742839550951965,
+      "awayXg": 1.4580003144469182,
       "homeGoals": 0,
       "awayGoals": 1,
       "winnerId": "FRA"
@@ -1131,8 +1131,8 @@
       "homeId": "POR",
       "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 0.8143431337631395,
-      "awayXg": 1.3862783428691061,
+      "homeXg": 0.7769959681262781,
+      "awayXg": 1.452911335849466,
       "homeGoals": 0,
       "awayGoals": 3,
       "winnerId": "ESP"
@@ -1183,8 +1183,8 @@
       "homeId": "FRA",
       "awayId": "NED",
       "kickoffUtc": "",
-      "homeXg": 1.392362650945168,
-      "awayXg": 0.8107846395001133,
+      "homeXg": 1.328506523969394,
+      "awayXg": 0.8497558947824991,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "FRA"
@@ -1196,8 +1196,8 @@
       "homeId": "ESP",
       "awayId": "BEL",
       "kickoffUtc": "",
-      "homeXg": 1.3947496380223854,
-      "awayXg": 0.8093970553745226,
+      "homeXg": 1.4617898131198046,
+      "awayXg": 0.7722767253321101,
       "homeGoals": 0,
       "awayGoals": 0,
       "winnerId": "ESP"
@@ -1235,11 +1235,11 @@
       "homeId": "FRA",
       "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 1.079149819543859,
-      "awayXg": 1.0461070646123745,
-      "homeGoals": 1,
-      "awayGoals": 0,
-      "winnerId": "FRA"
+      "homeXg": 0.9824362869782675,
+      "awayXg": 1.149088510840981,
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "winnerId": "ESP"
     },
     {
       "id": "SF-02",
@@ -1258,16 +1258,16 @@
       "id": "FINAL-01",
       "stage": "final",
       "groupId": null,
-      "homeId": "FRA",
+      "homeId": "ESP",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 1.0719351745522423,
-      "awayXg": 1.0531478738642521,
-      "homeGoals": 2,
-      "awayGoals": 1,
-      "winnerId": "FRA"
+      "homeXg": 1.1061254685885753,
+      "awayXg": 1.0205951151640087,
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "winnerId": "ESP"
     }
   ],
-  "champion": "FRA",
-  "generatedAt": "2026-07-14T20:17:19.847Z"
+  "champion": "ESP",
+  "generatedAt": "2026-07-14T21:26:42.393Z"
 }

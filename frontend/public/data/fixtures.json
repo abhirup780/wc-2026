@@ -257,9 +257,9 @@
       "name": "Spain",
       "code": "ESP",
       "groupId": "H",
-      "rankingElo": 1941.555699621454,
-      "attackRating": 1.9695656728010005,
-      "defenseRating": 1.9695656728010005
+      "rankingElo": 1972.1387101544594,
+      "attackRating": 2.0642350127103946,
+      "defenseRating": 2.0642350127103946
     },
     {
       "id": "CPV",
@@ -293,9 +293,9 @@
       "name": "France",
       "code": "FRA",
       "groupId": "I",
-      "rankingElo": 1951.6849052041762,
-      "attackRating": 2.000429590948686,
-      "defenseRating": 2.000429590948686
+      "rankingElo": 1921.1018946711708,
+      "attackRating": 1.908686476553164,
+      "defenseRating": 1.908686476553164
     },
     {
       "id": "SEN",
@@ -1941,9 +1941,9 @@
       "homeId": "FRA",
       "awayId": "ESP",
       "kickoffUtc": "2026-07-14T19:00Z",
-      "status": "live",
+      "status": "finished",
       "homeGoals": 0,
-      "awayGoals": 1,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
