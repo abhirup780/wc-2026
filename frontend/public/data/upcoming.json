@@ -1,5 +1,34 @@
 {
-  "timestamp": "2026-07-15T19:55:58.835Z",
+  "timestamp": "2026-07-15T21:09:40.418Z",
   "blendWeight": 0.3,
-  "matches": []
+  "matches": [
+    {
+      "id": "ESPN-760516",
+      "stage": "3rd",
+      "groupId": null,
+      "homeId": "FRA",
+      "awayId": "ENG",
+      "kickoffUtc": "2026-07-18T21:00Z",
+      "homeXg": 1.1513099521903702,
+      "awayXg": 0.9805406857226003,
+      "pHome": 0.37838174891848075,
+      "pDraw": 0.3302247619532174,
+      "pAway": 0.2913934891283015,
+      "marketBlended": false
+    },
+    {
+      "id": "ESPN-760517",
+      "stage": "final",
+      "groupId": null,
+      "homeId": "ESP",
+      "awayId": "ARG",
+      "kickoffUtc": "2026-07-19T19:00Z",
+      "homeXg": 1.0610036190236396,
+      "awayXg": 1.0639984913895448,
+      "pHome": 0.3329880985903008,
+      "pDraw": 0.3324940730250469,
+      "pAway": 0.3345178283846525,
+      "marketBlended": false
+    }
+  ]
 }

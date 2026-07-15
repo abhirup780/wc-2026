@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T19:56:07.048Z",
+  "generatedAt": "2026-07-15T21:09:48.979Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -66,7 +66,7 @@
       "homeName": "England",
       "awayName": "Congo DR",
       "prob": 1,
-      "homeWinProb": 0.8299417638834009
+      "homeWinProb": 0.8147378289332876
     },
     {
       "home": "USA",
@@ -114,7 +114,7 @@
       "homeName": "Argentina",
       "awayName": "Cape Verde",
       "prob": 1,
-      "homeWinProb": 0.8921327069657614
+      "homeWinProb": 0.9017510009524704
     },
     {
       "home": "COL",
@@ -147,18 +147,6 @@
       ]
     },
     {
-      "code": "ENG",
-      "name": "England",
-      "reachProb": 1,
-      "opponents": [
-        {
-          "code": "COD",
-          "name": "Congo DR",
-          "prob": 1
-        }
-      ]
-    },
-    {
       "code": "ARG",
       "name": "Argentina",
       "reachProb": 1,
@@ -166,6 +154,18 @@
         {
           "code": "CPV",
           "name": "Cape Verde",
+          "prob": 1
+        }
+      ]
+    },
+    {
+      "code": "ENG",
+      "name": "England",
+      "reachProb": 1,
+      "opponents": [
+        {
+          "code": "COD",
+          "name": "Congo DR",
           "prob": 1
         }
       ]

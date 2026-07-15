@@ -329,9 +329,9 @@
       "name": "Argentina",
       "code": "ARG",
       "groupId": "J",
-      "rankingElo": 1945.9255301017142,
-      "attackRating": 1.982821807550818,
-      "defenseRating": 1.982821807550818
+      "rankingElo": 1973.0568203511239,
+      "attackRating": 2.0671462959033766,
+      "defenseRating": 2.0671462959033766
     },
     {
       "id": "ALG",
@@ -401,9 +401,9 @@
       "name": "England",
       "code": "ENG",
       "groupId": "L",
-      "rankingElo": 1895.9382047732493,
-      "attackRating": 1.836364139092154,
-      "defenseRating": 1.836364139092154
+      "rankingElo": 1868.8069145238396,
+      "attackRating": 1.7614538791048409,
+      "defenseRating": 1.7614538791048409
     },
     {
       "id": "CRO",
@@ -1956,9 +1956,9 @@
       "homeId": "ENG",
       "awayId": "ARG",
       "kickoffUtc": "2026-07-15T19:00Z",
-      "status": "live",
-      "homeGoals": 0,
-      "awayGoals": 0,
+      "status": "finished",
+      "homeGoals": 1,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
@@ -1969,7 +1969,7 @@
       "stage": "3rd",
       "groupId": null,
       "homeId": "FRA",
-      "awayId": "SF L2",
+      "awayId": "ENG",
       "kickoffUtc": "2026-07-18T21:00Z",
       "status": "scheduled",
       "homeGoals": null,
@@ -1984,7 +1984,7 @@
       "stage": "final",
       "groupId": null,
       "homeId": "ESP",
-      "awayId": "SFW2",
+      "awayId": "ARG",
       "kickoffUtc": "2026-07-19T19:00Z",
       "status": "scheduled",
       "homeGoals": null,

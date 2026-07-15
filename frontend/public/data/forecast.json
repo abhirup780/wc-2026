@@ -13,7 +13,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.024
+      "pChampionInitial": 0.0228
     },
     {
       "teamId": "RSA",
@@ -28,7 +28,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0004
+      "pChampionInitial": 0.0002
     },
     {
       "teamId": "KOR",
@@ -43,7 +43,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.007
+      "pChampionInitial": 0.0058
     },
     {
       "teamId": "CZE",
@@ -58,7 +58,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0018
+      "pChampionInitial": 0.002
     },
     {
       "teamId": "CAN",
@@ -68,12 +68,12 @@
       "pWinGroup": 0,
       "pAdvanceGroup": 1,
       "pReachR16": 1,
-      "pReachQF": 0.29536,
-      "pReachSF": 0.069,
+      "pReachQF": 0.29092,
+      "pReachSF": 0.06856,
       "pReachFinal": 0.01084,
-      "pChampion": 0.0026,
-      "pChampionModel": 0.0026,
-      "pChampionInitial": 0.0068
+      "pChampion": 0.00172,
+      "pChampionModel": 0.00172,
+      "pChampionInitial": 0.0036
     },
     {
       "teamId": "BIH",
@@ -88,7 +88,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0004
+      "pChampionInitial": 0
     },
     {
       "teamId": "QAT",
@@ -103,7 +103,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0018
+      "pChampionInitial": 0.0008
     },
     {
       "teamId": "SUI",
@@ -114,11 +114,11 @@
       "pAdvanceGroup": 1,
       "pReachR16": 1,
       "pReachQF": 1,
-      "pReachSF": 0.11204,
-      "pReachFinal": 0.03356,
-      "pChampion": 0.0091,
-      "pChampionModel": 0.0091,
-      "pChampionInitial": 0.0156
+      "pReachSF": 0.09822,
+      "pReachFinal": 0.03272,
+      "pChampion": 0.0088,
+      "pChampionModel": 0.0088,
+      "pChampionInitial": 0.0186
     },
     {
       "teamId": "BRA",
@@ -133,7 +133,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0532
+      "pChampionInitial": 0.051
     },
     {
       "teamId": "MAR",
@@ -148,7 +148,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.043
+      "pChampionInitial": 0.0456
     },
     {
       "teamId": "HAI",
@@ -178,7 +178,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0014
+      "pChampionInitial": 0.0018
     },
     {
       "teamId": "USA",
@@ -193,7 +193,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0198
+      "pChampionInitial": 0.0204
     },
     {
       "teamId": "PAR",
@@ -208,7 +208,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0022
+      "pChampionInitial": 0.001
     },
     {
       "teamId": "AUS",
@@ -218,12 +218,12 @@
       "pWinGroup": 0,
       "pAdvanceGroup": 1,
       "pReachR16": 1,
-      "pReachQF": 0.18236,
-      "pReachSF": 0.07032,
-      "pReachFinal": 0.01564,
-      "pChampion": 0.00286,
-      "pChampionModel": 0.00286,
-      "pChampionInitial": 0.0048
+      "pReachQF": 0.1649,
+      "pReachSF": 0.06668,
+      "pReachFinal": 0.01646,
+      "pChampion": 0.00338,
+      "pChampionModel": 0.00338,
+      "pChampionInitial": 0.0058
     },
     {
       "teamId": "TUR",
@@ -248,12 +248,12 @@
       "pWinGroup": 1,
       "pAdvanceGroup": 1,
       "pReachR16": 1,
-      "pReachQF": 0.3042,
-      "pReachSF": 0.15102,
-      "pReachFinal": 0.04006,
-      "pChampion": 0.01354,
-      "pChampionModel": 0.01354,
-      "pChampionInitial": 0.0348
+      "pReachQF": 0.30598,
+      "pReachSF": 0.15532,
+      "pReachFinal": 0.04168,
+      "pChampion": 0.01192,
+      "pChampionModel": 0.01192,
+      "pChampionInitial": 0.0358
     },
     {
       "teamId": "CUW",
@@ -283,7 +283,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0026
+      "pChampionInitial": 0.0032
     },
     {
       "teamId": "ECU",
@@ -298,7 +298,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.006
+      "pChampionInitial": 0.0072
     },
     {
       "teamId": "NED",
@@ -308,12 +308,12 @@
       "pWinGroup": 1,
       "pAdvanceGroup": 1,
       "pReachR16": 1,
-      "pReachQF": 0.70464,
-      "pReachSF": 0.29768,
-      "pReachFinal": 0.09242,
-      "pChampion": 0.03698,
-      "pChampionModel": 0.03698,
-      "pChampionInitial": 0.0406
+      "pReachQF": 0.70908,
+      "pReachSF": 0.29764,
+      "pReachFinal": 0.0954,
+      "pChampion": 0.03292,
+      "pChampionModel": 0.03292,
+      "pChampionInitial": 0.0394
     },
     {
       "teamId": "JPN",
@@ -328,7 +328,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0154
+      "pChampionInitial": 0.0164
     },
     {
       "teamId": "SWE",
@@ -343,7 +343,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0038
+      "pChampionInitial": 0.0018
     },
     {
       "teamId": "TUN",
@@ -358,7 +358,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0006
+      "pChampionInitial": 0.001
     },
     {
       "teamId": "BEL",
@@ -373,7 +373,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0456
+      "pChampionInitial": 0.044
     },
     {
       "teamId": "EGY",
@@ -388,7 +388,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0074
+      "pChampionInitial": 0.0048
     },
     {
       "teamId": "IRN",
@@ -403,7 +403,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0154
+      "pChampionInitial": 0.0086
     },
     {
       "teamId": "NZL",
@@ -430,11 +430,11 @@
       "pReachR16": 1,
       "pReachQF": 1,
       "pReachSF": 1,
-      "pReachFinal": 0.85668,
-      "pChampion": 0.5217425449039023,
-      "pChampionModel": 0.50036,
+      "pReachFinal": 0.85208,
+      "pChampion": 0.4813245449039023,
+      "pChampionModel": 0.44262,
       "pChampionMarket": 0.5716351496796743,
-      "pChampionInitial": 0.26207054490390225
+      "pChampionInitial": 0.2617905449039023
     },
     {
       "teamId": "CPV",
@@ -464,7 +464,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0006
+      "pChampionInitial": 0.0008
     },
     {
       "teamId": "URU",
@@ -479,7 +479,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0192
+      "pChampionInitial": 0.0174
     },
     {
       "teamId": "FRA",
@@ -489,12 +489,12 @@
       "pWinGroup": 1,
       "pAdvanceGroup": 1,
       "pReachR16": 1,
-      "pReachQF": 0.6958,
-      "pReachSF": 0.4823,
+      "pReachQF": 0.69402,
+      "pReachSF": 0.47848,
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.1234
+      "pChampionInitial": 0.1306
     },
     {
       "teamId": "SEN",
@@ -509,7 +509,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0236
+      "pChampionInitial": 0.0186
     },
     {
       "teamId": "IRQ",
@@ -524,7 +524,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0
+      "pChampionInitial": 0.0002
     },
     {
       "teamId": "NOR",
@@ -539,7 +539,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0036
+      "pChampionInitial": 0.0046
     },
     {
       "teamId": "ARG",
@@ -549,13 +549,13 @@
       "pWinGroup": 1,
       "pAdvanceGroup": 1,
       "pReachR16": 1,
-      "pReachQF": 0.81764,
-      "pReachSF": 0.81764,
-      "pReachFinal": 0,
-      "pChampion": 0.057871489652366014,
-      "pChampionModel": 0,
+      "pReachQF": 0.8351,
+      "pReachSF": 0.8351,
+      "pReachFinal": 0.8351,
+      "pChampion": 0.370253489652366,
+      "pChampionModel": 0.44626,
       "pChampionMarket": 0.19290496550788672,
-      "pChampionInitial": 0.149151489652366
+      "pChampionInitial": 0.152931489652366
     },
     {
       "teamId": "ALG",
@@ -570,7 +570,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0042
+      "pChampionInitial": 0.0038
     },
     {
       "teamId": "AUT",
@@ -585,7 +585,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0052
+      "pChampionInitial": 0.0056
     },
     {
       "teamId": "JOR",
@@ -600,7 +600,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0002
+      "pChampionInitial": 0
     },
     {
       "teamId": "POR",
@@ -615,7 +615,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0482
+      "pChampionInitial": 0.0546
     },
     {
       "teamId": "COD",
@@ -645,7 +645,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0012
+      "pChampionInitial": 0.0004
     },
     {
       "teamId": "COL",
@@ -660,7 +660,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0258
+      "pChampionInitial": 0.0242
     },
     {
       "teamId": "ENG",
@@ -672,11 +672,11 @@
       "pReachR16": 1,
       "pReachQF": 1,
       "pReachSF": 1,
-      "pReachFinal": 0.9508,
-      "pChampion": 0.37482996544373165,
-      "pChampionModel": 0.43456,
+      "pReachFinal": 0.11572,
+      "pChampion": 0.10730396544373169,
+      "pChampionModel": 0.05238,
       "pChampionMarket": 0.23545988481243899,
-      "pChampionInitial": 0.13405796544373166
+      "pChampionInitial": 0.13307796544373168
     },
     {
       "teamId": "CRO",
@@ -691,7 +691,7 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0292
+      "pChampionInitial": 0.0344
     },
     {
       "teamId": "GHA",
@@ -721,17 +721,18 @@
       "pReachFinal": 0,
       "pChampion": 0,
       "pChampionModel": 0,
-      "pChampionInitial": 0.0034
+      "pChampionInitial": 0.0018
     }
   ],
   "championDistribution": {
-    "CAN": 0.0026,
-    "SUI": 0.0091,
-    "AUS": 0.00286,
-    "GER": 0.01354,
-    "NED": 0.03698,
-    "ESP": 0.50036,
-    "ENG": 0.43456
+    "CAN": 0.00172,
+    "SUI": 0.0088,
+    "AUS": 0.00338,
+    "GER": 0.01192,
+    "NED": 0.03292,
+    "ESP": 0.44262,
+    "ARG": 0.44626,
+    "ENG": 0.05238
   },
   "modelConfig": {
     "type": "poisson",
@@ -742,7 +743,7 @@
     "eloRegressionFactor": 1
   },
   "simCount": 50000,
-  "seed": 1733930763,
-  "generatedAt": "2026-07-15T19:56:04.396Z",
-  "dataSnapshotTimestamp": "2026-07-15T19:55:58.835Z"
+  "seed": 1738352436,
+  "generatedAt": "2026-07-15T21:09:46.294Z",
+  "dataSnapshotTimestamp": "2026-07-15T21:09:40.418Z"
 }
