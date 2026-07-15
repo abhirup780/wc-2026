@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-14T21:26:36.810Z",
+  "timestamp": "2026-07-15T00:56:13.530Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1535,7 +1535,7 @@
       "id": "ESPN-760516",
       "stage": "3rd",
       "groupId": null,
-      "homeId": "SF L1",
+      "homeId": "FRA",
       "awayId": "SF L2",
       "kickoffUtc": "2026-07-18T21:00Z",
       "status": "scheduled",
@@ -1550,7 +1550,7 @@
       "id": "ESPN-760517",
       "stage": "final",
       "groupId": null,
-      "homeId": "SFW1",
+      "homeId": "ESP",
       "awayId": "SFW2",
       "kickoffUtc": "2026-07-19T19:00Z",
       "status": "scheduled",
