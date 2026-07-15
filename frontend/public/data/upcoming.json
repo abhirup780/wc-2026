@@ -1,20 +1,5 @@
 {
-  "timestamp": "2026-07-15T17:33:37.230Z",
+  "timestamp": "2026-07-15T19:55:58.835Z",
   "blendWeight": 0.3,
-  "matches": [
-    {
-      "id": "ESPN-760515",
-      "stage": "sf",
-      "groupId": null,
-      "homeId": "ENG",
-      "awayId": "ARG",
-      "kickoffUtc": "2026-07-15T19:00Z",
-      "homeXg": 0.9840202938838254,
-      "awayXg": 1.1472387886883157,
-      "pHome": 0.3123382161492162,
-      "pDraw": 0.33007752091313153,
-      "pAway": 0.35758426293765233,
-      "marketBlended": true
-    }
-  ]
+  "matches": []
 }
