@@ -293,9 +293,9 @@
       "name": "France",
       "code": "FRA",
       "groupId": "I",
-      "rankingElo": 1921.1018946711708,
-      "attackRating": 1.908686476553164,
-      "defenseRating": 1.908686476553164
+      "rankingElo": 1888.1016168663334,
+      "attackRating": 1.8144057404517842,
+      "defenseRating": 1.8144057404517842
     },
     {
       "id": "SEN",
@@ -401,9 +401,9 @@
       "name": "England",
       "code": "ENG",
       "groupId": "L",
-      "rankingElo": 1868.8069145238396,
-      "attackRating": 1.7614538791048409,
-      "defenseRating": 1.7614538791048409
+      "rankingElo": 1901.807192328677,
+      "attackRating": 1.852983113513724,
+      "defenseRating": 1.852983113513724
     },
     {
       "id": "CRO",
@@ -1971,9 +1971,9 @@
       "homeId": "FRA",
       "awayId": "ENG",
       "kickoffUtc": "2026-07-18T21:00Z",
-      "status": "live",
-      "homeGoals": 3,
-      "awayGoals": 4,
+      "status": "finished",
+      "homeGoals": 4,
+      "awayGoals": 6,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
