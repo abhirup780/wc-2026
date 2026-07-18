@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-18T19:52:10.982Z",
+  "timestamp": "2026-07-18T21:36:06.641Z",
   "matches": [
     {
       "id": "ESPN-760415",
@@ -1538,9 +1538,9 @@
       "homeId": "FRA",
       "awayId": "ENG",
       "kickoffUtc": "2026-07-18T21:00Z",
-      "status": "scheduled",
-      "homeGoals": null,
-      "awayGoals": null,
+      "status": "live",
+      "homeGoals": 0,
+      "awayGoals": 2,
       "homeGoalsAet": null,
       "awayGoalsAet": null,
       "homePens": null,
