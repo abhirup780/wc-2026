@@ -1,20 +1,5 @@
 {
-  "timestamp": "2026-07-19T13:44:21.636Z",
+  "timestamp": "2026-07-19T19:56:53.478Z",
   "blendWeight": 0.3,
-  "matches": [
-    {
-      "id": "ESPN-760517",
-      "stage": "final",
-      "groupId": null,
-      "homeId": "ESP",
-      "awayId": "ARG",
-      "kickoffUtc": "2026-07-19T19:00Z",
-      "homeXg": 1.0610036190236396,
-      "awayXg": 1.0639984913895448,
-      "pHome": 0.35787645089380027,
-      "pDraw": 0.32762391028421867,
-      "pAway": 0.3144996388219811,
-      "marketBlended": true
-    }
-  ]
+  "matches": []
 }
