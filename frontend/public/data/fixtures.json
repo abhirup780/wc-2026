@@ -257,9 +257,9 @@
       "name": "Spain",
       "code": "ESP",
       "groupId": "H",
-      "rankingElo": 1972.1387101544594,
-      "attackRating": 2.0642350127103946,
-      "defenseRating": 2.0642350127103946
+      "rankingElo": 2002.1915607710987,
+      "attackRating": 2.1616947800572817,
+      "defenseRating": 2.1616947800572817
     },
     {
       "id": "CPV",
@@ -329,9 +329,9 @@
       "name": "Argentina",
       "code": "ARG",
       "groupId": "J",
-      "rankingElo": 1973.0568203511239,
-      "attackRating": 2.0671462959033766,
-      "defenseRating": 2.0671462959033766
+      "rankingElo": 1943.0039697344846,
+      "attackRating": 1.973949236388164,
+      "defenseRating": 1.973949236388164
     },
     {
       "id": "ALG",
@@ -1986,8 +1986,8 @@
       "homeId": "ESP",
       "awayId": "ARG",
       "kickoffUtc": "2026-07-19T19:00Z",
-      "status": "live",
-      "homeGoals": 0,
+      "status": "finished",
+      "homeGoals": 1,
       "awayGoals": 0,
       "homeGoalsAet": null,
       "awayGoalsAet": null,

@@ -1014,8 +1014,8 @@
       "homeId": "ESP",
       "awayId": "AUT",
       "kickoffUtc": "",
-      "homeXg": 1.9291587362568379,
-      "awayXg": 0.5851805913029354,
+      "homeXg": 2.0202410793297503,
+      "awayXg": 0.5587977898036476,
       "homeGoals": 2,
       "awayGoals": 1,
       "winnerId": "ESP"
@@ -1040,8 +1040,8 @@
       "homeId": "ARG",
       "awayId": "CPV",
       "kickoffUtc": "",
-      "homeXg": 2.5788871497629255,
-      "awayXg": 0.43774937965152105,
+      "homeXg": 2.4626183110959277,
+      "awayXg": 0.4584170615939293,
       "homeGoals": 1,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1131,10 +1131,10 @@
       "homeId": "POR",
       "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 0.7769959681262781,
-      "awayXg": 1.452911335849466,
+      "homeXg": 0.7419651918198054,
+      "awayXg": 1.5215083705357535,
       "homeGoals": 0,
-      "awayGoals": 3,
+      "awayGoals": 4,
       "winnerId": "ESP"
     },
     {
@@ -1157,8 +1157,8 @@
       "homeId": "ARG",
       "awayId": "AUS",
       "kickoffUtc": "",
-      "homeXg": 1.9379415964515292,
-      "awayXg": 0.582528519985889,
+      "homeXg": 1.8505697163579775,
+      "awayXg": 0.6100317324017109,
       "homeGoals": 3,
       "awayGoals": 2,
       "winnerId": "ARG"
@@ -1196,8 +1196,8 @@
       "homeId": "ESP",
       "awayId": "BEL",
       "kickoffUtc": "",
-      "homeXg": 1.4617898131198046,
-      "awayXg": 0.7722767253321101,
+      "homeXg": 1.530806031825273,
+      "awayXg": 0.7374587155591075,
       "homeGoals": 0,
       "awayGoals": 0,
       "winnerId": "ESP"
@@ -1222,8 +1222,8 @@
       "homeId": "ARG",
       "awayId": "COL",
       "kickoffUtc": "",
-      "homeXg": 1.5203868958828264,
-      "awayXg": 0.7425124835376131,
+      "homeXg": 1.4518404227558155,
+      "awayXg": 0.7775690994036129,
       "homeGoals": 2,
       "awayGoals": 0,
       "winnerId": "ARG"
@@ -1235,8 +1235,8 @@
       "homeId": "FRA",
       "awayId": "ESP",
       "kickoffUtc": "",
-      "homeXg": 0.9339082456017258,
-      "awayXg": 1.2087978185401234,
+      "homeXg": 0.8918030968178295,
+      "awayXg": 1.265869398781202,
       "homeGoals": 0,
       "awayGoals": 1,
       "winnerId": "ESP"
@@ -1248,8 +1248,8 @@
       "homeId": "ENG",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 0.9524214914106679,
-      "awayXg": 1.1853011089952765,
+      "homeXg": 0.9973886469900999,
+      "awayXg": 1.1318619410866482,
       "homeGoals": 1,
       "awayGoals": 2,
       "winnerId": "ARG"
@@ -1261,13 +1261,13 @@
       "homeId": "ESP",
       "awayId": "ARG",
       "kickoffUtc": "",
-      "homeXg": 1.0610036190236396,
-      "awayXg": 1.0639984913895448,
+      "homeXg": 1.1635561145500557,
+      "awayXg": 0.9702207189522142,
       "homeGoals": 0,
       "awayGoals": 0,
-      "winnerId": "ARG"
+      "winnerId": "ESP"
     }
   ],
-  "champion": "ARG",
-  "generatedAt": "2026-07-19T19:56:59.113Z"
+  "champion": "ESP",
+  "generatedAt": "2026-07-19T22:05:49.871Z"
 }

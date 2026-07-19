@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T19:57:01.747Z",
+  "generatedAt": "2026-07-19T22:05:52.674Z",
   "simCount": 50000,
   "remainingGroupMatches": 0,
   "distinctMatchups": 16,
@@ -98,7 +98,7 @@
       "homeName": "Spain",
       "awayName": "Austria",
       "prob": 1,
-      "homeWinProb": 0.8162505928654309
+      "homeWinProb": 0.8329221865634185
     },
     {
       "home": "SUI",
@@ -114,7 +114,7 @@
       "homeName": "Argentina",
       "awayName": "Cape Verde",
       "prob": 1,
-      "homeWinProb": 0.9017510009524704
+      "homeWinProb": 0.8910490106832781
     },
     {
       "home": "COL",
